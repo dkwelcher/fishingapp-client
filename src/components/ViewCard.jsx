@@ -2,7 +2,7 @@ function ViewCard({ catches }) {
   return (
     <div>
       {catches.map((catchItem, i) => (
-        <div className="bg-cyan-600 mb-2 p-2 rounded-md">
+        <div className="bg-slate-200 mb-2 p-2 rounded-md">
           <div className="grid grid-cols-9 border-b border-b-black mb-2">
             <p>Time</p>
             <p>Species</p>
