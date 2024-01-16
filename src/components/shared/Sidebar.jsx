@@ -15,7 +15,7 @@ function Sidebar() {
     <div className="bg-neutral-900 w-60 p-3 flex flex-col text-white border-r border-neutral-700">
       <div className="flex items-center gap-2 px-1 py-3">
         <img className="size-10" src={Logo} />
-        <span className="text-neutral-100 text-4xl font-caveat font-bold">
+        <span className="text-neutral-100 text-4xl font-cursive font-bold">
           Fishing App
         </span>
       </div>

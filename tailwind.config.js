@@ -14,9 +14,9 @@ export default {
         "transparent-shadow": "linear-gradient(rgb(0 0 0/40%) 0 0)",
       },
       fontFamily: {
-        rubik: ["Rubik", "sans-serif"],
-        caveat: ["Caveat", "sans-serif"],
-        montserrat: ["Montserrat", "sans-serif"],
+        title: ["Rubik", "sans-serif"],
+        cursive: ["Caveat", "sans-serif"],
+        paragraph: ["Montserrat", "sans-serif"],
       },
       textShadow: {
         DEFAULT:

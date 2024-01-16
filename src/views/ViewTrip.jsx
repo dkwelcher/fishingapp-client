@@ -75,10 +75,10 @@ function ViewTrip() {
   return (
     <div className="flex flex-col justify-center items-left px-[20%] py-8">
       <div className="flex flex-col justify-center items-left mb-4">
-        <h1 className="font-rubik font-medium text-3xl mb-4">
+        <h1 className="font-title font-medium text-3xl mb-4">
           Find Your Recorded Fishing Trips
         </h1>
-        <p className="w-[60%] font-montserrat text-md">
+        <p className="w-[60%] font-paragraph text-md">
           Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sint tempora
           doloremque dolore nam, laborum maiores cupiditate inventore natus
           provident odit ipsum est, necessitatibus deleniti amet.
@@ -95,9 +95,9 @@ function ViewTrip() {
         ></div>
         <div className="flex justify-between mb-4 text-white">
           {trip.location && (
-            <h2 className="font-rubik text-2xl">{trip.location}</h2>
+            <h2 className="font-title text-2xl">{trip.location}</h2>
           )}
-          {trip.date && <h2 className="font-rubik text-2xl">{trip.date}</h2>}
+          {trip.date && <h2 className="font-title text-2xl">{trip.date}</h2>}
         </div>
         <div className="px-4">
           {catches && catches.length > 0 && <ViewCard catches={catches} />}

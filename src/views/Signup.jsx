@@ -5,7 +5,7 @@ function Signup() {
     <div className="flex bg-signup-image bg-center bg-cover h-screen justify-center items-center">
       <div className="flex pl-4 gap-20 bg-transparent-shadow rounded-2xl">
         <div className="flex flex-col justify-between w-full pl-4 py-4 max-w-[550px] text-white">
-          <div className="flex pt-4 items-center font-caveat font-bold">
+          <div className="flex pt-4 items-center font-cursive font-bold">
             <img
               className="size-14"
               src={Logo}
@@ -14,7 +14,7 @@ function Signup() {
             <h2 className="text-7xl">Fishing App</h2>
           </div>
           <div className="pb-8">
-            <h2 className="pb-4 text-3xl font-rubik font-bold">
+            <h2 className="pb-4 text-3xl font-title font-bold">
               Lorem ipsum dolor sit amet.
             </h2>
             <p className="text-lg">
@@ -24,7 +24,7 @@ function Signup() {
             </p>
           </div>
         </div>
-        <div className="w-full max-w-[500px] p-8 font-montserrat font-normal bg-white rounded-2xl">
+        <div className="w-full max-w-[500px] p-8 font-paragraph font-normal bg-white rounded-2xl">
           <form className="flex flex-col">
             <label for="">Username:</label>
             <input
