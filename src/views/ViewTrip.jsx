@@ -9,6 +9,11 @@ function ViewTrip() {
     setTripInfo(tripInfo);
   };
 
+  const [trip] = useState({
+    location: "Clarks Hill",
+    date: "1/16/2024",
+  });
+
   const [catches] = useState([
     {
       fish: "Striped Bass",
@@ -80,12 +85,19 @@ function ViewTrip() {
       <div>
         <TripSearch getTripInfo={getTripInfo} />
       </div>
-      <div className="flex justify-between">
-        <h2>Clarks Hill</h2>
-        <h2>1/16/2024</h2>
-      </div>
       <div>
-        {catches && catches.length > 0 && <ViewCard catches={catches} />}
+        <div
+          className={`w-[500px] h-[500px] bg-green-200 m-auto ${
+            trip && catches.length > 0 ? "hidden" : ""
+          }`}
+        ></div>
+        <div className="flex justify-between">
+          {trip.location && <h2>{trip.location}</h2>}
+          {trip.date && <h2>{trip.date}</h2>}
+        </div>
+        <div>
+          {catches && catches.length > 0 && <ViewCard catches={catches} />}
+        </div>
       </div>
     </div>
   );
