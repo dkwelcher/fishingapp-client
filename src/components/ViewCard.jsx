@@ -3,7 +3,7 @@ function ViewCard({ catches }) {
     <div>
       {catches.map((catchItem, i) => (
         <div className="bg-slate-200 mb-2 p-2 rounded-md">
-          <div className="grid grid-cols-9 border-b border-b-black mb-2">
+          <div className="grid grid-cols-9 border-b border-b-black mb-2 font-title font-medium">
             <p>Time</p>
             <p>Species</p>
             <p>Latitude</p>
@@ -14,7 +14,7 @@ function ViewCard({ catches }) {
             <p>Water Temp</p>
             <p>Wind Speed</p>
           </div>
-          <div className="grid grid-cols-9">
+          <div className="grid grid-cols-9 font-paragraph text-sm">
             <p>{catchItem.time}</p>
             <p>{catchItem.fish}</p>
             <p>{catchItem.latitude}</p>
