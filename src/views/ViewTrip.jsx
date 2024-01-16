@@ -9,11 +9,18 @@ function ViewTrip() {
   };
 
   return (
-    <div>
-      <h2>Select date of trip</h2>
-      <TripSearch getTripInfo={getTripInfo} />
-      <p>{tripInfo.date}</p>
-      <p>{tripInfo.time}</p>
+    <div className="flex flex-col justify-center items-left px-[20%] py-8">
+      <div className="flex flex-col justify-center items-left">
+        <h1>Find Your Recorded Fishing Trips</h1>
+        <p>
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sint tempora
+          doloremque dolore nam, laborum maiores cupiditate inventore natus
+          provident odit ipsum est, necessitatibus deleniti amet.
+        </p>
+      </div>
+      <div>
+        <TripSearch getTripInfo={getTripInfo} />
+      </div>
     </div>
   );
 }
