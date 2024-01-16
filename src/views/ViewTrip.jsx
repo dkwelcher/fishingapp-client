@@ -74,28 +74,32 @@ function ViewTrip() {
 
   return (
     <div className="flex flex-col justify-center items-left px-[20%] py-8">
-      <div className="flex flex-col justify-center items-left">
-        <h1>Find Your Recorded Fishing Trips</h1>
-        <p>
+      <div className="flex flex-col justify-center items-left mb-4">
+        <h1 className="font-rubik font-medium text-3xl mb-4">
+          Find Your Recorded Fishing Trips
+        </h1>
+        <p className="w-[60%] font-montserrat text-md">
           Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sint tempora
           doloremque dolore nam, laborum maiores cupiditate inventore natus
           provident odit ipsum est, necessitatibus deleniti amet.
         </p>
       </div>
-      <div>
+      <div className="mb-8">
         <TripSearch getTripInfo={getTripInfo} />
       </div>
-      <div>
+      <div className="bg-gradient-to-b from-slate-800 to-slate-400 p-2 rounded-md">
         <div
           className={`w-[500px] h-[500px] bg-green-200 m-auto ${
             trip && catches.length > 0 ? "hidden" : ""
           }`}
         ></div>
-        <div className="flex justify-between">
-          {trip.location && <h2>{trip.location}</h2>}
-          {trip.date && <h2>{trip.date}</h2>}
+        <div className="flex justify-between mb-4 text-white">
+          {trip.location && (
+            <h2 className="font-rubik text-2xl">{trip.location}</h2>
+          )}
+          {trip.date && <h2 className="font-rubik text-2xl">{trip.date}</h2>}
         </div>
-        <div>
+        <div className="px-4">
           {catches && catches.length > 0 && <ViewCard catches={catches} />}
         </div>
       </div>
