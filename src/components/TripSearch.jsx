@@ -27,7 +27,7 @@ function TripSearch({ getTripInfo }) {
         className="text-gray-400 absolute top-1/2 -translate-y-1/2 left-1 z-10"
       />
       <DatePicker
-        className="pl-8 py-1 border border-gray-300 rounded-sm"
+        className="pl-8 py-1 border border-gray-300 rounded-sm text-slate-600"
         selected={startDate}
         onChange={(date) => setStartDate(date)}
         timeInputLabel="Time:"
