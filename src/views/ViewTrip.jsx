@@ -73,20 +73,21 @@ function ViewTrip() {
   ]);
 
   return (
-    <div className="flex flex-col justify-center items-left px-[20%] py-8">
+    <div className="flex flex-col justify-center items-left mx-[10%] my-4 p-8 rounded-md bg-slate-200 text-slate-800">
       <div className="flex flex-col justify-center items-left mb-4">
-        <h1 className="font-title font-medium text-3xl mb-4">
+        <h1 className="font-title font-medium text-4xl mb-4">
           Find Your Recorded Fishing Trips
         </h1>
-        <p className="w-[60%] font-paragraph text-md">
+        <p className="w-[60%] font-paragraph text-md mb-8 text-slate-500">
           Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sint tempora
           doloremque dolore nam, laborum maiores cupiditate inventore natus
           provident odit ipsum est, necessitatibus deleniti amet.
         </p>
+        <div>
+          <TripSearch getTripInfo={getTripInfo} />
+        </div>
       </div>
-      <div className="mb-8">
-        <TripSearch getTripInfo={getTripInfo} />
-      </div>
+
       <div className="bg-gradient-to-b from-slate-800 to-slate-400 p-2 rounded-md">
         <div
           className={`w-[500px] h-[500px] bg-green-200 m-auto ${
