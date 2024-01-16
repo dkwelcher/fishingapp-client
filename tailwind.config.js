@@ -10,6 +10,7 @@ export default {
         "hero-image": "url('./src/assets/striped-bass-school.png')",
         "callout-image": "url('./src/assets/boat.png')",
         "signup-image": "url('./src/assets/red-drum.png')",
+        "home-image": "url('./src/assets/sunset.png')",
         "transparent-shadow": "linear-gradient(rgb(0 0 0/40%) 0 0)",
       },
       fontFamily: {
