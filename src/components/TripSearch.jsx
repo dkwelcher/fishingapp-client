@@ -1,5 +1,6 @@
 import { useState } from "react";
 import DatePicker from "react-datepicker";
+import { HiOutlineCalendar } from "react-icons/hi";
 
 function TripSearch({ getTripInfo }) {
   const [startDate, setStartDate] = useState(new Date());
@@ -20,16 +21,20 @@ function TripSearch({ getTripInfo }) {
   };
 
   return (
-    <div>
+    <div className="relative">
+      <HiOutlineCalendar
+        fontSize={20}
+        className="text-gray-400 absolute top-1/2 -translate-y-1/2 left-1 z-10"
+      />
       <DatePicker
-        className="p-1"
+        className="pl-8 py-1 border border-gray-300 rounded-sm"
         selected={startDate}
         onChange={(date) => setStartDate(date)}
         timeInputLabel="Time:"
         dateFormat="MM/dd/yyyy h:mm aa"
         showTimeInput
       />
-      <button onClick={formatSearchClick}>Search</button>
+      {/* <button onClick={formatSearchClick}>Search</button> */}
     </div>
   );
 }
