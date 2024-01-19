@@ -85,7 +85,7 @@ function Layout() {
               <h2 className="text-5xl font-paragraph font-semibold">
                 Lorem ipsum dolor sit amet.
               </h2>
-              <p className="text-zinc-600 pt-4 text-2xl font-paragraph font-medium">
+              <p className="text-zinc-600 pt-4 text-xl font-paragraph font-medium">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi
                 totam fugit rerum. Nobis officiis fugiat deleniti libero
                 cupiditate voluptatibus maiores necessitatibus ex similique
