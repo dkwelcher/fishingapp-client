@@ -11,6 +11,7 @@ export default {
         "callout-image": "url('./src/assets/boat.png')",
         "signup-image": "url('./src/assets/red-drum.png')",
         "home-image": "url('./src/assets/sunset.png')",
+        "viewtrip-image": "url('./src/assets/mountain-lake.png')",
         "transparent-shadow": "linear-gradient(rgb(0 0 0/40%) 0 0)",
       },
       fontFamily: {
