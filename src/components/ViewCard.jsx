@@ -2,7 +2,11 @@ function ViewCard({ catches }) {
   return (
     <div>
       {catches.map((catchItem, i) => (
-        <div className="bg-slate-200 mb-2 p-2 rounded-md">
+        <div
+          className={`${
+            i % 2 == 0 ? "bg-slate-200" : "bg-slate-300"
+          } mb-2 p-2 rounded-md`}
+        >
           <div className="grid grid-cols-9 border-b border-b-black mb-2 font-title font-medium">
             <p>Time</p>
             <p>Species</p>
