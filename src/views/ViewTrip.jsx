@@ -12,13 +12,13 @@ function ViewTrip() {
 
   const [trip] = useState({
     location: "Clarks Hill",
-    date: "1/16/2024",
+    date: "01/23/2024",
   });
 
   const [catches] = useState([
     {
       fish: "Striped Bass",
-      time: "5:30",
+      time: "5:30 am",
       latitude: "33.691743",
       longitude: "-82.217761",
       bait: "Blueback Herring",
@@ -29,7 +29,7 @@ function ViewTrip() {
     },
     {
       fish: "Striped Bass",
-      time: "5:36",
+      time: "5:36 am",
       latitude: "32.259143",
       longitude: "-81.198345",
       bait: "Blueback Herring",
@@ -40,7 +40,7 @@ function ViewTrip() {
     },
     {
       fish: "Striped Bass",
-      time: "5:42",
+      time: "5:42 am",
       latitude: "33.613486",
       longitude: "-82.991645",
       bait: "Blueback Herring",
@@ -51,7 +51,7 @@ function ViewTrip() {
     },
     {
       fish: "Channel Catfish",
-      time: "5:44",
+      time: "5:44 am",
       latitude: "33.613589",
       longitude: "-82.992346",
       bait: "Blueback Herring",
@@ -62,7 +62,7 @@ function ViewTrip() {
     },
     {
       fish: "Striped Bass",
-      time: "6:45",
+      time: "6:45 am",
       latitude: "34.513486",
       longitude: "-83.543168",
       bait: "Blueback Herring",
@@ -73,7 +73,7 @@ function ViewTrip() {
     },
     {
       fish: "Largemouth Bass",
-      time: "6:47",
+      time: "6:47 am",
       latitude: "34.513246",
       longitude: "-83.549476",
       bait: "Blueback Herring",
@@ -84,7 +84,7 @@ function ViewTrip() {
     },
     {
       fish: "Striped Bass",
-      time: "8:26",
+      time: "8:26 am",
       latitude: "36.761389",
       longitude: "-86.498315",
       bait: "Blueback Herring",
@@ -95,7 +95,7 @@ function ViewTrip() {
     },
     {
       fish: "Channel Catfish",
-      time: "8:28",
+      time: "8:28 am",
       latitude: "36.761389",
       longitude: "-86.498315",
       bait: "Blueback Herring",
@@ -106,7 +106,7 @@ function ViewTrip() {
     },
     {
       fish: "Striped Bass",
-      time: "8:29",
+      time: "8:29 am",
       latitude: "35.984351",
       longitude: "-86.986479",
       bait: "Blueback Herring",
@@ -117,7 +117,7 @@ function ViewTrip() {
     },
     {
       fish: "Striped Bass",
-      time: "8:42",
+      time: "8:42 am",
       latitude: "36.846388",
       longitude: "-86.912549",
       bait: "Blueback Herring",
@@ -128,7 +128,7 @@ function ViewTrip() {
     },
     {
       fish: "Striped Bass",
-      time: "8:53",
+      time: "8:53 am",
       latitude: "36.761389",
       longitude: "-86.498315",
       bait: "Blueback Herring",
@@ -139,7 +139,7 @@ function ViewTrip() {
     },
     {
       fish: "Striped Bass",
-      time: "8:59",
+      time: "8:59 am",
       latitude: "36.761389",
       longitude: "-86.998315",
       bait: "Blueback Herring",
@@ -152,7 +152,7 @@ function ViewTrip() {
 
   return (
     <div className="flex flex-col justify-center items-left text-slate-800">
-      <div className="flex flex-col justify-center items-left px-10 py-20 mb-4 bg-viewtrip-image bg-cover bg-center text-white">
+      <div className="flex flex-col justify-center items-left px-10 py-20 mb-8 bg-viewtrip-image bg-cover bg-center text-white">
         <h1 className="font-title font-medium text-4xl mb-4">
           Find Your Recorded Fishing Trips
         </h1>
