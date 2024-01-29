@@ -166,7 +166,13 @@ function ViewTrip() {
         </div>
       </div>
 
-      <div className="w-[95%] mx-auto mb-4 bg-gradient-to-b from-slate-800 to-slate-400 p-4 rounded-md">
+      <div
+        className={`w-[95%] mx-auto mb-4 p-4 rounded-md ${
+          trip && catches.length > 0
+            ? "bg-gradient-to-b from-slate-800 to-slate-400"
+            : ""
+        }`}
+      >
         <div
           className={`w-[500px] h-[500px] bg-green-200 m-auto ${
             trip && catches.length > 0 ? "hidden" : ""
