@@ -35,16 +35,16 @@ export const DASHBOARD_SIDEBAR_LINKS = [
 ];
 
 export const DASHBOARD_SIDEBAR_BOTTOM_LINKS = [
+  // {
+  //   key: "settings",
+  //   label: "Settings",
+  //   path: "/settings",
+  //   icon: <HiCog />,
+  // },
   {
-    key: "settings",
-    label: "Settings",
-    path: "/settings",
-    icon: <HiCog />,
-  },
-  {
-    key: "support",
-    label: "Help & Support",
-    path: "/support",
+    key: "faq",
+    label: "FAQ",
+    path: "/faq",
     icon: <HiOutlineQuestionMarkCircle />,
   },
 ];
