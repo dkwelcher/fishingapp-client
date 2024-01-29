@@ -7,6 +7,7 @@ import EditTrip from "./views/EditTrip";
 import DeleteTrip from "./views/DeleteTrip";
 import LandingPage from "./views/LandingPage";
 import Signup from "./views/Signup";
+import Login from "./views/Login";
 
 function App() {
   return (
@@ -22,7 +23,7 @@ function App() {
           </Route>
           <Route path="/landing" element={<LandingPage />} />
           <Route path="/signup" element={<Signup />} />
-          <Route path="/login" element={<div>Login</div>} />
+          <Route path="/login" element={<Login />} />
         </Routes>
       </Router>
     </>
