@@ -1,7 +1,6 @@
-// import TripSearch from "../components/TripSearch";
-import DateSearch from "../components/DateSearch";
 import { useState } from "react";
-import ViewCard from "../components/ViewCard";
+import InfoSection from "../components/views/InfoSection";
+import TripCard from "../components/views/TripCard";
 
 function ViewTrip() {
   const [tripInfo, setTripInfo] = useState({ date: "", time: "" });
@@ -152,42 +151,15 @@ function ViewTrip() {
 
   return (
     <div className="flex flex-col justify-center items-left text-slate-800">
-      <div className="flex flex-col justify-center items-left px-10 py-20 mb-8 bg-viewtrip-image bg-cover bg-center text-white">
-        <h1 className="font-title font-medium text-4xl mb-4">
-          Find Your Recorded Fishing Trips
-        </h1>
-        <p className="w-[40%] font-paragraph text-md mb-8">
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sint tempora
-          doloremque dolore nam, laborum maiores cupiditate inventore natus
-          provident odit ipsum est, necessitatibus deleniti amet.
-        </p>
-        <div>
-          <DateSearch getTripInfo={getTripInfo} />
-        </div>
-      </div>
-
-      <div
-        className={`w-[95%] mx-auto mb-4 p-4 rounded-md ${
-          trip && catches.length > 0
-            ? "bg-gradient-to-b from-slate-800 to-slate-400"
-            : ""
-        }`}
-      >
-        <div
-          className={`w-[500px] h-[500px] bg-green-200 m-auto ${
-            trip && catches.length > 0 ? "hidden" : ""
-          }`}
-        ></div>
-        <div className="flex justify-between mb-4 text-white">
-          {trip.location && (
-            <h2 className="font-title text-2xl">{trip.location}</h2>
-          )}
-          {trip.date && <h2 className="font-title text-2xl">{trip.date}</h2>}
-        </div>
-        <div className="px-4">
-          {catches && catches.length > 0 && <ViewCard catches={catches} />}
-        </div>
-      </div>
+      <InfoSection
+        getTripInfo={getTripInfo}
+        backgroundImage="bg-viewtrip-image"
+        title="Find Your Recorded Fishing Trips"
+        description="Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sint tempora
+        doloremque dolore nam, laborum maiores cupiditate inventore natus
+        provident odit ipsum est, necessitatibus deleniti amet."
+      />
+      <TripCard trip={trip} catches={catches} />
     </div>
   );
 }
