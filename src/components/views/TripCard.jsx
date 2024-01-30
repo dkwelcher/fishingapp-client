@@ -1,6 +1,6 @@
 import CatchCard from "./CatchCard";
 
-function TripCard({ trip, catches }) {
+function TripCard({ trip, catches, openAddCatchModal, setOpenAddCatchModal }) {
   return (
     <div
       className={`w-[95%] mx-auto mb-4 p-4 rounded-md ${
@@ -39,7 +39,15 @@ function TripCard({ trip, catches }) {
         </div>
       </div>
       <div className="px-6">
-        {trip.location && trip.date ? <CatchCard catches={catches} /> : ""}
+        {trip.location && trip.date ? (
+          <CatchCard
+            catches={catches}
+            openAddCatchModal={openAddCatchModal}
+            setOpenAddCatchModal={setOpenAddCatchModal}
+          />
+        ) : (
+          ""
+        )}
       </div>
     </div>
   );
