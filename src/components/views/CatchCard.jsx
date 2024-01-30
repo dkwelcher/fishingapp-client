@@ -1,8 +1,13 @@
-function CatchCard({ catches }) {
+import AddCatchModal from "../modals/AddCatchModal";
+
+function CatchCard({ catches, openAddCatchModal, setOpenAddCatchModal }) {
   return (
     <div>
       <div className="mb-4">
-        <button className="bg-white text-slate-600 px-6 py-2 rounded-sm font-paragraph font-bold">
+        <button
+          className="bg-white text-slate-600 px-6 py-2 rounded-sm font-paragraph font-bold"
+          onClick={() => setOpenAddCatchModal(true)}
+        >
           Add a New Catch
         </button>
       </div>
