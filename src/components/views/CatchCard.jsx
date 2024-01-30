@@ -1,6 +1,17 @@
-import AddCatchModal from "../modals/AddCatchModal";
+function CatchCard({
+  catches,
+  setTempCatch,
+  openAddCatchModal,
+  setOpenAddCatchModal,
+  openEditCatchModal,
+  setOpenEditCatchModal,
+}) {
+  function handleCatch(dataKey) {
+    const catchItem = catches[dataKey];
+    const newCatchItem = { ...catchItem, index: dataKey };
+    setTempCatch(newCatchItem);
+  }
 
-function CatchCard({ catches, openAddCatchModal, setOpenAddCatchModal }) {
   return (
     <div>
       <div className="mb-4">
@@ -17,7 +28,7 @@ function CatchCard({ catches, openAddCatchModal, setOpenAddCatchModal }) {
             className={`flex justify-around items-center ${
               i % 2 == 0 ? "bg-slate-200" : "bg-slate-300"
             } mb-2 p-2 rounded-md`}
-            key={i}
+            key={catchItem.id}
           >
             <div className="flex">
               <div className="font-title font-medium">
@@ -56,10 +67,21 @@ function CatchCard({ catches, openAddCatchModal, setOpenAddCatchModal }) {
               </div>
             </div>
             <div className="flex font-paragraph">
-              <button className="bg-slate-800 text-slate-200 px-6 py-2 rounded-sm">
+              <button
+                className="bg-slate-800 text-slate-200 px-6 py-2 rounded-sm"
+                data-key={i}
+                onClick={(e) => {
+                  const dataKey = e.currentTarget.getAttribute("data-key");
+                  setOpenEditCatchModal(true);
+                  handleCatch(dataKey);
+                }}
+              >
                 Edit
               </button>
-              <button className="ml-4 bg-slate-800 text-slate-200 px-6 py-2 rounded-sm">
+              <button
+                className="ml-4 bg-slate-800 text-slate-200 px-6 py-2 rounded-sm"
+                data-key={catchItem.id}
+              >
                 Delete
               </button>
             </div>
