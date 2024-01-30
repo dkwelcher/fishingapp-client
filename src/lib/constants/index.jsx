@@ -32,6 +32,12 @@ export const DASHBOARD_SIDEBAR_LINKS = [
     path: "/delete-trip",
     icon: <IoFish />,
   },
+  {
+    key: "manageTrips",
+    label: "Manage Trips",
+    path: "/manage-trips",
+    icon: <IoFish />,
+  },
 ];
 
 export const DASHBOARD_SIDEBAR_BOTTOM_LINKS = [
