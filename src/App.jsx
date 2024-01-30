@@ -5,6 +5,7 @@ import ViewTrip from "./views/ViewTrip";
 import AddTrip from "./views/AddTrip";
 import EditTrip from "./views/EditTrip";
 import DeleteTrip from "./views/DeleteTrip";
+import ManageTrips from "./views/ManageTrips";
 import LandingPage from "./views/LandingPage";
 import Signup from "./views/Signup";
 import Login from "./views/Login";
@@ -20,6 +21,7 @@ function App() {
             <Route path="/add-trip" element={<AddTrip />} />
             <Route path="/edit-trip" element={<EditTrip />} />
             <Route path="/delete-trip" element={<DeleteTrip />} />
+            <Route path="/manage-trips" element={<ManageTrips />} />
           </Route>
           <Route path="/landing" element={<LandingPage />} />
           <Route path="/signup" element={<Signup />} />
