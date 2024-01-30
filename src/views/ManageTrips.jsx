@@ -2,9 +2,13 @@ import { useState } from "react";
 import InfoSection from "../components/views/InfoSection";
 import TripCard from "../components/views/TripCard";
 import AddCatchModal from "../components/modals/AddCatchModal";
+import EditCatchModal from "../components/modals/EditCatchModal";
 
 function ManageTrips() {
   const [openAddCatchModal, setOpenAddCatchModal] = useState(false);
+  const [openEditCatchModal, setOpenEditCatchModal] = useState(false);
+
+  const [tempCatch, setTempCatch] = useState({});
 
   const [tripInfo, setTripInfo] = useState({ date: "", time: "" });
 
@@ -16,12 +20,14 @@ function ManageTrips() {
   };
 
   const [trip] = useState({
+    id: "1",
     location: "Clarks Hill",
     date: "01/23/2024",
   });
 
-  const [catches] = useState([
+  const [catches, setCatches] = useState([
     {
+      id: "1",
       fish: "Striped Bass",
       time: "5:30 am",
       latitude: "33.691743",
@@ -33,6 +39,7 @@ function ManageTrips() {
       windSpeed: "8",
     },
     {
+      id: "2",
       fish: "Striped Bass",
       time: "5:36 am",
       latitude: "32.259143",
@@ -44,6 +51,7 @@ function ManageTrips() {
       windSpeed: "8",
     },
     {
+      id: "3",
       fish: "Striped Bass",
       time: "5:42 am",
       latitude: "33.613486",
@@ -55,6 +63,7 @@ function ManageTrips() {
       windSpeed: "8",
     },
     {
+      id: "4",
       fish: "Channel Catfish",
       time: "5:44 am",
       latitude: "33.613589",
@@ -66,6 +75,7 @@ function ManageTrips() {
       windSpeed: "8",
     },
     {
+      id: "5",
       fish: "Striped Bass",
       time: "6:45 am",
       latitude: "34.513486",
@@ -77,6 +87,7 @@ function ManageTrips() {
       windSpeed: "8",
     },
     {
+      id: "7",
       fish: "Largemouth Bass",
       time: "6:47 am",
       latitude: "34.513246",
@@ -88,6 +99,7 @@ function ManageTrips() {
       windSpeed: "8",
     },
     {
+      id: "8",
       fish: "Striped Bass",
       time: "8:26 am",
       latitude: "36.761389",
@@ -99,6 +111,7 @@ function ManageTrips() {
       windSpeed: "8",
     },
     {
+      id: "9",
       fish: "Channel Catfish",
       time: "8:28 am",
       latitude: "36.761389",
@@ -110,6 +123,7 @@ function ManageTrips() {
       windSpeed: "8",
     },
     {
+      id: "10",
       fish: "Striped Bass",
       time: "8:29 am",
       latitude: "35.984351",
@@ -121,6 +135,7 @@ function ManageTrips() {
       windSpeed: "8",
     },
     {
+      id: "11",
       fish: "Striped Bass",
       time: "8:42 am",
       latitude: "36.846388",
@@ -132,6 +147,7 @@ function ManageTrips() {
       windSpeed: "8",
     },
     {
+      id: "12",
       fish: "Striped Bass",
       time: "8:53 am",
       latitude: "36.761389",
@@ -143,6 +159,7 @@ function ManageTrips() {
       windSpeed: "8",
     },
     {
+      id: "13",
       fish: "Striped Bass",
       time: "8:59 am",
       latitude: "36.761389",
@@ -158,6 +175,14 @@ function ManageTrips() {
   return (
     <div>
       <AddCatchModal open={openAddCatchModal} set={setOpenAddCatchModal} />
+      <EditCatchModal
+        openEdit={openEditCatchModal}
+        setEdit={setOpenEditCatchModal}
+        tempCatch={tempCatch}
+        setTempCatch={setTempCatch}
+        catches={catches}
+        setCatches={setCatches}
+      />
       <div className="flex flex-col justify-center items-left text-slate-800">
         <InfoSection
           getTripInfo={getTripInfo}
@@ -170,8 +195,11 @@ function ManageTrips() {
         <TripCard
           trip={trip}
           catches={catches}
+          setTempCatch={setTempCatch}
           openAddCatchModal={openAddCatchModal}
           setOpenAddCatchModal={setOpenAddCatchModal}
+          openEditCatchModal={openEditCatchModal}
+          setOpenEditCatchModal={setOpenEditCatchModal}
         />
       </div>
     </div>
