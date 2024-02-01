@@ -174,10 +174,17 @@ function ManageTrips() {
 
   return (
     <div>
-      <AddCatchModal open={openAddCatchModal} set={setOpenAddCatchModal} />
+      <AddCatchModal
+        openAddCatchModal={openAddCatchModal}
+        setOpenAddCatchModal={setOpenAddCatchModal}
+        tempCatch={tempCatch}
+        setTempCatch={setTempCatch}
+        catches={catches}
+        setCatches={setCatches}
+      />
       <EditCatchModal
-        openEdit={openEditCatchModal}
-        setEdit={setOpenEditCatchModal}
+        openEditCatchModal={openEditCatchModal}
+        setOpenEditCatchModal={setOpenEditCatchModal}
         tempCatch={tempCatch}
         setTempCatch={setTempCatch}
         catches={catches}
@@ -195,6 +202,7 @@ function ManageTrips() {
         <TripCard
           trip={trip}
           catches={catches}
+          setCatches={setCatches}
           setTempCatch={setTempCatch}
           openAddCatchModal={openAddCatchModal}
           setOpenAddCatchModal={setOpenAddCatchModal}
