@@ -3,6 +3,7 @@ import CatchCard from "./CatchCard";
 function TripCard({
   trip,
   catches,
+  setCatches,
   setTempCatch,
   openAddCatchModal,
   setOpenAddCatchModal,
@@ -50,6 +51,7 @@ function TripCard({
         {trip.location && trip.date ? (
           <CatchCard
             catches={catches}
+            setCatches={setCatches}
             setTempCatch={setTempCatch}
             openAddCatchModal={openAddCatchModal}
             setOpenAddCatchModal={setOpenAddCatchModal}
