@@ -1,12 +1,12 @@
 function EditCatchModal({
-  openEdit,
-  setEdit,
+  openEditCatchModal,
+  setOpenEditCatchModal,
   tempCatch,
   setTempCatch,
   catches,
   setCatches,
 }) {
-  if (!openEdit) return null;
+  if (!openEditCatchModal) return null;
 
   function handleCatches() {
     const updatedCatch = {
@@ -153,14 +153,14 @@ function EditCatchModal({
               className="bg-slate-800 text-slate-200 px-6 py-2 rounded-sm"
               onClick={() => {
                 handleCatches();
-                setEdit(false);
+                setOpenEditCatchModal(false);
               }}
             >
-              Add
+              Edit
             </button>
             <button
               className="bg-slate-800 text-slate-200 px-6 py-2 rounded-sm"
-              onClick={() => setEdit(false)}
+              onClick={() => setOpenEditCatchModal(false)}
             >
               Cancel
             </button>
