@@ -1,15 +1,23 @@
 function CatchCard({
   catches,
+  setCatches,
   setTempCatch,
   openAddCatchModal,
   setOpenAddCatchModal,
   openEditCatchModal,
   setOpenEditCatchModal,
 }) {
-  function handleCatch(dataKey) {
+  function handleEditCatch(dataKey) {
     const catchItem = catches[dataKey];
     const newCatchItem = { ...catchItem, index: dataKey };
     setTempCatch(newCatchItem);
+  }
+
+  function handleDeleteCatch(dataKey) {
+    console.log(dataKey);
+    setCatches((catches) => {
+      return catches.filter((_, i) => i !== Number(dataKey));
+    });
   }
 
   return (
@@ -73,14 +81,18 @@ function CatchCard({
                 onClick={(e) => {
                   const dataKey = e.currentTarget.getAttribute("data-key");
                   setOpenEditCatchModal(true);
-                  handleCatch(dataKey);
+                  handleEditCatch(dataKey);
                 }}
               >
                 Edit
               </button>
               <button
                 className="ml-4 bg-slate-800 text-slate-200 px-6 py-2 rounded-sm"
-                data-key={catchItem.id}
+                data-key={i}
+                onClick={(e) => {
+                  const dataKey = e.currentTarget.getAttribute("data-key");
+                  handleDeleteCatch(dataKey);
+                }}
               >
                 Delete
               </button>
