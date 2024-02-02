@@ -49,7 +49,7 @@ function ManageTrips() {
     {
       id: "1",
       fish: "Striped Bass",
-      time: "5:30 am",
+      time: "05:30",
       latitude: "33.691743",
       longitude: "-82.217761",
       bait: "Blueback Herring",
@@ -61,7 +61,7 @@ function ManageTrips() {
     {
       id: "2",
       fish: "Striped Bass",
-      time: "5:36 am",
+      time: "05:36",
       latitude: "32.259143",
       longitude: "-81.198345",
       bait: "Blueback Herring",
@@ -73,7 +73,7 @@ function ManageTrips() {
     {
       id: "3",
       fish: "Striped Bass",
-      time: "5:42 am",
+      time: "05:42",
       latitude: "33.613486",
       longitude: "-82.991645",
       bait: "Blueback Herring",
@@ -85,7 +85,7 @@ function ManageTrips() {
     {
       id: "4",
       fish: "Channel Catfish",
-      time: "5:44 am",
+      time: "05:44",
       latitude: "33.613589",
       longitude: "-82.992346",
       bait: "Blueback Herring",
@@ -97,7 +97,7 @@ function ManageTrips() {
     {
       id: "5",
       fish: "Striped Bass",
-      time: "6:45 am",
+      time: "06:45",
       latitude: "34.513486",
       longitude: "-83.543168",
       bait: "Blueback Herring",
@@ -109,7 +109,7 @@ function ManageTrips() {
     {
       id: "7",
       fish: "Largemouth Bass",
-      time: "6:47 am",
+      time: "06:47",
       latitude: "34.513246",
       longitude: "-83.549476",
       bait: "Blueback Herring",
@@ -121,7 +121,7 @@ function ManageTrips() {
     {
       id: "8",
       fish: "Striped Bass",
-      time: "8:26 am",
+      time: "08:26",
       latitude: "36.761389",
       longitude: "-86.498315",
       bait: "Blueback Herring",
@@ -133,7 +133,7 @@ function ManageTrips() {
     {
       id: "9",
       fish: "Channel Catfish",
-      time: "8:28 am",
+      time: "08:28",
       latitude: "36.761389",
       longitude: "-86.498315",
       bait: "Blueback Herring",
@@ -145,7 +145,7 @@ function ManageTrips() {
     {
       id: "10",
       fish: "Striped Bass",
-      time: "8:29 am",
+      time: "08:29",
       latitude: "35.984351",
       longitude: "-86.986479",
       bait: "Blueback Herring",
@@ -157,7 +157,7 @@ function ManageTrips() {
     {
       id: "11",
       fish: "Striped Bass",
-      time: "8:42 am",
+      time: "08:42",
       latitude: "36.846388",
       longitude: "-86.912549",
       bait: "Blueback Herring",
@@ -169,7 +169,7 @@ function ManageTrips() {
     {
       id: "12",
       fish: "Striped Bass",
-      time: "8:53 am",
+      time: "08:53",
       latitude: "36.761389",
       longitude: "-86.498315",
       bait: "Blueback Herring",
@@ -181,7 +181,7 @@ function ManageTrips() {
     {
       id: "13",
       fish: "Striped Bass",
-      time: "8:59 am",
+      time: "08:59",
       latitude: "36.761389",
       longitude: "-86.998315",
       bait: "Blueback Herring",
