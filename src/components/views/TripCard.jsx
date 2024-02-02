@@ -2,6 +2,9 @@ import CatchCard from "./CatchCard";
 
 function TripCard({
   trip,
+  setTrip,
+  tempTrip,
+  setTempTrip,
   catches,
   setCatches,
   setTempCatch,
@@ -11,7 +14,13 @@ function TripCard({
   setOpenEditCatchModal,
   openDeleteCatchModal,
   setOpenDeleteCatchModal,
+  openEditTripModal,
+  setOpenEditTripModal,
 }) {
+  function handleEditTrip() {
+    setTempTrip(trip);
+  }
+
   return (
     <div
       className={`w-[95%] mx-auto mb-4 p-4 rounded-md ${
@@ -41,7 +50,13 @@ function TripCard({
             trip.location && trip.date ? "" : "hidden"
           }`}
         >
-          <button className="bg-white text-slate-600 px-6 py-2 rounded-sm font-paragraph font-bold">
+          <button
+            className="bg-white text-slate-600 px-6 py-2 rounded-sm font-paragraph font-bold"
+            onClick={() => {
+              setOpenEditTripModal(true);
+              handleEditTrip();
+            }}
+          >
             Edit Current Trip Info
           </button>
           <button className="ml-4 bg-white text-slate-600 px-6 py-2 rounded-sm font-paragraph font-bold">
