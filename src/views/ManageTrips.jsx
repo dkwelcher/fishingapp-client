@@ -3,10 +3,14 @@ import InfoSection from "../components/views/InfoSection";
 import TripCard from "../components/views/TripCard";
 import AddCatchModal from "../components/modals/AddCatchModal";
 import EditCatchModal from "../components/modals/EditCatchModal";
+import DeleteCatchModal from "../components/modals/DeleteCatchModal";
 
 function ManageTrips() {
   const [openAddCatchModal, setOpenAddCatchModal] = useState(false);
   const [openEditCatchModal, setOpenEditCatchModal] = useState(false);
+  const [openDeleteCatchModal, setOpenDeleteCatchModal] = useState(false);
+
+  const [userConfirmation, setuserConfirmation] = useState(false);
 
   const [tempCatch, setTempCatch] = useState({});
 
@@ -190,6 +194,14 @@ function ManageTrips() {
         catches={catches}
         setCatches={setCatches}
       />
+      <DeleteCatchModal
+        openDeleteCatchModal={openDeleteCatchModal}
+        setOpenDeleteCatchModal={setOpenDeleteCatchModal}
+        tempCatch={tempCatch}
+        setTempCatch={setTempCatch}
+        catches={catches}
+        setCatches={setCatches}
+      />
       <div className="flex flex-col justify-center items-left text-slate-800">
         <InfoSection
           getTripInfo={getTripInfo}
@@ -208,6 +220,8 @@ function ManageTrips() {
           setOpenAddCatchModal={setOpenAddCatchModal}
           openEditCatchModal={openEditCatchModal}
           setOpenEditCatchModal={setOpenEditCatchModal}
+          openDeleteCatchModal={openDeleteCatchModal}
+          setOpenDeleteCatchModal={setOpenDeleteCatchModal}
         />
       </div>
     </div>
