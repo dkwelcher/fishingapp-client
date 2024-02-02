@@ -5,12 +5,14 @@ import AddCatchModal from "../components/modals/AddCatchModal";
 import EditCatchModal from "../components/modals/EditCatchModal";
 import DeleteCatchModal from "../components/modals/DeleteCatchModal";
 import EditTripModal from "../components/modals/EditTripModal";
+import DeleteTripModal from "../components/modals/DeleteTripModal";
 
 function ManageTrips() {
   const [openAddCatchModal, setOpenAddCatchModal] = useState(false);
   const [openEditCatchModal, setOpenEditCatchModal] = useState(false);
   const [openDeleteCatchModal, setOpenDeleteCatchModal] = useState(false);
   const [openEditTripModal, setOpenEditTripModal] = useState(false);
+  const [openDeleteTripModal, setOpenDeleteTripModal] = useState(false);
 
   const [tempCatch, setTempCatch] = useState({});
   const [tempTrip, setTempTrip] = useState({});
@@ -224,6 +226,12 @@ function ManageTrips() {
         tempTrip={tempTrip}
         setTempTrip={setTempTrip}
       />
+      <DeleteTripModal
+        openDeleteTripModal={openDeleteTripModal}
+        setOpenDeleteTripModal={setOpenDeleteTripModal}
+        trip={trip}
+        setTrip={setTrip}
+      />
       <div className="flex flex-col justify-center items-left text-slate-800">
         <InfoSection
           getTripInfo={getTripInfo}
@@ -233,23 +241,31 @@ function ManageTrips() {
             doloremque dolore nam, laborum maiores cupiditate inventore natus
             provident odit ipsum est, necessitatibus deleniti amet."
         />
-        <TripCard
-          trip={trip}
-          setTrip={setTrip}
-          tempTrip={tempTrip}
-          setTempTrip={setTempTrip}
-          catches={catches}
-          setCatches={setCatches}
-          setTempCatch={setTempCatch}
-          openAddCatchModal={openAddCatchModal}
-          setOpenAddCatchModal={setOpenAddCatchModal}
-          openEditCatchModal={openEditCatchModal}
-          setOpenEditCatchModal={setOpenEditCatchModal}
-          openDeleteCatchModal={openDeleteCatchModal}
-          setOpenDeleteCatchModal={setOpenDeleteCatchModal}
-          openEditTripModal={openEditTripModal}
-          setOpenEditTripModal={setOpenEditTripModal}
-        />
+        {trip ? (
+          <TripCard
+            trip={trip}
+            setTrip={setTrip}
+            tempTrip={tempTrip}
+            setTempTrip={setTempTrip}
+            catches={catches}
+            setCatches={setCatches}
+            setTempCatch={setTempCatch}
+            openAddCatchModal={openAddCatchModal}
+            setOpenAddCatchModal={setOpenAddCatchModal}
+            openEditCatchModal={openEditCatchModal}
+            setOpenEditCatchModal={setOpenEditCatchModal}
+            openDeleteCatchModal={openDeleteCatchModal}
+            setOpenDeleteCatchModal={setOpenDeleteCatchModal}
+            openEditTripModal={openEditTripModal}
+            setOpenEditTripModal={setOpenEditTripModal}
+            openDeleteTripModal={openDeleteTripModal}
+            setOpenDeleteTripModal={setOpenDeleteTripModal}
+          />
+        ) : (
+          <div className="w-[500px] h-[500px] bg-green-200 m-auto">
+            Nothing here
+          </div>
+        )}
       </div>
     </div>
   );
