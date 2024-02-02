@@ -23,6 +23,11 @@ function TripCard({
     setTempTrip(trip);
   }
 
+  function handleDateFormat(date) {
+    const [year, month, day] = date.split("-");
+    return `${month}/${day}/${year}`;
+  }
+
   return (
     <div className="w-[95%] mx-auto mb-4 p-4 rounded-md bg-gradient-to-b from-slate-800 to-slate-400">
       <div className="mb-8 flex justify-between">
@@ -33,7 +38,9 @@ function TripCard({
             </h2>
           )}
           {trip.date && (
-            <h2 className="font-title ml-6 text-2xl">{trip.date}</h2>
+            <h2 className="font-title ml-6 text-2xl">
+              {handleDateFormat(trip.date)}
+            </h2>
           )}
         </div>
         <div className="flex items-center">
