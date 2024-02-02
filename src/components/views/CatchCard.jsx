@@ -41,13 +41,13 @@ function CatchCard({
       <div>
         {catches.map((catchItem, i) => (
           <div
-            className={`flex justify-around items-center ${
+            className={`grid grid-cols-4 ${
               i % 2 == 0 ? "bg-slate-200" : "bg-slate-300"
             } mb-2 p-2 rounded-md`}
             key={catchItem.id}
           >
-            <div className="flex">
-              <div className="font-title font-medium">
+            <div className="grid grid-cols-2">
+              <div className="font-title font-medium text-right">
                 <p>Time:</p>
                 <p>Species:</p>
                 <p>Bait:</p>
@@ -58,8 +58,8 @@ function CatchCard({
                 <p>{catchItem.bait}</p>
               </div>
             </div>
-            <div className="flex">
-              <div className="font-title font-medium">
+            <div className="grid grid-cols-2">
+              <div className="font-title font-medium text-right">
                 <p>Latitude:</p>
                 <p>Longitude:</p>
                 <p>Weather:</p>
@@ -70,8 +70,8 @@ function CatchCard({
                 <p>{catchItem.weather}</p>
               </div>
             </div>
-            <div className="flex">
-              <div className="font-title font-medium">
+            <div className="grid grid-cols-2">
+              <div className="font-title font-medium text-right">
                 <p>Air Temp:</p>
                 <p>Water Temp:</p>
                 <p>Wind Speed:</p>
@@ -82,7 +82,7 @@ function CatchCard({
                 <p>{catchItem.windSpeed}</p>
               </div>
             </div>
-            <div className="flex font-paragraph">
+            <div className="flex justify-center items-center font-paragraph">
               <button
                 className="bg-slate-800 text-slate-200 px-6 py-2 rounded-sm"
                 data-key={i}
