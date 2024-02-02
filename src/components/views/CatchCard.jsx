@@ -20,6 +20,14 @@ function CatchCard({
     setTempCatch(catchItem);
   }
 
+  function handleTimeConversionTo12HourFormat(time) {
+    const [hours, minutes] = time.split(":");
+    const hoursInt = parseInt(hours, 10);
+    const suffix = hoursInt >= 12 ? "pm" : "am";
+    const newHours = ((hoursInt + 11) % 12) + 1;
+    return `${newHours.toString().padStart(2, "0")}:${minutes} ${suffix}`;
+  }
+
   return (
     <div>
       <div className="mb-4">
@@ -45,7 +53,7 @@ function CatchCard({
                 <p>Bait:</p>
               </div>
               <div className="ml-4 font-paragraph text-sm">
-                <p>{catchItem.time}</p>
+                <p>{handleTimeConversionTo12HourFormat(catchItem.time)}</p>
                 <p>{catchItem.fish}</p>
                 <p>{catchItem.bait}</p>
               </div>
