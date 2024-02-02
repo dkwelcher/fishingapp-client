@@ -1,3 +1,6 @@
+import { useState } from "react";
+import DatePicker from "react-datepicker";
+
 function EditTripModal({
   openEditTripModal,
   setOpenEditTripModal,
@@ -8,8 +11,26 @@ function EditTripModal({
 }) {
   if (!openEditTripModal) return null;
 
+  const [editDate, setEditDate] = useState(new Date(handleDateConversion()));
+
+  function handleDateConversion() {
+    const date = trip.date;
+    const formattedDate = date + "T00:00:00";
+    return formattedDate;
+  }
+
   function handleEditTrip() {
-    setTrip(tempTrip);
+    const updatedTrip = { ...trip, date: handleDateFormatting(editDate) };
+    setTrip(updatedTrip);
+  }
+
+  function handleDateFormatting(date) {
+    const year = date.getFullYear();
+    // Month is zero-indexed
+    const month = ("0" + (date.getMonth() + 1)).slice(-2);
+    const day = ("0" + date.getDate()).slice(-2);
+
+    return `${year}-${month}-${day}`;
   }
 
   return (
@@ -29,14 +50,14 @@ function EditTripModal({
                 }
               />
               <label htmlFor="">Date</label>
-              <input
-                className="mb-4 px-2 py-1 border border-solid border-zinc-400 rounded-sm"
-                type="text"
-                value={tempTrip.date}
-                onChange={(e) =>
-                  setTempTrip({ ...tempTrip, date: e.target.value })
-                }
-              />
+              <div className="relative">
+                <DatePicker
+                  className="mb-4 px-2 py-1 border border-solid border-zinc-400 rounded-sm"
+                  showIcon
+                  selected={editDate}
+                  onChange={(date) => setEditDate(date)}
+                />
+              </div>
             </div>
           </form>
           <div className="flex justify-center items-center gap-4">
