@@ -30,19 +30,19 @@ function ManageTrips() {
     {
       id: "1",
       location: "Clarks Hill",
-      date: "01/23/2024",
+      date: "2024-01-24",
     },
     {
       id: "2",
       location: "Lake Murray",
-      date: "02/2/2024",
+      date: "2024-02-01",
     },
   ]);
 
   const [trip, setTrip] = useState({
     id: "1",
     location: "Clarks Hill",
-    date: "01/23/2024",
+    date: "2024-01-24",
   });
 
   const [catches, setCatches] = useState([
