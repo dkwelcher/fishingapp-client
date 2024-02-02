@@ -9,6 +9,8 @@ function TripCard({
   setOpenAddCatchModal,
   openEditCatchModal,
   setOpenEditCatchModal,
+  openDeleteCatchModal,
+  setOpenDeleteCatchModal,
 }) {
   return (
     <div
@@ -57,6 +59,8 @@ function TripCard({
             setOpenAddCatchModal={setOpenAddCatchModal}
             openEditCatchModal={openEditCatchModal}
             setOpenEditCatchModal={setOpenEditCatchModal}
+            openDeleteCatchModal={openDeleteCatchModal}
+            setOpenDeleteCatchModal={setOpenDeleteCatchModal}
           />
         ) : (
           ""
