@@ -8,6 +8,11 @@ import EditTripModal from "../components/modals/EditTripModal";
 import DeleteTripModal from "../components/modals/DeleteTripModal";
 
 function ManageTrips() {
+  const [user, setUser] = useState({
+    id: "1",
+    username: "user",
+  });
+
   const [openAddCatchModal, setOpenAddCatchModal] = useState(false);
   const [openEditCatchModal, setOpenEditCatchModal] = useState(false);
   const [openDeleteCatchModal, setOpenDeleteCatchModal] = useState(false);
