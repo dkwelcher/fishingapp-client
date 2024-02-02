@@ -6,6 +6,8 @@ function CatchCard({
   setOpenAddCatchModal,
   openEditCatchModal,
   setOpenEditCatchModal,
+  openDeleteCatchModal,
+  setOpenDeleteCatchModal,
 }) {
   function handleEditCatch(dataKey) {
     const catchItem = catches[dataKey];
@@ -14,10 +16,8 @@ function CatchCard({
   }
 
   function handleDeleteCatch(dataKey) {
-    console.log(dataKey);
-    setCatches((catches) => {
-      return catches.filter((_, i) => i !== Number(dataKey));
-    });
+    const catchItem = catches[dataKey];
+    setTempCatch(catchItem);
   }
 
   return (
@@ -91,6 +91,7 @@ function CatchCard({
                 data-key={i}
                 onClick={(e) => {
                   const dataKey = e.currentTarget.getAttribute("data-key");
+                  setOpenDeleteCatchModal(true);
                   handleDeleteCatch(dataKey);
                 }}
               >
