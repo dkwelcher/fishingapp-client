@@ -36,7 +36,7 @@ function AddCatchModal({
               </label>
               <input
                 className="mb-4 px-2 py-1 border border-solid border-zinc-400 rounded-sm"
-                type="text"
+                type="time"
                 onChange={(e) =>
                   setTempCatch({ ...tempCatch, time: e.target.value })
                 }
