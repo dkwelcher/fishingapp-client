@@ -4,15 +4,16 @@ import TripCard from "../components/views/TripCard";
 import AddCatchModal from "../components/modals/AddCatchModal";
 import EditCatchModal from "../components/modals/EditCatchModal";
 import DeleteCatchModal from "../components/modals/DeleteCatchModal";
+import EditTripModal from "../components/modals/EditTripModal";
 
 function ManageTrips() {
   const [openAddCatchModal, setOpenAddCatchModal] = useState(false);
   const [openEditCatchModal, setOpenEditCatchModal] = useState(false);
   const [openDeleteCatchModal, setOpenDeleteCatchModal] = useState(false);
-
-  const [userConfirmation, setuserConfirmation] = useState(false);
+  const [openEditTripModal, setOpenEditTripModal] = useState(false);
 
   const [tempCatch, setTempCatch] = useState({});
+  const [tempTrip, setTempTrip] = useState({});
 
   const [tripInfo, setTripInfo] = useState({ date: "", time: "" });
 
@@ -23,7 +24,20 @@ function ManageTrips() {
     setTripInfo(tripInfo);
   };
 
-  const [trip] = useState({
+  const [trips, setTrips] = useState([
+    {
+      id: "1",
+      location: "Clarks Hill",
+      date: "01/23/2024",
+    },
+    {
+      id: "2",
+      location: "Lake Murray",
+      date: "02/2/2024",
+    },
+  ]);
+
+  const [trip, setTrip] = useState({
     id: "1",
     location: "Clarks Hill",
     date: "01/23/2024",
@@ -202,6 +216,14 @@ function ManageTrips() {
         catches={catches}
         setCatches={setCatches}
       />
+      <EditTripModal
+        openEditTripModal={openEditTripModal}
+        setOpenEditTripModal={setOpenEditTripModal}
+        trip={trip}
+        setTrip={setTrip}
+        tempTrip={tempTrip}
+        setTempTrip={setTempTrip}
+      />
       <div className="flex flex-col justify-center items-left text-slate-800">
         <InfoSection
           getTripInfo={getTripInfo}
@@ -213,6 +235,9 @@ function ManageTrips() {
         />
         <TripCard
           trip={trip}
+          setTrip={setTrip}
+          tempTrip={tempTrip}
+          setTempTrip={setTempTrip}
           catches={catches}
           setCatches={setCatches}
           setTempCatch={setTempCatch}
@@ -222,6 +247,8 @@ function ManageTrips() {
           setOpenEditCatchModal={setOpenEditCatchModal}
           openDeleteCatchModal={openDeleteCatchModal}
           setOpenDeleteCatchModal={setOpenDeleteCatchModal}
+          openEditTripModal={openEditTripModal}
+          setOpenEditTripModal={setOpenEditTripModal}
         />
       </div>
     </div>
