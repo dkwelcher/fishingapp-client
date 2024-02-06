@@ -1,3 +1,6 @@
+import { useState } from "react";
+import { handleCatchInputValidation } from "../../lib/utilities/InputValidation";
+
 function EditCatchModal({
   openEditCatchModal,
   setOpenEditCatchModal,
@@ -8,21 +11,35 @@ function EditCatchModal({
 }) {
   if (!openEditCatchModal) return null;
 
+  const [errorMessage, setErrorMessage] = useState([]);
+
   function handleCatches() {
-    const updatedCatch = {
-      id: tempCatch.id,
-      fish: tempCatch.fish,
-      time: tempCatch.time,
-      latitude: tempCatch.latitude,
-      longitude: tempCatch.longitude,
-      bait: tempCatch.bait,
-      weather: tempCatch.weather,
-      airTemp: tempCatch.airTemp,
-      waterTemp: tempCatch.waterTemp,
-      windSpeed: tempCatch.windSpeed,
-    };
-    catches[tempCatch.index] = updatedCatch;
-    sortCatches();
+    const tempErrorMessage = getErrorMessage();
+    if (!tempErrorMessage || tempErrorMessage.length === 0) {
+      const updatedCatch = {
+        id: tempCatch.id,
+        fish: tempCatch.fish,
+        time: tempCatch.time,
+        latitude: tempCatch.latitude,
+        longitude: tempCatch.longitude,
+        bait: tempCatch.bait,
+        weather: tempCatch.weather,
+        airTemp: tempCatch.airTemp,
+        waterTemp: tempCatch.waterTemp,
+        windSpeed: tempCatch.windSpeed,
+      };
+      catches[tempCatch.index] = updatedCatch;
+      sortCatches();
+      setTempCatch({});
+      setErrorMessage([]);
+      setOpenEditCatchModal(false);
+    } else {
+      setErrorMessage(tempErrorMessage);
+    }
+  }
+
+  function getErrorMessage() {
+    return handleCatchInputValidation(tempCatch);
   }
 
   function sortCatches() {
@@ -42,7 +59,9 @@ function EditCatchModal({
     <div className="w-full h-screen fixed flex justify-center items-center bg-transparent-shadow z-50">
       <div className="-translate-x-32 bg-white rounded-md font-paragraph">
         <div className="px-20 py-8">
-          <h2 className="mb-4 font-title text-3xl">Edit a Catch</h2>
+          <h2 className="mb-4 font-title text-3xl font-semibold">
+            Edit a Catch
+          </h2>
           <form className="grid grid-cols-2 gap-x-4" action="">
             <div className="flex justify-between">
               <label className="text-right mr-2" htmlFor="">
@@ -162,19 +181,35 @@ function EditCatchModal({
               />
             </div>
           </form>
+          <div
+            className={`py-4 grid ${
+              errorMessage.length >= 3
+                ? "grid-cols-3"
+                : errorMessage.length == 2
+                ? "grid-cols-2"
+                : "grid-cols-1"
+            } gap-y-0.5 text-center text-red-500 font-bold`}
+          >
+            {errorMessage.map((line, index) => (
+              <p key={index}>{line}</p>
+            ))}
+          </div>
           <div className="flex justify-center items-center gap-4">
             <button
-              className="bg-slate-800 text-slate-200 px-6 py-2 rounded-sm"
+              className="bg-slate-800 text-slate-200 px-6 py-2 rounded-sm hover:bg-slate-700"
               onClick={() => {
                 handleCatches();
-                setOpenEditCatchModal(false);
               }}
             >
               Edit
             </button>
             <button
-              className="bg-slate-800 text-slate-200 px-6 py-2 rounded-sm"
-              onClick={() => setOpenEditCatchModal(false)}
+              className="bg-slate-800 text-slate-200 px-6 py-2 rounded-sm hover:bg-slate-700"
+              onClick={() => {
+                setOpenEditCatchModal(false);
+                setTempCatch({});
+                setErrorMessage([]);
+              }}
             >
               Cancel
             </button>
