@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { handlesCatchInputValidation } from "../../lib/utilities/InputValidation";
+import { handleCatchInputValidation } from "../../lib/utilities/InputValidation";
 
 function AddCatchModal({
   openAddCatchModal,
@@ -16,7 +16,6 @@ function AddCatchModal({
   function handlesNewCatch() {
     const tempErrorMessage = getErrorMessage();
     if (!tempErrorMessage || tempErrorMessage.length === 0) {
-      console.log("Input is valid");
       const newCatch = {
         id: null,
         fish: tempCatch.fish,
@@ -39,7 +38,7 @@ function AddCatchModal({
   }
 
   function getErrorMessage() {
-    return handlesCatchInputValidation(tempCatch);
+    return handleCatchInputValidation(tempCatch);
   }
 
   function sortCatches(newCatch) {
@@ -60,7 +59,9 @@ function AddCatchModal({
     <div className="w-full h-screen fixed flex justify-center items-center bg-transparent-shadow z-50">
       <div className="-translate-x-32 bg-white rounded-md font-paragraph">
         <div className="px-20 py-8">
-          <h2 className="mb-4 font-title text-3xl">Add a Catch</h2>
+          <h2 className="mb-4 font-title text-3xl font-semibold">
+            Add a Catch
+          </h2>
           <form className="grid grid-cols-2 gap-x-4" action="">
             <div className="flex justify-between">
               <label className="text-right mr-2" htmlFor="">
@@ -171,14 +172,22 @@ function AddCatchModal({
               />
             </div>
           </form>
-          <div className="flex flex-col justify-center items-center">
+          <div
+            className={`py-4 grid ${
+              errorMessage.length >= 3
+                ? "grid-cols-3"
+                : errorMessage.length == 2
+                ? "grid-cols-2"
+                : "grid-cols-1"
+            } gap-y-0.5 text-center text-red-500 font-bold`}
+          >
             {errorMessage.map((line, index) => (
-              <span key={index}>{line}</span>
+              <p key={index}>{line}</p>
             ))}
           </div>
           <div className="flex justify-center items-center gap-4">
             <button
-              className="bg-slate-800 text-slate-200 px-6 py-2 rounded-sm"
+              className="bg-slate-800 text-slate-200 px-6 py-2 rounded-sm hover:bg-slate-700"
               onClick={() => {
                 handlesNewCatch();
               }}
@@ -186,8 +195,12 @@ function AddCatchModal({
               Add
             </button>
             <button
-              className="bg-slate-800 text-slate-200 px-6 py-2 rounded-sm"
-              onClick={() => setOpenAddCatchModal(false)}
+              className="bg-slate-800 text-slate-200 px-6 py-2 rounded-sm hover:bg-slate-700"
+              onClick={() => {
+                setOpenAddCatchModal(false);
+                setTempCatch({});
+                setErrorMessage([]);
+              }}
             >
               Cancel
             </button>
