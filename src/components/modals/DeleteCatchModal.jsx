@@ -16,6 +16,14 @@ function DeleteCatchModal({
     });
   }
 
+  function handleTimeConversionTo12HourFormat(time) {
+    const [hours, minutes] = time.split(":");
+    const hoursInt = parseInt(hours, 10);
+    const suffix = hoursInt >= 12 ? "pm" : "am";
+    const newHours = ((hoursInt + 11) % 12) + 1;
+    return `${newHours.toString().padStart(2, "0")}:${minutes} ${suffix}`;
+  }
+
   return (
     <div className="w-full h-screen fixed flex justify-center items-center bg-transparent-shadow z-50">
       <div className="-translate-x-32 bg-white rounded-md font-paragraph">
@@ -27,7 +35,7 @@ function DeleteCatchModal({
             <div className="grid grid-cols-2 gap-10">
               <div className="grid grid-cols-2">
                 <p>Time:</p>
-                <p>{tempCatch.time}</p>
+                <p>{handleTimeConversionTo12HourFormat(tempCatch.time)}</p>
               </div>
               <div className="grid grid-cols-2">
                 <p>Fish:</p>
