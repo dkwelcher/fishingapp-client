@@ -20,7 +20,7 @@ function EditTripModal({
   }
 
   function handleEditTrip() {
-    const updatedTrip = { ...trip, date: handleDateFormatting(editDate) };
+    const updatedTrip = { ...tempTrip, date: handleDateFormatting(editDate) };
     setTrip(updatedTrip);
   }
 
