@@ -10,6 +10,7 @@ function EditTripModal({
   setTempTrip,
 }) {
   if (!openEditTripModal) return null;
+  if (!trip || !trip.id || !trip.location || !trip.date) return null;
 
   const [editDate, setEditDate] = useState(new Date(handleDateConversion()));
 
