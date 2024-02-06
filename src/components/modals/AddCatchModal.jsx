@@ -1,3 +1,6 @@
+import { useState } from "react";
+import { handlesCatchInputValidation } from "../../lib/utilities/InputValidation";
+
 function AddCatchModal({
   openAddCatchModal,
   setOpenAddCatchModal,
@@ -8,20 +11,35 @@ function AddCatchModal({
 }) {
   if (!openAddCatchModal) return null;
 
+  const [errorMessage, setErrorMessage] = useState([]);
+
   function handlesNewCatch() {
-    const newCatch = {
-      id: null,
-      fish: tempCatch.fish,
-      time: tempCatch.time,
-      latitude: tempCatch.latitude,
-      longitude: tempCatch.longitude,
-      bait: tempCatch.bait,
-      weather: tempCatch.weather,
-      airTemp: tempCatch.airTemp,
-      waterTemp: tempCatch.waterTemp,
-      windSpeed: tempCatch.windSpeed,
-    };
-    sortCatches(newCatch);
+    const tempErrorMessage = getErrorMessage();
+    if (!tempErrorMessage || tempErrorMessage.length === 0) {
+      console.log("Input is valid");
+      const newCatch = {
+        id: null,
+        fish: tempCatch.fish,
+        time: tempCatch.time,
+        latitude: tempCatch.latitude,
+        longitude: tempCatch.longitude,
+        bait: tempCatch.bait,
+        weather: tempCatch.weather,
+        airTemp: tempCatch.airTemp,
+        waterTemp: tempCatch.waterTemp,
+        windSpeed: tempCatch.windSpeed,
+      };
+      sortCatches(newCatch);
+      setTempCatch({});
+      setErrorMessage([]);
+      setOpenAddCatchModal(false);
+    } else {
+      setErrorMessage(tempErrorMessage);
+    }
+  }
+
+  function getErrorMessage() {
+    return handlesCatchInputValidation(tempCatch);
   }
 
   function sortCatches(newCatch) {
@@ -58,7 +76,7 @@ function AddCatchModal({
             </div>
             <div className="flex justify-between">
               <label className="mr-2" htmlFor="">
-                Species:
+                Fish:
               </label>
               <input
                 className="mb-4 px-2 py-1 border border-solid border-zinc-400 rounded-sm"
@@ -153,12 +171,16 @@ function AddCatchModal({
               />
             </div>
           </form>
+          <div className="flex flex-col justify-center items-center">
+            {errorMessage.map((line, index) => (
+              <span key={index}>{line}</span>
+            ))}
+          </div>
           <div className="flex justify-center items-center gap-4">
             <button
               className="bg-slate-800 text-slate-200 px-6 py-2 rounded-sm"
               onClick={() => {
                 handlesNewCatch();
-                setOpenAddCatchModal(false);
               }}
             >
               Add
