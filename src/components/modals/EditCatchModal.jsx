@@ -22,6 +22,20 @@ function EditCatchModal({
       windSpeed: tempCatch.windSpeed,
     };
     catches[tempCatch.index] = updatedCatch;
+    sortCatches();
+  }
+
+  function sortCatches() {
+    setCatches((currentCatches) => {
+      return currentCatches.sort((a, b) => {
+        const [hoursA, minutesA] = a.time.split(":").map(Number);
+        const [hoursB, minutesB] = b.time.split(":").map(Number);
+        const totalMinutesA = hoursA * 60 + minutesA;
+        const totalMinutesB = hoursB * 60 + minutesB;
+
+        return totalMinutesA - totalMinutesB;
+      });
+    });
   }
 
   return (
