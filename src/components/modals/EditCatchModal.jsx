@@ -59,7 +59,7 @@ function EditCatchModal({
             </div>
             <div className="flex justify-between">
               <label className="mr-2" htmlFor="">
-                Species:
+                Fish:
               </label>
               <input
                 className="mb-4 px-2 py-1 border border-solid border-zinc-400 rounded-sm"
