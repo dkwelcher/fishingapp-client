@@ -32,7 +32,7 @@ function CatchCard({
     <div>
       <div className="mb-4">
         <button
-          className="bg-white text-slate-600 px-6 py-2 rounded-sm font-paragraph font-bold"
+          className="bg-slate-200 text-slate-600 px-6 py-2 rounded-sm font-paragraph font-bold hover:bg-slate-100 hover:text-slate-500"
           onClick={() => setOpenAddCatchModal(true)}
         >
           Add a New Catch
@@ -84,7 +84,7 @@ function CatchCard({
             </div>
             <div className="flex justify-center items-center font-paragraph">
               <button
-                className="bg-slate-800 text-slate-200 px-6 py-2 rounded-sm"
+                className="bg-slate-800 text-slate-200 px-6 py-2 rounded-sm hover:bg-slate-700"
                 data-key={i}
                 onClick={(e) => {
                   const dataKey = e.currentTarget.getAttribute("data-key");
@@ -95,7 +95,7 @@ function CatchCard({
                 Edit
               </button>
               <button
-                className="ml-4 bg-slate-800 text-slate-200 px-6 py-2 rounded-sm"
+                className="ml-4 bg-slate-800 text-slate-200 px-6 py-2 rounded-sm hover:bg-slate-700"
                 data-key={i}
                 onClick={(e) => {
                   const dataKey = e.currentTarget.getAttribute("data-key");
