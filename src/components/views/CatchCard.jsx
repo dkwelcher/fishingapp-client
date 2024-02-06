@@ -49,7 +49,7 @@ function CatchCard({
             <div className="grid grid-cols-2">
               <div className="font-title font-medium text-right">
                 <p>Time:</p>
-                <p>Species:</p>
+                <p>Fish:</p>
                 <p>Bait:</p>
               </div>
               <div className="ml-4 font-paragraph text-sm">
