@@ -6,6 +6,7 @@ import EditCatchModal from "../components/modals/EditCatchModal";
 import DeleteCatchModal from "../components/modals/DeleteCatchModal";
 import EditTripModal from "../components/modals/EditTripModal";
 import DeleteTripModal from "../components/modals/DeleteTripModal";
+import Logo from "../assets/logo.png";
 
 function ManageTrips() {
   const [user, setUser] = useState({
@@ -246,7 +247,7 @@ function ManageTrips() {
             doloremque dolore nam, laborum maiores cupiditate inventore natus
             provident odit ipsum est, necessitatibus deleniti amet."
         />
-        {trip ? (
+        {trip && trip.id && trip.location && trip.date ? (
           <TripCard
             trip={trip}
             setTrip={setTrip}
@@ -267,8 +268,62 @@ function ManageTrips() {
             setOpenDeleteTripModal={setOpenDeleteTripModal}
           />
         ) : (
-          <div className="w-[500px] h-[500px] bg-green-200 m-auto">
-            Nothing here
+          <div className="mt-8 w-full flex flex-col justify-center items-center m-auto font-paragraph">
+            <div className="mb-10 flex justify-center items-center font-cursive font-bold text-slate-900">
+              <img
+                className="size-16"
+                src={Logo}
+                alt="Man fishing in a row boat"
+              />
+              <h2 className="text-7xl">Fishing App</h2>
+            </div>
+            <div className="w-full flex justify-around gap-8 px-12">
+              <div className="flex flex-col gap-4">
+                <h2 className="pb-2 font-title font-semibold text-2xl">
+                  Lorem ipsum dolor sit amet.
+                </h2>
+                <p>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim,
+                  assumenda explicabo! Nobis incidunt repellat similique
+                  consequuntur quisquam inventore alias dolorum?
+                </p>
+                <p>
+                  Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eum
+                  minima suscipit autem quas quo recusandae atque reiciendis
+                  quis velit officiis.
+                </p>
+              </div>
+              <div className="flex flex-col gap-4">
+                <h2 className="pb-2 font-title font-semibold text-2xl">
+                  Lorem ipsum dolor sit amet.
+                </h2>
+                <p>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam
+                  libero ullam accusantium maxime et nam maiores saepe, in modi
+                  doloremque.
+                </p>
+                <p>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi
+                  nesciunt animi commodi neque iure autem libero officia
+                  incidunt eum dolore.
+                </p>
+              </div>
+              <div className="flex flex-col gap-4">
+                <h2 className="pb-2 font-title font-semibold text-2xl">
+                  Lorem ipsum dolor sit amet.
+                </h2>
+                <p>
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                  Repudiandae autem placeat vero ad tempore. Ea iusto quidem
+                  accusantium harum tempore!
+                </p>
+                <p>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Magnam at facilis aperiam iure molestiae vitae fugit
+                  reiciendis dignissimos consequatur nihil.
+                </p>
+              </div>
+            </div>
           </div>
         )}
       </div>
