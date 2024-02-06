@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { handleTripInputValidation } from "../../lib/utilities/InputValidation";
 import DatePicker from "react-datepicker";
 
 function EditTripModal({
@@ -10,7 +11,25 @@ function EditTripModal({
   setTempTrip,
 }) {
   if (!openEditTripModal) return null;
-  if (!trip || !trip.id || !trip.location || !trip.date) return null;
+
+  const [errorMessage, setErrorMessage] = useState([]);
+
+  function handleEditTrip() {
+    const tempErrorMessage = getErrorMessage();
+    if (!tempErrorMessage || tempErrorMessage.length === 0) {
+      const updatedTrip = { ...tempTrip, date: handleDateFormatting(editDate) };
+      setTrip(updatedTrip);
+      setTempTrip({});
+      setErrorMessage([]);
+      setOpenEditTripModal(false);
+    } else {
+      setErrorMessage(tempErrorMessage);
+    }
+  }
+
+  function getErrorMessage() {
+    return handleTripInputValidation(tempTrip);
+  }
 
   const [editDate, setEditDate] = useState(new Date(handleDateConversion()));
 
@@ -18,11 +37,6 @@ function EditTripModal({
     const date = trip.date;
     const formattedDate = date + "T00:00:00";
     return formattedDate;
-  }
-
-  function handleEditTrip() {
-    const updatedTrip = { ...tempTrip, date: handleDateFormatting(editDate) };
-    setTrip(updatedTrip);
   }
 
   function handleDateFormatting(date) {
@@ -38,7 +52,9 @@ function EditTripModal({
     <div className="w-full h-screen fixed flex justify-center items-center bg-transparent-shadow z-50">
       <div className="-translate-x-32 bg-white rounded-md font-paragraph">
         <div className="px-20 py-8">
-          <h2 className="mb-4 font-title text-3xl">Edit Current Trip</h2>
+          <h2 className="mb-4 font-title text-3xl font-semibold">
+            Edit Current Trip
+          </h2>
           <form action="">
             <div className="flex flex-col">
               <label htmlFor="">Location:</label>
@@ -61,19 +77,35 @@ function EditTripModal({
               </div>
             </div>
           </form>
+          <div
+            className={`py-4 grid ${
+              errorMessage.length >= 3
+                ? "grid-cols-3"
+                : errorMessage.length == 2
+                ? "grid-cols-2"
+                : "grid-cols-1"
+            } gap-y-0.5 text-center text-red-500 font-bold`}
+          >
+            {errorMessage.map((line, index) => (
+              <p key={index}>{line}</p>
+            ))}
+          </div>
           <div className="flex justify-center items-center gap-4">
             <button
-              className="bg-slate-800 text-slate-200 px-6 py-2 rounded-sm"
+              className="bg-slate-800 text-slate-200 px-6 py-2 rounded-sm hover:bg-slate-700"
               onClick={() => {
                 handleEditTrip();
-                setOpenEditTripModal(false);
               }}
             >
               Edit
             </button>
             <button
-              className="bg-slate-800 text-slate-200 px-6 py-2 rounded-sm"
-              onClick={() => setOpenEditTripModal(false)}
+              className="bg-slate-800 text-slate-200 px-6 py-2 rounded-sm hover:bg-slate-700"
+              onClick={() => {
+                setOpenEditTripModal(false);
+                setTempTrip({});
+                setErrorMessage([]);
+              }}
             >
               Cancel
             </button>
