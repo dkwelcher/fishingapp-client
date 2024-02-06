@@ -45,7 +45,7 @@ function TripCard({
         </div>
         <div className="flex items-center">
           <button
-            className="bg-white text-slate-600 px-6 py-2 rounded-sm font-paragraph font-bold"
+            className="bg-slate-200 text-slate-600 px-6 py-2 rounded-sm font-paragraph font-bold hover:bg-slate-100 hover:text-slate-500"
             onClick={() => {
               setOpenEditTripModal(true);
               handleEditTrip();
@@ -54,7 +54,7 @@ function TripCard({
             Edit Current Trip Info
           </button>
           <button
-            className="ml-4 bg-white text-slate-600 px-6 py-2 rounded-sm font-paragraph font-bold"
+            className="ml-4 bg-slate-200 text-slate-600 px-6 py-2 rounded-sm font-paragraph font-bold hover:bg-slate-100 hover:text-slate-500"
             onClick={() => {
               setOpenDeleteTripModal(true);
             }}
