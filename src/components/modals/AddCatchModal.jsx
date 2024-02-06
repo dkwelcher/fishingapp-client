@@ -21,7 +21,21 @@ function AddCatchModal({
       waterTemp: tempCatch.waterTemp,
       windSpeed: tempCatch.windSpeed,
     };
-    catches[catches.length] = newCatch;
+    sortCatches(newCatch);
+  }
+
+  function sortCatches(newCatch) {
+    setCatches((currentCatches) => {
+      const updatedCatches = [...currentCatches, newCatch];
+      return updatedCatches.sort((a, b) => {
+        const [hoursA, minutesA] = a.time.split(":").map(Number);
+        const [hoursB, minutesB] = b.time.split(":").map(Number);
+        const totalMinutesA = hoursA * 60 + minutesA;
+        const totalMinutesB = hoursB * 60 + minutesB;
+
+        return totalMinutesA - totalMinutesB;
+      });
+    });
   }
 
   return (
