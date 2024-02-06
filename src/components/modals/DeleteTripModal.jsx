@@ -7,7 +7,7 @@ function DeleteTripModal({
   if (!openDeleteTripModal) return null;
 
   function handleDeleteTrip() {
-    setTrip(null);
+    setTrip({});
   }
 
   return (
