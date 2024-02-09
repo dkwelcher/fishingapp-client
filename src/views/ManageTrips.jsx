@@ -1,6 +1,7 @@
 import { useState } from "react";
 import InfoSection from "../components/views/InfoSection";
 import TripCard from "../components/views/TripCard";
+import SelectDateModal from "../components/modals/SelectDateModal";
 import AddCatchModal from "../components/modals/AddCatchModal";
 import EditCatchModal from "../components/modals/EditCatchModal";
 import DeleteCatchModal from "../components/modals/DeleteCatchModal";
@@ -14,6 +15,7 @@ function ManageTrips() {
     username: "user",
   });
 
+  const [openSelectDateModal, setOpenSelectDateModal] = useState(false);
   const [openAddCatchModal, setOpenAddCatchModal] = useState(false);
   const [openEditCatchModal, setOpenEditCatchModal] = useState(false);
   const [openDeleteCatchModal, setOpenDeleteCatchModal] = useState(false);
@@ -200,6 +202,17 @@ function ManageTrips() {
 
   return (
     <div>
+      <SelectDateModal
+        openSelectDateModal={openSelectDateModal}
+        setOpenSelectDateModal={setOpenSelectDateModal}
+        trips={trips}
+        setTrips={setTrips}
+        trip={trip}
+        setTrip={setTrip}
+        tripInfo={tripInfo}
+        setTripInfo={setTripInfo}
+        getTripInfo={getTripInfo}
+      />
       <AddCatchModal
         openAddCatchModal={openAddCatchModal}
         setOpenAddCatchModal={setOpenAddCatchModal}
@@ -240,6 +253,7 @@ function ManageTrips() {
       />
       <div className="flex flex-col justify-center items-left text-slate-800">
         <InfoSection
+          setOpenSelectDateModal={setOpenSelectDateModal}
           getTripInfo={getTripInfo}
           backgroundImage="bg-managetrips-image"
           title="Manage Your Fishing Trips"
