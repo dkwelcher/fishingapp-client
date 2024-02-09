@@ -2,7 +2,7 @@ import { useState } from "react";
 import DatePicker from "react-datepicker";
 import { HiOutlineCalendar } from "react-icons/hi";
 
-function DateSearch({ getTripInfo }) {
+function DateSearch({ setOpenSelectDateModal, getTripInfo }) {
   const [startDate, setStartDate] = useState(new Date());
 
   const formatSearchClick = () => {
@@ -34,7 +34,10 @@ function DateSearch({ getTripInfo }) {
       <div>
         <button
           className="ml-4 px-4 py-1 bg-white text-slate-600 rounded-sm"
-          onClick={formatSearchClick}
+          onClick={() => {
+            setOpenSelectDateModal(true);
+            formatSearchClick();
+          }}
         >
           Select Date
         </button>
