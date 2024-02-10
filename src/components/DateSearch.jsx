@@ -5,7 +5,7 @@ import { HiOutlineCalendar } from "react-icons/hi";
 function DateSearch({ setOpenSelectDateModal, getTripInfo }) {
   const [startDate, setStartDate] = useState(new Date());
 
-  const formatSearchClick = () => {
+  const handleSearchClick = () => {
     const year = startDate.getFullYear();
     const month = (startDate.getMonth() + 1).toString().padStart(2, "0");
     const day = startDate.getDate().toString().padStart(2, "0");
@@ -31,7 +31,7 @@ function DateSearch({ setOpenSelectDateModal, getTripInfo }) {
           className="ml-4 px-4 py-1 bg-white text-slate-600 rounded-sm"
           onClick={() => {
             setOpenSelectDateModal(true);
-            formatSearchClick();
+            handleSearchClick();
           }}
         >
           Select Date
