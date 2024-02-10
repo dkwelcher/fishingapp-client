@@ -4,6 +4,8 @@ import { handleCatchInputValidation } from "../../lib/utilities/InputValidation"
 function AddCatchModal({
   openAddCatchModal,
   setOpenAddCatchModal,
+  user,
+  trip,
   tempCatch,
   setTempCatch,
   catches,
@@ -16,24 +18,66 @@ function AddCatchModal({
   function handlesNewCatch() {
     const tempErrorMessage = getErrorMessage();
     if (!tempErrorMessage || tempErrorMessage.length === 0) {
-      const newCatch = {
-        id: null,
-        fish: tempCatch.fish,
-        time: tempCatch.time,
+      const newCatchPost = {
+        time: `${tempCatch.time}:00`,
         latitude: tempCatch.latitude,
         longitude: tempCatch.longitude,
-        bait: tempCatch.bait,
-        weather: tempCatch.weather,
-        airTemp: tempCatch.airTemp,
-        waterTemp: tempCatch.waterTemp,
+        species: tempCatch.fish,
+        lureOrBait: tempCatch.bait,
+        weatherCondition: tempCatch.weather,
+        airTemperature: tempCatch.airTemp,
+        waterTemperature: tempCatch.waterTemp,
         windSpeed: tempCatch.windSpeed,
+        trip: {
+          tripId: trip.id,
+          user: {
+            id: user.id,
+          },
+        },
+      };
+      postNewCatch(newCatchPost);
+
+      setOpenAddCatchModal(false);
+    } else {
+      setErrorMessage(tempErrorMessage);
+    }
+  }
+
+  async function postNewCatch(newCatchData) {
+    const POST_CATCH = "http://localhost:8080/catches";
+
+    try {
+      const response = await fetch(POST_CATCH, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(newCatchData),
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error: ${response.error}`);
+      }
+
+      const result = await response.json();
+      console.log(result);
+      const newCatch = {
+        id: result.catchId,
+        time: result.time,
+        fish: result.species,
+        bait: result.lureOrBait,
+        latitude: result.latitude,
+        longitude: result.longitude,
+        weather: result.weatherCondition,
+        airTemp: result.airTemperature,
+        waterTemp: result.waterTemperature,
+        windSpeed: result.windSpeed,
       };
       sortCatches(newCatch);
       setTempCatch({});
       setErrorMessage([]);
-      setOpenAddCatchModal(false);
-    } else {
-      setErrorMessage(tempErrorMessage);
+    } catch (error) {
+      console.log(error);
     }
   }
 
