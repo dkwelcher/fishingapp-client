@@ -29,7 +29,6 @@ function ManageTrips() {
 
   function getTripInfo(tripInfoItem) {
     setTripInfo(tripInfoItem);
-    //setTripInfo("2024-02-02");
   }
 
   const [trips, setTrips] = useState([]);
@@ -104,6 +103,7 @@ function ManageTrips() {
         tripInfo={tripInfo}
         setTripInfo={setTripInfo}
         getTripInfo={getTripInfo}
+        user={user}
       />
       <AddCatchModal
         openAddCatchModal={openAddCatchModal}
