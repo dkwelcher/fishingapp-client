@@ -142,6 +142,7 @@ function ManageTrips() {
         setOpenDeleteTripModal={setOpenDeleteTripModal}
         trip={trip}
         setTrip={setTrip}
+        setTripInfo={setTripInfo}
       />
       <div className="flex flex-col justify-center items-left text-slate-800">
         <InfoSection
