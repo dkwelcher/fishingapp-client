@@ -60,7 +60,6 @@ function AddCatchModal({
       }
 
       const result = await response.json();
-      console.log(result);
       const newCatch = {
         id: result.catchId,
         time: result.time,
@@ -149,7 +148,7 @@ function AddCatchModal({
               </label>
               <input
                 className="mb-4 px-2 py-1 border border-solid border-zinc-400 rounded-sm"
-                type="text"
+                type="number"
                 onChange={(e) =>
                   setTempCatch({ ...tempCatch, latitude: e.target.value })
                 }
@@ -161,7 +160,7 @@ function AddCatchModal({
               </label>
               <input
                 className="mb-4 px-2 py-1 border border-solid border-zinc-400 rounded-sm"
-                type="text"
+                type="number"
                 onChange={(e) =>
                   setTempCatch({ ...tempCatch, longitude: e.target.value })
                 }
@@ -185,7 +184,7 @@ function AddCatchModal({
               </label>
               <input
                 className="mb-4 px-2 py-1 border border-solid border-zinc-400 rounded-sm"
-                type="text"
+                type="number"
                 onChange={(e) =>
                   setTempCatch({ ...tempCatch, airTemp: e.target.value })
                 }
@@ -197,7 +196,7 @@ function AddCatchModal({
               </label>
               <input
                 className="mb-4 px-2 py-1 border border-solid border-zinc-400 rounded-sm"
-                type="text"
+                type="number"
                 onChange={(e) =>
                   setTempCatch({ ...tempCatch, waterTemp: e.target.value })
                 }
@@ -209,7 +208,7 @@ function AddCatchModal({
               </label>
               <input
                 className="mb-4 px-2 py-1 border border-solid border-zinc-400 rounded-sm"
-                type="text"
+                type="number"
                 onChange={(e) =>
                   setTempCatch({ ...tempCatch, windSpeed: e.target.value })
                 }
