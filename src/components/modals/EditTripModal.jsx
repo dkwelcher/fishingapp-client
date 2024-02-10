@@ -54,8 +54,6 @@ function EditTripModal({
 
       const result = await response.json();
 
-      setTrip(result);
-
       const resultingTrip = {
         id: result.tripId,
         location: result.bodyOfWater,
