@@ -103,9 +103,9 @@ function handleLatitudeInputValidation(latitudeString) {
     return false;
   }
 
-  if (latitudeString.trim() === "") {
-    return false;
-  }
+  // if (latitudeString.trim() === "") {
+  //   return false;
+  // }
 
   const latitudeNumber = Number(latitudeString);
 
@@ -117,9 +117,9 @@ function handleLongitudeInputValidation(longitudeString) {
     return false;
   }
 
-  if (longitudeString.trim() === "") {
-    return false;
-  }
+  // if (longitudeString.trim() === "") {
+  //   return false;
+  // }
 
   const longitudeNumber = Number(longitudeString);
 
@@ -143,9 +143,9 @@ function handleAirTempInputValidation(airTempString) {
     return false;
   }
 
-  if (airTempString.trim() === "") {
-    return false;
-  }
+  // if (airTempString.trim() === "") {
+  //   return false;
+  // }
 
   const airTempNumber = Number(airTempString);
 
@@ -157,9 +157,9 @@ function handleWaterTempInputValidation(waterTempString) {
     return false;
   }
 
-  if (waterTempString.trim() === "") {
-    return false;
-  }
+  // if (waterTempString.trim() === "") {
+  //   return false;
+  // }
 
   const waterTempNumber = Number(waterTempString);
 
@@ -171,9 +171,9 @@ function handleWindSpeedInputValidation(windSpeedString) {
     return false;
   }
 
-  if (windSpeedString.trim() === "") {
-    return false;
-  }
+  // if (windSpeedString.trim() === "") {
+  //   return false;
+  // }
 
   const windSpeedNumber = Number(windSpeedString);
 
