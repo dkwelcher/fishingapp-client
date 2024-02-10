@@ -108,6 +108,8 @@ function ManageTrips() {
       <AddCatchModal
         openAddCatchModal={openAddCatchModal}
         setOpenAddCatchModal={setOpenAddCatchModal}
+        user={user}
+        trip={trip}
         tempCatch={tempCatch}
         setTempCatch={setTempCatch}
         catches={catches}
@@ -124,6 +126,7 @@ function ManageTrips() {
       <DeleteCatchModal
         openDeleteCatchModal={openDeleteCatchModal}
         setOpenDeleteCatchModal={setOpenDeleteCatchModal}
+        user={user}
         tempCatch={tempCatch}
         setTempCatch={setTempCatch}
         catches={catches}
