@@ -7,8 +7,12 @@ function EditTripModal({
   setOpenEditTripModal,
   trip,
   setTrip,
+  trips,
+  setTrips,
   tempTrip,
   setTempTrip,
+  setTripInfo,
+  user,
 }) {
   if (!openEditTripModal) return null;
 
@@ -18,12 +22,60 @@ function EditTripModal({
     const tempErrorMessage = getErrorMessage();
     if (!tempErrorMessage || tempErrorMessage.length === 0) {
       const updatedTrip = { ...tempTrip, date: handleDateFormatting(editDate) };
-      setTrip(updatedTrip);
-      setTempTrip({});
-      setErrorMessage([]);
+      editTrip(updatedTrip);
       setOpenEditTripModal(false);
     } else {
       setErrorMessage(tempErrorMessage);
+    }
+  }
+
+  async function editTrip(updatedTrip) {
+    const EDIT_TRIP_BY_ID = `http://localhost:8080/trips/${trip.id}`;
+
+    const convertedUpdatedTrip = {
+      id: trip.id,
+      date: updatedTrip.date,
+      bodyOfWater: updatedTrip.location,
+      user: { id: user.id },
+    };
+
+    try {
+      const response = await fetch(EDIT_TRIP_BY_ID, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(convertedUpdatedTrip),
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error: ${response.status}`);
+      }
+
+      const result = await response.json();
+
+      setTrip(result);
+
+      const resultingTrip = {
+        id: result.tripId,
+        location: result.bodyOfWater,
+        date: result.date,
+      };
+
+      setTrip(resultingTrip);
+      setTrips((currentTrips) =>
+        currentTrips.map((tripObject) =>
+          tripObject.id === trip.id
+            ? { ...tripObject, ...resultingTrip }
+            : tripObject
+        )
+      );
+      setTempTrip({});
+      setTripInfo(); // triggers useEffect for fetching trips in ManageTrips component
+      setOpenEditTripModal(false);
+      setErrorMessage([]);
+    } catch (error) {
+      console.log(error);
     }
   }
 
