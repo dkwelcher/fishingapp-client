@@ -82,6 +82,7 @@ function ManageTrips() {
         }));
 
         setCatches(convertedCatches);
+        sortCatches();
       } catch (error) {
         setFetchCatchesError(error);
         console.log(fetchCatchesError);
@@ -90,6 +91,19 @@ function ManageTrips() {
 
     fetchCatches();
   }, [trip]);
+
+  function sortCatches() {
+    setCatches((catches) => {
+      return [...catches].sort((a, b) => {
+        const [hoursA, minutesA] = a.time.split(":").map(Number);
+        const [hoursB, minutesB] = b.time.split(":").map(Number);
+        const totalMinutesA = hoursA * 60 + minutesA;
+        const totalMinutesB = hoursB * 60 + minutesB;
+
+        return totalMinutesA - totalMinutesB;
+      });
+    });
+  }
 
   return (
     <div>
@@ -118,6 +132,8 @@ function ManageTrips() {
       <EditCatchModal
         openEditCatchModal={openEditCatchModal}
         setOpenEditCatchModal={setOpenEditCatchModal}
+        user={user}
+        trip={trip}
         tempCatch={tempCatch}
         setTempCatch={setTempCatch}
         catches={catches}
