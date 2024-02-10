@@ -10,10 +10,13 @@ function SelectDateModal({
   tripInfo,
   setTripInfo,
   getTripInfo,
+  user,
 }) {
   if (!openSelectDateModal) return null;
 
+  const [postTripData, setPostTripData] = useState({});
   const [tempTrip, setTempTrip] = useState({});
+  const [location, setLocation] = useState();
 
   function handleSelectTrip(dataKey) {
     const selectedTrip = trips[dataKey];
@@ -24,6 +27,50 @@ function SelectDateModal({
     };
     setTrip(updatedTripObject);
   }
+
+  function handleAddTrip() {
+    const newTrip = {
+      date: tripInfo,
+      bodyOfWater: location,
+      user: { id: user.id },
+    };
+
+    postNewTrip(newTrip);
+
+    if (newTrip) {
+      setOpenSelectDateModal(false);
+    }
+  }
+
+  const postNewTrip = async (newTripData) => {
+    const POST_TRIP = "http://localhost:8080/trips";
+
+    console.log(newTripData);
+
+    try {
+      const response = await fetch(POST_TRIP, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(newTripData),
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error: ${response.error}`);
+      }
+
+      const result = await response.json();
+      console.log(result);
+      setTrip({
+        id: result.tripId,
+        location: result.bodyOfWater,
+        date: result.date,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <div className="w-full h-screen fixed flex justify-center items-center bg-transparent-shadow z-50">
@@ -41,10 +88,18 @@ function SelectDateModal({
                 <input
                   className="mr-2 py-1 border border-solid border-zinc-400 rounded-sm"
                   type="text"
+                  onChange={(e) => {
+                    setLocation(e.target.value);
+                  }}
                 />
               </div>
               <div>
-                <button className="bg-slate-800 text-slate-200 px-6 py-2 rounded-sm hover:bg-slate-700">
+                <button
+                  className="bg-slate-800 text-slate-200 px-6 py-2 rounded-sm hover:bg-slate-700"
+                  onClick={() => {
+                    handleAddTrip();
+                  }}
+                >
                   Add
                 </button>
               </div>
