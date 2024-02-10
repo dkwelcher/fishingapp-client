@@ -3,11 +3,33 @@ function DeleteTripModal({
   setOpenDeleteTripModal,
   trip,
   setTrip,
+  setTripInfo,
 }) {
   if (!openDeleteTripModal) return null;
 
   function handleDeleteTrip() {
+    deleteTrip();
     setTrip({});
+    setTripInfo();
+  }
+
+  async function deleteTrip() {
+    const DELETE_TRIP_BY_ID = `http://localhost:8080/trips/${trip.id}`;
+
+    try {
+      const response = await fetch(DELETE_TRIP_BY_ID, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error: ${response.status}`);
+      }
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   return (
