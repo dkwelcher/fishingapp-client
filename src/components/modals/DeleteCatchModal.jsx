@@ -1,6 +1,7 @@
 function DeleteCatchModal({
   openDeleteCatchModal,
   setOpenDeleteCatchModal,
+  user,
   tempCatch,
   setTempCatch,
   catches,
@@ -9,13 +10,41 @@ function DeleteCatchModal({
   if (!openDeleteCatchModal) return null;
 
   function handleDeleteCatch() {
+    deleteCatch();
+  }
+
+  async function deleteCatch() {
     const tempCatchId = tempCatch.id;
+    console.log(tempCatchId);
+    const deleteBody = {
+      date: tempCatch.date,
+      bodyOfWater: tempCatch.location,
+      user: {
+        id: user.id,
+      },
+    };
+    const DELETE_CATCH_BY_ID = `http://localhost:8080/catches/${tempCatchId}`;
 
-    setCatches((catches) => {
-      return catches.filter((catchItem) => catchItem.id !== tempCatchId);
-    });
+    try {
+      const response = await fetch(DELETE_CATCH_BY_ID, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(deleteBody),
+      });
 
-    setTempCatch({});
+      if (!response.ok) {
+        throw new Error(`HTTP error: ${response.status}`);
+      }
+
+      setCatches((catches) => {
+        return catches.filter((catchItem) => catchItem.id !== tempCatchId);
+      });
+      setTempCatch({});
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   function handleTimeConversionTo12HourFormat(time) {
