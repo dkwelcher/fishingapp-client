@@ -15,6 +15,16 @@ function SelectDateModal({
 
   const [tempTrip, setTempTrip] = useState({});
 
+  function handleSelectTrip(dataKey) {
+    const selectedTrip = trips[dataKey];
+    const updatedTripObject = {
+      id: selectedTrip.tripId,
+      location: selectedTrip.bodyOfWater,
+      date: selectedTrip.date,
+    };
+    setTrip(updatedTripObject);
+  }
+
   return (
     <div className="w-full h-screen fixed flex justify-center items-center bg-transparent-shadow z-50">
       <div className="-translate-x-32 bg-white rounded-md font-paragraph">
@@ -51,14 +61,19 @@ function SelectDateModal({
               >
                 <div>
                   <h2 className="font-title text-xl font-semibold">
-                    {trip.location}
+                    {trip.bodyOfWater}
                   </h2>
                   <p>{trip.date}</p>
                 </div>
                 <div>
                   <button
                     className="bg-slate-800 text-slate-200 px-6 py-2 rounded-sm hover:bg-slate-700"
-                    key={i}
+                    data-key={i}
+                    onClick={(e) => {
+                      const dataKey = e.currentTarget.getAttribute("data-key");
+                      setOpenSelectDateModal(false);
+                      handleSelectTrip(dataKey);
+                    }}
                   >
                     Select
                   </button>
