@@ -134,8 +134,12 @@ function ManageTrips() {
         setOpenEditTripModal={setOpenEditTripModal}
         trip={trip}
         setTrip={setTrip}
+        trips={trips}
+        setTrips={setTrips}
         tempTrip={tempTrip}
         setTempTrip={setTempTrip}
+        setTripInfo={setTripInfo}
+        user={user}
       />
       <DeleteTripModal
         openDeleteTripModal={openDeleteTripModal}
