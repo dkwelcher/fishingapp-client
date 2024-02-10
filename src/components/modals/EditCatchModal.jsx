@@ -4,6 +4,8 @@ import { handleCatchInputValidation } from "../../lib/utilities/InputValidation"
 function EditCatchModal({
   openEditCatchModal,
   setOpenEditCatchModal,
+  user,
+  trip,
   tempCatch,
   setTempCatch,
   catches,
@@ -16,25 +18,76 @@ function EditCatchModal({
   function handleCatches() {
     const tempErrorMessage = getErrorMessage();
     if (!tempErrorMessage || tempErrorMessage.length === 0) {
-      const updatedCatch = {
+      const updatedCatchPost = {
         id: tempCatch.id,
-        fish: tempCatch.fish,
-        time: tempCatch.time,
+        time: `${tempCatch.time}:00`,
         latitude: tempCatch.latitude,
         longitude: tempCatch.longitude,
-        bait: tempCatch.bait,
-        weather: tempCatch.weather,
-        airTemp: tempCatch.airTemp,
-        waterTemp: tempCatch.waterTemp,
+        species: tempCatch.fish,
+        lureOrBait: tempCatch.bait,
+        weatherCondition: tempCatch.weather,
+        airTemperature: tempCatch.airTemp,
+        waterTemperature: tempCatch.waterTemp,
         windSpeed: tempCatch.windSpeed,
+        trip: {
+          tripId: trip.id,
+          user: {
+            id: user.id,
+          },
+        },
       };
-      catches[tempCatch.index] = updatedCatch;
-      sortCatches();
-      setTempCatch({});
-      setErrorMessage([]);
+      editCatch(updatedCatchPost);
+      //catches[tempCatch.index] = updatedCatch;
+      //sortCatches();
+
       setOpenEditCatchModal(false);
     } else {
       setErrorMessage(tempErrorMessage);
+    }
+  }
+
+  async function editCatch(updatedCatchData) {
+    const EDIT_CATCH_BY_ID = `http://localhost:8080/catches/${tempCatch.id}`;
+
+    try {
+      const response = await fetch(EDIT_CATCH_BY_ID, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(updatedCatchData),
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error: ${response.status}`);
+      }
+
+      const result = await response.json();
+
+      const resultingCatch = {
+        id: result.catchId,
+        time: result.time,
+        fish: result.species,
+        bait: result.lureOrBait,
+        latitude: result.latitude,
+        longitude: result.longitude,
+        weather: result.weatherCondition,
+        airTemp: result.airTemperature,
+        waterTemp: result.waterTemperature,
+        windSpeed: result.windSpeed,
+      };
+      setCatches((currentCatches) =>
+        currentCatches.map((catchObject) =>
+          catchObject.id === resultingCatch.id
+            ? { ...catchObject, ...resultingCatch }
+            : catchObject
+        )
+      );
+      sortCatches();
+      setTempCatch({});
+      setErrorMessage([]);
+    } catch (error) {
+      console.log(error);
     }
   }
 
@@ -43,8 +96,8 @@ function EditCatchModal({
   }
 
   function sortCatches() {
-    setCatches((currentCatches) => {
-      return currentCatches.sort((a, b) => {
+    setCatches((catches) => {
+      return catches.sort((a, b) => {
         const [hoursA, minutesA] = a.time.split(":").map(Number);
         const [hoursB, minutesB] = b.time.split(":").map(Number);
         const totalMinutesA = hoursA * 60 + minutesA;
@@ -108,7 +161,7 @@ function EditCatchModal({
               </label>
               <input
                 className="mb-4 px-2 py-1 border border-solid border-zinc-400 rounded-sm"
-                type="text"
+                type="number"
                 value={tempCatch.latitude}
                 onChange={(e) =>
                   setTempCatch({ ...tempCatch, latitude: e.target.value })
@@ -121,7 +174,7 @@ function EditCatchModal({
               </label>
               <input
                 className="mb-4 px-2 py-1 border border-solid border-zinc-400 rounded-sm"
-                type="text"
+                type="number"
                 value={tempCatch.longitude}
                 onChange={(e) =>
                   setTempCatch({ ...tempCatch, longitude: e.target.value })
@@ -147,7 +200,7 @@ function EditCatchModal({
               </label>
               <input
                 className="mb-4 px-2 py-1 border border-solid border-zinc-400 rounded-sm"
-                type="text"
+                type="number"
                 value={tempCatch.airTemp}
                 onChange={(e) =>
                   setTempCatch({ ...tempCatch, airTemp: e.target.value })
@@ -160,7 +213,7 @@ function EditCatchModal({
               </label>
               <input
                 className="mb-4 px-2 py-1 border border-solid border-zinc-400 rounded-sm"
-                type="text"
+                type="number"
                 value={tempCatch.waterTemp}
                 onChange={(e) =>
                   setTempCatch({ ...tempCatch, waterTemp: e.target.value })
@@ -173,7 +226,7 @@ function EditCatchModal({
               </label>
               <input
                 className="mb-4 px-2 py-1 border border-solid border-zinc-400 rounded-sm"
-                type="text"
+                type="number"
                 value={tempCatch.windSpeed}
                 onChange={(e) =>
                   setTempCatch({ ...tempCatch, windSpeed: e.target.value })
