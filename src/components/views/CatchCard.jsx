@@ -1,3 +1,5 @@
+import { useEffect } from "react";
+
 function CatchCard({
   catches,
   setCatches,
@@ -18,6 +20,23 @@ function CatchCard({
   function handleDeleteCatch(dataKey) {
     const catchItem = catches[dataKey];
     setTempCatch(catchItem);
+  }
+
+  useEffect(() => {
+    sortCatches();
+  }, [catches]);
+
+  function sortCatches() {
+    setCatches((catches) => {
+      return [...catches].sort((a, b) => {
+        const [hoursA, minutesA] = a.time.split(":").map(Number);
+        const [hoursB, minutesB] = b.time.split(":").map(Number);
+        const totalMinutesA = hoursA * 60 + minutesA;
+        const totalMinutesB = hoursB * 60 + minutesB;
+
+        return totalMinutesA - totalMinutesB;
+      });
+    });
   }
 
   function handleTimeConversionTo12HourFormat(time) {
