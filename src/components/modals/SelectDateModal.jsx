@@ -36,16 +36,15 @@ function SelectDateModal({
     };
 
     postNewTrip(newTrip);
+    setTrips([...trips, newTrip]);
 
     if (newTrip) {
       setOpenSelectDateModal(false);
     }
   }
 
-  const postNewTrip = async (newTripData) => {
+  async function postNewTrip(newTripData) {
     const POST_TRIP = "http://localhost:8080/trips";
-
-    console.log(newTripData);
 
     try {
       const response = await fetch(POST_TRIP, {
@@ -61,7 +60,6 @@ function SelectDateModal({
       }
 
       const result = await response.json();
-      console.log(result);
       setTrip({
         id: result.tripId,
         location: result.bodyOfWater,
@@ -70,7 +68,7 @@ function SelectDateModal({
     } catch (error) {
       console.log(error);
     }
-  };
+  }
 
   return (
     <div className="w-full h-screen fixed flex justify-center items-center bg-transparent-shadow z-50">
