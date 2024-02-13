@@ -11,13 +11,13 @@ function App() {
     <>
       <Router>
         <Routes>
-          <Route path="/" element={<Layout />}>
-            <Route index element={<Home />} />
-            <Route path="/manage-trips" element={<ManageTrips />} />
-          </Route>
-          <Route path="/landing" element={<LandingPage />} />
+          <Route path="/" element={<LandingPage />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/dashboard" element={<Layout />}>
+            <Route index element={<Home />} />
+            <Route path="manage-trips" element={<ManageTrips />} />
+          </Route>
         </Routes>
       </Router>
     </>
