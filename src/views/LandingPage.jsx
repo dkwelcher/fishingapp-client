@@ -31,7 +31,7 @@ function Layout() {
               </a>
               <a
                 className="hover:no-underline text-white text-2xl hover:text-blue-700 px-6"
-                href="#"
+                href="/dashboard"
               >
                 <p>Log in</p>
               </a>
