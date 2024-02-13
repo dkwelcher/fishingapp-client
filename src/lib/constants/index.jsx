@@ -5,13 +5,13 @@ export const DASHBOARD_SIDEBAR_LINKS = [
   {
     key: "home",
     label: "Home",
-    path: "/",
+    path: "/dashboard",
     icon: <IoFish />,
   },
   {
     key: "manageTrips",
     label: "Manage Trips",
-    path: "/manage-trips",
+    path: "/dashboard/manage-trips",
     icon: <IoFish />,
   },
 ];
