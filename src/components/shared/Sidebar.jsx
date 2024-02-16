@@ -1,5 +1,5 @@
 import Logo from "../../assets/logo.png";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import {
   DASHBOARD_SIDEBAR_BOTTOM_LINKS,
   DASHBOARD_SIDEBAR_LINKS,
@@ -11,6 +11,12 @@ const linkClasses =
   "flex items-center gap-2 font-light px-3 py-2 hover:bg-neutral-700 hover:no-underline active:bg-neutral-600 rounded-sm text-base";
 
 function Sidebar() {
+  const navigate = useNavigate();
+
+  function handleLogout() {
+    navigate("/");
+  }
+
   return (
     <div className="bg-neutral-900 w-60 p-3 flex flex-col text-white border-r border-neutral-700">
       <div className="flex items-center gap-2 px-1 py-3">
@@ -28,7 +34,10 @@ function Sidebar() {
         {DASHBOARD_SIDEBAR_BOTTOM_LINKS.map((item) => (
           <SidebarLink key={item.key} item={item} />
         ))}
-        <div className={classNames("text-red-500 cursor-pointer", linkClasses)}>
+        <div
+          className={classNames("text-red-500 cursor-pointer", linkClasses)}
+          onClick={handleLogout}
+        >
           <span className="text-xl">{<HiOutlineLogout />}</span>
           Logout
         </div>
