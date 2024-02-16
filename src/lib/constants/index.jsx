@@ -17,10 +17,10 @@ export const DASHBOARD_SIDEBAR_LINKS = [
 ];
 
 export const DASHBOARD_SIDEBAR_BOTTOM_LINKS = [
-  {
-    key: "faq",
-    label: "FAQ",
-    path: "/faq",
-    icon: <HiOutlineQuestionMarkCircle />,
-  },
+  // {
+  //   key: "faq",
+  //   label: "FAQ",
+  //   path: "/faq",
+  //   icon: <HiOutlineQuestionMarkCircle />,
+  // },
 ];
