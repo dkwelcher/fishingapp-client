@@ -1,8 +1,8 @@
-import DateSearch from "../DateSearch";
+import DateSearch from "../dashboard/DateSearch";
 
 function InfoSection({
   setOpenSelectDateModal,
-  getTripInfo,
+  getTripDate,
   backgroundImage,
   title,
   description,
@@ -16,7 +16,7 @@ function InfoSection({
       <div>
         <DateSearch
           setOpenSelectDateModal={setOpenSelectDateModal}
-          getTripInfo={getTripInfo}
+          getTripDate={getTripDate}
         />
       </div>
     </div>
