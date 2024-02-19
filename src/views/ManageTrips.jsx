@@ -20,10 +20,10 @@ function ManageTrips({ user }) {
   const [tempCatch, setTempCatch] = useState({});
   const [tempTrip, setTempTrip] = useState({});
 
-  const [tripInfo, setTripInfo] = useState();
+  const [tripDate, setTripDate] = useState();
 
-  function getTripInfo(tripInfoItem) {
-    setTripInfo(tripInfoItem);
+  function getTripDate(tripDate) {
+    setTripDate(tripDate);
   }
 
   const [trips, setTrips] = useState([]);
@@ -36,9 +36,9 @@ function ManageTrips({ user }) {
 
   useEffect(() => {
     const fetchTrips = async () => {
-      if (!tripInfo || !user.id) return;
+      if (!tripDate || !user.id) return;
 
-      const GET_TRIPS_BY_ID = `http://localhost:8080/trips&date?id=${user.id}&date=${tripInfo}`;
+      const GET_TRIPS_BY_ID = `http://localhost:8080/trips&date?id=${user.id}&date=${tripDate}`;
 
       const token = localStorage.getItem("authToken");
 
@@ -64,7 +64,7 @@ function ManageTrips({ user }) {
     };
 
     fetchTrips();
-  }, [tripInfo, user.id]);
+  }, [tripDate, user.id, trips]);
 
   const [fetchCatchesError, setFetchCatchesError] = useState();
 
@@ -131,9 +131,9 @@ function ManageTrips({ user }) {
         setTrips={setTrips}
         trip={trip}
         setTrip={setTrip}
-        tripInfo={tripInfo}
-        setTripInfo={setTripInfo}
-        getTripInfo={getTripInfo}
+        tripDate={tripDate}
+        setTripDate={setTripDate}
+        getTripDate={getTripDate}
         user={user}
       />
       <AddCatchModal
@@ -174,7 +174,7 @@ function ManageTrips({ user }) {
         setTrips={setTrips}
         tempTrip={tempTrip}
         setTempTrip={setTempTrip}
-        setTripInfo={setTripInfo}
+        setTripDate={setTripDate}
         user={user}
       />
       <DeleteTripModal
@@ -182,12 +182,12 @@ function ManageTrips({ user }) {
         setOpenDeleteTripModal={setOpenDeleteTripModal}
         trip={trip}
         setTrip={setTrip}
-        setTripInfo={setTripInfo}
+        setTripDate={setTripDate}
       />
       <div className="flex flex-col justify-center items-left text-slate-800">
         <InfoSection
           setOpenSelectDateModal={setOpenSelectDateModal}
-          getTripInfo={getTripInfo}
+          getTripDate={getTripDate}
           backgroundImage="bg-managetrips-image"
           title="Manage Your Fishing Trips"
           description="Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sint tempora
