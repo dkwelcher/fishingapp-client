@@ -11,7 +11,7 @@ function EditTripModal({
   setTrips,
   tempTrip,
   setTempTrip,
-  setTripInfo,
+  setTripDate,
   user,
 }) {
   if (!openEditTripModal) return null;
@@ -71,7 +71,7 @@ function EditTripModal({
         )
       );
       setTempTrip({});
-      setTripInfo(); // triggers useEffect for fetching trips in ManageTrips component
+      setTripDate(); // triggers useEffect for fetching trips in ManageTrips component
       setOpenEditTripModal(false);
       setErrorMessage([]);
     } catch (error) {
