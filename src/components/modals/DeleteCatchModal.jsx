@@ -15,7 +15,6 @@ function DeleteCatchModal({
 
   async function deleteCatch() {
     const tempCatchId = tempCatch.id;
-    console.log(tempCatchId);
     const deleteBody = {
       date: tempCatch.date,
       bodyOfWater: tempCatch.location,
@@ -24,11 +23,13 @@ function DeleteCatchModal({
       },
     };
     const DELETE_CATCH_BY_ID = `http://localhost:8080/catches/${tempCatchId}`;
+    const token = localStorage.getItem("authToken");
 
     try {
       const response = await fetch(DELETE_CATCH_BY_ID, {
         method: "DELETE",
         headers: {
+          Authorization: `Bearer ${token}`,
           "Content-Type": "application/json",
         },
         body: JSON.stringify(deleteBody),

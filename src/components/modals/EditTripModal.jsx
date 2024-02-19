@@ -31,6 +31,7 @@ function EditTripModal({
 
   async function editTrip(updatedTrip) {
     const EDIT_TRIP_BY_ID = `http://localhost:8080/trips/${trip.id}`;
+    const token = localStorage.getItem("authToken");
 
     const convertedUpdatedTrip = {
       id: trip.id,
@@ -43,6 +44,7 @@ function EditTripModal({
       const response = await fetch(EDIT_TRIP_BY_ID, {
         method: "PUT",
         headers: {
+          Authorization: `Bearer ${token}`,
           "Content-Type": "application/json",
         },
         body: JSON.stringify(convertedUpdatedTrip),

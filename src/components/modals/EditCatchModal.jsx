@@ -48,11 +48,13 @@ function EditCatchModal({
 
   async function editCatch(updatedCatchData) {
     const EDIT_CATCH_BY_ID = `http://localhost:8080/catches/${tempCatch.id}`;
+    const token = localStorage.getItem("authToken");
 
     try {
       const response = await fetch(EDIT_CATCH_BY_ID, {
         method: "PUT",
         headers: {
+          Authorization: `Bearer ${token}`,
           "Content-Type": "application/json",
         },
         body: JSON.stringify(updatedCatchData),

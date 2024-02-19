@@ -45,11 +45,13 @@ function SelectDateModal({
 
   async function postNewTrip(newTripData) {
     const POST_TRIP = "http://localhost:8080/trips";
+    const token = localStorage.getItem("authToken");
 
     try {
       const response = await fetch(POST_TRIP, {
         method: "POST",
         headers: {
+          Authorization: `Bearer ${token}`,
           "Content-Type": "application/json",
         },
         body: JSON.stringify(newTripData),
