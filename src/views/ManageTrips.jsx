@@ -9,12 +9,7 @@ import EditTripModal from "../components/modals/EditTripModal";
 import DeleteTripModal from "../components/modals/DeleteTripModal";
 import Logo from "../assets/logo.png";
 
-function ManageTrips() {
-  const [user, setUser] = useState({
-    id: 1302,
-    username: "newUser",
-  });
-
+function ManageTrips({ user }) {
   const [openSelectDateModal, setOpenSelectDateModal] = useState(false);
   const [openAddCatchModal, setOpenAddCatchModal] = useState(false);
   const [openEditCatchModal, setOpenEditCatchModal] = useState(false);
@@ -37,35 +32,57 @@ function ManageTrips() {
 
   const [catches, setCatches] = useState([]);
 
-  const GET_TRIPS_BY_ID = `http://localhost:8080/trips&date?id=${user.id}&date=${tripInfo}`;
   const [fetchTripsError, setFetchTripsError] = useState();
 
   useEffect(() => {
     const fetchTrips = async () => {
-      if (!tripInfo) return;
+      if (!tripInfo || !user.id) return;
+
+      const GET_TRIPS_BY_ID = `http://localhost:8080/trips&date?id=${user.id}&date=${tripInfo}`;
+
+      const token = localStorage.getItem("authToken");
 
       try {
-        const response = await fetch(GET_TRIPS_BY_ID);
+        const response = await fetch(GET_TRIPS_BY_ID, {
+          method: "GET",
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
+        });
+
+        if (!response.ok) {
+          throw new Error(`HTTP Error: ${response.status}`);
+        }
+
         const tripObjects = await response.json();
         setTrips(tripObjects);
       } catch (error) {
-        setFetchTripsError(error);
         console.log(fetchTripsError);
+        setFetchTripsError(error);
       }
     };
 
     fetchTrips();
   }, [tripInfo, user.id]);
 
-  const GET_CATCHES_BY_TRIP_ID = `http://localhost:8080/catches?tripId=${trip.id}`;
   const [fetchCatchesError, setFetchCatchesError] = useState();
 
   useEffect(() => {
     const fetchCatches = async () => {
       if (!trip || !trip.id) return;
 
+      const GET_CATCHES_BY_TRIP_ID = `http://localhost:8080/catches?tripId=${trip.id}`;
+      const token = localStorage.getItem("authToken");
+
       try {
-        const response = await fetch(GET_CATCHES_BY_TRIP_ID);
+        const response = await fetch(GET_CATCHES_BY_TRIP_ID, {
+          method: "GET",
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
+        });
         const catchObjectArray = await response.json();
 
         const convertedCatches = catchObjectArray.map((catchObject) => ({
