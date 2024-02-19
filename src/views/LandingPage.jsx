@@ -25,13 +25,13 @@ function Layout() {
             <div className="flex items-center">
               <a
                 className="hover:no-underline text-white text-2xl hover:text-blue-700"
-                href="#"
+                href="/signup"
               >
                 <p>Sign up</p>
               </a>
               <a
                 className="hover:no-underline text-white text-2xl hover:text-blue-700 px-6"
-                href="/dashboard"
+                href="/login"
               >
                 <p>Log in</p>
               </a>
@@ -44,7 +44,7 @@ function Layout() {
           </h1>
           <a
             className="px-6 py-4 border border-solid border-white rounded-2xl hover:no-underline text-white text-2xl hover:bg-white hover:text-gray-900"
-            href="#"
+            href="/signup"
           >
             Get Started
           </a>
@@ -115,7 +115,7 @@ function Layout() {
             </h1>
             <a
               className="px-6 py-4 border-4 border-solid border-white rounded-2xl hover:no-underline text-5xl font-paragraph font-medium text-white text-shadow bg-transparent-shadow hover:bg-blue-700"
-              href="#"
+              href="/signup"
             >
               Sign up now
             </a>
