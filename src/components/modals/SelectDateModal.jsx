@@ -7,9 +7,9 @@ function SelectDateModal({
   setTrips,
   trip,
   setTrip,
-  tripInfo,
-  setTripInfo,
-  getTripInfo,
+  tripDate,
+  setTripDate,
+  getTripDate,
   user,
 }) {
   if (!openSelectDateModal) return null;
@@ -30,13 +30,12 @@ function SelectDateModal({
 
   function handleAddTrip() {
     const newTrip = {
-      date: tripInfo,
+      date: tripDate,
       bodyOfWater: location,
       user: { id: user.id },
     };
 
     postNewTrip(newTrip);
-    setTrips([...trips, newTrip]);
 
     if (newTrip) {
       setOpenSelectDateModal(false);
@@ -62,11 +61,16 @@ function SelectDateModal({
       }
 
       const result = await response.json();
-      setTrip({
+      console.log(result);
+      const newTrip = {
         id: result.tripId,
         location: result.bodyOfWater,
         date: result.date,
-      });
+        user: { id: result.id },
+      };
+      setTrip(newTrip);
+      setTrips([...trips, newTrip]);
+      console.log(newTrip);
     } catch (error) {
       console.log(error);
     }
