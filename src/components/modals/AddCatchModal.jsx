@@ -100,14 +100,6 @@ function AddCatchModal({
     });
   }
 
-  // function handleUserInput(e) {
-  //   const { name, value } = e.target;
-  //   setTempCatch((prevState) => ({
-  //     ...prevState,
-  //     [name]: value,
-  //   }));
-  // }
-
   return (
     <div className="w-full h-screen fixed flex justify-center items-center bg-transparent-shadow z-50">
       <div className="-translate-x-32 bg-white rounded-md font-paragraph">
