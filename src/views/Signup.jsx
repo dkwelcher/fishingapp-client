@@ -1,6 +1,52 @@
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Logo from "../assets/logo.png";
 
 function Signup() {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("");
+  const navigate = useNavigate();
+
+  function handleSignup() {
+    const newUser = {
+      username: username,
+      password: password,
+      email: email,
+    };
+    postNewUser(newUser);
+  }
+
+  async function postNewUser(newUser) {
+    const POST_NEW_USER = "http://localhost:8080/auth/register";
+
+    try {
+      const response = await fetch(POST_NEW_USER, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(newUser),
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error: ${response.error}`);
+      }
+
+      const data = await response.json();
+
+      if (data.token) {
+        handleNavigateToLogin();
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  function handleNavigateToLogin() {
+    navigate("/login");
+  }
+
   return (
     <div className="flex bg-signup-image bg-center bg-cover h-screen justify-center items-center">
       <div className="flex pl-4 gap-20 bg-transparent-shadow rounded-xl">
@@ -30,16 +76,19 @@ function Signup() {
             <input
               className="mb-4 px-2 py-1 border border-solid border-zinc-400 rounded-xl"
               type="text"
+              onChange={(e) => setUsername(e.target.value)}
             />
             <label for="">Email:</label>
             <input
               className="mb-4 px-2 py-1 border border-solid border-zinc-400 rounded-xl"
               type="email"
+              onChange={(e) => setEmail(e.target.value)}
             />
             <label for="">Password:</label>
             <input
               className="mb-4 px-2 py-1 border border-solid border-zinc-400 rounded-xl"
               type="password"
+              onChange={(e) => setPassword(e.target.value)}
             />
             <label for="">Confirm Password:</label>
             <input
@@ -49,7 +98,12 @@ function Signup() {
           </form>
           <p className="mb-4 text-center invisible">Error message</p>
           <div className="flex mb-4 justify-center">
-            <button className="px-6 py-4 bg-blue-700 text-white border-0 rounded-xl hover:bg-blue-600">
+            <button
+              className="px-6 py-4 bg-blue-700 text-white border-0 rounded-xl hover:bg-blue-600"
+              onClick={() => {
+                handleSignup();
+              }}
+            >
               Create your account
             </button>
           </div>
@@ -57,7 +111,7 @@ function Signup() {
             Already have an
             <a
               className="pl-1 underline text-zinc-800 hover:text-blue-600"
-              href="../index.html"
+              href="./login"
             >
               account
             </a>
