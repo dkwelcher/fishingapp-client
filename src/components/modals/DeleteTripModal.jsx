@@ -3,14 +3,14 @@ function DeleteTripModal({
   setOpenDeleteTripModal,
   trip,
   setTrip,
-  setTripInfo,
+  setTripDate,
 }) {
   if (!openDeleteTripModal) return null;
 
   function handleDeleteTrip() {
     deleteTrip();
     setTrip({});
-    setTripInfo();
+    setTripDate();
   }
 
   async function deleteTrip() {
