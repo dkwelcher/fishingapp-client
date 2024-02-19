@@ -45,11 +45,13 @@ function AddCatchModal({
 
   async function postNewCatch(newCatchData) {
     const POST_CATCH = "http://localhost:8080/catches";
+    const token = localStorage.getItem("authToken");
 
     try {
       const response = await fetch(POST_CATCH, {
         method: "POST",
         headers: {
+          Authorization: `Bearer ${token}`,
           "Content-Type": "application/json",
         },
         body: JSON.stringify(newCatchData),
