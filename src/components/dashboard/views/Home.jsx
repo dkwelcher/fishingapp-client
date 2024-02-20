@@ -1,4 +1,4 @@
-import SearchBar from "../components/dashboard/SearchBar";
+import SearchBar from "../shared/SearchBar";
 
 function Home({ user }) {
   return (

@@ -1,9 +1,9 @@
-import Logo from "../../assets/logo.png";
+import Logo from "../../../assets/logo.png";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import {
   DASHBOARD_SIDEBAR_BOTTOM_LINKS,
   DASHBOARD_SIDEBAR_LINKS,
-} from "../../lib/constants/index";
+} from "../../../lib/constants/index";
 import classNames from "classnames";
 import { HiOutlineLogout } from "react-icons/hi";
 

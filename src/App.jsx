@@ -5,12 +5,12 @@ import {
   Route,
   Navigate,
 } from "react-router-dom";
-import Layout from "./components/dashboard/Layout";
-import Home from "./views/Home";
-import ManageTrips from "./views/ManageTrips";
-import LandingPage from "./views/LandingPage";
-import Signup from "./views/Signup";
-import Login from "./views/Login";
+import Layout from "./components/dashboard/shared/Layout";
+import Home from "./components/dashboard/views/Home";
+import ManageTrips from "./components/dashboard/views/ManageTrips";
+import LandingPage from "./components/landing/LandingPage";
+import Signup from "./components/auth/Signup";
+import Login from "./components/auth/Login";
 
 const PrivateView = ({ user, children }) => {
   return user.id ? children : <Navigate to="/login" replace />;

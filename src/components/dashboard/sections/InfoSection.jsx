@@ -1,4 +1,4 @@
-import DateSearch from "../dashboard/DateSearch";
+import DateSearch from "../shared/DateSearch";
 
 function InfoSection({
   setOpenSelectDateModal,

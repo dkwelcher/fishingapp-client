@@ -1,6 +1,6 @@
-import Logo from "../assets/logo.png";
-import LargemouthBass from "../assets/largemouth-bass.png";
-import ChannelCatfish from "../assets/channel-catfish.png";
+import Logo from "../../assets/logo.png";
+import LargemouthBass from "../../assets/largemouth-bass.png";
+import ChannelCatfish from "../../assets/channel-catfish.png";
 
 function Layout() {
   return (

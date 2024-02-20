@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
-import InfoSection from "../components/views/InfoSection";
-import TripCard from "../components/views/TripCard";
-import SelectDateModal from "../components/modals/SelectDateModal";
-import AddCatchModal from "../components/modals/AddCatchModal";
-import EditCatchModal from "../components/modals/EditCatchModal";
-import DeleteCatchModal from "../components/modals/DeleteCatchModal";
-import EditTripModal from "../components/modals/EditTripModal";
-import DeleteTripModal from "../components/modals/DeleteTripModal";
-import Logo from "../assets/logo.png";
+import InfoSection from "../sections/InfoSection";
+import TripCard from "../cards/TripCard";
+import SelectDateModal from "../../modals/SelectDateModal";
+import AddCatchModal from "../../modals/AddCatchModal";
+import EditCatchModal from "../../modals/EditCatchModal";
+import DeleteCatchModal from "../../modals/DeleteCatchModal";
+import EditTripModal from "../../modals/EditTripModal";
+import DeleteTripModal from "../../modals/DeleteTripModal";
+import Logo from "../../../assets/logo.png";
 
 function ManageTrips({ user }) {
   const [openSelectDateModal, setOpenSelectDateModal] = useState(false);
