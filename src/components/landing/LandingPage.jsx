@@ -1,43 +1,47 @@
 import Logo from "../../assets/logo.png";
 import LargemouthBass from "../../assets/largemouth-bass.png";
 import ChannelCatfish from "../../assets/channel-catfish.png";
+import { RxHamburgerMenu } from "react-icons/rx";
 
-function Layout() {
+function LandingPage() {
   /* Tailwind Class Styles */
   const pageStyles = "font-paragraph";
   const heroAndNavigationContainerStyles =
-    "bg-hero-image bg-cover bg-center h-[80vh] p-4 font-medium";
-  const navHeaderStyles = "flex justify-between";
-  const logoContainerStyles = "flex pl-8 justify-center items-center";
-  const logoImageStyles = "size-14";
+    "h-[80vh] bg-hero-image bg-cover bg-center font-medium";
+  const navHeaderStyles = "flex justify-between pt-2 px-2";
+  const logoContainerStyles = "flex justify-center items-center";
+  const logoImageStyles = "size-9";
   const logoLinkStyles = "hover:no-underline";
-  const logoNameStyles = "text-5xl pl-2 text-white font-cursive font-black";
-  const headerLinkContainerStyles = "flex items-center gap-6 pr-6";
+  const logoNameStyles = "text-3xl pl-2 text-white font-cursive font-black";
+  const headerLinkContainerStyles = "flex items-center invisible";
+  const headerLinkHamburgerStyles = "absolute right-4 text-3xl text-white";
   const headerLinkStyles =
-    "hover:no-underline text-white text-2xl hover:text-blue-700";
+    "hover:no-underline text-white text-lg hover:text-blue-700";
   const heroContentContainerStyles =
     "flex flex-col justify-center items-center h-4/5";
   const heroTitleStyles =
-    "w-3/6 text-center font-title font-bold text-8xl leading-normal text-white text-shadow";
+    "text-center font-title font-bold text-5xl leading-normal text-white text-shadow";
   const heroGetStartedLinkStyles =
     "px-6 py-4 border border-solid border-white rounded-2xl hover:no-underline text-white text-2xl hover:bg-white hover:text-gray-900";
-  const mainSectionsContainerStyles = "pt-32 pb-0 px-[20%] flex";
-  const mainSectionsImageStyles = "w-full h-full rounded-2xl";
-  const imageLeftTextRightSectionContainerStyles = "pl-24";
-  const imageRightTextLeftSectionContainerStyles = "pr-24";
-  const sectionTitleStyles = "text-5xl font-semibold";
+  const mainSectionsContainer1Styles = "pt-10 px-[10%] flex flex-col";
+  const mainSectionsContainer2Styles =
+    "pt-10 pb-0 px-[10%] flex flex-col-reverse";
+  const mainSectionsImageStyles = "rounded-2xl";
+  const imageLeftTextRightSectionContainerStyles = "";
+  const imageRightTextLeftSectionContainerStyles = "";
+  const sectionTitleStyles = "text-4xl pb-4 font-semibold text-center";
   const sectionSpanStyles = "text-blue-700";
-  const sectionParagraphStyles = "text-zinc-600 pt-4 text-xl  font-medium";
+  const sectionParagraphStyles = "text-zinc-600 text-md font-medium";
   const calloutContainerStyles =
-    "flex bg-callout-image bg-cover bg-center h-[1000px] mt-32 justify-center items-center";
+    "mt-4 flex bg-callout-image bg-cover bg-center h-screen justify-center items-center";
   const calloutContentContainerStyles =
     "flex flex-col justify-center items-center";
   const calloutTitleStyles =
-    "w-7/12 pb-8 text-center text-7xl text-white text-shadow leading-normal  font-semibold";
+    "pb-8 text-center text-3xl text-white text-shadow leading-normal font-semibold";
   const calloutLinkStyles =
-    "px-6 py-4 border-4 border-solid border-white rounded-2xl hover:no-underline text-5xl font-medium text-white text-shadow bg-transparent-shadow hover:bg-blue-700";
+    "px-4 py-4 border-4 border-solid border-white rounded-2xl hover:no-underline text-5xl font-medium text-white text-shadow bg-transparent-shadow hover:bg-blue-700";
   const footerContainerStyles =
-    "flex h-[200px] justify-center items-center text-xl  font-medium";
+    "flex min-h-24 justify-center items-center text-xl font-medium";
   /* End Tailwind Class Styles */
 
   return (
@@ -57,6 +61,9 @@ function Layout() {
                 <h2 className={logoNameStyles}>Fishing App</h2>
               </a>
             </div>
+            <button className={headerLinkHamburgerStyles}>
+              {<RxHamburgerMenu />}
+            </button>
             <div className={headerLinkContainerStyles}>
               <a className={headerLinkStyles} href="/signup">
                 <p>Sign up</p>
@@ -77,7 +84,7 @@ function Layout() {
         </div>
       </div>
       <main>
-        <div className={mainSectionsContainerStyles}>
+        <div className={mainSectionsContainer1Styles}>
           <img
             className={mainSectionsImageStyles}
             src={LargemouthBass}
@@ -88,38 +95,23 @@ function Layout() {
               What is <span className={sectionSpanStyles}>Fishing App?</span>
             </h2>
             <p className={sectionParagraphStyles}>
-              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Neque
-              laboriosam eveniet molestias, error natus, repellat itaque
-              accusamus doloremque quasi repellendus dolorem commodi tempora
-              quia similique odio hic autem pariatur unde odit enim fuga atque
-              aperiam? Omnis fugiat sapiente, quae nostrum doloribus maxime
-              necessitatibus animi, et dicta labore debitis ipsa fugit. Quaerat
-              ad alias cumque incidunt, ipsum minus debitis nulla neque hic
-              eligendi inventore totam, adipisci expedita reprehenderit
-              explicabo quasi culpa quis eius? Officiis, dolorum cumque? Placeat
-              alias sequi iure corporis esse doloribus minima repellat ipsam
-              nihil, non possimus laudantium rerum laborum ea temporibus
-              quisquam totam numquam, dolore, dolor cumque quae?
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam
+              pariatur excepturi aliquam harum cum consectetur blanditiis
+              accusamus dolorum, voluptas tempore nesciunt veritatis delectus
+              nihil sunt sapiente ad. Ab officia ex natus nostrum placeat et,
+              cum rem eligendi iusto debitis dolores.
             </p>
           </div>
         </div>
-        <div className={mainSectionsContainerStyles}>
+        <div className={mainSectionsContainer2Styles}>
           <div className={imageRightTextLeftSectionContainerStyles}>
             <h2 className={sectionTitleStyles}>Lorem ipsum dolor sit amet.</h2>
             <p className={sectionParagraphStyles}>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi
-              totam fugit rerum. Nobis officiis fugiat deleniti libero
-              cupiditate voluptatibus maiores necessitatibus ex similique
-              obcaecati voluptatem doloribus omnis itaque, maxime ad repudiandae
-              cumque rerum et optio ipsa vero dolorem amet. Odit, et consectetur
-              placeat blanditiis impedit ducimus voluptatibus facere quidem
-              repellendus dicta iste odio eum deleniti laudantium culpa illo
-              quas porro similique consequuntur ipsum! Eligendi, quos quaerat
-              fuga iusto suscipit assumenda officiis consectetur impedit
-              cupiditate consequatur. Eius commodi odit aliquam quis, quia
-              maiores cum impedit molestias ad nemo itaque est atque officia.
-              Debitis mollitia quisquam voluptate optio perspiciatis, repellat
-              totam possimus.
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores
+              quo optio ad excepturi tenetur vitae dolorum voluptate fugiat quis
+              iusto quas quibusdam accusamus velit ab, minima, dolorem quod
+              maiores. Neque ad eos cumque est ipsam fugit quidem nam vero
+              veritatis.
             </p>
           </div>
           <img
@@ -146,4 +138,4 @@ function Layout() {
   );
 }
 
-export default Layout;
+export default LandingPage;
