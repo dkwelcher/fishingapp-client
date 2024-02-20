@@ -7,7 +7,6 @@ function EditTripModal({
   setOpenEditTripModal,
   trip,
   setTrip,
-  trips,
   setTrips,
   tempTrip,
   setTempTrip,

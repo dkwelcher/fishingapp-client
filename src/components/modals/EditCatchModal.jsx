@@ -8,7 +8,6 @@ function EditCatchModal({
   trip,
   tempCatch,
   setTempCatch,
-  catches,
   setCatches,
 }) {
   if (!openEditCatchModal) return null;
@@ -37,8 +36,6 @@ function EditCatchModal({
         },
       };
       editCatch(updatedCatchPost);
-      //catches[tempCatch.index] = updatedCatch;
-      //sortCatches();
 
       setOpenEditCatchModal(false);
     } else {

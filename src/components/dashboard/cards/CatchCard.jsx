@@ -1,12 +1,8 @@
 function CatchCard({
   catches,
-  setCatches,
   setTempCatch,
-  openAddCatchModal,
   setOpenAddCatchModal,
-  openEditCatchModal,
   setOpenEditCatchModal,
-  openDeleteCatchModal,
   setOpenDeleteCatchModal,
 }) {
   function handleEditCatch(dataKey) {

@@ -1,6 +1,6 @@
 import { HiOutlineSearch } from "react-icons/hi";
 
-function SearchBar({ to }) {
+function SearchBar() {
   /* Tailwind Class Styles */
   const searchBarContainerStyles = "relative";
   const searchBarIconStyles =

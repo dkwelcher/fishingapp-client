@@ -2,8 +2,6 @@ import CatchCard from "./CatchCard";
 
 function TripCard({
   trip,
-  setTrip,
-  tempTrip,
   setTempTrip,
   catches,
   setCatches,
@@ -14,9 +12,7 @@ function TripCard({
   setOpenEditCatchModal,
   openDeleteCatchModal,
   setOpenDeleteCatchModal,
-  openEditTripModal,
   setOpenEditTripModal,
-  openDeleteTripModal,
   setOpenDeleteTripModal,
 }) {
   function handleEditTrip() {

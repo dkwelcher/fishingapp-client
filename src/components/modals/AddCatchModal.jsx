@@ -8,7 +8,6 @@ function AddCatchModal({
   trip,
   tempCatch,
   setTempCatch,
-  catches,
   setCatches,
 }) {
   if (!openAddCatchModal) return null;

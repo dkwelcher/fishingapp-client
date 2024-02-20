@@ -5,11 +5,8 @@ function SelectDateModal({
   setOpenSelectDateModal,
   trips,
   setTrips,
-  trip,
   setTrip,
   tripDate,
-  setTripDate,
-  getTripDate,
   user,
 }) {
   if (!openSelectDateModal) return null;

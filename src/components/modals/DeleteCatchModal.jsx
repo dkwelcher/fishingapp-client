@@ -4,7 +4,6 @@ function DeleteCatchModal({
   user,
   tempCatch,
   setTempCatch,
-  catches,
   setCatches,
 }) {
   if (!openDeleteCatchModal) return null;
