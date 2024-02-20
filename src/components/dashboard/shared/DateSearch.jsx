@@ -15,11 +15,19 @@ function DateSearch({ setOpenSelectDateModal, getTripDate }) {
     getTripDate(formattedDate);
   };
 
+  /* Tailwind Class Styles */
+  const dateSearchContainerStyles = "flex items-center";
+  const datePickerContainerStyles = "relative";
+  const datePickerStyles =
+    "ml-1 border border-gray-300 rounded-sm text-slate-600";
+  const buttonStyles = "ml-4 px-4 py-1 bg-white text-slate-600 rounded-sm";
+  /* End Tailwind Class Styles */
+
   return (
-    <div className="flex items-center">
-      <div className="relative">
+    <div className={dateSearchContainerStyles}>
+      <div className={datePickerContainerStyles}>
         <DatePicker
-          className="ml-1 border border-gray-300 rounded-sm text-slate-600"
+          className={datePickerStyles}
           showIcon
           selected={startDate}
           onChange={(date) => setStartDate(date)}
@@ -28,7 +36,7 @@ function DateSearch({ setOpenSelectDateModal, getTripDate }) {
       </div>
       <div>
         <button
-          className="ml-4 px-4 py-1 bg-white text-slate-600 rounded-sm"
+          className={buttonStyles}
           onClick={() => {
             setOpenSelectDateModal(true);
             handleSearchClick();

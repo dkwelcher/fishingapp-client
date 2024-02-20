@@ -100,18 +100,31 @@ function EditTripModal({
     return `${year}-${month}-${day}`;
   }
 
+  /* Tailwind Class Styles */
+  const modalContainerStyles =
+    "w-full h-screen fixed flex justify-center items-center bg-transparent-shadow z-50";
+  const modalCardStyles = "-translate-x-32 bg-white rounded-md font-paragraph";
+  const formContainerStyles = "px-20 py-8";
+  const formTitleStyles = "mb-4 font-title text-3xl font-semibold";
+  const inputContainerStyles = "flex flex-col";
+  const datePickerContainerStyles = "relative";
+  const inputStyles =
+    "mb-4 px-2 py-1 border border-solid border-zinc-400 rounded-sm";
+  const buttonContainerStyles = "flex justify-center items-center gap-4";
+  const buttonStyles =
+    "bg-slate-800 text-slate-200 px-6 py-2 rounded-sm hover:bg-slate-700";
+  /* End Tailwind Class Styles */
+
   return (
-    <div className="w-full h-screen fixed flex justify-center items-center bg-transparent-shadow z-50">
-      <div className="-translate-x-32 bg-white rounded-md font-paragraph">
-        <div className="px-20 py-8">
-          <h2 className="mb-4 font-title text-3xl font-semibold">
-            Edit Current Trip
-          </h2>
+    <div className={modalContainerStyles}>
+      <div className={modalCardStyles}>
+        <div className={formContainerStyles}>
+          <h2 className={formTitleStyles}>Edit Current Trip</h2>
           <form action="">
-            <div className="flex flex-col">
+            <div className={inputContainerStyles}>
               <label htmlFor="">Location:</label>
               <input
-                className="mb-4 px-2 py-1 border border-solid border-zinc-400 rounded-sm"
+                className={inputStyles}
                 type="text"
                 value={tempTrip.location}
                 onChange={(e) =>
@@ -119,9 +132,9 @@ function EditTripModal({
                 }
               />
               <label htmlFor="">Date</label>
-              <div className="relative">
+              <div className={datePickerContainerStyles}>
                 <DatePicker
-                  className="mb-4 px-2 py-1 border border-solid border-zinc-400 rounded-sm"
+                  className={inputStyles}
                   showIcon
                   selected={editDate}
                   onChange={(date) => setEditDate(date)}
@@ -142,9 +155,9 @@ function EditTripModal({
               <p key={index}>{line}</p>
             ))}
           </div>
-          <div className="flex justify-center items-center gap-4">
+          <div className={buttonContainerStyles}>
             <button
-              className="bg-slate-800 text-slate-200 px-6 py-2 rounded-sm hover:bg-slate-700"
+              className={buttonStyles}
               onClick={() => {
                 handleEditTrip();
               }}
@@ -152,7 +165,7 @@ function EditTripModal({
               Edit
             </button>
             <button
-              className="bg-slate-800 text-slate-200 px-6 py-2 rounded-sm hover:bg-slate-700"
+              className={buttonStyles}
               onClick={() => {
                 setOpenEditTripModal(false);
                 setTempTrip({});

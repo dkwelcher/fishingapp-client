@@ -34,21 +34,32 @@ function DeleteTripModal({
     }
   }
 
+  /* Tailwind Class Styles */
+  const modalContainerStyles =
+    "w-full h-screen fixed flex justify-center items-center bg-transparent-shadow z-50";
+  const modalCardStyles = "-translate-x-32 bg-white rounded-md font-paragraph";
+  const infoContainerStyles = "px-20 py-8";
+  const infoTitleStyles = "mb-4 font-title text-3xl font-semibold";
+  const infoSectionContainerStyles = "mb-4";
+  const infoSectionParagraphStyles = "text-center";
+  const buttonContainerStyles = "flex justify-center align-items";
+  const buttonStyles =
+    "mr-4 bg-slate-800 text-slate-200 px-6 py-2 rounded-sm hover:bg-slate-700";
+  /* End Tailwind Class Styles */
+
   return (
-    <div className="w-full h-screen fixed flex justify-center items-center bg-transparent-shadow z-50">
-      <div className="-translate-x-32 bg-white rounded-md font-paragraph">
-        <div className="px-20 py-8">
-          <h2 className="mb-4 font-title text-3xl font-semibold">
-            Are you sure you want to delete?
-          </h2>
-          <div className="mb-4">
-            <p className="text-center">
+    <div className={modalContainerStyles}>
+      <div className={modalCardStyles}>
+        <div className={infoContainerStyles}>
+          <h2 className={infoTitleStyles}>Are you sure you want to delete?</h2>
+          <div className={infoSectionContainerStyles}>
+            <p className={infoSectionParagraphStyles}>
               {trip.location} on {trip.date}
             </p>
           </div>
-          <div className="flex justify-center align-items">
+          <div className={buttonContainerStyles}>
             <button
-              className="mr-4 bg-slate-800 text-slate-200 px-6 py-2 rounded-sm hover:bg-slate-700"
+              className={buttonStyles}
               onClick={() => {
                 handleDeleteTrip();
                 setOpenDeleteTripModal(false);
@@ -57,7 +68,7 @@ function DeleteTripModal({
               Yes
             </button>
             <button
-              className="bg-slate-800 text-slate-200 px-6 py-2 rounded-sm hover:bg-slate-700"
+              className={buttonStyles}
               onClick={() => setOpenDeleteTripModal(false)}
             >
               No

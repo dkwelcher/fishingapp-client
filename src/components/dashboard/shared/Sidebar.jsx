@@ -7,8 +7,22 @@ import {
 import classNames from "classnames";
 import { HiOutlineLogout } from "react-icons/hi";
 
-const linkClasses =
+/* Tailwind Class Styles */
+const sidebarContainerStyles =
+  "bg-neutral-900 w-60 p-3 flex flex-col text-white border-r border-neutral-700";
+const sidebarLogoContainerStyles = "flex items-center gap-2 px-1 py-3";
+const sidebarLogoImageStyles = "size-10";
+const sidebarLogoNameStyles =
+  "text-neutral-100 text-4xl font-cursive font-bold";
+const sidebarLinkContainerStyles = "flex-1 py-8 flex flex-col gap-0.5";
+const sidebarBottomLinkContainerStyles =
+  "flex flex-col gap-0.5 pt-2 border-t border-neutral-700";
+const sidebarLinkStyles =
   "flex items-center gap-2 font-light px-3 py-2 hover:bg-neutral-700 hover:no-underline active:bg-neutral-600 rounded-sm text-base";
+const sidebarLinkIconStyles = "text-xl";
+const sidebarLogoutLinkStyles = "text-red-500 cursor-pointer";
+const sidebarLogoutIconStyles = "text-xl";
+/* End Tailwind Class Styles */
 
 function Sidebar({ setUser }) {
   const navigate = useNavigate();
@@ -21,27 +35,25 @@ function Sidebar({ setUser }) {
   }
 
   return (
-    <div className="bg-neutral-900 w-60 p-3 flex flex-col text-white border-r border-neutral-700">
-      <div className="flex items-center gap-2 px-1 py-3">
-        <img className="size-10" src={Logo} />
-        <span className="text-neutral-100 text-4xl font-cursive font-bold">
-          Fishing App
-        </span>
+    <div className={sidebarContainerStyles}>
+      <div className={sidebarLogoContainerStyles}>
+        <img className={sidebarLogoImageStyles} src={Logo} />
+        <span className={sidebarLogoNameStyles}>Fishing App</span>
       </div>
-      <div className="flex-1 py-8 flex flex-col gap-0.5">
+      <div className={sidebarLinkContainerStyles}>
         {DASHBOARD_SIDEBAR_LINKS.map((item) => (
           <SidebarLink key={item.key} item={item} />
         ))}
       </div>
-      <div className="flex flex-col gap-0.5 pt-2 border-t border-neutral-700">
+      <div className={sidebarBottomLinkContainerStyles}>
         {DASHBOARD_SIDEBAR_BOTTOM_LINKS.map((item) => (
           <SidebarLink key={item.key} item={item} />
         ))}
         <div
-          className={classNames("text-red-500 cursor-pointer", linkClasses)}
+          className={classNames(sidebarLogoutLinkStyles, sidebarLinkStyles)}
           onClick={handleLogout}
         >
-          <span className="text-xl">{<HiOutlineLogout />}</span>
+          <span className={sidebarLogoutIconStyles}>{<HiOutlineLogout />}</span>
           Logout
         </div>
       </div>
@@ -59,10 +71,10 @@ function SidebarLink({ item }) {
         pathname === item.path
           ? " bg-neutral-700 text-white"
           : "text-neutral-400",
-        linkClasses
+        sidebarLinkStyles
       )}
     >
-      <span className="text-xl">{item.icon}</span>
+      <span className={sidebarLinkIconStyles}>{item.icon}</span>
       {item.label}
     </Link>
   );

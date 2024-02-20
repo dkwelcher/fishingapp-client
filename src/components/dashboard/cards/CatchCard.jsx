@@ -28,11 +28,25 @@ function CatchCard({
     return `${newHours.toString().padStart(2, "0")}:${minutes} ${suffix}`;
   }
 
+  /* Tailwind Class Styles */
+  const catchesContainerStyles = "font-paragraph";
+  const addCatchButtonContainerStyles = "pb-4";
+  const addCatchButtonStyles =
+    "bg-slate-200 text-slate-600 px-6 py-2 rounded-sm font-bold hover:bg-slate-100 hover:text-slate-500";
+  const catchCardColumnStyles = "grid grid-cols-2";
+  const catchCardInfoSubHeaderContainer = "font-title font-medium text-right";
+  const catchCardInfoResultsContainer = "ml-4 text-sm";
+  const catchCardButtonContainerStyles =
+    "flex justify-center items-center gap-4";
+  const catchCardButtonStyles =
+    "bg-slate-800 text-slate-200 px-6 py-2 rounded-sm hover:bg-slate-700";
+  /* End Tailwind Class Styles */
+
   return (
-    <div>
-      <div className="mb-4">
+    <div className={catchesContainerStyles}>
+      <div className={addCatchButtonContainerStyles}>
         <button
-          className="bg-slate-200 text-slate-600 px-6 py-2 rounded-sm font-paragraph font-bold hover:bg-slate-100 hover:text-slate-500"
+          className={addCatchButtonStyles}
           onClick={() => setOpenAddCatchModal(true)}
         >
           Add a New Catch
@@ -46,45 +60,45 @@ function CatchCard({
             } mb-2 p-2 rounded-md`}
             key={catchItem.id}
           >
-            <div className="grid grid-cols-2">
-              <div className="font-title font-medium text-right">
+            <div className={catchCardColumnStyles}>
+              <div className={catchCardInfoSubHeaderContainer}>
                 <p>Time:</p>
                 <p>Fish:</p>
                 <p>Bait:</p>
               </div>
-              <div className="ml-4 font-paragraph text-sm">
+              <div className={catchCardInfoResultsContainer}>
                 <p>{handleTimeConversionTo12HourFormat(catchItem.time)}</p>
                 <p>{catchItem.fish}</p>
                 <p>{catchItem.bait}</p>
               </div>
             </div>
-            <div className="grid grid-cols-2">
-              <div className="font-title font-medium text-right">
+            <div className={catchCardColumnStyles}>
+              <div className={catchCardInfoSubHeaderContainer}>
                 <p>Latitude:</p>
                 <p>Longitude:</p>
                 <p>Weather:</p>
               </div>
-              <div className="ml-4 font-paragraph text-sm">
+              <div className={catchCardInfoResultsContainer}>
                 <p>{catchItem.latitude}</p>
                 <p>{catchItem.longitude}</p>
                 <p>{catchItem.weather}</p>
               </div>
             </div>
-            <div className="grid grid-cols-2">
-              <div className="font-title font-medium text-right">
+            <div className={catchCardColumnStyles}>
+              <div className={catchCardInfoSubHeaderContainer}>
                 <p>Air Temp:</p>
                 <p>Water Temp:</p>
                 <p>Wind Speed:</p>
               </div>
-              <div className="ml-4 font-paragraph text-sm">
+              <div className={catchCardInfoResultsContainer}>
                 <p>{catchItem.airTemp}</p>
                 <p>{catchItem.waterTemp}</p>
                 <p>{catchItem.windSpeed}</p>
               </div>
             </div>
-            <div className="flex justify-center items-center font-paragraph">
+            <div className={catchCardButtonContainerStyles}>
               <button
-                className="bg-slate-800 text-slate-200 px-6 py-2 rounded-sm hover:bg-slate-700"
+                className={catchCardButtonStyles}
                 data-key={i}
                 onClick={(e) => {
                   const dataKey = e.currentTarget.getAttribute("data-key");
@@ -95,7 +109,7 @@ function CatchCard({
                 Edit
               </button>
               <button
-                className="ml-4 bg-slate-800 text-slate-200 px-6 py-2 rounded-sm hover:bg-slate-700"
+                className={catchCardButtonStyles}
                 data-key={i}
                 onClick={(e) => {
                   const dataKey = e.currentTarget.getAttribute("data-key");

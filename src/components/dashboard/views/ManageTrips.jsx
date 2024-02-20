@@ -122,6 +122,19 @@ function ManageTrips({ user }) {
     });
   }
 
+  /* Tailwind Class Styles */
+  const pageStyles = "flex flex-col justify-center items-left text-slate-800";
+  const idleContainerStyles =
+    "mt-8 w-full flex flex-col justify-center items-center m-auto font-paragraph";
+  const idleLogoContainerStyles =
+    "mb-10 flex justify-center items-center font-cursive font-bold text-slate-900";
+  const idleLogoImageStyles = "size-16";
+  const idleLogoNameStyles = "text-7xl";
+  const idleContentContainerStyles = "w-full flex justify-around gap-8 px-12";
+  const idleContentCardStyles = "flex flex-col gap-4";
+  const idleContentCardTitleStyles = "pb-2 font-title font-semibold text-2xl";
+  /* End Tailwind Class Styles */
+
   return (
     <div>
       <SelectDateModal
@@ -184,7 +197,7 @@ function ManageTrips({ user }) {
         setTrip={setTrip}
         setTripDate={setTripDate}
       />
-      <div className="flex flex-col justify-center items-left text-slate-800">
+      <div className={pageStyles}>
         <InfoSection
           setOpenSelectDateModal={setOpenSelectDateModal}
           getTripDate={getTripDate}
@@ -215,18 +228,18 @@ function ManageTrips({ user }) {
             setOpenDeleteTripModal={setOpenDeleteTripModal}
           />
         ) : (
-          <div className="mt-8 w-full flex flex-col justify-center items-center m-auto font-paragraph">
-            <div className="mb-10 flex justify-center items-center font-cursive font-bold text-slate-900">
+          <div className={idleContainerStyles}>
+            <div className={idleLogoContainerStyles}>
               <img
-                className="size-16"
+                className={idleLogoImageStyles}
                 src={Logo}
                 alt="Man fishing in a row boat"
               />
-              <h2 className="text-7xl">Fishing App</h2>
+              <h2 className={idleLogoNameStyles}>Fishing App</h2>
             </div>
-            <div className="w-full flex justify-around gap-8 px-12">
-              <div className="flex flex-col gap-4">
-                <h2 className="pb-2 font-title font-semibold text-2xl">
+            <div className={idleContentContainerStyles}>
+              <div className={idleContentCardStyles}>
+                <h2 className={idleContentCardTitleStyles}>
                   Lorem ipsum dolor sit amet.
                 </h2>
                 <p>
@@ -240,8 +253,8 @@ function ManageTrips({ user }) {
                   quis velit officiis.
                 </p>
               </div>
-              <div className="flex flex-col gap-4">
-                <h2 className="pb-2 font-title font-semibold text-2xl">
+              <div className={idleContentCardStyles}>
+                <h2 className={idleContentCardTitleStyles}>
                   Lorem ipsum dolor sit amet.
                 </h2>
                 <p>
@@ -253,21 +266,6 @@ function ManageTrips({ user }) {
                   Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi
                   nesciunt animi commodi neque iure autem libero officia
                   incidunt eum dolore.
-                </p>
-              </div>
-              <div className="flex flex-col gap-4">
-                <h2 className="pb-2 font-title font-semibold text-2xl">
-                  Lorem ipsum dolor sit amet.
-                </h2>
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                  Repudiandae autem placeat vero ad tempore. Ea iusto quidem
-                  accusantium harum tempore!
-                </p>
-                <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Magnam at facilis aperiam iure molestiae vitae fugit
-                  reiciendis dignissimos consequatur nihil.
                 </p>
               </div>
             </div>

@@ -100,116 +100,130 @@ function AddCatchModal({
     });
   }
 
+  /* Tailwind Class Styles */
+  const modalContainerStyles =
+    "w-full h-screen fixed flex justify-center items-center bg-transparent-shadow z-50";
+  const modalCardStyles = "-translate-x-32 bg-white rounded-md font-paragraph";
+  const formContainerStyles = "px-20 py-8";
+  const formTitleStyles = "mb-4 font-title text-3xl font-semibold";
+  const formStyles = "grid grid-cols-2 gap-x-4";
+  const inputContainerStyles = "flex justify-between";
+  const labelStyles = "mr-2";
+  const inputStyles =
+    "mb-4 px-2 py-1 border border-solid border-zinc-400 rounded-sm";
+  const buttonContainerStyles = "flex justify-center items-center gap-4";
+  const buttonStyles =
+    "bg-slate-800 text-slate-200 px-6 py-2 rounded-sm hover:bg-slate-700";
+  /* End Tailwind Class Styles */
+
   return (
-    <div className="w-full h-screen fixed flex justify-center items-center bg-transparent-shadow z-50">
-      <div className="-translate-x-32 bg-white rounded-md font-paragraph">
-        <div className="px-20 py-8">
-          <h2 className="mb-4 font-title text-3xl font-semibold">
-            Add a Catch
-          </h2>
-          <form className="grid grid-cols-2 gap-x-4" action="">
-            <div className="flex justify-between">
-              <label className="text-right mr-2" htmlFor="">
+    <div className={modalContainerStyles}>
+      <div className={modalCardStyles}>
+        <div className={formContainerStyles}>
+          <h2 className={formTitleStyles}>Add a Catch</h2>
+          <form className={formStyles} action="">
+            <div className={inputContainerStyles}>
+              <label className={labelStyles} htmlFor="">
                 Time:
               </label>
               <input
-                className="mb-4 px-2 py-1 border border-solid border-zinc-400 rounded-sm"
+                className={inputStyles}
                 type="time"
                 onChange={(e) =>
                   setTempCatch({ ...tempCatch, time: e.target.value })
                 }
               />
             </div>
-            <div className="flex justify-between">
-              <label className="mr-2" htmlFor="">
+            <div className={inputContainerStyles}>
+              <label className={labelStyles} htmlFor="">
                 Fish:
               </label>
               <input
-                className="mb-4 px-2 py-1 border border-solid border-zinc-400 rounded-sm"
+                className={inputStyles}
                 type="text"
                 onChange={(e) =>
                   setTempCatch({ ...tempCatch, fish: e.target.value })
                 }
               />
             </div>
-            <div className="flex justify-between">
-              <label className="mr-2" htmlFor="">
+            <div className={inputContainerStyles}>
+              <label className={labelStyles} htmlFor="">
                 Bait:
               </label>
               <input
-                className="mb-4 px-2 py-1 border border-solid border-zinc-400 rounded-sm"
+                className={inputStyles}
                 type="text"
                 onChange={(e) =>
                   setTempCatch({ ...tempCatch, bait: e.target.value })
                 }
               />
             </div>
-            <div className="flex justify-between">
-              <label className="mr-2" htmlFor="">
+            <div className={inputContainerStyles}>
+              <label className={labelStyles} htmlFor="">
                 Latitude:
               </label>
               <input
-                className="mb-4 px-2 py-1 border border-solid border-zinc-400 rounded-sm"
+                className={inputStyles}
                 type="number"
                 onChange={(e) =>
                   setTempCatch({ ...tempCatch, latitude: e.target.value })
                 }
               />
             </div>
-            <div className="flex justify-between">
-              <label className="mr-2" htmlFor="">
+            <div className={inputContainerStyles}>
+              <label className={labelStyles} htmlFor="">
                 Longitude:
               </label>
               <input
-                className="mb-4 px-2 py-1 border border-solid border-zinc-400 rounded-sm"
+                className={inputStyles}
                 type="number"
                 onChange={(e) =>
                   setTempCatch({ ...tempCatch, longitude: e.target.value })
                 }
               />
             </div>
-            <div className="flex justify-between">
-              <label className="mr-2" htmlFor="">
+            <div className={inputContainerStyles}>
+              <label className={labelStyles} htmlFor="">
                 Weather:
               </label>
               <input
-                className="mb-4 px-2 py-1 border border-solid border-zinc-400 rounded-sm"
+                className={inputStyles}
                 type="text"
                 onChange={(e) =>
                   setTempCatch({ ...tempCatch, weather: e.target.value })
                 }
               />
             </div>
-            <div className="flex justify-between">
-              <label className="mr-2" htmlFor="">
+            <div className={inputContainerStyles}>
+              <label className={labelStyles} htmlFor="">
                 Air Temp:
               </label>
               <input
-                className="mb-4 px-2 py-1 border border-solid border-zinc-400 rounded-sm"
+                className={inputStyles}
                 type="number"
                 onChange={(e) =>
                   setTempCatch({ ...tempCatch, airTemp: e.target.value })
                 }
               />
             </div>
-            <div className="flex justify-between">
-              <label className="mr-2" htmlFor="">
+            <div className={inputContainerStyles}>
+              <label className={labelStyles} htmlFor="">
                 Water Temp:
               </label>
               <input
-                className="mb-4 px-2 py-1 border border-solid border-zinc-400 rounded-sm"
+                className={inputStyles}
                 type="number"
                 onChange={(e) =>
                   setTempCatch({ ...tempCatch, waterTemp: e.target.value })
                 }
               />
             </div>
-            <div className="flex justify-between">
-              <label className="mr-2" htmlFor="">
+            <div className={inputContainerStyles}>
+              <label className={labelStyles} htmlFor="">
                 Wind Speed:
               </label>
               <input
-                className="mb-4 px-2 py-1 border border-solid border-zinc-400 rounded-sm"
+                className={inputStyles}
                 type="number"
                 onChange={(e) =>
                   setTempCatch({ ...tempCatch, windSpeed: e.target.value })
@@ -230,9 +244,9 @@ function AddCatchModal({
               <p key={index}>{line}</p>
             ))}
           </div>
-          <div className="flex justify-center items-center gap-4">
+          <div className={buttonContainerStyles}>
             <button
-              className="bg-slate-800 text-slate-200 px-6 py-2 rounded-sm hover:bg-slate-700"
+              className={buttonStyles}
               onClick={() => {
                 handlesNewCatch();
               }}
@@ -240,7 +254,7 @@ function AddCatchModal({
               Add
             </button>
             <button
-              className="bg-slate-800 text-slate-200 px-6 py-2 rounded-sm hover:bg-slate-700"
+              className={buttonStyles}
               onClick={() => {
                 setOpenAddCatchModal(false);
                 setTempCatch({});
