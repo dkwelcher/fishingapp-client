@@ -56,11 +56,12 @@ function Signup() {
     "flex flex-col justify-between text-white sm:w-full sm:justify-start md:max-w-[550px]";
   const logoContainerStyles =
     "pt-4 px-4 flex items-center font-cursive font-bold";
-  const logoImageStyles = "size-12";
-  const logoNameStyles = "text-5xl";
+  const logoImageStyles = "size-12 md:size-14";
+  const logoNameStyles = "text-5xl md:text-6xl lg:text-7xl";
   const descriptionContainerStyles = "p-4";
-  const descriptionTitleStyles = " text-xl font-title font-bold";
-  const descriptionParagraphStyles = "text-md";
+  const descriptionTitleStyles =
+    " text-xl font-title font-bold md:text-2xl lg:text-3xl";
+  const descriptionParagraphStyles = "text-md lg:text-lg";
   const formContainerStyles = "p-4 bg-white rounded-xl sm:w-full";
   const formStyles = "flex flex-col";
   const inputStyles =
