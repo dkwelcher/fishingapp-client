@@ -24,9 +24,10 @@ function LandingPage() {
     "text-3xl pl-2 text-white font-cursive font-black md:text-4xl lg:text-5xl";
   const headerLinkContainerStyles =
     "flex items-center invisible md:visible md:gap-4 md: pr-4";
-  const headerButtonHamburgerStyles = "";
+  const headerButtonHamburgerStyles =
+    "absolute right-4 text-3xl text-white z-50 md:invisible";
   const headerLinkHamburgerContainerStyles =
-    "flex flex-col justify-center items-center absolute bg-white w-[90%] h-1/4 translate-x-3";
+    "w-full flex flex-col justify-center items-center gap-y-2 absolute bg-white h-1/4 -translate-x-2 translate-y-11";
   const headerLinkHamburgerStyles =
     "hover:no-underline text-black text-lg hover:text-blue-700";
   const headerLinkStyles =
@@ -79,9 +80,7 @@ function LandingPage() {
               </a>
             </div>
             <button
-              className={`absolute right-4 text-3xl text-white z-50 md:invisible ${
-                isOpen && "text-black"
-              }`}
+              className={headerButtonHamburgerStyles}
               onClick={() => {
                 toggleNavbar();
               }}
@@ -96,16 +95,20 @@ function LandingPage() {
                 <p>Log in</p>
               </a>
             </div>
-            {isOpen && (
-              <div className={headerLinkHamburgerContainerStyles}>
-                <a className={headerLinkHamburgerStyles} href="/signup">
-                  <p>Sign up</p>
-                </a>
-                <a className={headerLinkHamburgerStyles} href="/login">
-                  <p>Log in</p>
-                </a>
-              </div>
-            )}
+            <div
+              className={`w-full flex flex-col justify-center items-center gap-y-2 absolute bg-white h-1/4 transition-all duration-1000 -translate-x-2 translate-y-11 ${
+                isOpen
+                  ? "max-h-[500px] opacity-100 visible"
+                  : "max-h-0 opacity-0 hidden"
+              }`}
+            >
+              <a className={headerLinkHamburgerStyles} href="/signup">
+                <p>Sign up</p>
+              </a>
+              <a className={headerLinkHamburgerStyles} href="/login">
+                <p>Log in</p>
+              </a>
+            </div>
           </header>
         </nav>
         <div className={heroContentContainerStyles}>
