@@ -6,7 +6,7 @@ function SearchBar() {
   const searchBarIconStyles =
     "text-gray-400 absolute top-1/2 -translate-y-1/2 left-3 size-5";
   const searchBarInputStyles =
-    "text-sm focus:outline-none active:outline-none h-10 w-[24rem] border border-gray-300 rounded-sm pl-11 pr-4";
+    "text-sm focus:outline-none active:outline-none h-10 w-[18rem] border border-gray-300 rounded-sm pl-11 pr-4 sm:w-[24rem]";
   /* End Tailwind Class Styles */
 
   return (
