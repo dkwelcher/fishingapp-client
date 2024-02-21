@@ -26,14 +26,15 @@ function CatchCard({
 
   /* Tailwind Class Styles */
   const catchesContainerStyles = "font-paragraph";
-  const addCatchButtonContainerStyles = "pb-4";
+  const addCatchButtonContainerStyles = "pb-4 flex flex-col";
   const addCatchButtonStyles =
     "bg-slate-200 text-slate-600 px-6 py-2 rounded-sm font-bold hover:bg-slate-100 hover:text-slate-500";
-  const catchCardColumnStyles = "grid grid-cols-2";
-  const catchCardInfoSubHeaderContainer = "font-title font-medium text-right";
-  const catchCardInfoResultsContainer = "ml-4 text-sm";
+
+  const catchCardColumnStyles = "px-2 grid grid-cols-2";
+  const catchCardInfoSubHeaderContainer = "font-title font-medium";
+  const catchCardInfoResultsContainer = "text-sm";
   const catchCardButtonContainerStyles =
-    "flex justify-center items-center gap-4";
+    "pt-4 flex justify-center items-center gap-4";
   const catchCardButtonStyles =
     "bg-slate-800 text-slate-200 px-6 py-2 rounded-sm hover:bg-slate-700";
   /* End Tailwind Class Styles */
@@ -51,7 +52,7 @@ function CatchCard({
       <div>
         {catches.map((catchItem, i) => (
           <div
-            className={`grid grid-cols-4 ${
+            className={`grid grid-cols-1 ${
               i % 2 == 0 ? "bg-slate-200" : "bg-slate-300"
             } mb-2 p-2 rounded-md`}
             key={catchItem.id}

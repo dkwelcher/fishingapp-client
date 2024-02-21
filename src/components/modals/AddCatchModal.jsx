@@ -102,15 +102,15 @@ function AddCatchModal({
   /* Tailwind Class Styles */
   const modalContainerStyles =
     "w-full h-screen fixed flex justify-center items-center bg-transparent-shadow z-50";
-  const modalCardStyles = "-translate-x-32 bg-white rounded-md font-paragraph";
-  const formContainerStyles = "px-20 py-8";
-  const formTitleStyles = "mb-4 font-title text-3xl font-semibold";
-  const formStyles = "grid grid-cols-2 gap-x-4";
-  const inputContainerStyles = "flex justify-between";
-  const labelStyles = "mr-2";
+  const modalCardStyles = "bg-white rounded-md font-paragraph";
+  const formContainerStyles = "px-10 py-4";
+  const formTitleStyles = "mb-4 font-title text-xl font-semibold";
+  const formStyles = "grid grid-cols-1 gap-x-4";
+  const inputContainerStyles = "flex flex-col";
+  const labelStyles = "pt-1";
   const inputStyles =
-    "mb-4 px-2 py-1 border border-solid border-zinc-400 rounded-sm";
-  const buttonContainerStyles = "flex justify-center items-center gap-4";
+    "px-2 py-1 border border-solid border-zinc-400 rounded-sm";
+  const buttonContainerStyles = "flex justify-center items-center gap-x-4";
   const buttonStyles =
     "bg-slate-800 text-slate-200 px-6 py-2 rounded-sm hover:bg-slate-700";
   /* End Tailwind Class Styles */

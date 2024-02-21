@@ -57,15 +57,16 @@ function DeleteCatchModal({
 
   /* Tailwind Class Styles */
   const modalContainerStyles =
-    "w-full h-screen fixed flex justify-center items-center bg-transparent-shadow z-50";
-  const modalCardStyles = "-translate-x-32 bg-white rounded-md font-paragraph";
-  const infoContainerStyles = "px-20 py-8";
-  const infoTitleStyles = "mb-4 font-title text-3xl font-semibold";
-  const infoSectionContainerStyles = "grid grid-cols-2 gap-10";
+    "w-full h-screen fixed p-2 flex justify-center items-center bg-transparent-shadow z-50";
+  const modalCardStyles = "bg-white rounded-md font-paragraph";
+  const infoContainerStyles = "px-10 py-4";
+  const infoTitleStyles = "mb-4 font-title text-xl font-semibold";
+  const infoSectionContainerStyles = "grid grid-cols-1 gap-y-1";
   const infoSectionStyles = "grid grid-cols-2";
-  const buttonContainerStyles = "flex justify-center align-items";
+  const infoSubHeaderStyles = "font-semibold";
+  const buttonContainerStyles = "pt-4 flex justify-center align-items gap-x-4";
   const buttonStyles =
-    "mr-4 bg-slate-800 text-slate-200 px-6 py-2 rounded-sm hover:bg-slate-700";
+    "bg-slate-800 text-slate-200 px-6 py-2 rounded-sm hover:bg-slate-700";
   /* End Tailwind Class Styles */
 
   return (
@@ -76,47 +77,47 @@ function DeleteCatchModal({
           <div>
             <div className={infoSectionContainerStyles}>
               <div className={infoSectionStyles}>
-                <p>Time:</p>
+                <p className={infoSubHeaderStyles}>Time:</p>
                 <p>{handleTimeConversionTo12HourFormat(tempCatch.time)}</p>
               </div>
               <div className={infoSectionStyles}>
-                <p>Fish:</p>
+                <p className={infoSubHeaderStyles}>Fish:</p>
                 <p>{tempCatch.fish}</p>
               </div>
             </div>
             <div className={infoSectionContainerStyles}>
               <div className={infoSectionStyles}>
-                <p>Bait:</p>
+                <p className={infoSubHeaderStyles}>Bait:</p>
                 <p>{tempCatch.bait}</p>
               </div>
               <div className={infoSectionStyles}>
-                <p>Weather:</p>
+                <p className={infoSubHeaderStyles}>Weather:</p>
                 <p>{tempCatch.weather}</p>
               </div>
             </div>
             <div className={infoSectionContainerStyles}>
               <div className={infoSectionStyles}>
-                <p>Latitude:</p>
+                <p className={infoSubHeaderStyles}>Latitude:</p>
                 <p>{tempCatch.latitude}</p>
               </div>
               <div className={infoSectionStyles}>
-                <p>Longitude:</p>
+                <p className={infoSubHeaderStyles}>Longitude:</p>
                 <p>{tempCatch.longitude}</p>
               </div>
             </div>
             <div className={infoSectionContainerStyles}>
               <div className={infoSectionStyles}>
-                <p>Air Temp:</p>
+                <p className={infoSubHeaderStyles}>Air Temp:</p>
                 <p>{tempCatch.airTemp}</p>
               </div>
               <div className={infoSectionStyles}>
-                <p>Water Temp:</p>
+                <p className={infoSubHeaderStyles}>Water Temp:</p>
                 <p>{tempCatch.waterTemp}</p>
               </div>
             </div>
             <div className={infoSectionContainerStyles}>
               <div className={infoSectionStyles}>
-                <p>Wind Speed:</p>
+                <p className={infoSubHeaderStyles}>Wind Speed:</p>
                 <p>{tempCatch.windSpeed}</p>
               </div>
               <div className={infoSectionStyles}></div>

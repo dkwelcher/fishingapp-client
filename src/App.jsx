@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   BrowserRouter as Router,
   Routes,
@@ -21,6 +21,19 @@ function App() {
     const savedUser = localStorage.getItem("user");
     return savedUser ? JSON.parse(savedUser) : {};
   });
+  const [screenWidth, setScreenWidth] = useState(window.innerWidth);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setScreenWidth(window.innerWidth);
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
   return (
     <>
@@ -36,12 +49,15 @@ function App() {
             path="/dashboard"
             element={
               <PrivateView user={user}>
-                <Layout setUser={setUser} />
+                <Layout setUser={setUser} screenWidth={screenWidth} />
               </PrivateView>
             }
           >
             <Route index element={<Home user={user} />} />
-            <Route path="manage-trips" element={<ManageTrips user={user} />} />
+            <Route
+              path="manage-trips"
+              element={<ManageTrips user={user} screenWidth={screenWidth} />}
+            />
           </Route>
         </Routes>
       </Router>

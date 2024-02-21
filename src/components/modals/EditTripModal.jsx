@@ -102,9 +102,9 @@ function EditTripModal({
   /* Tailwind Class Styles */
   const modalContainerStyles =
     "w-full h-screen fixed flex justify-center items-center bg-transparent-shadow z-50";
-  const modalCardStyles = "-translate-x-32 bg-white rounded-md font-paragraph";
-  const formContainerStyles = "px-20 py-8";
-  const formTitleStyles = "mb-4 font-title text-3xl font-semibold";
+  const modalCardStyles = "bg-white rounded-md font-paragraph";
+  const formContainerStyles = "px-10 py-4";
+  const formTitleStyles = "mb-4 font-title text-xl font-semibold";
   const inputContainerStyles = "flex flex-col";
   const datePickerContainerStyles = "relative";
   const inputStyles =

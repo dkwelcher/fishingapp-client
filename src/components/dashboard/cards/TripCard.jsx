@@ -14,6 +14,7 @@ function TripCard({
   setOpenDeleteCatchModal,
   setOpenEditTripModal,
   setOpenDeleteTripModal,
+  screenWidth,
 }) {
   function handleEditTrip() {
     setTempTrip(trip);
@@ -28,12 +29,13 @@ function TripCard({
   const tripCardContainerStyles =
     "w-[95%] mx-auto mb-4 p-4 rounded-md bg-gradient-to-b from-slate-800 to-slate-400";
   const tripCardStyles = "mb-8 flex justify-between";
-  const tripCardInfoContainerStyles = "flex text-white";
-  const tripCardInfoTripNameStyles = "font-title font-semibold text-5xl";
-  const tripCardInfoTripDateStyles = "font-title ml-6 text-2xl";
-  const tripCardButtonContainerStyles = "flex items-center gap-4";
+  const tripCardInfoContainerStyles =
+    "w-full flex flex-col items-start text-white";
+  const tripCardInfoTripNameStyles = "font-title font-semibold text-xl";
+  const tripCardInfoTripDateStyles = "font-title text-md";
+  const tripCardButtonContainerStyles = "w-full flex items-center gap-4";
   const tripCardButtonStyles =
-    "bg-slate-200 text-slate-600 px-6 py-2 rounded-sm font-paragraph font-bold hover:bg-slate-100 hover:text-slate-500";
+    "bg-slate-200 text-slate-600 px-2 py-1 rounded-sm font-paragraph font-bold hover:bg-slate-100 hover:text-slate-500";
   const tripCardCatchCardContainerStyles = "px-6";
   /* End Tailwind Class Styles */
 
@@ -58,7 +60,7 @@ function TripCard({
               handleEditTrip();
             }}
           >
-            Edit Current Trip Info
+            {screenWidth < 640 ? "Edit Trip" : "Edit Current Trip Info"}
           </button>
           <button
             className={tripCardButtonStyles}
@@ -66,7 +68,7 @@ function TripCard({
               setOpenDeleteTripModal(true);
             }}
           >
-            Delete Current Trip
+            {screenWidth < 640 ? "Delete Trip" : "Delete Current Trip"}
           </button>
         </div>
       </div>

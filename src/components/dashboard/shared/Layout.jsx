@@ -3,25 +3,12 @@ import { Outlet } from "react-router-dom";
 import Sidebar from "./Sidebar";
 import { RxHamburgerMenu, RxCross1 } from "react-icons/rx";
 
-function Layout({ setUser }) {
+function Layout({ setUser, screenWidth }) {
   const [isOpen, setIsOpen] = useState(false);
-  const [screenWidth, setScreenWidth] = useState(window.innerWidth);
 
   function toggleNavbar() {
     setIsOpen(!isOpen);
   }
-
-  useEffect(() => {
-    const handleResize = () => {
-      setScreenWidth(window.innerWidth);
-    };
-
-    window.addEventListener("resize", handleResize);
-
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
 
   /* Tailwind Class Styles */
   const pageStyles =

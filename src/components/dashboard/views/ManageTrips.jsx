@@ -9,7 +9,7 @@ import EditTripModal from "../../modals/EditTripModal";
 import DeleteTripModal from "../../modals/DeleteTripModal";
 import Logo from "../../../assets/logo.png";
 
-function ManageTrips({ user }) {
+function ManageTrips({ user, screenWidth }) {
   const [openSelectDateModal, setOpenSelectDateModal] = useState(false);
   const [openAddCatchModal, setOpenAddCatchModal] = useState(false);
   const [openEditCatchModal, setOpenEditCatchModal] = useState(false);
@@ -125,14 +125,15 @@ function ManageTrips({ user }) {
   /* Tailwind Class Styles */
   const pageStyles = "flex flex-col justify-center items-left text-slate-800";
   const idleContainerStyles =
-    "mt-8 w-full flex flex-col justify-center items-center m-auto font-paragraph";
+    "pt-10 pb-4 w-full flex flex-col justify-center items-center m-auto font-paragraph";
   const idleLogoContainerStyles =
-    "mb-10 flex justify-center items-center font-cursive font-bold text-slate-900";
-  const idleLogoImageStyles = "size-16";
-  const idleLogoNameStyles = "text-7xl";
-  const idleContentContainerStyles = "w-full flex justify-around gap-8 px-12";
+    "pb-10 flex justify-center items-center font-cursive font-bold text-slate-900";
+  const idleLogoImageStyles = "size-14";
+  const idleLogoNameStyles = "text-6xl";
+  const idleContentContainerStyles =
+    "w-full flex flex-col justify-around gap-8 px-8";
   const idleContentCardStyles = "flex flex-col gap-4";
-  const idleContentCardTitleStyles = "pb-2 font-title font-semibold text-2xl";
+  const idleContentCardTitleStyles = "font-title font-semibold text-xl";
   /* End Tailwind Class Styles */
 
   return (
@@ -226,6 +227,7 @@ function ManageTrips({ user }) {
             setOpenEditTripModal={setOpenEditTripModal}
             openDeleteTripModal={openDeleteTripModal}
             setOpenDeleteTripModal={setOpenDeleteTripModal}
+            screenWidth={screenWidth}
           />
         ) : (
           <div className={idleContainerStyles}>
