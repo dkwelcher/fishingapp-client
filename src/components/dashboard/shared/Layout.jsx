@@ -20,7 +20,7 @@ function Layout({ setUser, screenWidth }) {
     <div className={pageStyles}>
       <div>
         <button
-          className={`absolute left-1 top-1 text-3xl text-white z-50 sm:invisible`}
+          className={`absolute left-2 top-2 text-3xl text-white z-50 sm:invisible`}
           onClick={() => {
             toggleNavbar();
           }}
@@ -33,10 +33,16 @@ function Layout({ setUser, screenWidth }) {
           <Sidebar setUser={setUser} screenWidth={screenWidth} />
         )}
       </div>
-      <div className="h-full sm:visible sm:static">
-        {isOpen && screenWidth < 640 && (
+      <div className={`z-40 h-full ${screenWidth < 640 ? "" : "hidden"}`}>
+        <div
+          className={`z-30 transition-all duration-700 ease-in-out ${
+            isOpen && screenWidth < 640
+              ? "opacity-100 visible"
+              : "opacity-0 invisible"
+          }`}
+        >
           <Sidebar setUser={setUser} screenWidth={screenWidth} />
-        )}
+        </div>
       </div>
       <div className={viewStyles}>
         <div>{<Outlet />}</div>
