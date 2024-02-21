@@ -66,7 +66,7 @@ function Login({ setUser }) {
   const logoContainerStyles =
     "flex pb-10 items-center font-cursive font-bold text-slate-900";
   const logoImageStyles = "size-14";
-  const logoNameStyles = "text-5xl";
+  const logoNameStyles = "text-5xl sm:text-7xl";
   const formStyles = "flex flex-col";
   const inputStyles =
     "mb-4 px-2 py-1 border border-solid border-zinc-400 rounded-xl";
