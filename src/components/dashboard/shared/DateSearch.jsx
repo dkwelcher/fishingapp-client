@@ -17,7 +17,7 @@ function DateSearch({ setOpenSelectDateModal, getTripDate }) {
 
   /* Tailwind Class Styles */
   const dateSearchContainerStyles = "flex items-center";
-  const datePickerContainerStyles = "relative";
+  const datePickerContainerStyles = "";
   const datePickerStyles =
     "w-[200px] ml-1 border border-gray-300 rounded-sm text-slate-600";
   const buttonStyles = "ml-4 px-4 py-1 bg-white text-slate-600 rounded-sm";
