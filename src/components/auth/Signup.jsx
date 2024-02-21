@@ -49,23 +49,21 @@ function Signup() {
 
   /* Tailwind Class Styles */
   const pageStyles =
-    "flex bg-signup-image bg-center bg-cover h-screen justify-center items-center";
-  const cardContainerStyles =
-    "flex pl-4 gap-20 bg-transparent-shadow rounded-xl";
-  const contentContainerStyles =
-    "flex flex-col justify-between w-full pl-4 py-4 max-w-[550px] text-white";
-  const logoContainerStyles = "flex pt-4 items-center font-cursive font-bold";
-  const logoImageStyles = "size-14";
-  const logoNameStyles = "text-7xl";
-  const descriptionContainerStyles = "pb-8";
-  const descriptionTitleStyles = "pb-4 text-3xl font-title font-bold";
-  const descriptionParagraphStyles = "text-lg";
-  const formContainerStyles =
-    "w-full max-w-[500px] p-8 font-paragraph font-normal bg-white rounded-xl";
+    "p-4 flex bg-signup-image bg-center bg-cover h-screen justify-center items-center font-paragraph font-normal";
+  const cardContainerStyles = "flex flex-col bg-transparent-shadow rounded-xl";
+  const contentContainerStyles = "flex flex-col justify-between text-white";
+  const logoContainerStyles =
+    "pt-4 px-4 flex items-center font-cursive font-bold";
+  const logoImageStyles = "size-12";
+  const logoNameStyles = "text-5xl";
+  const descriptionContainerStyles = "p-4";
+  const descriptionTitleStyles = " text-xl font-title font-bold";
+  const descriptionParagraphStyles = "text-md";
+  const formContainerStyles = "p-4 bg-white rounded-xl";
   const formStyles = "flex flex-col";
   const inputStyles =
     "mb-4 px-2 py-1 border border-solid border-zinc-400 rounded-xl";
-  const errorMessageStyles = "mb-4 text-center invisible";
+  const errorMessageStyles = "text-center invisible";
   const buttonContainerStyles = "flex mb-4 justify-center";
   const buttonStyles =
     "px-6 py-4 bg-blue-700 text-white border-0 rounded-xl hover:bg-blue-600";
@@ -98,25 +96,25 @@ function Signup() {
         </div>
         <div className={formContainerStyles}>
           <form className={formStyles}>
-            <label for="">Username:</label>
+            <label htmlFor="">Username:</label>
             <input
               className={inputStyles}
               type="text"
               onChange={(e) => setUsername(e.target.value)}
             />
-            <label for="">Email:</label>
+            <label htmlFor="">Email:</label>
             <input
               className={inputStyles}
               type="email"
               onChange={(e) => setEmail(e.target.value)}
             />
-            <label for="">Password:</label>
+            <label htmlFor="">Password:</label>
             <input
               className={inputStyles}
               type="password"
               onChange={(e) => setPassword(e.target.value)}
             />
-            <label for="">Confirm Password:</label>
+            <label htmlFor="">Confirm Password:</label>
             <input className={inputStyles} type="password" />
           </form>
           <p className={errorMessageStyles}>Error message</p>
