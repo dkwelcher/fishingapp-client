@@ -50,8 +50,10 @@ function Signup() {
   /* Tailwind Class Styles */
   const pageStyles =
     "p-4 flex bg-signup-image bg-center bg-cover h-screen justify-center items-center font-paragraph font-normal";
-  const cardContainerStyles = "flex flex-col bg-transparent-shadow rounded-xl";
-  const contentContainerStyles = "flex flex-col justify-between text-white";
+  const cardContainerStyles =
+    "flex flex-col bg-transparent-shadow rounded-xl sm:flex-row";
+  const contentContainerStyles =
+    "flex flex-col justify-between text-white sm:w-full sm:justify-start md:max-w-[550px]";
   const logoContainerStyles =
     "pt-4 px-4 flex items-center font-cursive font-bold";
   const logoImageStyles = "size-12";
@@ -59,11 +61,11 @@ function Signup() {
   const descriptionContainerStyles = "p-4";
   const descriptionTitleStyles = " text-xl font-title font-bold";
   const descriptionParagraphStyles = "text-md";
-  const formContainerStyles = "p-4 bg-white rounded-xl";
+  const formContainerStyles = "p-4 bg-white rounded-xl sm:w-full";
   const formStyles = "flex flex-col";
   const inputStyles =
     "mb-4 px-2 py-1 border border-solid border-zinc-400 rounded-xl";
-  const errorMessageStyles = "text-center invisible";
+  const errorMessageStyles = "pb-2 text-center";
   const buttonContainerStyles = "flex mb-4 justify-center";
   const buttonStyles =
     "px-6 py-4 bg-blue-700 text-white border-0 rounded-xl hover:bg-blue-600";
