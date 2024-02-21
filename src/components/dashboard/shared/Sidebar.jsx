@@ -39,7 +39,7 @@ function Sidebar({ setUser, screenWidth }) {
 
   return (
     <div
-      className={`h-full bg-neutral-900 w-60 p-3 flex flex-col text-white border-r border-neutral-700 ${
+      className={`pt-10 h-full bg-neutral-900 w-60 p-3 flex flex-col text-white border-r border-neutral-700 sm:pt-0 ${
         screenWidth < 640 && "absolute z-40"
       }`}
     >
