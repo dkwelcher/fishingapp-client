@@ -13,7 +13,7 @@ const sidebarLinkStyles =
 const sidebarLinkIconStyles = "text-xl";
 /* End Tailwind Class Styles */
 
-function Sidebar({ setUser }) {
+function Sidebar({ setUser, screenWidth }) {
   const navigate = useNavigate();
 
   function handleLogout() {
@@ -38,7 +38,11 @@ function Sidebar({ setUser }) {
   /* End Function Tailwind Class Styles */
 
   return (
-    <div className={sidebarContainerStyles}>
+    <div
+      className={`h-full bg-neutral-900 w-60 p-3 flex flex-col text-white border-r border-neutral-700 ${
+        screenWidth < 640 && "absolute z-40"
+      }`}
+    >
       <div className={sidebarLogoContainerStyles}>
         <img className={sidebarLogoImageStyles} src={Logo} />
         <span className={sidebarLogoNameStyles}>Fishing App</span>
