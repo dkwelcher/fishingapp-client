@@ -8,6 +8,7 @@ import DeleteCatchModal from "../../modals/DeleteCatchModal";
 import EditTripModal from "../../modals/EditTripModal";
 import DeleteTripModal from "../../modals/DeleteTripModal";
 import Logo from "../../../assets/logo.png";
+import IdleImage from "../../../assets/trout.png";
 
 function ManageTrips({ user, screenWidth }) {
   const [openSelectDateModal, setOpenSelectDateModal] = useState(false);
@@ -125,15 +126,14 @@ function ManageTrips({ user, screenWidth }) {
   /* Tailwind Class Styles */
   const pageStyles = "flex flex-col justify-center items-left text-slate-800";
   const idleContainerStyles =
-    "pt-10 pb-4 w-full flex flex-col justify-center items-center m-auto font-paragraph";
+    "p-10 px-4 2xl:flex 2xl:flex-col 2xl:items-center";
   const idleLogoContainerStyles =
-    "pb-10 flex justify-center items-center font-cursive font-bold text-slate-900";
-  const idleLogoImageStyles = "size-14";
-  const idleLogoNameStyles = "text-6xl";
-  const idleContentContainerStyles =
-    "w-full flex flex-col justify-around gap-8 px-8";
-  const idleContentCardStyles = "flex flex-col gap-4";
-  const idleContentCardTitleStyles = "font-title font-semibold text-xl";
+    "pb-10 flex justify-center items-center gap-x-2 font-cursive text-slate-800";
+  const idleLogoImageStyles = "size-12 lg:size-14 2xl:size-20";
+  const idleLogoNameStyles = "text-5xl lg:text-6xl 2xl:text-8xl";
+  const idleContentContainerStyles = "";
+  const idleContentCardStyles = "";
+  const idleImageStyles = "rounded-sm";
   /* End Tailwind Class Styles */
 
   return (
@@ -241,34 +241,7 @@ function ManageTrips({ user, screenWidth }) {
             </div>
             <div className={idleContentContainerStyles}>
               <div className={idleContentCardStyles}>
-                <h2 className={idleContentCardTitleStyles}>
-                  Lorem ipsum dolor sit amet.
-                </h2>
-                <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim,
-                  assumenda explicabo! Nobis incidunt repellat similique
-                  consequuntur quisquam inventore alias dolorum?
-                </p>
-                <p>
-                  Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eum
-                  minima suscipit autem quas quo recusandae atque reiciendis
-                  quis velit officiis.
-                </p>
-              </div>
-              <div className={idleContentCardStyles}>
-                <h2 className={idleContentCardTitleStyles}>
-                  Lorem ipsum dolor sit amet.
-                </h2>
-                <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam
-                  libero ullam accusantium maxime et nam maiores saepe, in modi
-                  doloremque.
-                </p>
-                <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi
-                  nesciunt animi commodi neque iure autem libero officia
-                  incidunt eum dolore.
-                </p>
+                <img className={idleImageStyles} src={IdleImage} alt="" />
               </div>
             </div>
           </div>
