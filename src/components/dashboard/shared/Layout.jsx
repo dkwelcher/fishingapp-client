@@ -20,7 +20,9 @@ function Layout({ setUser, screenWidth }) {
     <div className={pageStyles}>
       <div>
         <button
-          className={`absolute left-2 top-2 text-3xl text-white z-50 sm:invisible`}
+          className={`absolute w-full p-2 text-3xl text-white z-50 md:invisible ${
+            !isOpen && "bg-transparent-shadow"
+          }`}
           onClick={() => {
             toggleNavbar();
           }}
@@ -28,15 +30,15 @@ function Layout({ setUser, screenWidth }) {
           {isOpen ? <RxCross1 /> : <RxHamburgerMenu />}
         </button>
       </div>
-      <div className="invisible absolute sm:visible sm:static">
-        {screenWidth >= 640 && (
+      <div className="invisible absolute md:visible md:static">
+        {screenWidth >= 768 && (
           <Sidebar setUser={setUser} screenWidth={screenWidth} />
         )}
       </div>
-      <div className={`z-40 h-full ${screenWidth < 640 ? "" : "hidden"}`}>
+      <div className={`z-40 h-full ${screenWidth < 768 ? "" : "hidden"}`}>
         <div
           className={`z-30 transition-all duration-700 ease-in-out ${
-            isOpen && screenWidth < 640
+            isOpen && screenWidth < 768
               ? "opacity-100 visible"
               : "opacity-0 invisible"
           }`}
