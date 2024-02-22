@@ -28,8 +28,7 @@ function Sidebar({ setUser, screenWidth }) {
     "bg-neutral-900 w-60 p-3 flex flex-col text-white border-r border-neutral-700";
   const sidebarLogoContainerStyles = "flex items-center gap-2 px-1 py-3";
   const sidebarLogoImageStyles = "size-10";
-  const sidebarLogoNameStyles =
-    "text-neutral-100 text-4xl font-cursive font-bold";
+  const sidebarLogoNameStyles = "text-neutral-100 text-3xl font-cursive";
   const sidebarLinkContainerStyles = "flex-1 py-8 flex flex-col gap-0.5";
   const sidebarBottomLinkContainerStyles =
     "flex flex-col gap-0.5 pt-2 border-t border-neutral-700";
@@ -40,7 +39,7 @@ function Sidebar({ setUser, screenWidth }) {
   return (
     <div
       className={`pt-10 h-full bg-neutral-900 w-60 p-3 flex flex-col text-white border-r border-neutral-700 sm:pt-0 ${
-        screenWidth < 640 && "absolute z-40"
+        screenWidth < 768 && "absolute z-40"
       }`}
     >
       <div className={sidebarLogoContainerStyles}>
