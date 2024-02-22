@@ -63,7 +63,7 @@ function Login({ setUser }) {
   const pageStyles =
     "p-4 flex h-screen justify-center items-center font-paragraph font-normal text-sm lg:text-base text-slate-200 bg-slate-800";
   const cardStyles =
-    "p-8 rounded-sm bg-gradient-to-b from-slate-600 to-slate-700";
+    "p-8 rounded-sm bg-gradient-to-b from-slate-600 to-slate-700 shadow-md shadow-slate-900";
   const logoContainerStyles =
     "pb-4 flex gap-x-2 items-center font-cursive text-slate-300";
   const logoImageStyles = "size-10 md:size-11 lg:size-13";
@@ -71,7 +71,7 @@ function Login({ setUser }) {
   const formStyles = "";
   const inputContainerStyles = "pb-2 flex flex-col";
   const inputStyles =
-    "px-2 py-1 border border-0 border-zinc-400 rounded-sm bg-slate-700 hover:bg-slate-600 focus:bg-slate-200 focus:text-slate-800 shadow-md shadow-slate-800";
+    "px-2 py-1 border border-0 border-zinc-400 rounded-sm bg-slate-700 hover:bg-slate-600 focus:bg-slate-200 focus:text-slate-800 shadow-md shadow-slate-800 outline-none";
   const errorMessageStyles = "py-2 text-center invisible";
   const buttonContainerStyles = "py-2 flex flex-col";
   const buttonStyles =
