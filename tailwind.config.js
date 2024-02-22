@@ -17,12 +17,12 @@ export default {
       },
       fontFamily: {
         title: ["Rubik", "sans-serif"],
-        cursive: ["Caveat", "sans-serif"],
+        cursive: ["Protest Strike", "sans-serif"],
         paragraph: ["Montserrat", "sans-serif"],
       },
       textShadow: {
         DEFAULT:
-          "-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000",
+          "-1px -1px 0 rgb(30 41 59), 1px -1px 0 rgb(30 41 59), -1px 1px 0 #000, 1px 1px 0 rgb(30 41 59)",
       },
     },
   },
