@@ -31,7 +31,7 @@ function CatchCard({
   const addCatchButtonStyles =
     "bg-slate-200 text-slate-600 px-6 py-2 rounded-sm font-bold hover:bg-slate-100 hover:text-slate-500";
   const catchCardContainerStyles =
-    "sm:grid sm:grid-cols-2 sm:gap-x-2 md:block min-[900px]:grid min-[900px]:grid min-[1200px]:grid-cols-3 xl:gap-x-4 2xl:grid-cols-4 2xl:gap-x-6 min-[1800px]:grid-cols-5 min-[2200px]:flex";
+    "sm:grid sm:grid-cols-2 sm:gap-x-2 md:block min-[900px]:grid min-[900px]:grid min-[1200px]:grid-cols-3 min-[1200px]:pb-2 xl:gap-x-4 xl:pb-0 2xl:grid-cols-4 2xl:gap-x-6 min-[1800px]:grid-cols-5 min-[2200px]:flex";
   const catchCardInfoContainer = "flex min-[2200px]:flex-col";
   const catchCardSubHeaderStyles = "font-semibold pr-2";
   const catchCardButtonContainerStyles =

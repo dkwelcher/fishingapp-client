@@ -124,7 +124,8 @@ function ManageTrips({ user, screenWidth }) {
   }
 
   /* Tailwind Class Styles */
-  const pageStyles = "flex flex-col justify-center items-left text-slate-800";
+  const pageStyles =
+    "flex flex-col justify-center items-left bg-slate-100 text-slate-800";
   const idleContainerStyles =
     "p-10 px-4 2xl:flex 2xl:flex-col 2xl:items-center";
   const idleLogoContainerStyles =
