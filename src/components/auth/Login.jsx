@@ -61,21 +61,23 @@ function Login({ setUser }) {
 
   /* Tailwind Class Styles */
   const pageStyles =
-    "flex bg-login-image bg-center bg-cover h-screen justify-center items-center font-paragraph font-normal";
-  const cardStyles = "p-12 bg-white rounded-xl";
+    "p-4 flex h-screen justify-center items-center font-paragraph font-normal text-sm lg:text-base text-slate-200 bg-slate-800";
+  const cardStyles =
+    "p-8 rounded-sm bg-gradient-to-b from-slate-600 to-slate-700";
   const logoContainerStyles =
-    "flex pb-10 items-center font-cursive font-bold text-slate-900";
-  const logoImageStyles = "size-14";
-  const logoNameStyles = "text-5xl sm:text-7xl";
-  const formStyles = "flex flex-col";
+    "pb-4 flex gap-x-2 items-center font-cursive text-slate-300";
+  const logoImageStyles = "size-10 md:size-11 lg:size-13";
+  const logoNameStyles = "text-3xl md:text-4xl lg:text-5xl";
+  const formStyles = "";
+  const inputContainerStyles = "pb-2 flex flex-col";
   const inputStyles =
-    "mb-4 px-2 py-1 border border-solid border-zinc-400 rounded-xl";
-  const errorMessageStyles = "mb-4 text-center invisible";
-  const buttonContainerStyles = "flex mb-4 justify-center";
+    "px-2 py-1 border border-0 border-zinc-400 rounded-sm bg-slate-700 hover:bg-slate-600 focus:bg-slate-200 focus:text-slate-800 shadow-md shadow-slate-800";
+  const errorMessageStyles = "py-2 text-center invisible";
+  const buttonContainerStyles = "py-2 flex flex-col";
   const buttonStyles =
-    "px-6 py-4 bg-blue-700 text-white border-0 rounded-xl hover:bg-blue-600";
-  const signupLinkContainerStyles = "text-center";
-  const signupLinkStyles = "pl-1 underline text-zinc-800 hover:text-blue-600";
+    "py-2 border-0 rounded-sm text-slate-800 bg-slate-300 hover:bg-slate-100 shadow-lg shadow-slate-800";
+  const signupLinkContainerStyles = "pt-2 text-center";
+  const signupLinkStyles = "pl-1 underline text-slate-300 hover:text-slate-100";
   /* End Tailwind Class Styles */
 
   return (
@@ -85,23 +87,27 @@ function Login({ setUser }) {
           <img
             className={logoImageStyles}
             src={Logo}
-            alt="Man fishing in a row boat"
+            alt="Logo of a largemouth bass jumping out of the water"
           />
           <h2 className={logoNameStyles}>Fishing App</h2>
         </div>
         <form className={formStyles}>
           <label htmlFor="">Username:</label>
-          <input
-            className={inputStyles}
-            type="text"
-            onChange={(e) => setUsername(e.target.value)}
-          />
+          <div className={inputContainerStyles}>
+            <input
+              className={inputStyles}
+              type="text"
+              onChange={(e) => setUsername(e.target.value)}
+            />
+          </div>
           <label htmlFor="">Password:</label>
-          <input
-            className={inputStyles}
-            type="password"
-            onChange={(e) => setPassword(e.target.value)}
-          />
+          <div className={inputContainerStyles}>
+            <input
+              className={inputStyles}
+              type="password"
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </div>
         </form>
         <p className={errorMessageStyles}>Error message</p>
         <div className={buttonContainerStyles}>
