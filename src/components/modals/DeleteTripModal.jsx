@@ -34,14 +34,20 @@ function DeleteTripModal({
     }
   }
 
+  function handleDateFormat(date) {
+    const [year, month, day] = date.split("-");
+    return `${month}/${day}/${year}`;
+  }
+
   /* Tailwind Class Styles */
   const modalContainerStyles =
-    "w-full h-screen fixed p-2 flex justify-center items-center bg-transparent-shadow z-50";
-  const modalCardStyles = "bg-white rounded-md font-paragraph";
+    "w-full h-screen fixed p-2 flex justify-center items-center bg-transparent-shadow text-slate-800 z-50";
+  const modalCardStyles =
+    "bg-slate-50 rounded-md font-paragraph md:-translate-x-32";
   const infoContainerStyles = "px-10 py-4";
-  const infoTitleStyles = "mb-4 font-title text-3xl font-semibold";
+  const infoTitleStyles = "mb-4 font-title text-md font-semibold sm:text-2xl";
   const infoSectionContainerStyles = "pt-1";
-  const infoSectionParagraphStyles = "text-center";
+  const infoSectionParagraphStyles = "text-center text-sm sm:text-xl";
   const buttonContainerStyles = "pt-4 flex justify-center align-items gap-x-4";
   const buttonStyles =
     "bg-slate-800 text-slate-200 px-6 py-2 rounded-sm hover:bg-slate-700";
@@ -54,7 +60,7 @@ function DeleteTripModal({
           <h2 className={infoTitleStyles}>Are you sure you want to delete?</h2>
           <div className={infoSectionContainerStyles}>
             <p className={infoSectionParagraphStyles}>
-              {trip.location} on {trip.date}
+              {trip.location} on {handleDateFormat(trip.date)}
             </p>
           </div>
           <div className={buttonContainerStyles}>

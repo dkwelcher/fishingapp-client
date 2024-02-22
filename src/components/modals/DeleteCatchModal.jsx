@@ -57,13 +57,14 @@ function DeleteCatchModal({
 
   /* Tailwind Class Styles */
   const modalContainerStyles =
-    "w-full h-screen fixed p-2 flex justify-center items-center bg-transparent-shadow z-50";
-  const modalCardStyles = "bg-white rounded-md font-paragraph";
-  const infoContainerStyles = "px-10 py-4";
-  const infoTitleStyles = "mb-4 font-title text-xl font-semibold";
-  const infoSectionContainerStyles = "grid grid-cols-1 gap-y-1";
-  const infoSectionStyles = "grid grid-cols-2";
-  const infoSubHeaderStyles = "font-semibold";
+    "w-full h-screen fixed p-2 flex justify-center items-center bg-transparent-shadow text-slate-800 z-50";
+  const modalCardStyles =
+    "px-10 py-4 bg-slate-50 rounded-md font-paragraph md:-translate-x-32";
+  const infoContainerStyles = "lg:grid lg:grid-cols-2";
+  const infoTitleStyles =
+    "mb-4 font-title text-xl font-semibold sm:text-2xl lg:text-4xl";
+  const infoSectionContainerStyles = "flex sm:text-lg";
+  const infoSubHeaderStyles = "font-semibold pr-2";
   const buttonContainerStyles = "pt-4 flex justify-center align-items gap-x-4";
   const buttonStyles =
     "bg-slate-800 text-slate-200 px-6 py-2 rounded-sm hover:bg-slate-700";
@@ -72,77 +73,64 @@ function DeleteCatchModal({
   return (
     <div className={modalContainerStyles}>
       <div className={modalCardStyles}>
+        <h2 className={infoTitleStyles}>Are you sure you want to delete?</h2>
         <div className={infoContainerStyles}>
-          <h2 className={infoTitleStyles}>Are you sure you want to delete?</h2>
-          <div>
-            <div className={infoSectionContainerStyles}>
-              <div className={infoSectionStyles}>
-                <p className={infoSubHeaderStyles}>Time:</p>
-                <p>{handleTimeConversionTo12HourFormat(tempCatch.time)}</p>
-              </div>
-              <div className={infoSectionStyles}>
-                <p className={infoSubHeaderStyles}>Fish:</p>
-                <p>{tempCatch.fish}</p>
-              </div>
-            </div>
-            <div className={infoSectionContainerStyles}>
-              <div className={infoSectionStyles}>
-                <p className={infoSubHeaderStyles}>Bait:</p>
-                <p>{tempCatch.bait}</p>
-              </div>
-              <div className={infoSectionStyles}>
-                <p className={infoSubHeaderStyles}>Weather:</p>
-                <p>{tempCatch.weather}</p>
-              </div>
-            </div>
-            <div className={infoSectionContainerStyles}>
-              <div className={infoSectionStyles}>
-                <p className={infoSubHeaderStyles}>Latitude:</p>
-                <p>{tempCatch.latitude}</p>
-              </div>
-              <div className={infoSectionStyles}>
-                <p className={infoSubHeaderStyles}>Longitude:</p>
-                <p>{tempCatch.longitude}</p>
-              </div>
-            </div>
-            <div className={infoSectionContainerStyles}>
-              <div className={infoSectionStyles}>
-                <p className={infoSubHeaderStyles}>Air Temp:</p>
-                <p>{tempCatch.airTemp}</p>
-              </div>
-              <div className={infoSectionStyles}>
-                <p className={infoSubHeaderStyles}>Water Temp:</p>
-                <p>{tempCatch.waterTemp}</p>
-              </div>
-            </div>
-            <div className={infoSectionContainerStyles}>
-              <div className={infoSectionStyles}>
-                <p className={infoSubHeaderStyles}>Wind Speed:</p>
-                <p>{tempCatch.windSpeed}</p>
-              </div>
-              <div className={infoSectionStyles}></div>
-            </div>
+          <div className={infoSectionContainerStyles}>
+            <p className={infoSubHeaderStyles}>Time:</p>
+            <p>{handleTimeConversionTo12HourFormat(tempCatch.time)}</p>
           </div>
-          <div className={buttonContainerStyles}>
-            <button
-              className={buttonStyles}
-              onClick={() => {
-                handleDeleteCatch();
-                setOpenDeleteCatchModal(false);
-              }}
-            >
-              Yes
-            </button>
-            <button
-              className={buttonStyles}
-              onClick={() => {
-                setOpenDeleteCatchModal(false);
-                setTempCatch({});
-              }}
-            >
-              No
-            </button>
+          <div className={infoSectionContainerStyles}>
+            <p className={infoSubHeaderStyles}>Fish:</p>
+            <p>{tempCatch.fish}</p>
           </div>
+          <div className={infoSectionContainerStyles}>
+            <p className={infoSubHeaderStyles}>Bait:</p>
+            <p>{tempCatch.bait}</p>
+          </div>
+          <div className={infoSectionContainerStyles}>
+            <p className={infoSubHeaderStyles}>Weather:</p>
+            <p>{tempCatch.weather}</p>
+          </div>
+          <div className={infoSectionContainerStyles}>
+            <p className={infoSubHeaderStyles}>Latitude:</p>
+            <p>{tempCatch.latitude}</p>
+          </div>
+          <div className={infoSectionContainerStyles}>
+            <p className={infoSubHeaderStyles}>Longitude:</p>
+            <p>{tempCatch.longitude}</p>
+          </div>
+          <div className={infoSectionContainerStyles}>
+            <p className={infoSubHeaderStyles}>Air Temp:</p>
+            <p>{tempCatch.airTemp}</p>
+          </div>
+          <div className={infoSectionContainerStyles}>
+            <p className={infoSubHeaderStyles}>Water Temp:</p>
+            <p>{tempCatch.waterTemp}</p>
+          </div>
+          <div className={infoSectionContainerStyles}>
+            <p className={infoSubHeaderStyles}>Wind Speed:</p>
+            <p>{tempCatch.windSpeed}</p>
+          </div>
+        </div>
+        <div className={buttonContainerStyles}>
+          <button
+            className={buttonStyles}
+            onClick={() => {
+              handleDeleteCatch();
+              setOpenDeleteCatchModal(false);
+            }}
+          >
+            Yes
+          </button>
+          <button
+            className={buttonStyles}
+            onClick={() => {
+              setOpenDeleteCatchModal(false);
+              setTempCatch({});
+            }}
+          >
+            No
+          </button>
         </div>
       </div>
     </div>

@@ -75,21 +75,22 @@ function SelectDateModal({
 
   /* Tailwind Class Styles */
   const modalContainerStyles =
-    "w-full h-screen fixed p-2 flex justify-center items-center bg-transparent-shadow z-50";
-  const modalCardStyles = "bg-white rounded-md font-paragraph";
-  const userActionContainerStyles = "px-10 py-4";
+    "w-full h-screen fixed flex justify-center items-center bg-transparent-shadow text-slate-800 z-50";
+  const modalCardStyles =
+    "m-4 p-4 bg-slate-50 rounded-sm font-paragraph md:-translate-x-32";
+  const userActionContainerStyles = " ";
   const addTripContainerStyles =
-    "mb-4 px-2 border border-0 border-b-4 border-slate-700";
-  const tripTitleStyles = "mb-4 font-title text-xl font-semibold";
+    "mb-4 px-2 border border-0 border-b-4 border-slate-700 md:text-lg";
+  const tripTitleStyles = "mb-4 font-title text-xl font-semibold sm:text-2xl";
   const userActionSubContainerStyles = "mb-4 flex justify-between items-end";
   const inputStyles =
-    "mr-2 py-1 border border-solid border-zinc-400 rounded-sm";
+    "mr-2 py-1 bg-slate-50 focus:bg-white  border border-solid border-slate-400 rounded-sm";
   const buttonStyles =
     "bg-slate-800 text-slate-200 px-6 py-2 rounded-sm hover:bg-slate-700";
   const existingTripContainerStyles = "pb-4";
   const existingTripSubContainerStyles =
     "mb-2 flex justify-between items-center p-2 border border-slate-700 text-sm rounded-sm";
-  const existingTripTitleStyles = "font-title text-lg font-semibold";
+  const existingTripTitleStyles = "font-title text-lg font-semibold sm:text-xl";
   const buttonContainerStyles = "flex justify-center items-center";
   /* End Tailwind Class Styles */
 
