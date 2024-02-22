@@ -12,54 +12,64 @@ function LandingPage() {
     setIsOpen(!isOpen);
   }
 
+  function handleDisplayCurrentYear() {
+    return new Date().getFullYear();
+  }
+
   /* Tailwind Class Styles */
-  const pageStyles = "font-paragraph";
+  const pageStyles = "font-paragraph bg-slate-200 text-slate-200";
+  /* Header */
   const heroAndNavigationContainerStyles =
-    "h-[80vh] bg-hero-image bg-cover bg-center font-medium";
+    "h-[80vh] bg-hero-image bg-cover bg-center";
   const navHeaderStyles = "flex justify-between pt-2 px-2 lg:pt-4 lg:px-4";
-  const logoContainerStyles = "flex justify-center items-center";
-  const logoImageStyles = "size-9 md:size-10 lg:size-14";
+  const logoContainerStyles = "flex gap-x-2 items-center font-cursive";
+  const logoImageStyles = "size-8 sm:size-9 md:size-10 lg:size-14";
   const logoLinkStyles = "hover:no-underline";
   const logoNameStyles =
-    "text-3xl pl-2 text-white font-cursive font-black md:text-4xl lg:text-5xl";
-  const headerLinkContainerStyles =
-    "flex items-center invisible md:visible md:gap-4 md: pr-4";
+    "text-2xl text-slate-200 sm:text-3xl md:text-4xl lg:text-5xl";
+  const headerLinkContainerStyles = "flex items-center invisible md:visible";
   const headerButtonHamburgerStyles =
     "absolute right-4 text-3xl text-white z-50 md:invisible";
   const headerLinkHamburgerContainerStyles =
     "w-full flex flex-col justify-center items-center gap-y-2 absolute bg-white h-1/4 -translate-x-2 translate-y-11";
   const headerLinkHamburgerStyles =
-    "hover:no-underline text-black text-lg hover:text-blue-700";
+    "hover:no-underline text-slate-800 text-lg hover:text-slate-700";
   const headerLinkStyles =
-    "hover:no-underline text-white text-lg hover:text-blue-700 lg:text-2xl";
+    "py-2 px-4 hover:no-underline text-slate-200 text-lg rounded-sm hover:text-slate-100 hover:bg-slate-200 hover:text-slate-800 lg:text-2xl";
   const heroContentContainerStyles =
-    "flex flex-col justify-center items-center h-4/5";
+    "p-2 flex flex-col justify-center items-center gap-y-2 h-4/5 md:gap-y-4";
   const heroTitleStyles =
-    "text-center font-title font-bold text-5xl leading-normal text-white text-shadow md:text-6xl lg:w-3/6 lg:text-7xl xl:text-8xl";
+    "text-center font-bold text-5xl leading-normal text-shadow md:text-6xl lg:w-3/6 lg:text-7xl xl:text-8xl";
   const heroGetStartedLinkStyles =
-    "px-6 py-4 border border-solid border-white rounded-2xl hover:no-underline text-white text-2xl hover:bg-white hover:text-gray-900";
-  const mainSectionsContainer1Styles =
-    "pt-10 px-[10%] flex flex-col sm:items-center lg:grid lg:grid-cols-2 lg:pt-20 lg:justify-items-start xl:px-[20%]";
-  const mainSectionsContainer2Styles =
-    "pt-10 px-[10%] flex flex-col-reverse sm:items-center lg:grid lg:grid-cols-2 lg:pt-20 lg:justify-items-end xl:px-[20%]";
-  const mainSectionsImageStyles = "pb-4 rounded-2xl sm:w-[500px] lg:pb-0";
-  const imageLeftTextRightSectionContainerStyles =
-    "sm:w-[500px] lg:py-4 lg:px-10";
-  const imageRightTextLeftSectionContainerStyles =
-    "sm:w-[500px] lg:py-4 lg:px-10";
-  const sectionTitleStyles = "text-4xl pb-4 font-semibold text-center";
-  const sectionSpanStyles = "text-blue-700";
-  const sectionParagraphStyles = "text-zinc-600 text-md font-medium";
+    "px-6 py-4 border border-solid border-slate-200 rounded-sm text-2xl text-slate-200 hover:no-underline hover:bg-slate-200 hover:text-slate-800 lg:text-3xl 2xl:text-4xl";
+
+  /* Main Content */
+  const mainContainerStyles = "py-12 px-4 sm:py-20 md:px-12 lg:py-28 2xl:py-36";
+  const mainSectionsContainerStyles =
+    "pb-12 last:pb-0 sm:pb-20 sm:flex sm:flex-col sm:items-center lg:pb-28 2xl:pb-36 2xl:flex-row 2xl:justify-center 2xl:items-start 2xl:gap-x-20";
+  const mainSectionsImageContainerStyles = "pb-2";
+  const mainSectionsImageStyles = "rounded-sm";
+  const mainSectionsInfoContainerStyles =
+    "p-4 bg-slate-400 rounded-sm sm:max-w-[600px] 2xl:h-[480px] 2xl:p-8";
+  const sectionTitleStyles =
+    "pb-2 text-2xl md:text-3xl lg:text-4xl 2xl:text-5xl";
+  const sectionSpanStyles =
+    "text-slate-800 text-3xl font-semibold md:text-4xl lg:text-5xl";
+  const sectionParagraphStyles = "text-sm md:text-base lg:text-lg 2xl:text-xl";
+
+  /* Callout */
   const calloutContainerStyles =
-    "mt-4 flex bg-callout-image bg-cover bg-center h-screen justify-center items-center lg:mt-20";
+    "mb-12 flex bg-callout-image bg-cover bg-center h-screen justify-center items-center sm:mb-20 lg:mb-28 2xl:mb-36";
   const calloutContentContainerStyles =
-    "flex flex-col justify-center items-center";
+    "p-4 flex flex-col justify-center items-center";
   const calloutTitleStyles =
-    "pb-8 text-center text-3xl text-white text-shadow leading-normal font-semibold md:w-5/6 md:text-4xl lg:w-7/12 lg:text-6xl xl:text-7xl";
+    "pb-8 text-center text-3xl text-white text-shadow leading-normal font-bold md:w-5/6 md:text-4xl lg:w-7/12 lg:text-6xl xl:text-7xl";
   const calloutLinkStyles =
-    "px-4 py-4 border-4 border-solid border-white rounded-2xl hover:no-underline text-5xl font-medium text-white text-shadow bg-transparent-shadow hover:bg-blue-700";
+    "px-4 py-4 border-4 border-solid border-white rounded-sm text-4xl font-medium text-white text-shadow bg-transparent-shadow hover:no-underline hover:bg-slate-700 lg:text-6xl";
+
+  /* Footer */
   const footerContainerStyles =
-    "flex min-h-24 justify-center items-center text-xl font-medium";
+    "flex min-h-24 justify-center items-center bg-slate-800 text-xl font-medium md:min-h-36";
   /* End Tailwind Class Styles */
 
   return (
@@ -96,10 +106,8 @@ function LandingPage() {
               </a>
             </div>
             <div
-              className={`w-full flex flex-col justify-center items-center gap-y-2 absolute bg-white h-1/4 transition-all duration-1000 -translate-x-2 translate-y-11 ${
-                isOpen
-                  ? "max-h-[500px] opacity-100 visible"
-                  : "max-h-0 opacity-0 hidden"
+              className={`w-full flex flex-col justify-center items-center gap-y-2 absolute bg-white h-1/4 rounded-sm transition-all duration-1000 ease-in-out -translate-x-2 translate-y-11 ${
+                isOpen ? "opacity-100 visible" : "opacity-0 hidden"
               }`}
             >
               <a className={headerLinkHamburgerStyles} href="/signup">
@@ -120,14 +128,16 @@ function LandingPage() {
           </a>
         </div>
       </div>
-      <main>
-        <div className={mainSectionsContainer1Styles}>
-          <img
-            className={mainSectionsImageStyles}
-            src={LargemouthBass}
-            alt="Largemouth bass suspended by a submerged log and vegetation"
-          />
-          <div className={imageLeftTextRightSectionContainerStyles}>
+      <main className={mainContainerStyles}>
+        <div className={mainSectionsContainerStyles}>
+          <div className={mainSectionsImageContainerStyles}>
+            <img
+              className={mainSectionsImageStyles}
+              src={LargemouthBass}
+              alt="Largemouth bass suspended by a submerged log and vegetation"
+            />
+          </div>
+          <div className={mainSectionsInfoContainerStyles}>
             <h2 className={sectionTitleStyles}>
               What is <span className={sectionSpanStyles}>Fishing App?</span>
             </h2>
@@ -140,8 +150,15 @@ function LandingPage() {
             </p>
           </div>
         </div>
-        <div className={mainSectionsContainer2Styles}>
-          <div className={imageRightTextLeftSectionContainerStyles}>
+        <div className={mainSectionsContainerStyles}>
+          <div className={mainSectionsImageContainerStyles}>
+            <img
+              className={mainSectionsImageStyles}
+              src={ChannelCatfish}
+              alt="Largemouth bass suspended by a submerged log and vegetation"
+            />
+          </div>
+          <div className={mainSectionsInfoContainerStyles}>
             <h2 className={sectionTitleStyles}>Lorem ipsum dolor sit amet.</h2>
             <p className={sectionParagraphStyles}>
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores
@@ -151,25 +168,20 @@ function LandingPage() {
               veritatis.
             </p>
           </div>
-          <img
-            className={mainSectionsImageStyles}
-            src={ChannelCatfish}
-            alt="Largemouth bass suspended by a submerged log and vegetation"
-          />
-        </div>
-        <div className={calloutContainerStyles}>
-          <div className={calloutContentContainerStyles}>
-            <h1 className={calloutTitleStyles}>
-              Record & access your catches to improve your fishing journeys
-            </h1>
-            <a className={calloutLinkStyles} href="/signup">
-              Sign up now
-            </a>
-          </div>
         </div>
       </main>
+      <div className={calloutContainerStyles}>
+        <div className={calloutContentContainerStyles}>
+          <h1 className={calloutTitleStyles}>
+            Record & access your catches to improve your fishing journeys
+          </h1>
+          <a className={calloutLinkStyles} href="/signup">
+            Sign up now
+          </a>
+        </div>
+      </div>
       <footer className={footerContainerStyles}>
-        <div>Team 16 &copy; 2023</div>
+        <div>Fishing App &copy; {handleDisplayCurrentYear()}</div>
       </footer>
     </div>
   );
