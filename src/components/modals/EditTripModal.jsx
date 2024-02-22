@@ -109,7 +109,7 @@ function EditTripModal({
   const inputContainerStyles = "flex flex-col md:text-lg";
   const datePickerContainerStyles = "";
   const inputStyles =
-    "mb-4 px-2 py-1 bg-slate-50 focus:bg-white  border border-solid border-slate-400 rounded-sm";
+    "mb-4 px-2 py-1 bg-slate-50 border border-solid border-slate-400 rounded-sm focus:bg-slate-200 focus:text-slate-900 outline-none";
   const buttonContainerStyles = "flex justify-center items-center gap-x-4";
   const buttonStyles =
     "bg-slate-800 text-slate-200 px-6 py-2 rounded-sm hover:bg-slate-700";
