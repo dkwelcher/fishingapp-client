@@ -13,14 +13,14 @@ function Layout({ setUser, screenWidth }) {
   /* Tailwind Class Styles */
   const pageStyles =
     "flex flex-row bg-slate-100 h-screen w-screen overflow-hidden";
-  const viewStyles = "flex-col flex-1 overflow-auto";
+  const viewStyles = "flex flex-col flex-1 overflow-auto";
   /* End Tailwind Class Styles */
 
   return (
     <div className={pageStyles}>
       <div>
         <button
-          className={`absolute w-full p-2 text-3xl text-white z-50 md:invisible ${
+          className={`absolute w-full p-2 text-3xl text-slate-200 z-50 md:invisible ${
             !isOpen && "bg-transparent-shadow"
           }`}
           onClick={() => {
