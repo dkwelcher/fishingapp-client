@@ -126,7 +126,7 @@ function ManageTrips({ user, screenWidth }) {
   const pageStyles = "bg-slate-100 text-slate-800";
   const idleContainerStyles = "p-10 px-4";
   const idleLogoContainerStyles =
-    "pb-10 flex flex-col justify-center items-center gap-x-2 font-cursive text-slate-800";
+    "pb-10 flex flex-col justify-center items-center gap-x-2 font-cursive text-slate-900";
   const idleLogoImageStyles =
     "size-36 sm:size-44 md:size-52 lg:size-64 xl:size-80 2xl:size-96";
   const idleLogoNameStyles =
