@@ -8,7 +8,6 @@ import DeleteCatchModal from "../../modals/DeleteCatchModal";
 import EditTripModal from "../../modals/EditTripModal";
 import DeleteTripModal from "../../modals/DeleteTripModal";
 import Logo from "../../../assets/logo.png";
-import IdleImage from "../../../assets/trout.png";
 
 function ManageTrips({ user, screenWidth }) {
   const [openSelectDateModal, setOpenSelectDateModal] = useState(false);
@@ -124,17 +123,14 @@ function ManageTrips({ user, screenWidth }) {
   }
 
   /* Tailwind Class Styles */
-  const pageStyles =
-    "flex flex-col justify-center items-left bg-slate-100 text-slate-800";
-  const idleContainerStyles =
-    "p-10 px-4 2xl:flex 2xl:flex-col 2xl:items-center";
+  const pageStyles = "bg-slate-100 text-slate-800";
+  const idleContainerStyles = "p-10 px-4";
   const idleLogoContainerStyles =
-    "pb-10 flex justify-center items-center gap-x-2 font-cursive text-slate-800";
-  const idleLogoImageStyles = "size-12 lg:size-14 2xl:size-20";
-  const idleLogoNameStyles = "text-5xl lg:text-6xl 2xl:text-8xl";
-  const idleContentContainerStyles = "";
-  const idleContentCardStyles = "";
-  const idleImageStyles = "rounded-sm";
+    "pb-10 flex flex-col justify-center items-center gap-x-2 font-cursive text-slate-800";
+  const idleLogoImageStyles =
+    "size-36 sm:size-44 md:size-52 lg:size-64 xl:size-80 2xl:size-96";
+  const idleLogoNameStyles =
+    "text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl 2xl:text-[200px]";
   /* End Tailwind Class Styles */
 
   return (
@@ -239,11 +235,6 @@ function ManageTrips({ user, screenWidth }) {
                 alt="Man fishing in a row boat"
               />
               <h2 className={idleLogoNameStyles}>Fishing App</h2>
-            </div>
-            <div className={idleContentContainerStyles}>
-              <div className={idleContentCardStyles}>
-                <img className={idleImageStyles} src={IdleImage} alt="" />
-              </div>
             </div>
           </div>
         )}
