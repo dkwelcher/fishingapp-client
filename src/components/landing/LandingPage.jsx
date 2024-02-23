@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Logo from "../../assets/logo.png";
-import LargemouthBass from "../../assets/largemouth-bass.png";
-import ChannelCatfish from "../../assets/channel-catfish.png";
+import Section1Image from "../../assets/striped-bass.png";
+import Section2Image from "../../assets/blue-catfish.png";
+import Section3Image from "../../assets/pier.png";
 import { RxHamburgerMenu, RxCross1 } from "react-icons/rx";
 
 function LandingPage() {
@@ -33,7 +34,7 @@ function LandingPage() {
   const pageStyles = "font-paragraph bg-slate-200 text-slate-200";
   /* Header */
   const heroAndNavigationContainerStyles =
-    "h-[80vh] bg-hero-image bg-cover bg-center shadow-md shadow-slate-800";
+    "h-[80vh] bg-hero-image bg-cover bg-center shadow-slate-800";
   const navHeaderStyles = "flex justify-between pt-2 px-2 lg:pt-4 lg:px-4";
   const logoContainerStyles = "flex gap-x-2 items-center font-cursive";
   const anchorLinkStyles = "cursor-pointer";
@@ -44,44 +45,47 @@ function LandingPage() {
   const headerLinkContainerStyles =
     "flex items-center cursor-pointer invisible md:visible";
   const headerButtonHamburgerStyles =
-    "absolute right-4 text-3xl text-white z-50 md:invisible";
-  const headerLinkHamburgerContainerStyles =
-    "w-full flex flex-col justify-center items-center gap-y-2 absolute bg-white h-1/4 -translate-x-2 translate-y-11";
+    "absolute right-4 text-3xl text-slate-500 z-50 md:invisible";
   const headerLinkHamburgerStyles =
     "hover:no-underline text-slate-800 text-lg hover:text-slate-700";
   const headerLinkStyles =
-    "py-2 px-4 hover:no-underline text-slate-200 text-lg rounded-sm hover:text-slate-100 hover:bg-slate-200 hover:text-slate-800 lg:text-2xl";
+    "py-2 px-4 hover:no-underline text-slate-500 text-lg rounded-lg hover:bg-slate-500 hover:text-slate-200 lg:text-2xl";
   const heroContentContainerStyles =
     "p-2 flex flex-col justify-center items-center gap-y-2 h-4/5 md:gap-y-4";
   const heroTitleStyles =
     "text-center font-bold text-5xl leading-normal text-shadow md:text-6xl lg:w-3/6 lg:text-7xl xl:text-8xl";
   const heroGetStartedLinkStyles =
-    "px-6 py-4 border border-solid border-slate-200 rounded-sm text-2xl text-slate-200 cursor-pointer hover:no-underline hover:bg-slate-200 hover:text-slate-800 lg:text-3xl 2xl:text-4xl";
+    "px-6 py-4 border border-solid border-slate-200 rounded-xl text-2xl text-slate-200 bg-transparent-shadow cursor-pointer hover:no-underline hover:bg-slate-600 lg:text-3xl 2xl:text-4xl";
 
   /* Main Content */
-  const mainContainerStyles = "py-12 px-4 sm:py-20 md:px-12 lg:py-28 2xl:py-36";
+  const mainContainerStyles =
+    "py-12 px-4 sm:py-20 md:px-12 lg:py-28 2xl:py-36 text-slate-800";
   const mainSectionsContainerStyles =
-    "pb-12 last:pb-0 sm:pb-20 sm:flex sm:flex-col sm:items-center lg:pb-28 2xl:pb-36 2xl:flex-row 2xl:justify-center 2xl:items-start 2xl:gap-x-20";
+    "pb-12 sm:pb-20 sm:flex sm:flex-col sm:items-center lg:pb-28 2xl:pb-52 2xl:flex-row 2xl:justify-center 2xl:items-start 2xl:gap-x-20";
+  const mainSubSectionStyles =
+    "flex flex-col 2xl:flex-row 2xl:justify-center 2xl:gap-x-20";
+  const mainSubSectionsContainerStyles =
+    "pb-12 last:pb-0 sm:pb-20 sm:flex sm:flex-col sm:items-center lg:pb-28 2xl:pb-0";
   const mainSectionsImageContainerStyles = "pb-2";
-  const mainSectionsImageStyles = "rounded-sm shadow-md shadow-slate-800";
+  const mainSectionsImageStyles = "rounded-lg shadow-slate-800";
   const mainSectionsInfoContainerStyles =
-    "p-4 bg-slate-600 rounded-sm sm:max-w-[600px] 2xl:h-[480px] 2xl:p-8 shadow-md shadow-slate-800";
+    "p-4 rounded-sm sm:max-w-[600px] 2xl:p-8";
   const sectionTitleStyles =
-    "pb-2 text-2xl md:text-3xl lg:text-4xl 2xl:text-5xl";
+    "pb-4 text-2xl md:text-3xl lg:text-4xl 2xl:text-5xl";
   const sectionSpanStyles =
-    "text-slate-800 text-3xl font-semibold md:text-4xl lg:text-5xl lg:font-bold";
+    "text-blue-600 text-3xl font-semibold md:text-4xl lg:text-5xl lg:font-bold";
   const sectionParagraphStyles =
-    "text-slate-300 text-sm md:text-base lg:text-lg 2xl:text-xl";
+    "text-slate-400 text-sm md:text-base lg:text-lg 2xl:text-xl";
 
   /* Callout */
   const calloutContainerStyles =
-    "mb-12 flex bg-callout-image bg-cover bg-center h-screen justify-center items-center sm:mb-20 lg:mb-28 2xl:mb-36 shadow-md shadow-slate-800";
+    "mb-12 flex bg-callout-image bg-cover bg-center h-screen justify-center items-center sm:mb-20 lg:mb-28 2xl:mb-36 shadow-slate-800";
   const calloutContentContainerStyles =
     "p-4 flex flex-col justify-center items-center";
   const calloutTitleStyles =
     "pb-8 text-center text-3xl text-white text-shadow leading-normal font-bold md:w-5/6 md:text-4xl lg:w-7/12 lg:text-6xl xl:text-7xl";
   const calloutLinkStyles =
-    "px-4 py-4 border-4 border-solid border-white rounded-sm text-4xl font-medium text-white text-shadow bg-transparent-shadow cursor-pointer hover:no-underline hover:bg-slate-700 lg:text-6xl";
+    "px-4 py-4 border-4 border-solid border-white rounded-2xl text-4xl font-medium text-white text-shadow bg-transparent-shadow cursor-pointer hover:no-underline hover:bg-slate-700 lg:text-6xl";
 
   /* Footer */
   const footerContainerStyles =
@@ -184,8 +188,8 @@ function LandingPage() {
           <div className={mainSectionsImageContainerStyles}>
             <img
               className={mainSectionsImageStyles}
-              src={LargemouthBass}
-              alt="Largemouth bass suspended by a submerged log and vegetation"
+              src={Section1Image}
+              alt="Caught striped bass being held up by man"
             />
           </div>
           <div className={mainSectionsInfoContainerStyles}>
@@ -201,23 +205,48 @@ function LandingPage() {
             </p>
           </div>
         </div>
-        <div className={mainSectionsContainerStyles}>
-          <div className={mainSectionsImageContainerStyles}>
-            <img
-              className={mainSectionsImageStyles}
-              src={ChannelCatfish}
-              alt="Largemouth bass suspended by a submerged log and vegetation"
-            />
+        <div className={mainSubSectionStyles}>
+          <div className={mainSubSectionsContainerStyles}>
+            <div className={mainSectionsImageContainerStyles}>
+              <img
+                className={mainSectionsImageStyles}
+                src={Section2Image}
+                alt="Caught blue catfish being held up by man"
+              />
+            </div>
+            <div className={mainSectionsInfoContainerStyles}>
+              <h2 className={sectionTitleStyles}>
+                Lorem ipsum dolor sit amet.
+              </h2>
+              <p className={sectionParagraphStyles}>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores
+                quo optio ad excepturi tenetur vitae dolorum voluptate fugiat
+                quis iusto quas quibusdam accusamus velit ab, minima, dolorem
+                quod maiores. Neque ad eos cumque est ipsam fugit quidem nam
+                vero veritatis.
+              </p>
+            </div>
           </div>
-          <div className={mainSectionsInfoContainerStyles}>
-            <h2 className={sectionTitleStyles}>Lorem ipsum dolor sit amet.</h2>
-            <p className={sectionParagraphStyles}>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores
-              quo optio ad excepturi tenetur vitae dolorum voluptate fugiat quis
-              iusto quas quibusdam accusamus velit ab, minima, dolorem quod
-              maiores. Neque ad eos cumque est ipsam fugit quidem nam vero
-              veritatis.
-            </p>
+          <div className={mainSubSectionsContainerStyles}>
+            <div className={mainSectionsImageContainerStyles}>
+              <img
+                className={mainSectionsImageStyles}
+                src={Section3Image}
+                alt="Looking out from beach pier toward town"
+              />
+            </div>
+            <div className={mainSectionsInfoContainerStyles}>
+              <h2 className={sectionTitleStyles}>
+                Lorem ipsum dolor sit amet.
+              </h2>
+              <p className={sectionParagraphStyles}>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores
+                quo optio ad excepturi tenetur vitae dolorum voluptate fugiat
+                quis iusto quas quibusdam accusamus velit ab, minima, dolorem
+                quod maiores. Neque ad eos cumque est ipsam fugit quidem nam
+                vero veritatis.
+              </p>
+            </div>
           </div>
         </div>
       </main>
