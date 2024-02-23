@@ -53,7 +53,7 @@ function CatchCard({
         <div className="grid gap-4 grid-cols-[repeat(auto-fill,300px)] justify-center">
           {catches.map((catchItem, i) => (
             <div
-              className={`p-4 shadow-md shadow-slate-900 max-w-[300px] ${
+              className={`p-4 rounded-sm shadow-md shadow-slate-900 max-w-[300px] ${
                 i % 2 == 0
                   ? "bg-gradient-to-b from-slate-600 to-slate-700"
                   : "bg-gradient-to-b from-slate-500 to-slate-600"
