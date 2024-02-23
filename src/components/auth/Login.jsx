@@ -1,18 +1,45 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Logo from "../../assets/logo.png";
+import { handleLoginInputValidation } from "../../lib/utilities/InputValidation";
 
 function Login({ setUser }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+
+  const [isUsernameValid, setIsUsernameValid] = useState(false);
+  const [isPasswordValid, setIsPasswordValid] = useState(false);
+
+  const [inputErrorMessage, setInputErrorMessage] = useState("");
+
   const navigate = useNavigate();
 
+  function handleUsernameInput(currentUsername) {
+    const isValid = handleLoginInputValidation(currentUsername);
+    setIsUsernameValid(isValid);
+    if (isValid && isPasswordValid) {
+      setInputErrorMessage("");
+    }
+  }
+
+  function handlePasswordInput(currentPassword) {
+    const isValid = handleLoginInputValidation(currentPassword);
+    setIsPasswordValid(isValid);
+    if (isValid && isUsernameValid) {
+      setInputErrorMessage("");
+    }
+  }
+
   function handleLogin() {
-    const existingUser = {
-      username: username,
-      password: password,
-    };
-    postExistingUser(existingUser);
+    if (isUsernameValid && isPasswordValid) {
+      const existingUser = {
+        username: username,
+        password: password,
+      };
+      postExistingUser(existingUser);
+    } else {
+      setInputErrorMessage("One or more fields are blank");
+    }
   }
 
   async function postExistingUser(existingUser) {
@@ -72,7 +99,6 @@ function Login({ setUser }) {
   const inputContainerStyles = "pb-2 flex flex-col";
   const inputStyles =
     "px-2 py-1 border border-0 border-zinc-400 rounded-sm bg-slate-700 hover:bg-slate-600 focus:bg-slate-200 focus:text-slate-800 shadow-md shadow-slate-800 outline-none";
-  const errorMessageStyles = "py-2 text-center invisible";
   const buttonContainerStyles = "py-2 flex flex-col";
   const buttonStyles =
     "py-2 border-0 rounded-sm text-slate-800 bg-slate-300 hover:bg-slate-100 shadow-lg shadow-slate-800";
@@ -99,6 +125,7 @@ function Login({ setUser }) {
               className={inputStyles}
               type="text"
               onChange={(e) => setUsername(e.target.value)}
+              onBlur={(e) => handleUsernameInput(e.target.value)}
             />
           </div>
           <label htmlFor="">Password:</label>
@@ -107,10 +134,18 @@ function Login({ setUser }) {
               className={inputStyles}
               type="password"
               onChange={(e) => setPassword(e.target.value)}
+              onBlur={(e) => handlePasswordInput(e.target.value)}
             />
           </div>
         </form>
-        <p className={errorMessageStyles}>Error message</p>
+        <p
+          className={`py-2 text-red-600 text-center ${
+            inputErrorMessage.length > 0 ? "visible" : "invisible"
+          }`}
+        >
+          {inputErrorMessage}
+          {"."}
+        </p>
         <div className={buttonContainerStyles}>
           <button
             className={buttonStyles}
