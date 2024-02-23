@@ -59,7 +59,7 @@ function Signup() {
   const logoNameStyles = "text-3xl md:text-4xl lg:text-5xl";
   const descriptionContainerStyles = "pb-8";
   const descriptionTitleStyles = "pb-2 font-title font-semibold text-lg";
-  const descriptionParagraphStyles = "";
+  const descriptionParagraphStyles = "text-slate-300";
   const formContainerStyles = "";
   const formStyles = "";
   const inputContainerStyles = "pb-2 flex flex-col";
@@ -70,7 +70,8 @@ function Signup() {
   const buttonStyles =
     "py-2 border-0 rounded-sm text-slate-800 bg-slate-300 hover:bg-slate-100 shadow-lg shadow-slate-800";
   const loginLinkContainerStyles = "pt-2 text-center";
-  const loginLinkStyles = "pl-1 underline text-slate-300 hover:text-slate-100";
+  const loginLinkStyles =
+    "pl-1 underline text-slate-300 cursor-pointer hover:text-slate-100";
   /* End Tailwind Class Styles */
 
   return (
