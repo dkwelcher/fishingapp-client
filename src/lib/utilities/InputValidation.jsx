@@ -213,3 +213,95 @@ function handleDateInputValidation(date) {
     day <= 31
   );
 }
+
+/* Signup User Input Validation */
+export function handleUsernameInputValidation(username) {
+  if (username === null || username === undefined) {
+    return false;
+  }
+
+  if (username.trim() === "") {
+    return false;
+  }
+
+  if (username.length > 50) {
+    return false;
+  }
+
+  // No special characters, no spaces.
+  const validUsernameRegex = /^[A-Za-z0-9]+$/;
+
+  return validUsernameRegex.test(username);
+}
+
+export function handleEmailInputValidation(email) {
+  if (email === null || email === undefined) {
+    return false;
+  }
+
+  if (email.trim() === "") {
+    return false;
+  }
+
+  if (email.length > 100) {
+    return false;
+  }
+
+  // Not a wholistic solution. Need another method of validating email.
+  const validEmailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+  return validEmailRegex.test(email);
+}
+
+export function handlePasswordInputValidation(password) {
+  if (password === null || password === undefined) {
+    return false;
+  }
+
+  if (password.trim() === "") {
+    return false;
+  }
+
+  const minLength = 6;
+  const maxLength = 64;
+
+  if (password.length < minLength || password.length > maxLength) {
+    return false;
+  }
+
+  // Must have at least one letter, one digit, and one special character
+  const validPasswordRegex = new RegExp(
+    `^(?=.*[A-Za-z])(?=.*\\d)(?=.*[-!@#$%&*()_+=|<>?{}\\[\\]~]).{${minLength},${maxLength}}$`
+  );
+
+  return validPasswordRegex.test(password);
+}
+
+export function handleConfirmPasswordInputValidation(
+  password,
+  confirmPassword
+) {
+  if (
+    password === null ||
+    password === undefined ||
+    confirmPassword === null ||
+    confirmPassword === undefined
+  ) {
+    return false;
+  }
+
+  if (password.trim() === "" || confirmPassword.trim() === "") {
+    return false;
+  }
+
+  return password === confirmPassword;
+}
+
+/* Login User Input Validation */
+export function handleLoginInputValidation(input) {
+  if (input === null || input === undefined) {
+    return false;
+  }
+
+  return input.trim() !== "";
+}
