@@ -123,17 +123,14 @@ function ManageTrips({ user, screenWidth }) {
   }
 
   /* Tailwind Class Styles */
-  const pageStyles = "flex flex-col justify-center items-left text-slate-800";
-  const idleContainerStyles =
-    "pt-10 pb-4 w-full flex flex-col justify-center items-center m-auto font-paragraph";
+  const pageStyles = "bg-slate-100 text-slate-800";
+  const idleContainerStyles = "p-10 px-4";
   const idleLogoContainerStyles =
-    "pb-10 flex justify-center items-center font-cursive font-bold text-slate-900";
-  const idleLogoImageStyles = "size-14";
-  const idleLogoNameStyles = "text-6xl";
-  const idleContentContainerStyles =
-    "w-full flex flex-col justify-around gap-8 px-8";
-  const idleContentCardStyles = "flex flex-col gap-4";
-  const idleContentCardTitleStyles = "font-title font-semibold text-xl";
+    "pb-10 flex flex-col justify-center items-center gap-x-2 font-cursive text-slate-800";
+  const idleLogoImageStyles =
+    "size-36 sm:size-44 md:size-52 lg:size-64 xl:size-80 2xl:size-96";
+  const idleLogoNameStyles =
+    "text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl 2xl:text-[200px]";
   /* End Tailwind Class Styles */
 
   return (
@@ -238,38 +235,6 @@ function ManageTrips({ user, screenWidth }) {
                 alt="Man fishing in a row boat"
               />
               <h2 className={idleLogoNameStyles}>Fishing App</h2>
-            </div>
-            <div className={idleContentContainerStyles}>
-              <div className={idleContentCardStyles}>
-                <h2 className={idleContentCardTitleStyles}>
-                  Lorem ipsum dolor sit amet.
-                </h2>
-                <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim,
-                  assumenda explicabo! Nobis incidunt repellat similique
-                  consequuntur quisquam inventore alias dolorum?
-                </p>
-                <p>
-                  Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eum
-                  minima suscipit autem quas quo recusandae atque reiciendis
-                  quis velit officiis.
-                </p>
-              </div>
-              <div className={idleContentCardStyles}>
-                <h2 className={idleContentCardTitleStyles}>
-                  Lorem ipsum dolor sit amet.
-                </h2>
-                <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam
-                  libero ullam accusantium maxime et nam maiores saepe, in modi
-                  doloremque.
-                </p>
-                <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi
-                  nesciunt animi commodi neque iure autem libero officia
-                  incidunt eum dolore.
-                </p>
-              </div>
             </div>
           </div>
         )}

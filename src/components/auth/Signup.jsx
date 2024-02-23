@@ -49,29 +49,29 @@ function Signup() {
 
   /* Tailwind Class Styles */
   const pageStyles =
-    "p-4 flex bg-signup-image bg-center bg-cover h-screen justify-center items-center font-paragraph font-normal";
+    "p-4 flex h-screen justify-center items-center font-paragraph font-normal text-sm lg:text-base text-slate-200 bg-slate-800";
   const cardContainerStyles =
-    "flex flex-col bg-transparent-shadow rounded-xl sm:flex-row";
-  const contentContainerStyles =
-    "flex flex-col justify-between text-white sm:w-full sm:justify-start md:max-w-[550px]";
+    "p-8 max-w-[500px] rounded-sm bg-gradient-to-b from-slate-600 to-slate-700 shadow-md shadow-slate-900";
+  const contentContainerStyles = "";
   const logoContainerStyles =
-    "pt-4 px-4 flex items-center font-cursive font-bold";
-  const logoImageStyles = "size-12 md:size-14";
-  const logoNameStyles = "text-5xl md:text-6xl lg:text-7xl";
-  const descriptionContainerStyles = "p-4";
-  const descriptionTitleStyles =
-    " text-xl font-title font-bold md:text-2xl lg:text-3xl";
-  const descriptionParagraphStyles = "text-md lg:text-lg";
-  const formContainerStyles = "p-4 bg-white rounded-xl sm:w-full";
-  const formStyles = "flex flex-col";
+    "pb-4 flex gap-x-2 items-center font-cursive text-slate-300";
+  const logoImageStyles = "size-10 md:size-11 lg:size-13";
+  const logoNameStyles = "text-3xl md:text-4xl lg:text-5xl";
+  const descriptionContainerStyles = "pb-8";
+  const descriptionTitleStyles = "pb-2 font-title font-semibold text-lg";
+  const descriptionParagraphStyles = "text-slate-300";
+  const formContainerStyles = "";
+  const formStyles = "";
+  const inputContainerStyles = "pb-2 flex flex-col";
   const inputStyles =
-    "mb-4 px-2 py-1 border border-solid border-zinc-400 rounded-xl";
-  const errorMessageStyles = "pb-2 text-center";
-  const buttonContainerStyles = "flex mb-4 justify-center";
+    "px-2 py-1 border border-0 border-zinc-400 rounded-sm bg-slate-700 hover:bg-slate-600 focus:bg-slate-200 focus:text-slate-800 shadow-md shadow-slate-800 outline-none";
+  const errorMessageStyles = "py-2 text-center invisible";
+  const buttonContainerStyles = "py-2 flex flex-col";
   const buttonStyles =
-    "px-6 py-4 bg-blue-700 text-white border-0 rounded-xl hover:bg-blue-600";
-  const loginLinkContainerStyles = "text-center";
-  const loginLinkStyles = "pl-1 underline text-zinc-800 hover:text-blue-600";
+    "py-2 border-0 rounded-sm text-slate-800 bg-slate-300 hover:bg-slate-100 shadow-lg shadow-slate-800";
+  const loginLinkContainerStyles = "pt-2 text-center";
+  const loginLinkStyles =
+    "pl-1 underline text-slate-300 cursor-pointer hover:text-slate-100";
   /* End Tailwind Class Styles */
 
   return (
@@ -87,9 +87,7 @@ function Signup() {
             <h2 className={logoNameStyles}>Fishing App</h2>
           </div>
           <div className={descriptionContainerStyles}>
-            <h2 className={descriptionTitleStyles}>
-              Lorem ipsum dolor sit amet.
-            </h2>
+            <h2 className={descriptionTitleStyles}>CREATE YOUR OWN ACCOUNT</h2>
             <p className={descriptionParagraphStyles}>
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor ad
               nobis consectetur autem. Voluptate quo rerum praesentium tempora.
@@ -99,26 +97,34 @@ function Signup() {
         </div>
         <div className={formContainerStyles}>
           <form className={formStyles}>
-            <label htmlFor="">Username:</label>
-            <input
-              className={inputStyles}
-              type="text"
-              onChange={(e) => setUsername(e.target.value)}
-            />
-            <label htmlFor="">Email:</label>
-            <input
-              className={inputStyles}
-              type="email"
-              onChange={(e) => setEmail(e.target.value)}
-            />
-            <label htmlFor="">Password:</label>
-            <input
-              className={inputStyles}
-              type="password"
-              onChange={(e) => setPassword(e.target.value)}
-            />
-            <label htmlFor="">Confirm Password:</label>
-            <input className={inputStyles} type="password" />
+            <div className={inputContainerStyles}>
+              <label htmlFor="">Username:</label>
+              <input
+                className={inputStyles}
+                type="text"
+                onChange={(e) => setUsername(e.target.value)}
+              />
+            </div>
+            <div className={inputContainerStyles}>
+              <label htmlFor="">Email:</label>
+              <input
+                className={inputStyles}
+                type="email"
+                onChange={(e) => setEmail(e.target.value)}
+              />
+            </div>
+            <div className={inputContainerStyles}>
+              <label htmlFor="">Password:</label>
+              <input
+                className={inputStyles}
+                type="password"
+                onChange={(e) => setPassword(e.target.value)}
+              />
+            </div>
+            <div className={inputContainerStyles}>
+              <label htmlFor="">Confirm Password:</label>
+              <input className={inputStyles} type="password" />
+            </div>
           </form>
           <p className={errorMessageStyles}>Error message</p>
           <div className={buttonContainerStyles}>

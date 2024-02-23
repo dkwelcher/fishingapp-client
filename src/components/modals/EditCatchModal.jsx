@@ -109,18 +109,19 @@ function EditCatchModal({
 
   /* Tailwind Class Styles */
   const modalContainerStyles =
-    "w-full h-screen fixed flex justify-center items-center bg-transparent-shadow z-50";
-  const modalCardStyles = "bg-white rounded-md font-paragraph";
-  const formContainerStyles = "px-10 py-4";
-  const formTitleStyles = "mb-4 font-title text-xl font-semibold";
-  const formStyles = "grid grid-cols-1 gap-x-4";
+    "w-full h-screen fixed flex justify-center items-center bg-transparent-shadow text-slate-800 z-50";
+  const modalCardStyles =
+    "px-10 py-4 bg-slate-50 rounded-md font-paragraph md:-translate-x-32 shadow-md shadow-slate-950";
+  const formContainerStyles = "";
+  const formTitleStyles = "mb-4 font-title text-xl font-semibold sm:text-2xl";
+  const formStyles = "sm:grid sm:grid-cols-2 gap-x-4";
   const inputContainerStyles = "flex flex-col";
-  const labelStyles = "pt-1";
+  const labelStyles = "pt-1 sm:text-lg";
   const inputStyles =
-    "px-2 py-1 border border-solid border-zinc-400 rounded-sm";
+    "px-2 py-1 bg-slate-50 border border-solid border-slate-400 rounded-sm shadow-sm shadow-slate-600 focus:bg-slate-200 focus:text-slate-900 outline-none";
   const buttonContainerStyles = "flex justify-center items-center gap-x-4";
   const buttonStyles =
-    "bg-slate-800 text-slate-200 px-6 py-2 rounded-sm hover:bg-slate-700";
+    "bg-slate-800 text-slate-200 px-6 py-2 rounded-sm shadow-md shadow-slate-600 hover:bg-slate-700";
   /* End Tailwind Class Styles */
 
   return (
