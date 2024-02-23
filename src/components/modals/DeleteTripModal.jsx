@@ -43,14 +43,14 @@ function DeleteTripModal({
   const modalContainerStyles =
     "w-full h-screen fixed p-2 flex justify-center items-center bg-transparent-shadow text-slate-800 z-50";
   const modalCardStyles =
-    "bg-slate-50 rounded-md font-paragraph md:-translate-x-32";
+    "bg-slate-50 rounded-md font-paragraph md:-translate-x-32 shadow-md shadow-slate-950";
   const infoContainerStyles = "px-10 py-4";
   const infoTitleStyles = "mb-4 font-title text-md font-semibold sm:text-2xl";
   const infoSectionContainerStyles = "pt-1";
   const infoSectionParagraphStyles = "text-center text-sm sm:text-xl";
   const buttonContainerStyles = "pt-4 flex justify-center align-items gap-x-4";
   const buttonStyles =
-    "bg-slate-800 text-slate-200 px-6 py-2 rounded-sm hover:bg-slate-700";
+    "bg-slate-800 text-slate-200 px-6 py-2 rounded-sm shadow-md shadow-slate-600 hover:bg-slate-700";
   /* End Tailwind Class Styles */
 
   return (
