@@ -40,7 +40,7 @@ function SelectDateModal({
   }
 
   async function postNewTrip(newTripData) {
-    const POST_TRIP = "http://localhost:8080/trips";
+    const POST_TRIP = `http://localhost:8080/trips?userId=${user.id}`;
     const token = localStorage.getItem("authToken");
 
     try {

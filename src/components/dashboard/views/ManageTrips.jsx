@@ -38,7 +38,7 @@ function ManageTrips({ user, screenWidth }) {
     const fetchTrips = async () => {
       if (!tripDate || !user.id) return;
 
-      const GET_TRIPS_BY_ID = `http://localhost:8080/trips&date?id=${user.id}&date=${tripDate}`;
+      const GET_TRIPS_BY_ID = `http://localhost:8080/trips?userId=${user.id}&date=${tripDate}`;
 
       const token = localStorage.getItem("authToken");
 
@@ -72,7 +72,7 @@ function ManageTrips({ user, screenWidth }) {
     const fetchCatches = async () => {
       if (!trip || !trip.id) return;
 
-      const GET_CATCHES_BY_TRIP_ID = `http://localhost:8080/catches?tripId=${trip.id}`;
+      const GET_CATCHES_BY_TRIP_ID = `http://localhost:8080/catches?userId=${user.id}&tripId=${trip.id}`;
       const token = localStorage.getItem("authToken");
 
       try {
@@ -194,6 +194,7 @@ function ManageTrips({ user, screenWidth }) {
         trip={trip}
         setTrip={setTrip}
         setTripDate={setTripDate}
+        user={user}
       />
       <div className={pageStyles}>
         <InfoSection

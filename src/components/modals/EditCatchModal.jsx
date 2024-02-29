@@ -44,7 +44,7 @@ function EditCatchModal({
   }
 
   async function editCatch(updatedCatchData) {
-    const EDIT_CATCH_BY_ID = `http://localhost:8080/catches/${tempCatch.id}`;
+    const EDIT_CATCH_BY_ID = `http://localhost:8080/catches/${tempCatch.id}?userId=${user.id}`;
     const token = localStorage.getItem("authToken");
 
     try {

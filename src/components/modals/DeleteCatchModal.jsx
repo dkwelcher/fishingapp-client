@@ -21,7 +21,7 @@ function DeleteCatchModal({
         id: user.id,
       },
     };
-    const DELETE_CATCH_BY_ID = `http://localhost:8080/catches/${tempCatchId}`;
+    const DELETE_CATCH_BY_ID = `http://localhost:8080/catches/${tempCatchId}?userId=${user.id}`;
     const token = localStorage.getItem("authToken");
 
     try {

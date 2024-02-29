@@ -43,7 +43,7 @@ function AddCatchModal({
   }
 
   async function postNewCatch(newCatchData) {
-    const POST_CATCH = "http://localhost:8080/catches";
+    const POST_CATCH = `http://localhost:8080/catches?userId=${user.id}`;
     const token = localStorage.getItem("authToken");
 
     try {
