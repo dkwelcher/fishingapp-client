@@ -65,7 +65,7 @@ function EditCatchModal({
 
       const resultingCatch = {
         id: result.catchId,
-        time: result.time,
+        time: result.time.substring(0, 5),
         fish: result.species,
         bait: result.lureOrBait,
         latitude: result.latitude,
@@ -75,6 +75,7 @@ function EditCatchModal({
         waterTemp: result.waterTemperature,
         windSpeed: result.windSpeed,
       };
+
       setCatches((currentCatches) =>
         currentCatches.map((catchObject) =>
           catchObject.id === resultingCatch.id
