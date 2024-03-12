@@ -160,6 +160,18 @@ function AddCatchModal({
             </div>
             <div className={inputContainerStyles}>
               <label className={labelStyles} htmlFor="">
+                Weather:
+              </label>
+              <input
+                className={inputStyles}
+                type="text"
+                onChange={(e) =>
+                  setTempCatch({ ...tempCatch, weather: e.target.value })
+                }
+              />
+            </div>
+            <div className={inputContainerStyles}>
+              <label className={labelStyles} htmlFor="">
                 Latitude:
               </label>
               <input
@@ -179,18 +191,6 @@ function AddCatchModal({
                 type="number"
                 onChange={(e) =>
                   setTempCatch({ ...tempCatch, longitude: e.target.value })
-                }
-              />
-            </div>
-            <div className={inputContainerStyles}>
-              <label className={labelStyles} htmlFor="">
-                Weather:
-              </label>
-              <input
-                className={inputStyles}
-                type="text"
-                onChange={(e) =>
-                  setTempCatch({ ...tempCatch, weather: e.target.value })
                 }
               />
             </div>
