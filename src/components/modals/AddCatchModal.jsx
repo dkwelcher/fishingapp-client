@@ -63,7 +63,7 @@ function AddCatchModal({
       const result = await response.json();
       const newCatch = {
         id: result.catchId,
-        time: result.time,
+        time: result.time.substring(0, 5),
         fish: result.species,
         bait: result.lureOrBait,
         latitude: result.latitude,
@@ -162,13 +162,18 @@ function AddCatchModal({
               <label className={labelStyles} htmlFor="">
                 Weather:
               </label>
-              <input
+              <select
                 className={inputStyles}
                 type="text"
                 onChange={(e) =>
                   setTempCatch({ ...tempCatch, weather: e.target.value })
                 }
-              />
+              >
+                <option value="clear">clear</option>
+                <option value="partially cloudy">partially cloudy</option>
+                <option value="overcast">overcast</option>
+                <option value="rainy">rainy</option>
+              </select>
             </div>
             <div className={inputContainerStyles}>
               <label className={labelStyles} htmlFor="">
