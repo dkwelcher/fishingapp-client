@@ -174,14 +174,18 @@ function EditCatchModal({
               <label className={labelStyles} htmlFor="">
                 Weather:
               </label>
-              <input
+              <select
                 className={inputStyles}
-                type="text"
                 value={tempCatch.weather}
                 onChange={(e) =>
                   setTempCatch({ ...tempCatch, weather: e.target.value })
                 }
-              />
+              >
+                <option value="clear">clear</option>
+                <option value="partially cloudy">partially cloudy</option>
+                <option value="overcast">overcast</option>
+                <option value="rainy">rainy</option>
+              </select>
             </div>
             <div className={inputContainerStyles}>
               <label className={labelStyles} htmlFor="">
