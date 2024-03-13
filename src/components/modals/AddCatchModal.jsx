@@ -182,6 +182,7 @@ function AddCatchModal({
               <input
                 className={inputStyles}
                 type="number"
+                onKeyDown={(e) => preventPlus(e)}
                 onChange={(e) =>
                   setTempCatch({ ...tempCatch, latitude: e.target.value })
                 }
@@ -194,6 +195,7 @@ function AddCatchModal({
               <input
                 className={inputStyles}
                 type="number"
+                onKeyDown={(e) => preventPlus(e)}
                 onChange={(e) =>
                   setTempCatch({ ...tempCatch, longitude: e.target.value })
                 }
@@ -206,6 +208,7 @@ function AddCatchModal({
               <input
                 className={inputStyles}
                 type="number"
+                onKeyDown={(e) => preventDecimalAndPlus(e)}
                 onChange={(e) =>
                   setTempCatch({ ...tempCatch, airTemp: e.target.value })
                 }
@@ -218,6 +221,7 @@ function AddCatchModal({
               <input
                 className={inputStyles}
                 type="number"
+                onKeyDown={(e) => preventDecimalAndPlus(e)}
                 onChange={(e) =>
                   setTempCatch({ ...tempCatch, waterTemp: e.target.value })
                 }
@@ -230,6 +234,7 @@ function AddCatchModal({
               <input
                 className={inputStyles}
                 type="number"
+                onKeyDown={(e) => preventDecimalAndPlusAndMinus(e)}
                 onChange={(e) =>
                   setTempCatch({ ...tempCatch, windSpeed: e.target.value })
                 }
@@ -273,6 +278,32 @@ function AddCatchModal({
       </div>
     </div>
   );
+}
+
+function preventDecimalAndPlusAndMinus(e) {
+  if (e.key === "." || e.key === "+" || e.key === "-") {
+    e.preventDefault();
+  }
+}
+
+function preventDecimalAndPlus(e) {
+  const isAtStart = e.target.value.length === 0;
+
+  if (e.key === "." || e.key == "+") {
+    e.preventDefault();
+  } else if (e.key == "-" && !isAtStart) {
+    e.preventDefault();
+  }
+}
+
+function preventPlus(e) {
+  const isAtStart = e.target.value.length === 0;
+
+  if (e.key === "+") {
+    e.preventDefault();
+  } else if (e.key == "-" && !isAtStart) {
+    e.preventDefault();
+  }
 }
 
 export default AddCatchModal;

@@ -195,6 +195,7 @@ function EditCatchModal({
                 className={inputStyles}
                 type="number"
                 value={tempCatch.latitude}
+                onKeyDown={(e) => preventPlus(e)}
                 onChange={(e) =>
                   setTempCatch({ ...tempCatch, latitude: e.target.value })
                 }
@@ -208,6 +209,7 @@ function EditCatchModal({
                 className={inputStyles}
                 type="number"
                 value={tempCatch.longitude}
+                onKeyDown={(e) => preventPlus(e)}
                 onChange={(e) =>
                   setTempCatch({ ...tempCatch, longitude: e.target.value })
                 }
@@ -221,6 +223,7 @@ function EditCatchModal({
                 className={inputStyles}
                 type="number"
                 value={tempCatch.airTemp}
+                onKeyDown={(e) => preventDecimalAndPlus(e)}
                 onChange={(e) =>
                   setTempCatch({ ...tempCatch, airTemp: e.target.value })
                 }
@@ -234,6 +237,7 @@ function EditCatchModal({
                 className={inputStyles}
                 type="number"
                 value={tempCatch.waterTemp}
+                onKeyDown={(e) => preventDecimalAndPlus(e)}
                 onChange={(e) =>
                   setTempCatch({ ...tempCatch, waterTemp: e.target.value })
                 }
@@ -247,6 +251,7 @@ function EditCatchModal({
                 className={inputStyles}
                 type="number"
                 value={tempCatch.windSpeed}
+                onKeyDown={(e) => preventDecimalAndPlusAndMinus(e)}
                 onChange={(e) =>
                   setTempCatch({ ...tempCatch, windSpeed: e.target.value })
                 }
@@ -290,6 +295,24 @@ function EditCatchModal({
       </div>
     </div>
   );
+}
+
+function preventDecimalAndPlusAndMinus(e) {
+  if (e.key === "." || e.key === "+" || e.key === "-") {
+    e.preventDefault();
+  }
+}
+
+function preventDecimalAndPlus(e) {
+  if (e.key === "." || e.key == "+") {
+    e.preventDefault();
+  }
+}
+
+function preventPlus(e) {
+  if (e.key === "+") {
+    e.preventDefault();
+  }
 }
 
 export default EditCatchModal;
