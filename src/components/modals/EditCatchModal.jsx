@@ -99,7 +99,7 @@ function EditCatchModal({
   function sanitizeTempCatch() {
     for (const key in tempCatch) {
       if (typeof tempCatch[key] == "string") {
-        tempCatch[key] = tempCatch[key].trim();
+        tempCatch[key] = tempCatch[key].trim().replace(/\s+/g, " ");
       }
     }
   }
