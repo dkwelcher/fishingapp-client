@@ -15,6 +15,7 @@ function EditCatchModal({
   const [errorMessage, setErrorMessage] = useState([]);
 
   function handleCatches() {
+    sanitizeTempCatch();
     const tempErrorMessage = getErrorMessage();
     if (!tempErrorMessage || tempErrorMessage.length === 0) {
       const updatedCatchPost = {
@@ -93,6 +94,14 @@ function EditCatchModal({
 
   function getErrorMessage() {
     return handleCatchInputValidation(tempCatch);
+  }
+
+  function sanitizeTempCatch() {
+    for (const key in tempCatch) {
+      if (typeof tempCatch[key] == "string") {
+        tempCatch[key] = tempCatch[key].trim();
+      }
+    }
   }
 
   function sortCatches() {

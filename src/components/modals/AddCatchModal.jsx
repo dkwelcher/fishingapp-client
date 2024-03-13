@@ -15,6 +15,7 @@ function AddCatchModal({
   const [errorMessage, setErrorMessage] = useState([]);
 
   function handlesNewCatch() {
+    sanitizeTempCatch();
     const tempErrorMessage = getErrorMessage();
     if (!tempErrorMessage || tempErrorMessage.length === 0) {
       const newCatchPost = {
@@ -83,6 +84,14 @@ function AddCatchModal({
 
   function getErrorMessage() {
     return handleCatchInputValidation(tempCatch);
+  }
+
+  function sanitizeTempCatch() {
+    for (const key in tempCatch) {
+      if (typeof tempCatch[key] == "string") {
+        tempCatch[key] = tempCatch[key].trim();
+      }
+    }
   }
 
   function sortCatches(newCatch) {
