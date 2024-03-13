@@ -152,6 +152,7 @@ function EditCatchModal({
                 className={inputStyles}
                 type="text"
                 value={tempCatch.fish}
+                onKeyDown={(e) => preventDigitAndSpecialCharacters(e)}
                 onChange={(e) =>
                   setTempCatch({ ...tempCatch, fish: e.target.value })
                 }
@@ -165,6 +166,7 @@ function EditCatchModal({
                 className={inputStyles}
                 type="text"
                 value={tempCatch.bait}
+                onKeyDown={(e) => preventDigitAndSpecialCharacters(e)}
                 onChange={(e) =>
                   setTempCatch({ ...tempCatch, bait: e.target.value })
                 }
@@ -295,6 +297,13 @@ function EditCatchModal({
       </div>
     </div>
   );
+}
+
+function preventDigitAndSpecialCharacters(e) {
+  // Letters & spaces only
+  if (!/[a-zA-Z ]/.test(e.key)) {
+    e.preventDefault();
+  }
 }
 
 function preventDecimalAndPlusAndMinus(e) {
