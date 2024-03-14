@@ -55,7 +55,7 @@ function Login({ setUser }) {
       });
 
       if (!response.ok) {
-        throw new Error(`HTTP error: ${response.error}`);
+        setInputErrorMessage("Login credentials are invalid");
       }
 
       const data = await response.json();
