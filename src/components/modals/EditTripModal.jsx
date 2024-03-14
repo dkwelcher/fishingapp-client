@@ -18,9 +18,11 @@ function EditTripModal({
   const [errorMessage, setErrorMessage] = useState([]);
 
   function handleEditTrip() {
-    const tempErrorMessage = getErrorMessage();
+    sanitizeTempTrip();
+    const formattedDate = handleDateFormatting(editDate);
+    const tempErrorMessage = getErrorMessage(formattedDate);
     if (!tempErrorMessage || tempErrorMessage.length === 0) {
-      const updatedTrip = { ...tempTrip, date: handleDateFormatting(editDate) };
+      const updatedTrip = { ...tempTrip, date: formattedDate };
       editTrip(updatedTrip);
       setOpenEditTripModal(false);
     } else {
@@ -78,8 +80,17 @@ function EditTripModal({
     }
   }
 
-  function getErrorMessage() {
-    return handleTripInputValidation(tempTrip);
+  function getErrorMessage(formattedDate) {
+    const sanitizedTrip = { location: tempTrip.location, date: formattedDate };
+    return handleTripInputValidation(sanitizedTrip);
+  }
+
+  function sanitizeTempTrip() {
+    for (const key in tempTrip) {
+      if (typeof tempTrip[key] == "string") {
+        tempTrip[key] = tempTrip[key].trim().replace(/\s+/g, " ");
+      }
+    }
   }
 
   const [editDate, setEditDate] = useState(new Date(handleDateConversion()));
@@ -91,6 +102,9 @@ function EditTripModal({
   }
 
   function handleDateFormatting(date) {
+    if (date === null || date === undefined || date === "") {
+      return;
+    }
     const year = date.getFullYear();
     // Month is zero-indexed
     const month = ("0" + (date.getMonth() + 1)).slice(-2);
@@ -127,6 +141,7 @@ function EditTripModal({
                 className={inputStyles}
                 type="text"
                 value={tempTrip.location}
+                onKeyDown={(e) => preventDigitAndSpecialCharacters(e)}
                 onChange={(e) =>
                   setTempTrip({ ...tempTrip, location: e.target.value })
                 }
@@ -179,6 +194,13 @@ function EditTripModal({
       </div>
     </div>
   );
+}
+
+function preventDigitAndSpecialCharacters(e) {
+  // Letters & spaces only
+  if (!/[a-zA-Z ]/.test(e.key)) {
+    e.preventDefault();
+  }
 }
 
 export default EditTripModal;
