@@ -212,11 +212,11 @@ function handleLocationInputValidation(location) {
     return false;
   }
 
-  if (location.trim() === "") {
+  if (location === "") {
     return false;
   }
 
-  return location.length <= 50;
+  return /^[a-zA-Z ]*$/.test(location) && location.length <= 50;
 }
 
 function handleDateInputValidation(date) {
@@ -224,20 +224,35 @@ function handleDateInputValidation(date) {
     return false;
   }
 
-  if (date.trim() === "") {
+  if (date === "") {
+    return false;
+  }
+
+  const datePattern = /^\d{4}-\d{2}-\d{2}$/;
+  if (!datePattern.test(date)) {
     return false;
   }
 
   const [year, month, day] = date.split("-").map(Number);
 
-  return (
-    year >= 0 &&
-    year <= 3000 &&
-    month >= 1 &&
-    month <= 12 &&
-    day >= 1 &&
-    day <= 31
-  );
+  if (isNaN(year) || isNaN(month) || isNaN(day)) {
+    return false;
+  }
+
+  if (year < 0 || year > 3000) {
+    return false;
+  }
+
+  if (month < 1 || month > 12) {
+    return false;
+  }
+
+  const daysInMonth = new Date(year, month, 0).getDate();
+  if (day < 1 || day > daysInMonth) {
+    return false;
+  }
+
+  return true;
 }
 
 /* Signup User Input Validation */
