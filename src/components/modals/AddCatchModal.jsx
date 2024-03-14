@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { handleCatchInputValidation } from "../../lib/utilities/InputValidation";
 
 function AddCatchModal({
@@ -11,6 +11,10 @@ function AddCatchModal({
   setCatches,
 }) {
   if (!openAddCatchModal) return null;
+
+  useEffect(() => {
+    setTempCatch({ ...tempCatch, weather: "clear" });
+  }, []);
 
   const [errorMessage, setErrorMessage] = useState([]);
 
