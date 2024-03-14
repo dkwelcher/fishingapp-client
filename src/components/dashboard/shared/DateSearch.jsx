@@ -6,6 +6,9 @@ function DateSearch({ setOpenSelectDateModal, getTripDate }) {
   const [startDate, setStartDate] = useState(new Date());
 
   const handleSearchClick = () => {
+    if (startDate === null || startDate === undefined || startDate === "") {
+      return;
+    }
     const year = startDate.getFullYear();
     const month = (startDate.getMonth() + 1).toString().padStart(2, "0");
     const day = startDate.getDate().toString().padStart(2, "0");
