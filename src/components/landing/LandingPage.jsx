@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import Logo from "../../assets/logo.png";
 import Section1Image from "../../assets/striped-bass.png";
@@ -10,9 +10,36 @@ function LandingPage() {
   const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
 
+  const dropdownRef = useRef(null);
+
   function toggleNavbar() {
     setIsOpen(!isOpen);
   }
+
+  useEffect(() => {
+    const handleClickOutsideDropdown = (event) => {
+      let targetElement = event.target;
+      let isInsideDropdown = false;
+
+      while (targetElement != null) {
+        if (targetElement === dropdownRef.current) {
+          isInsideDropdown = true;
+          break;
+        }
+        targetElement = targetElement.parentNode;
+      }
+
+      if (!isInsideDropdown) {
+        setIsOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutsideDropdown);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutsideDropdown);
+    };
+  }, []);
 
   function handleDisplayCurrentYear() {
     return new Date().getFullYear();
@@ -146,6 +173,7 @@ function LandingPage() {
               </a>
             </div>
             <div
+              ref={dropdownRef}
               className={`w-full flex flex-col justify-center items-center gap-y-2 absolute bg-white h-1/4 rounded-sm transition-all duration-1000 ease-in-out -translate-x-2 translate-y-11 ${
                 isOpen ? "opacity-100 visible" : "opacity-0 invisible"
               }`}

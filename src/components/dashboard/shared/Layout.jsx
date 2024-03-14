@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Outlet } from "react-router-dom";
 import Sidebar from "./Sidebar";
 import { RxHamburgerMenu, RxCross1 } from "react-icons/rx";
@@ -6,9 +6,36 @@ import { RxHamburgerMenu, RxCross1 } from "react-icons/rx";
 function Layout({ setUser, screenWidth }) {
   const [isOpen, setIsOpen] = useState(false);
 
+  const dropdownRef = useRef(null);
+
   function toggleNavbar() {
     setIsOpen(!isOpen);
   }
+
+  useEffect(() => {
+    const handleClickOutsideDropdown = (event) => {
+      let targetElement = event.target;
+      let isInsideDropdown = false;
+
+      while (targetElement != null) {
+        if (targetElement === dropdownRef.current) {
+          isInsideDropdown = true;
+          break;
+        }
+        targetElement = targetElement.parentNode;
+      }
+
+      if (!isInsideDropdown) {
+        setIsOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutsideDropdown);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutsideDropdown);
+    };
+  }, []);
 
   /* Tailwind Class Styles */
   const pageStyles =
@@ -37,6 +64,7 @@ function Layout({ setUser, screenWidth }) {
       </div>
       <div className={`z-40 h-full ${screenWidth < 768 ? "" : "hidden"}`}>
         <div
+          ref={dropdownRef}
           className={`z-30 transition-all duration-700 ease-in-out ${
             isOpen && screenWidth < 768
               ? "opacity-100 visible"
