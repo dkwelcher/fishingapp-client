@@ -265,7 +265,12 @@ function Signup() {
           </div>
           <p className={loginLinkContainerStyles}>
             Already have an
-            <a className={loginLinkStyles} href="./login">
+            <a
+              className={loginLinkStyles}
+              onClick={() => {
+                handleNavigateToLogin();
+              }}
+            >
               account
             </a>
             ?

@@ -86,6 +86,10 @@ function Login({ setUser }) {
     navigate("/dashboard");
   }
 
+  function handleSignupEntry() {
+    navigate("/signup");
+  }
+
   /* Tailwind Class Styles */
   const pageStyles =
     "p-4 flex h-screen justify-center items-center font-paragraph font-normal text-sm lg:text-base text-slate-200 bg-slate-800";
@@ -158,7 +162,12 @@ function Login({ setUser }) {
         </div>
         <p className={signupLinkContainerStyles}>
           Need to create an
-          <a className={signupLinkStyles} href="/signup">
+          <a
+            className={signupLinkStyles}
+            onClick={() => {
+              handleSignupEntry();
+            }}
+          >
             account
           </a>
           ?
