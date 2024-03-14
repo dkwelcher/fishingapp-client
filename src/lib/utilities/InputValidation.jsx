@@ -288,7 +288,7 @@ export function handleEmailInputValidation(email) {
     return false;
   }
 
-  // Not a wholistic solution. Need another method of validating email.
+  // Basic email validation. Does not cover all edge cases.
   const validEmailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
   return validEmailRegex.test(email);
