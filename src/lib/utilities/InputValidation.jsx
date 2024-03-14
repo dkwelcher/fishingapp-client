@@ -59,13 +59,11 @@ function handleTimeInputValidation(timeString) {
     return false;
   }
 
-  const timeStringTrimmed = timeString.trim();
-
-  if (timeStringTrimmed === "") {
+  if (timeString === "") {
     return false;
   }
 
-  if (!/^\d{1,2}:\d{2}$/.test(timeStringTrimmed.trim())) {
+  if (!/^\d{1,2}:\d{2}$/.test(timeString)) {
     return false;
   }
 
@@ -79,11 +77,12 @@ function handleFishInputValidation(fishString) {
     return false;
   }
 
-  if (fishString.trim() === "") {
+  if (fishString === "") {
     return false;
   }
 
-  return fishString.length <= 50;
+  // Regex: letters & spaces only
+  return /^[a-zA-Z ]*$/.test(fishString) && fishString.length <= 50;
 }
 
 function handleBaitInputValidation(baitString) {
@@ -91,11 +90,12 @@ function handleBaitInputValidation(baitString) {
     return false;
   }
 
-  if (baitString.trim() === "") {
+  if (baitString === "") {
     return false;
   }
 
-  return baitString.length <= 50;
+  // Regex: letters & spaces only
+  return /^[a-zA-Z ]*$/.test(baitString) && baitString.length <= 50;
 }
 
 function handleLatitudeInputValidation(latitudeString) {
@@ -109,7 +109,12 @@ function handleLatitudeInputValidation(latitudeString) {
 
   const latitudeNumber = Number(latitudeString);
 
-  return latitudeNumber >= -90.0 && latitudeNumber <= 90.0;
+  // Regex: numbers, decimal, & negative sign only
+  return (
+    /^-?\d*(\.\d+)?$/.test(latitudeString) &&
+    latitudeNumber >= -90.0 &&
+    latitudeNumber <= 90.0
+  );
 }
 
 function handleLongitudeInputValidation(longitudeString) {
@@ -123,7 +128,12 @@ function handleLongitudeInputValidation(longitudeString) {
 
   const longitudeNumber = Number(longitudeString);
 
-  return longitudeNumber >= -180.0 && longitudeNumber <= 180.0;
+  // Regex: numbers, decimal, & negative sign only
+  return (
+    /^-?\d*(\.\d+)?$/.test(longitudeString) &&
+    longitudeNumber >= -180.0 &&
+    longitudeNumber <= 180.0
+  );
 }
 
 function handleWeatherInputValidation(weatherString) {
@@ -135,11 +145,8 @@ function handleWeatherInputValidation(weatherString) {
     return false;
   }
 
-  if (weatherString.trim() === "") {
-    return false;
-  }
-
-  return weatherString.length <= 25;
+  // Regex: letters & spaces only
+  return /^[a-zA-Z ]*$/.test(weatherString) && weatherString.length <= 25;
 }
 
 function handleAirTempInputValidation(airTempString) {
@@ -148,6 +155,11 @@ function handleAirTempInputValidation(airTempString) {
   }
 
   if (airTempString === "") {
+    return false;
+  }
+
+  // Numbers & negative sign only
+  if (!/^-?\d+$/.test(airTempString)) {
     return false;
   }
 
@@ -165,6 +177,11 @@ function handleWaterTempInputValidation(waterTempString) {
     return false;
   }
 
+  // Numbers & negative sign only
+  if (!/^-?\d+$/.test(waterTempString)) {
+    return false;
+  }
+
   const waterTempNumber = Number(waterTempString);
 
   return waterTempNumber >= -50 && waterTempNumber <= 150;
@@ -176,6 +193,11 @@ function handleWindSpeedInputValidation(windSpeedString) {
   }
 
   if (windSpeedString === "") {
+    return false;
+  }
+
+  // Numbers only
+  if (!/^\d+$/.test(windSpeedString)) {
     return false;
   }
 
