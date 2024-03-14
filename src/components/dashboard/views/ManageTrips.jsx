@@ -140,11 +140,8 @@ function ManageTrips({ user, screenWidth }) {
         setOpenSelectDateModal={setOpenSelectDateModal}
         trips={trips}
         setTrips={setTrips}
-        trip={trip}
         setTrip={setTrip}
         tripDate={tripDate}
-        setTripDate={setTripDate}
-        getTripDate={getTripDate}
         user={user}
       />
       <AddCatchModal
@@ -154,7 +151,6 @@ function ManageTrips({ user, screenWidth }) {
         trip={trip}
         tempCatch={tempCatch}
         setTempCatch={setTempCatch}
-        catches={catches}
         setCatches={setCatches}
       />
       <EditCatchModal
@@ -164,7 +160,6 @@ function ManageTrips({ user, screenWidth }) {
         trip={trip}
         tempCatch={tempCatch}
         setTempCatch={setTempCatch}
-        catches={catches}
         setCatches={setCatches}
       />
       <DeleteCatchModal
@@ -173,7 +168,6 @@ function ManageTrips({ user, screenWidth }) {
         user={user}
         tempCatch={tempCatch}
         setTempCatch={setTempCatch}
-        catches={catches}
         setCatches={setCatches}
       />
       <EditTripModal
@@ -181,7 +175,6 @@ function ManageTrips({ user, screenWidth }) {
         setOpenEditTripModal={setOpenEditTripModal}
         trip={trip}
         setTrip={setTrip}
-        trips={trips}
         setTrips={setTrips}
         tempTrip={tempTrip}
         setTempTrip={setTempTrip}
@@ -209,8 +202,6 @@ function ManageTrips({ user, screenWidth }) {
         {trip && trip.id && trip.location && trip.date ? (
           <TripCard
             trip={trip}
-            setTrip={setTrip}
-            tempTrip={tempTrip}
             setTempTrip={setTempTrip}
             catches={catches}
             setCatches={setCatches}
@@ -221,9 +212,7 @@ function ManageTrips({ user, screenWidth }) {
             setOpenEditCatchModal={setOpenEditCatchModal}
             openDeleteCatchModal={openDeleteCatchModal}
             setOpenDeleteCatchModal={setOpenDeleteCatchModal}
-            openEditTripModal={openEditTripModal}
             setOpenEditTripModal={setOpenEditTripModal}
-            openDeleteTripModal={openDeleteTripModal}
             setOpenDeleteTripModal={setOpenDeleteTripModal}
             screenWidth={screenWidth}
           />
