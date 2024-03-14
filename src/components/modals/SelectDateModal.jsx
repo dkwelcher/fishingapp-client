@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { handleTripInputValidation } from "../../lib/utilities/InputValidation";
 
 function SelectDateModal({
   openSelectDateModal,
@@ -11,9 +12,8 @@ function SelectDateModal({
 }) {
   if (!openSelectDateModal) return null;
 
-  const [postTripData, setPostTripData] = useState({});
-  const [tempTrip, setTempTrip] = useState({});
   const [location, setLocation] = useState();
+  const [errorMessage, setErrorMessage] = useState([]);
 
   function handleSelectTrip(dataKey) {
     const selectedTrip = trips[dataKey];
@@ -26,16 +26,24 @@ function SelectDateModal({
   }
 
   function handleAddTrip() {
-    const newTrip = {
-      date: tripDate,
-      bodyOfWater: location,
-      user: { id: user.id },
-    };
+    const sanitizedLocation = location.trim().replace(/\s+/g, " ");
+    setLocation(sanitizedLocation);
 
-    postNewTrip(newTrip);
+    const tempErrorMessage = getErrorMessage(sanitizedLocation);
+    if (!tempErrorMessage || tempErrorMessage.length === 0) {
+      const newTrip = {
+        date: tripDate,
+        bodyOfWater: sanitizedLocation,
+        user: { id: user.id },
+      };
 
-    if (newTrip) {
-      setOpenSelectDateModal(false);
+      postNewTrip(newTrip);
+
+      if (newTrip) {
+        setOpenSelectDateModal(false);
+      }
+    } else {
+      setErrorMessage(tempErrorMessage);
     }
   }
 
@@ -58,7 +66,6 @@ function SelectDateModal({
       }
 
       const result = await response.json();
-      console.log(result);
       const newTrip = {
         id: result.tripId,
         location: result.bodyOfWater,
@@ -67,10 +74,14 @@ function SelectDateModal({
       };
       setTrip(newTrip);
       setTrips([...trips, newTrip]);
-      console.log(newTrip);
     } catch (error) {
       console.log(error);
     }
+  }
+
+  function getErrorMessage(sanitizedLocation) {
+    const trip = { location: sanitizedLocation, date: tripDate };
+    return handleTripInputValidation(trip);
   }
 
   /* Tailwind Class Styles */
@@ -108,6 +119,7 @@ function SelectDateModal({
                 <input
                   className={inputStyles}
                   type="text"
+                  onKeyDown={(e) => preventDigitAndSpecialCharacters(e)}
                   onChange={(e) => {
                     setLocation(e.target.value);
                   }}
@@ -165,6 +177,13 @@ function SelectDateModal({
       </div>
     </div>
   );
+}
+
+function preventDigitAndSpecialCharacters(e) {
+  // Letters & spaces only
+  if (!/[a-zA-Z ]/.test(e.key)) {
+    e.preventDefault();
+  }
 }
 
 export default SelectDateModal;
