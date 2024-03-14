@@ -136,6 +136,16 @@ function SelectDateModal({
                 </button>
               </div>
             </div>
+            <div>
+              <p
+                className={`pb-2 text-red-600 text-center ${
+                  errorMessage.length > 0 ? "visible" : "hidden"
+                }`}
+              >
+                {errorMessage}
+                {"."}
+              </p>
+            </div>
           </div>
           <div className={existingTripContainerStyles}>
             <h2 className={tripTitleStyles}>Or Select an Existing Trip</h2>
