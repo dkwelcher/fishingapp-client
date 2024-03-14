@@ -147,7 +147,7 @@ function LandingPage() {
             </div>
             <div
               className={`w-full flex flex-col justify-center items-center gap-y-2 absolute bg-white h-1/4 rounded-sm transition-all duration-1000 ease-in-out -translate-x-2 translate-y-11 ${
-                isOpen ? "opacity-100 visible" : "opacity-0 hidden"
+                isOpen ? "opacity-100 visible" : "opacity-0 invisible"
               }`}
             >
               <a
