@@ -69,7 +69,7 @@ function handleTimeInputValidation(timeString) {
 
   const [hours, minutes] = timeString.split(":").map(Number);
 
-  return hours >= 0 && hours <= 24 && minutes >= 0 && minutes <= 59;
+  return hours >= 0 && hours <= 23 && minutes >= 0 && minutes <= 59;
 }
 
 function handleFishInputValidation(fishString) {
