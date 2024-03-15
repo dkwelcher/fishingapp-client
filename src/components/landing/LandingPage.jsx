@@ -98,9 +98,9 @@ function LandingPage() {
   const mainSectionsInfoContainerStyles =
     "p-4 rounded-sm sm:max-w-[600px] 2xl:p-8";
   const sectionTitleStyles =
-    "pb-4 text-2xl md:text-3xl lg:text-4xl 2xl:text-5xl";
+    "pb-4 text-2xl md:text-3xl lg:text-4xl 2xl:text-5x font-semibold";
   const sectionSpanStyles =
-    "text-blue-600 text-3xl font-semibold md:text-4xl lg:text-5xl lg:font-bold";
+    "text-blue-600 text-3xl font-bold md:text-4xl lg:text-5xl lg:font-bold";
   const sectionParagraphStyles =
     "text-slate-400 text-sm md:text-base lg:text-lg 2xl:text-xl";
 
