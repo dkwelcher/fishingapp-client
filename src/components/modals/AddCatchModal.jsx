@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import {
   handleCatchInputValidation,
   handleTimeInputValidation,
@@ -17,15 +17,11 @@ function AddCatchModal({
   setOpenAddCatchModal,
   user,
   trip,
-  tempCatch,
-  setTempCatch,
   setCatches,
 }) {
   if (!openAddCatchModal) return null;
 
-  useEffect(() => {
-    setTempCatch({ ...tempCatch, weather: "clear" });
-  }, []);
+  const [newCatch, setNewCatch] = useState({ weather: "clear" });
 
   const [timeErrorMessage, setTimeErrorMessage] = useState(false);
   const [fishErrorMessage, setFishErrorMessage] = useState(false);
@@ -109,32 +105,32 @@ function AddCatchModal({
   }
 
   function clearFormSubmissionErrorMessage() {
-    if (handleCatchInputValidation(tempCatch)) {
+    if (handleCatchInputValidation(newCatch)) {
       setFormSubmissionErrorMessage("");
     }
   }
 
   function sanitizeTempCatch() {
-    for (const key in tempCatch) {
-      if (typeof tempCatch[key] == "string") {
-        tempCatch[key] = tempCatch[key].trim().replace(/\s+/g, " ");
+    for (const key in newCatch) {
+      if (typeof newCatch[key] == "string") {
+        newCatch[key] = newCatch[key].trim().replace(/\s+/g, " ");
       }
     }
   }
 
   function handlesNewCatch() {
     sanitizeTempCatch();
-    if (handleCatchInputValidation(tempCatch)) {
+    if (handleCatchInputValidation(newCatch)) {
       const newCatchPost = {
-        time: `${tempCatch.time}:00`,
-        latitude: tempCatch.latitude,
-        longitude: tempCatch.longitude,
-        species: tempCatch.fish,
-        lureOrBait: tempCatch.bait,
-        weatherCondition: tempCatch.weather,
-        airTemperature: tempCatch.airTemp,
-        waterTemperature: tempCatch.waterTemp,
-        windSpeed: tempCatch.windSpeed,
+        time: `${newCatch.time}:00`,
+        latitude: newCatch.latitude,
+        longitude: newCatch.longitude,
+        species: newCatch.fish,
+        lureOrBait: newCatch.bait,
+        weatherCondition: newCatch.weather,
+        airTemperature: newCatch.airTemp,
+        waterTemperature: newCatch.waterTemp,
+        windSpeed: newCatch.windSpeed,
         trip: {
           tripId: trip.id,
           user: {
@@ -169,7 +165,7 @@ function AddCatchModal({
       }
 
       const result = await response.json();
-      const newCatch = {
+      const newCatchItem = {
         id: result.catchId,
         time: result.time.substring(0, 5),
         fish: result.species,
@@ -181,16 +177,16 @@ function AddCatchModal({
         waterTemp: result.waterTemperature,
         windSpeed: result.windSpeed,
       };
-      sortCatches(newCatch);
-      setTempCatch({});
+      sortCatches(newCatchItem);
+      setNewCatch({});
     } catch (error) {
       console.log(error);
     }
   }
 
-  function sortCatches(newCatch) {
+  function sortCatches(newCatchItem) {
     setCatches((currentCatches) => {
-      const updatedCatches = [...currentCatches, newCatch];
+      const updatedCatches = [...currentCatches, newCatchItem];
       return updatedCatches.sort((a, b) => {
         const [hoursA, minutesA] = a.time.split(":").map(Number);
         const [hoursB, minutesB] = b.time.split(":").map(Number);
@@ -239,7 +235,7 @@ function AddCatchModal({
                 className={inputStyles}
                 type="time"
                 onChange={(e) =>
-                  setTempCatch({ ...tempCatch, time: e.target.value })
+                  setNewCatch({ ...newCatch, time: e.target.value })
                 }
                 onBlur={(e) => handleTimeInput(e.target.value)}
               />
@@ -258,7 +254,7 @@ function AddCatchModal({
                 type="text"
                 onKeyDown={(e) => preventDigitAndSpecialCharacters(e)}
                 onChange={(e) =>
-                  setTempCatch({ ...tempCatch, fish: e.target.value })
+                  setNewCatch({ ...newCatch, fish: e.target.value })
                 }
                 onBlur={(e) => handleFishInput(e.target.value)}
               />
@@ -277,7 +273,7 @@ function AddCatchModal({
                 type="text"
                 onKeyDown={(e) => preventDigitAndSpecialCharacters(e)}
                 onChange={(e) =>
-                  setTempCatch({ ...tempCatch, bait: e.target.value })
+                  setNewCatch({ ...newCatch, bait: e.target.value })
                 }
                 onBlur={(e) => handleBaitInput(e.target.value)}
               />
@@ -295,7 +291,7 @@ function AddCatchModal({
                 className={inputStyles}
                 type="text"
                 onChange={(e) =>
-                  setTempCatch({ ...tempCatch, weather: e.target.value })
+                  setNewCatch({ ...newCatch, weather: e.target.value })
                 }
                 onBlur={(e) => handleWeatherInput(e.target.value)}
               >
@@ -319,7 +315,7 @@ function AddCatchModal({
                 type="number"
                 onKeyDown={(e) => preventPlus(e)}
                 onChange={(e) =>
-                  setTempCatch({ ...tempCatch, latitude: e.target.value })
+                  setNewCatch({ ...newCatch, latitude: e.target.value })
                 }
                 onBlur={(e) => handleLatitudeInput(e.target.value)}
               />
@@ -338,7 +334,7 @@ function AddCatchModal({
                 type="number"
                 onKeyDown={(e) => preventPlus(e)}
                 onChange={(e) =>
-                  setTempCatch({ ...tempCatch, longitude: e.target.value })
+                  setNewCatch({ ...newCatch, longitude: e.target.value })
                 }
                 onBlur={(e) => handleLongitudeInput(e.target.value)}
               />
@@ -357,7 +353,7 @@ function AddCatchModal({
                 type="number"
                 onKeyDown={(e) => preventDecimalAndPlus(e)}
                 onChange={(e) =>
-                  setTempCatch({ ...tempCatch, airTemp: e.target.value })
+                  setNewCatch({ ...newCatch, airTemp: e.target.value })
                 }
                 onBlur={(e) => handleAirTempInput(e.target.value)}
               />
@@ -376,7 +372,7 @@ function AddCatchModal({
                 type="number"
                 onKeyDown={(e) => preventDecimalAndPlus(e)}
                 onChange={(e) =>
-                  setTempCatch({ ...tempCatch, waterTemp: e.target.value })
+                  setNewCatch({ ...newCatch, waterTemp: e.target.value })
                 }
                 onBlur={(e) => handleWaterTempInput(e.target.value)}
               />
@@ -395,7 +391,7 @@ function AddCatchModal({
                 type="number"
                 onKeyDown={(e) => preventDecimalAndPlusAndMinus(e)}
                 onChange={(e) =>
-                  setTempCatch({ ...tempCatch, windSpeed: e.target.value })
+                  setNewCatch({ ...newCatch, windSpeed: e.target.value })
                 }
                 onBlur={(e) => handleWindSpeedInput(e.target.value)}
               />
@@ -424,7 +420,7 @@ function AddCatchModal({
               className={buttonStyles}
               onClick={() => {
                 setOpenAddCatchModal(false);
-                setTempCatch({});
+                setNewCatch({ weather: "clear" });
               }}
             >
               Cancel
