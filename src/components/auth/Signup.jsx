@@ -139,7 +139,8 @@ function Signup() {
   const logoNameStyles = "text-3xl md:text-4xl lg:text-5xl";
   const descriptionContainerStyles = "pb-8";
   const descriptionTitleStyles = "pb-2 font-title font-semibold text-lg";
-  const descriptionParagraphStyles = "text-slate-300";
+  const descriptionParagraphContainerStyles = "text-slate-300";
+  const descriptionParagraphStyles = "pb-2 last:pb-0";
   const formContainerStyles = "";
   const formStyles = "";
   const inputContainerStyles = "pb-2 flex flex-col";
@@ -168,11 +169,19 @@ function Signup() {
           </div>
           <div className={descriptionContainerStyles}>
             <h2 className={descriptionTitleStyles}>CREATE YOUR OWN ACCOUNT</h2>
-            <p className={descriptionParagraphStyles}>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor ad
-              nobis consectetur autem. Voluptate quo rerum praesentium tempora.
-              Maiores corrupti aliquam blanditiis iste numquam harum.
-            </p>
+            <div className={descriptionParagraphContainerStyles}>
+              <p className={descriptionParagraphStyles}>
+                Username can contain letters & digits, but no spaces or special
+                characters.
+              </p>
+              <p className={descriptionParagraphStyles}>
+                Email must be a valid email address.
+              </p>
+              <p className={descriptionParagraphStyles}>
+                Password must contain at least one letter, one digit, & one
+                special character.
+              </p>
+            </div>
           </div>
         </div>
         <div className={formContainerStyles}>

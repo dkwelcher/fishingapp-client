@@ -268,9 +268,7 @@ function ManageTrips({ user, screenWidth }) {
           getTripDate={getTripDate}
           backgroundImage="bg-managetrips-image"
           title="Manage Your Fishing Trips"
-          description="Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sint tempora
-            doloremque dolore nam, laborum maiores cupiditate inventore natus
-            provident odit ipsum est, necessitatibus deleniti amet."
+          description="Create & manage your fishing trips. Select a date & add a new trip or select an existing one. Then create & manage catches made on your fishing trip. Catch records consist of relevant data such as fish caught, geographic coordinates, and weather conditions."
         />
         {trip && trip.id && trip.location && trip.date ? (
           <TripCard

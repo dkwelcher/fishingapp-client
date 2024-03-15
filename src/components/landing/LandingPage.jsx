@@ -225,11 +225,14 @@ function LandingPage() {
               What is <span className={sectionSpanStyles}>Fishing App?</span>
             </h2>
             <p className={sectionParagraphStyles}>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam
-              pariatur excepturi aliquam harum cum consectetur blanditiis
-              accusamus dolorum, voluptas tempore nesciunt veritatis delectus
-              nihil sunt sapiente ad. Ab officia ex natus nostrum placeat et,
-              cum rem eligendi iusto debitis dolores.
+              Fishing App's mission is to improve your fishing journeys by
+              providing you with your own secure, personal database. Within the
+              dashboard, you can create and manage your fishing trip history and
+              record your catching successes. The upcoming feature, Trip
+              Planner, will take your personal catch data and the forecasted
+              weather to provide optimal fishing locations and strategies to
+              enhance your fishing experience. Fishing App is your ultimate
+              companion for catching more fish.
             </p>
           </div>
         </div>
@@ -243,15 +246,14 @@ function LandingPage() {
               />
             </div>
             <div className={mainSectionsInfoContainerStyles}>
-              <h2 className={sectionTitleStyles}>
-                Lorem ipsum dolor sit amet.
-              </h2>
+              <h2 className={sectionTitleStyles}>Fishing Trip Planner</h2>
               <p className={sectionParagraphStyles}>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores
-                quo optio ad excepturi tenetur vitae dolorum voluptate fugiat
-                quis iusto quas quibusdam accusamus velit ab, minima, dolorem
-                quod maiores. Neque ad eos cumque est ipsam fugit quidem nam
-                vero veritatis.
+                This upcoming feature will help you catch more fish. Just select
+                the date of your planned fishing trip, and the Fishing Trip
+                Planner will do the rest. By combining your fishing trip history
+                and the forecasted weather on the day of the planned trip, the
+                Fishing Trip Planner algorithm will give you fishing
+                recommendations and strategies to catch more fish.
               </p>
             </div>
           </div>
@@ -264,15 +266,12 @@ function LandingPage() {
               />
             </div>
             <div className={mainSectionsInfoContainerStyles}>
-              <h2 className={sectionTitleStyles}>
-                Lorem ipsum dolor sit amet.
-              </h2>
+              <h2 className={sectionTitleStyles}>Auto-Generated Input</h2>
               <p className={sectionParagraphStyles}>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores
-                quo optio ad excepturi tenetur vitae dolorum voluptate fugiat
-                quis iusto quas quibusdam accusamus velit ab, minima, dolorem
-                quod maiores. Neque ad eos cumque est ipsam fugit quidem nam
-                vero veritatis.
+                This upcoming feature will make your fishing trips more
+                efficient. All time-, geographic-, & weather-related data will
+                be automatically generated for you, leaving more time for
+                catching your limit.
               </p>
             </div>
           </div>
