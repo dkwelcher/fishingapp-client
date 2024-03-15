@@ -26,6 +26,83 @@ function ManageTrips({ user, screenWidth }) {
     setTripDate(tripDate);
   }
 
+  const [tripsLastSixMonths, setTripsLastSixMonths] = useState([
+    {
+      month: {
+        trip: {
+          id: 11,
+          location: "Lake Murray",
+          date: "2024-01-01",
+        },
+        trip: {
+          id: 12,
+          location: "Clarks Hill",
+          date: "2024-01-02",
+        },
+      },
+      month: {
+        trip: {
+          id: 21,
+          location: "Lake Hartwell",
+          date: "2024-02-11",
+        },
+        trip: {
+          id: 22,
+          location: "Lake Marion",
+          date: "2024-02-22",
+        },
+      },
+      month: {
+        trip: {
+          id: 31,
+          location: "Lake Wateree",
+          date: "2024-03-01",
+        },
+        trip: {
+          id: 32,
+          location: "Clarks Hill",
+          date: "2024-03-02",
+        },
+      },
+      month: {
+        trip: {
+          id: 41,
+          location: "Lake Murray",
+          date: "2024-04-11",
+        },
+        trip: {
+          id: 42,
+          location: "Lake Hartwell",
+          date: "2024-04-12",
+        },
+      },
+      month: {
+        trip: {
+          id: 51,
+          location: "Lake Marion",
+          date: "2024-05-01",
+        },
+        trip: {
+          id: 52,
+          location: "Lake Wateree",
+          date: "2024-05-02",
+        },
+      },
+      month: {
+        trip: {
+          id: 61,
+          location: "Lake Murray",
+          date: "2024-06-11",
+        },
+        trip: {
+          id: 62,
+          location: "Clarks Hill",
+          date: "2024-06-12",
+        },
+      },
+    },
+  ]);
+
   const [trips, setTrips] = useState([]);
 
   const [trip, setTrip] = useState({});
@@ -64,7 +141,7 @@ function ManageTrips({ user, screenWidth }) {
     };
 
     fetchTrips();
-  }, [tripDate, user.id, trips]);
+  }, [tripDate, user.id]);
 
   const [fetchCatchesError, setFetchCatchesError] = useState();
 
