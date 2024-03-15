@@ -299,16 +299,16 @@ function ManageTrips({ user, screenWidth }) {
                 {Object.entries(tripsLastSixMonths).map(
                   ([monthYear, trips]) => (
                     <div className="p-2 m-2 bg-gradient-to-br from-slate-600 to-slate-700 rounded-sm">
-                      <h2 className="mb-2 font-title text-slate-200 border border-0 border-b-2">
+                      <h2 className="mb-2 font-title text-slate-200 border border-0 border-b-2 2xl:text-lg">
                         {monthYear}
                       </h2>
                       {trips.map((trip) => (
                         <p
-                          className="pb-0.5 last:pb-0 font-paragraph text-sm"
+                          className="pb-0.5 last:pb-0 font-paragraph text-sm 2xl:text-base"
                           key={trip.tripId}
                         >
                           <a
-                            className="text-slate-300 cursor-pointer hover:no-underline"
+                            className="text-slate-300 cursor-pointer hover:no-underline hover:text-slate-50 active:text-slate-50"
                             data-key={trip.tripId}
                             onClick={(e) => {
                               const dataKey =

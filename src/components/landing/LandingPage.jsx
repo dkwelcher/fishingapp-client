@@ -76,13 +76,13 @@ function LandingPage() {
   const headerLinkHamburgerStyles =
     "hover:no-underline text-slate-800 text-lg hover:text-slate-700";
   const headerLinkStyles =
-    "py-2 px-4 hover:no-underline text-slate-500 text-lg rounded-lg hover:bg-slate-500 hover:text-slate-200 lg:text-2xl";
+    "py-2 px-4 hover:no-underline text-slate-500 text-lg rounded-lg hover:bg-slate-500 hover:text-slate-200 active:bg-slate-500 active:text-slate-200 lg:text-2xl";
   const heroContentContainerStyles =
     "p-2 flex flex-col justify-center items-center gap-y-2 h-4/5 md:gap-y-4";
   const heroTitleStyles =
     "text-center font-bold text-5xl leading-normal text-shadow md:text-6xl lg:w-3/6 lg:text-7xl xl:text-8xl";
   const heroGetStartedLinkStyles =
-    "px-6 py-4 border border-solid border-slate-200 rounded-xl text-2xl text-slate-200 bg-transparent-shadow cursor-pointer hover:no-underline hover:bg-slate-600 lg:text-3xl 2xl:text-4xl";
+    "px-6 py-4 border border-solid border-slate-200 rounded-xl text-2xl text-slate-200 bg-transparent-shadow cursor-pointer hover:no-underline hover:bg-slate-600 active:no-underline active:bg-slate-600 lg:text-3xl 2xl:text-4xl";
 
   /* Main Content */
   const mainContainerStyles =
@@ -112,7 +112,7 @@ function LandingPage() {
   const calloutTitleStyles =
     "pb-8 text-center text-3xl text-white text-shadow leading-normal font-bold md:w-5/6 md:text-4xl lg:w-7/12 lg:text-6xl xl:text-7xl";
   const calloutLinkStyles =
-    "px-4 py-4 border-4 border-solid border-white rounded-2xl text-4xl font-medium text-white text-shadow bg-transparent-shadow cursor-pointer hover:no-underline hover:bg-slate-700 lg:text-6xl";
+    "px-4 py-4 border-4 border-solid border-white rounded-2xl text-4xl font-medium text-white text-shadow bg-transparent-shadow cursor-pointer hover:no-underline hover:bg-slate-700 active:no-underline active:bg-slate-700 lg:text-6xl";
 
   /* Footer */
   const footerContainerStyles =
