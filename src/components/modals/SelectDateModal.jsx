@@ -66,6 +66,11 @@ function SelectDateModal({
     const POST_TRIP = `http://localhost:8080/trips?userId=${user.id}`;
     const token = localStorage.getItem("authToken");
 
+    const tempId = Date.now();
+    const tripWithTempId = { ...newTripData, id: tempId };
+
+    setTrips([...trips, tripWithTempId]);
+
     try {
       const response = await fetch(POST_TRIP, {
         method: "POST",
@@ -88,9 +93,16 @@ function SelectDateModal({
         user: { id: result.id },
       };
       setTrip(newTrip);
-      setTrips([...trips, newTrip]);
+      setTrips((currentTrips) =>
+        currentTrips.map((tripItem) =>
+          tripItem.id === tempId ? result : tripItem
+        )
+      );
     } catch (error) {
       console.log(error);
+      setTrips((currentTrips) =>
+        currentTrips.filter((tripItem) => tripItem.id !== tempId)
+      );
     }
   }
 
