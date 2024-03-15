@@ -54,7 +54,7 @@ export function handleTripInputValidation(trip) {
 }
 
 /* Helper Catch Input Validation Functions */
-function handleTimeInputValidation(timeString) {
+export function handleTimeInputValidation(timeString) {
   if (timeString === null || timeString === undefined) {
     return false;
   }
@@ -72,7 +72,7 @@ function handleTimeInputValidation(timeString) {
   return hours >= 0 && hours <= 23 && minutes >= 0 && minutes <= 59;
 }
 
-function handleFishInputValidation(fishString) {
+export function handleFishInputValidation(fishString) {
   if (fishString === null || fishString === undefined) {
     return false;
   }
@@ -85,7 +85,7 @@ function handleFishInputValidation(fishString) {
   return /^[a-zA-Z ]*$/.test(fishString) && fishString.length <= 50;
 }
 
-function handleBaitInputValidation(baitString) {
+export function handleBaitInputValidation(baitString) {
   if (baitString === null || baitString === undefined) {
     return false;
   }
@@ -98,7 +98,7 @@ function handleBaitInputValidation(baitString) {
   return /^[a-zA-Z ]*$/.test(baitString) && baitString.length <= 50;
 }
 
-function handleLatitudeInputValidation(latitudeString) {
+export function handleLatitudeInputValidation(latitudeString) {
   if (latitudeString === null || latitudeString === undefined) {
     return false;
   }
@@ -117,7 +117,7 @@ function handleLatitudeInputValidation(latitudeString) {
   );
 }
 
-function handleLongitudeInputValidation(longitudeString) {
+export function handleLongitudeInputValidation(longitudeString) {
   if (longitudeString === null || longitudeString === undefined) {
     return false;
   }
@@ -136,7 +136,7 @@ function handleLongitudeInputValidation(longitudeString) {
   );
 }
 
-function handleWeatherInputValidation(weatherString) {
+export function handleWeatherInputValidation(weatherString) {
   if (weatherString === null || weatherString === undefined) {
     return false;
   }
@@ -149,7 +149,7 @@ function handleWeatherInputValidation(weatherString) {
   return /^[a-zA-Z ]*$/.test(weatherString) && weatherString.length <= 25;
 }
 
-function handleAirTempInputValidation(airTempString) {
+export function handleAirTempInputValidation(airTempString) {
   if (airTempString === null || airTempString === undefined) {
     return false;
   }
@@ -168,7 +168,7 @@ function handleAirTempInputValidation(airTempString) {
   return airTempNumber >= -50 && airTempNumber <= 150;
 }
 
-function handleWaterTempInputValidation(waterTempString) {
+export function handleWaterTempInputValidation(waterTempString) {
   if (waterTempString === null || waterTempString === undefined) {
     return false;
   }
@@ -187,7 +187,7 @@ function handleWaterTempInputValidation(waterTempString) {
   return waterTempNumber >= -50 && waterTempNumber <= 150;
 }
 
-function handleWindSpeedInputValidation(windSpeedString) {
+export function handleWindSpeedInputValidation(windSpeedString) {
   if (windSpeedString === null || windSpeedString === undefined) {
     return false;
   }
