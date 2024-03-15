@@ -26,82 +26,7 @@ function ManageTrips({ user, screenWidth }) {
     setTripDate(tripDate);
   }
 
-  const [tripsLastSixMonths, setTripsLastSixMonths] = useState([
-    {
-      month: {
-        trip: {
-          id: 11,
-          location: "Lake Murray",
-          date: "2024-01-01",
-        },
-        trip: {
-          id: 12,
-          location: "Clarks Hill",
-          date: "2024-01-02",
-        },
-      },
-      month: {
-        trip: {
-          id: 21,
-          location: "Lake Hartwell",
-          date: "2024-02-11",
-        },
-        trip: {
-          id: 22,
-          location: "Lake Marion",
-          date: "2024-02-22",
-        },
-      },
-      month: {
-        trip: {
-          id: 31,
-          location: "Lake Wateree",
-          date: "2024-03-01",
-        },
-        trip: {
-          id: 32,
-          location: "Clarks Hill",
-          date: "2024-03-02",
-        },
-      },
-      month: {
-        trip: {
-          id: 41,
-          location: "Lake Murray",
-          date: "2024-04-11",
-        },
-        trip: {
-          id: 42,
-          location: "Lake Hartwell",
-          date: "2024-04-12",
-        },
-      },
-      month: {
-        trip: {
-          id: 51,
-          location: "Lake Marion",
-          date: "2024-05-01",
-        },
-        trip: {
-          id: 52,
-          location: "Lake Wateree",
-          date: "2024-05-02",
-        },
-      },
-      month: {
-        trip: {
-          id: 61,
-          location: "Lake Murray",
-          date: "2024-06-11",
-        },
-        trip: {
-          id: 62,
-          location: "Clarks Hill",
-          date: "2024-06-12",
-        },
-      },
-    },
-  ]);
+  const [tripsLastSixMonths, setTripsLastSixMonths] = useState([]);
 
   const [trips, setTrips] = useState([]);
 
@@ -197,6 +122,77 @@ function ManageTrips({ user, screenWidth }) {
         return totalMinutesA - totalMinutesB;
       });
     });
+  }
+
+  useEffect(() => {
+    const fetchTripsLastSixMonths = async () => {
+      if (!user.id) return;
+
+      const GET_TRIPS_BY_USER_ID = `http://localhost:8080/trips/sixMonths?userId=${user.id}`;
+      const token = localStorage.getItem("authToken");
+
+      try {
+        const response = await fetch(GET_TRIPS_BY_USER_ID, {
+          method: "GET",
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
+        });
+        const tripsObjects = await response.json();
+
+        tripsObjects.sort((a, b) => new Date(b.date) - new Date(a.date));
+        const groupedTrips = tripsObjects.reduce((acc, trip) => {
+          const [year, month, day] = trip.date
+            .split("-")
+            .map((num) => parseInt(num, 10));
+          const date = new Date(year, month - 1, day);
+          const monthYear = date.toLocaleString("default", {
+            month: "long",
+            year: "numeric",
+          });
+
+          if (!acc[monthYear]) {
+            acc[monthYear] = [];
+          }
+
+          const formattedDate = `${String(month).padStart(2, "0")}/${String(
+            day
+          ).padStart(2, "0")}`;
+          acc[monthYear].push({ ...trip, formattedDate });
+
+          return acc;
+        }, {});
+
+        setTripsLastSixMonths(groupedTrips);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    fetchTripsLastSixMonths();
+  }, [trip]);
+
+  function handleRecentTrip(dataKey) {
+    const selectedTrip = getTripByTripId(dataKey);
+    const updatedTripObject = {
+      id: selectedTrip.tripId,
+      location: selectedTrip.bodyOfWater,
+      date: selectedTrip.date,
+    };
+    setTrip(updatedTripObject);
+  }
+
+  function getTripByTripId(dataKey) {
+    for (let month in tripsLastSixMonths) {
+      if (tripsLastSixMonths.hasOwnProperty(month)) {
+        for (let trip of tripsLastSixMonths[month]) {
+          if (Number(trip.tripId) === Number(dataKey)) {
+            return trip;
+          }
+        }
+      }
+    }
   }
 
   /* Tailwind Class Styles */
@@ -295,6 +291,40 @@ function ManageTrips({ user, screenWidth }) {
           />
         ) : (
           <div className={idleContainerStyles}>
+            <div className="mb-10">
+              <h2 className="pl-2 font-title font-semibold text-slate-800 text-lg">
+                Last Six Months:
+              </h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 min-[1800px]:grid-cols-4">
+                {Object.entries(tripsLastSixMonths).map(
+                  ([monthYear, trips]) => (
+                    <div className="p-2 m-2 bg-gradient-to-br from-slate-600 to-slate-700 rounded-sm">
+                      <h2 className="mb-2 font-title text-slate-200 border border-0 border-b-2">
+                        {monthYear}
+                      </h2>
+                      {trips.map((trip) => (
+                        <p
+                          className="pb-0.5 last:pb-0 font-paragraph text-sm"
+                          key={trip.tripId}
+                        >
+                          <a
+                            className="text-slate-300 cursor-pointer hover:no-underline"
+                            data-key={trip.tripId}
+                            onClick={(e) => {
+                              const dataKey =
+                                e.currentTarget.getAttribute("data-key");
+                              handleRecentTrip(dataKey);
+                            }}
+                          >
+                            {trip.bodyOfWater}, {trip.formattedDate}
+                          </a>
+                        </p>
+                      ))}
+                    </div>
+                  )
+                )}
+              </div>
+            </div>
             <div className={idleLogoContainerStyles}>
               <img
                 className={idleLogoImageStyles}
