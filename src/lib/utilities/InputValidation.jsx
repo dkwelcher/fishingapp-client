@@ -15,15 +15,10 @@ export function handleCatchInputValidation(catchItem) {
 
 /* Main Trip Input Validation Function */
 export function handleTripInputValidation(trip) {
-  const errors = [];
-
-  const isLocationInputValid = handleLocationInputValidation(trip.location);
-  if (!isLocationInputValid) errors.push("Location is not valid");
-
-  const isDateInputValid = handleDateInputValidation(trip.date);
-  if (!isDateInputValid) errors.push("Date is not valid");
-
-  return errors;
+  return (
+    handleLocationInputValidation(trip.location) &&
+    handleDateInputValidation(trip.date)
+  );
 }
 
 /* Helper Catch Input Validation Functions */
@@ -180,7 +175,7 @@ export function handleWindSpeedInputValidation(windSpeedString) {
 }
 
 /* Helper Trip Input Functions */
-function handleLocationInputValidation(location) {
+export function handleLocationInputValidation(location) {
   if (location === null || location === undefined) {
     return false;
   }
@@ -192,7 +187,7 @@ function handleLocationInputValidation(location) {
   return /^[a-zA-Z ]*$/.test(location) && location.length <= 50;
 }
 
-function handleDateInputValidation(date) {
+export function handleDateInputValidation(date) {
   if (date === null || date === undefined) {
     return false;
   }
