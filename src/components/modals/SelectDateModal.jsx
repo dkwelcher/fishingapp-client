@@ -1,5 +1,8 @@
 import { useState } from "react";
-import { handleTripInputValidation } from "../../lib/utilities/InputValidation";
+import {
+  handleTripInputValidation,
+  handleLocationInputValidation,
+} from "../../lib/utilities/InputValidation";
 
 function SelectDateModal({
   openSelectDateModal,
@@ -13,7 +16,15 @@ function SelectDateModal({
   if (!openSelectDateModal) return null;
 
   const [location, setLocation] = useState();
-  const [errorMessage, setErrorMessage] = useState([]);
+
+  const [locationErrorMessage, setLocationErrorMessage] = useState(false);
+
+  function handleLocationInput(currentLocation) {
+    const isValid = handleLocationInputValidation(currentLocation);
+    isValid
+      ? setLocationErrorMessage("")
+      : setLocationErrorMessage("Location is invalid");
+  }
 
   function handleSelectTrip(dataKey) {
     const selectedTrip = trips[dataKey];
@@ -26,14 +37,18 @@ function SelectDateModal({
   }
 
   function handleAddTrip() {
-    const sanitizedLocation = location.trim().replace(/\s+/g, " ");
-    setLocation(sanitizedLocation);
+    if (location === null || location === undefined || location === "") {
+      setLocationErrorMessage("Location is invalid");
+      return;
+    } else {
+      const sanitizedLocation = location.trim().replace(/\s+/g, " ");
+      setLocation(sanitizedLocation);
+    }
 
-    const tempErrorMessage = getErrorMessage(sanitizedLocation);
-    if (!tempErrorMessage || tempErrorMessage.length === 0) {
+    if (handleTripInputValidation({ location: location, date: tripDate })) {
       const newTrip = {
         date: tripDate,
-        bodyOfWater: sanitizedLocation,
+        bodyOfWater: location,
         user: { id: user.id },
       };
 
@@ -43,7 +58,7 @@ function SelectDateModal({
         setOpenSelectDateModal(false);
       }
     } else {
-      setErrorMessage(tempErrorMessage);
+      setLocationErrorMessage("Location is invalid");
     }
   }
 
@@ -79,11 +94,6 @@ function SelectDateModal({
     }
   }
 
-  function getErrorMessage(sanitizedLocation) {
-    const trip = { location: sanitizedLocation, date: tripDate };
-    return handleTripInputValidation(trip);
-  }
-
   /* Tailwind Class Styles */
   const modalContainerStyles =
     "w-full h-screen fixed flex justify-center items-center bg-transparent-shadow text-slate-800 z-50";
@@ -96,6 +106,7 @@ function SelectDateModal({
   const userActionSubContainerStyles = "mb-4 flex justify-between items-end";
   const inputStyles =
     "mr-2 py-1 bg-slate-50 border border-solid border-slate-400 rounded-sm focus:bg-slate-200 focus:text-slate-900 shadow-sm shadow-slate-600 outline-none";
+  const inputErrorMessageStyles = "text-red-600";
   const buttonStyles =
     "bg-slate-800 text-slate-200 px-6 py-2 rounded-sm shadow-md shadow-slate-600 hover:bg-slate-700";
   const existingTripContainerStyles = "pb-4";
@@ -123,6 +134,7 @@ function SelectDateModal({
                   onChange={(e) => {
                     setLocation(e.target.value);
                   }}
+                  onBlur={(e) => handleLocationInput(e.target.value)}
                 />
               </div>
               <div>
@@ -139,10 +151,10 @@ function SelectDateModal({
             <div>
               <p
                 className={`pb-2 text-red-600 text-center ${
-                  errorMessage.length > 0 ? "visible" : "hidden"
+                  locationErrorMessage.length > 0 ? "visible" : "hidden"
                 }`}
               >
-                {errorMessage}
+                {locationErrorMessage}
                 {"."}
               </p>
             </div>

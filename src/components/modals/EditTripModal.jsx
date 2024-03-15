@@ -1,5 +1,9 @@
 import { useState } from "react";
-import { handleTripInputValidation } from "../../lib/utilities/InputValidation";
+import {
+  handleTripInputValidation,
+  handleLocationInputValidation,
+  handleDateInputValidation,
+} from "../../lib/utilities/InputValidation";
 import DatePicker from "react-datepicker";
 
 function EditTripModal({
@@ -15,18 +19,53 @@ function EditTripModal({
 }) {
   if (!openEditTripModal) return null;
 
-  const [errorMessage, setErrorMessage] = useState([]);
+  const [locationErrorMessage, setLocationErrorMessage] = useState(false);
+  const [dateErrorMessage, setDateErrorMessage] = useState(false);
+  const [formSubmissionErrorMessage, setFormSubmissionErrorMessage] =
+    useState(false);
+
+  function handleLocationInput(currentLocation) {
+    const isValid = handleLocationInputValidation(currentLocation);
+    isValid ? setLocationErrorMessage("") : setLocationErrorMessage("Invalid");
+    sanitizeTempTrip();
+    clearFormSubmissionErrorMessage();
+  }
+
+  function handleDateInput(currentDate) {
+    const isValid = handleDateInputValidation(currentDate);
+    isValid ? setDateErrorMessage("") : setDateErrorMessage("Invalid");
+    sanitizeTempTrip();
+    clearFormSubmissionErrorMessage();
+  }
+
+  function sanitizeTempTrip() {
+    for (const key in tempTrip) {
+      if (typeof tempTrip[key] == "string") {
+        tempTrip[key] = tempTrip[key].trim().replace(/\s+/g, " ");
+      }
+    }
+  }
+
+  function clearFormSubmissionErrorMessage() {
+    if (handleTripInputValidation(tempTrip)) {
+      setFormSubmissionErrorMessage("");
+    }
+  }
 
   function handleEditTrip() {
     sanitizeTempTrip();
     const formattedDate = handleDateFormatting(editDate);
-    const tempErrorMessage = getErrorMessage(formattedDate);
-    if (!tempErrorMessage || tempErrorMessage.length === 0) {
+    if (
+      handleTripInputValidation({
+        location: tempTrip.location,
+        date: formattedDate,
+      })
+    ) {
       const updatedTrip = { ...tempTrip, date: formattedDate };
       editTrip(updatedTrip);
       setOpenEditTripModal(false);
     } else {
-      setErrorMessage(tempErrorMessage);
+      setFormSubmissionErrorMessage("One or more inputs are invalid");
     }
   }
 
@@ -74,22 +113,8 @@ function EditTripModal({
       setTempTrip({});
       setTripDate(); // triggers useEffect for fetching trips in ManageTrips component
       setOpenEditTripModal(false);
-      setErrorMessage([]);
     } catch (error) {
       console.log(error);
-    }
-  }
-
-  function getErrorMessage(formattedDate) {
-    const sanitizedTrip = { location: tempTrip.location, date: formattedDate };
-    return handleTripInputValidation(sanitizedTrip);
-  }
-
-  function sanitizeTempTrip() {
-    for (const key in tempTrip) {
-      if (typeof tempTrip[key] == "string") {
-        tempTrip[key] = tempTrip[key].trim().replace(/\s+/g, " ");
-      }
     }
   }
 
@@ -124,6 +149,7 @@ function EditTripModal({
   const datePickerContainerStyles = "";
   const inputStyles =
     "mb-4 px-2 py-1 bg-slate-50 border border-solid border-slate-400 rounded-sm shadow-sm shadow-slate-600  focus:bg-slate-200 focus:text-slate-900 outline-none";
+  const inputErrorMessageStyles = "text-red-600";
   const buttonContainerStyles = "flex justify-center items-center gap-x-4";
   const buttonStyles =
     "bg-slate-800 text-slate-200 px-6 py-2 rounded-sm shadow-md shadow-slate-600 hover:bg-slate-700";
@@ -136,7 +162,14 @@ function EditTripModal({
           <h2 className={formTitleStyles}>Edit Current Trip</h2>
           <form action="">
             <div className={inputContainerStyles}>
-              <label htmlFor="">Location:</label>
+              <label htmlFor="">
+                Location:{" "}
+                {
+                  <span className={inputErrorMessageStyles}>
+                    {locationErrorMessage}
+                  </span>
+                }
+              </label>
               <input
                 className={inputStyles}
                 type="text"
@@ -145,30 +178,36 @@ function EditTripModal({
                 onChange={(e) =>
                   setTempTrip({ ...tempTrip, location: e.target.value })
                 }
+                onBlur={(e) => handleLocationInput(e.target.value)}
               />
-              <label htmlFor="">Date</label>
+              <label htmlFor="">
+                Date:{" "}
+                {
+                  <span className={inputErrorMessageStyles}>
+                    {dateErrorMessage}
+                  </span>
+                }
+              </label>
               <div className={datePickerContainerStyles}>
                 <DatePicker
                   className={inputStyles}
                   showIcon
                   selected={editDate}
                   onChange={(date) => setEditDate(date)}
+                  onBlur={(e) => handleDateInput(e.target.value)}
                 />
               </div>
             </div>
           </form>
-          <div
-            className={`py-4 grid ${
-              errorMessage.length >= 3
-                ? "grid-cols-3"
-                : errorMessage.length == 2
-                ? "grid-cols-2"
-                : "grid-cols-1"
-            } gap-y-0.5 text-center text-red-500 font-bold`}
-          >
-            {errorMessage.map((line, index) => (
-              <p key={index}>{line}</p>
-            ))}
+          <div>
+            <p
+              className={`pb-2 text-red-600 text-center ${
+                formSubmissionErrorMessage.length > 0 ? "visible" : "hidden"
+              }`}
+            >
+              {formSubmissionErrorMessage}
+              {"."}
+            </p>
           </div>
           <div className={buttonContainerStyles}>
             <button
@@ -184,7 +223,6 @@ function EditTripModal({
               onClick={() => {
                 setOpenEditTripModal(false);
                 setTempTrip({});
-                setErrorMessage([]);
               }}
             >
               Cancel
