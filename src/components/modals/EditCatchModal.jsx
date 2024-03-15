@@ -439,7 +439,6 @@ function EditCatchModal({
               onClick={() => {
                 setOpenEditCatchModal(false);
                 setTempCatch({});
-                setErrorMessage([]);
               }}
             >
               Cancel
