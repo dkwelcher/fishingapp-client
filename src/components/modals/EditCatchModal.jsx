@@ -32,9 +32,8 @@ function EditCatchModal({
   const [airTempErrorMessage, setAirTempErrorMessage] = useState(false);
   const [waterTempErrorMessage, setWaterTempErrorMessage] = useState(false);
   const [windSpeedErrorMessage, setWindSpeedErrorMessage] = useState(false);
-  const [formSubmissionErrorMessage, setFormSubmissionErrorMessage] = useState(
-    []
-  );
+  const [formSubmissionErrorMessage, setFormSubmissionErrorMessage] =
+    useState(false);
 
   function handleTimeInput(currentTime) {
     const isValid = handleTimeInputValidation(currentTime);
