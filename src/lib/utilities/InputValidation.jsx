@@ -1,43 +1,16 @@
 /* Main Catch Input Validation function */
 export function handleCatchInputValidation(catchItem) {
-  const errors = [];
-
-  const isTimeInputValid = handleTimeInputValidation(catchItem.time);
-  if (!isTimeInputValid) errors.push("Time is not valid");
-
-  const isFishInputValid = handleFishInputValidation(catchItem.fish);
-  if (!isFishInputValid) errors.push("Fish is not valid");
-
-  const isBaitInputValid = handleBaitInputValidation(catchItem.bait);
-  if (!isBaitInputValid) errors.push("Bait is not valid");
-
-  const isLatitudeInputValid = handleLatitudeInputValidation(
-    catchItem.latitude
+  return (
+    handleTimeInputValidation(catchItem.time) &&
+    handleFishInputValidation(catchItem.fish) &&
+    handleBaitInputValidation(catchItem.bait) &&
+    handleLatitudeInputValidation(catchItem.latitude) &&
+    handleLongitudeInputValidation(catchItem.longitude) &&
+    handleWeatherInputValidation(catchItem.weather) &&
+    handleAirTempInputValidation(catchItem.airTemp) &&
+    handleWaterTempInputValidation(catchItem.waterTemp) &&
+    handleWindSpeedInputValidation(catchItem.windSpeed)
   );
-  if (!isLatitudeInputValid) errors.push("Latitude is not valid");
-
-  const isLongitudeInputValid = handleLongitudeInputValidation(
-    catchItem.longitude
-  );
-  if (!isLongitudeInputValid) errors.push("Longitude is not valid");
-
-  const isWeatherInputValid = handleWeatherInputValidation(catchItem.weather);
-  if (!isWeatherInputValid) errors.push("Weather is not valid");
-
-  const isAirTempInputValid = handleAirTempInputValidation(catchItem.airTemp);
-  if (!isAirTempInputValid) errors.push("Air Temp is not valid");
-
-  const isWaterTempInputValid = handleWaterTempInputValidation(
-    catchItem.waterTemp
-  );
-  if (!isWaterTempInputValid) errors.push("Water Temp is not valid");
-
-  const isWindSpeedInputValid = handleWindSpeedInputValidation(
-    catchItem.windSpeed
-  );
-  if (!isWindSpeedInputValid) errors.push("Wind Speed is not valid");
-
-  return errors;
 }
 
 /* Main Trip Input Validation Function */
