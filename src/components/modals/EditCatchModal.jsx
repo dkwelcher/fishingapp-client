@@ -1,5 +1,16 @@
 import { useState } from "react";
-import { handleCatchInputValidation } from "../../lib/utilities/InputValidation";
+import {
+  handleCatchInputValidation,
+  handleTimeInputValidation,
+  handleFishInputValidation,
+  handleBaitInputValidation,
+  handleLatitudeInputValidation,
+  handleLongitudeInputValidation,
+  handleWeatherInputValidation,
+  handleAirTempInputValidation,
+  handleWaterTempInputValidation,
+  handleWindSpeedInputValidation,
+} from "../../lib/utilities/InputValidation";
 
 function EditCatchModal({
   openEditCatchModal,
@@ -12,12 +23,105 @@ function EditCatchModal({
 }) {
   if (!openEditCatchModal) return null;
 
-  const [errorMessage, setErrorMessage] = useState([]);
+  const [timeErrorMessage, setTimeErrorMessage] = useState(false);
+  const [fishErrorMessage, setFishErrorMessage] = useState(false);
+  const [baitErrorMessage, setBaitErrorMessage] = useState(false);
+  const [latitudeErrorMessage, setLatitudeErrorMessage] = useState(false);
+  const [longitudeErrorMessage, setLongitudeErrorMessage] = useState(false);
+  const [weatherErrorMessage, setWeatherErrorMessage] = useState(false);
+  const [airTempErrorMessage, setAirTempErrorMessage] = useState(false);
+  const [waterTempErrorMessage, setWaterTempErrorMessage] = useState(false);
+  const [windSpeedErrorMessage, setWindSpeedErrorMessage] = useState(false);
+  const [formSubmissionErrorMessage, setFormSubmissionErrorMessage] = useState(
+    []
+  );
+
+  function handleTimeInput(currentTime) {
+    const isValid = handleTimeInputValidation(currentTime);
+    isValid ? setTimeErrorMessage("") : setTimeErrorMessage("Invalid");
+    sanitizeTempCatch();
+    clearFormSubmissionErrorMessage();
+  }
+
+  function handleFishInput(currentFish) {
+    const isValid = handleFishInputValidation(currentFish);
+    isValid ? setFishErrorMessage("") : setFishErrorMessage("Invalid");
+    sanitizeTempCatch();
+    clearFormSubmissionErrorMessage();
+  }
+
+  function handleBaitInput(currentBait) {
+    const isValid = handleBaitInputValidation(currentBait);
+    isValid ? setBaitErrorMessage("") : setBaitErrorMessage("Invalid");
+    sanitizeTempCatch();
+    clearFormSubmissionErrorMessage();
+  }
+
+  function handleLatitudeInput(currentLatitude) {
+    const isValid = handleLatitudeInputValidation(currentLatitude);
+    isValid ? setLatitudeErrorMessage("") : setLatitudeErrorMessage("Invalid");
+    sanitizeTempCatch();
+    clearFormSubmissionErrorMessage();
+  }
+
+  function handleLongitudeInput(currentLongitude) {
+    const isValid = handleLongitudeInputValidation(currentLongitude);
+    isValid
+      ? setLongitudeErrorMessage("")
+      : setLongitudeErrorMessage("Invalid");
+    sanitizeTempCatch();
+    clearFormSubmissionErrorMessage();
+  }
+
+  function handleWeatherInput(currentWeather) {
+    const isValid = handleWeatherInputValidation(currentWeather);
+    isValid ? setWeatherErrorMessage("") : setWeatherErrorMessage("Invalid");
+    sanitizeTempCatch();
+    clearFormSubmissionErrorMessage();
+  }
+
+  function handleAirTempInput(currentAirTemp) {
+    const isValid = handleAirTempInputValidation(currentAirTemp);
+    isValid ? setAirTempErrorMessage("") : setAirTempErrorMessage("Invalid");
+    sanitizeTempCatch();
+    clearFormSubmissionErrorMessage();
+  }
+
+  function handleWaterTempInput(currentWaterTemp) {
+    const isValid = handleWaterTempInputValidation(currentWaterTemp);
+    isValid
+      ? setWaterTempErrorMessage("")
+      : setWaterTempErrorMessage("Invalid");
+    sanitizeTempCatch();
+    clearFormSubmissionErrorMessage();
+  }
+
+  function handleWindSpeedInput(currentWindSpeed) {
+    const isValid = handleWindSpeedInputValidation(currentWindSpeed);
+    isValid
+      ? setWindSpeedErrorMessage("")
+      : setWindSpeedErrorMessage("Invalid");
+    sanitizeTempCatch();
+    clearFormSubmissionErrorMessage();
+  }
+
+  function clearFormSubmissionErrorMessage() {
+    if (handleCatchInputValidation(tempCatch)) {
+      setFormSubmissionErrorMessage("");
+    }
+  }
+
+  function sanitizeTempCatch() {
+    for (const key in tempCatch) {
+      if (typeof tempCatch[key] == "string") {
+        tempCatch[key] = tempCatch[key].trim().replace(/\s+/g, " ");
+      }
+    }
+  }
 
   function handleCatches() {
     sanitizeTempCatch();
-    const tempErrorMessage = getErrorMessage();
-    if (!tempErrorMessage || tempErrorMessage.length === 0) {
+    if (handleCatchInputValidation(tempCatch)) {
       const updatedCatchPost = {
         id: tempCatch.id,
         time: `${tempCatch.time}:00`,
@@ -40,7 +144,7 @@ function EditCatchModal({
 
       setOpenEditCatchModal(false);
     } else {
-      setErrorMessage(tempErrorMessage);
+      setFormSubmissionErrorMessage("One or more input fields are invalid");
     }
   }
 
@@ -86,21 +190,8 @@ function EditCatchModal({
       );
       sortCatches();
       setTempCatch({});
-      setErrorMessage([]);
     } catch (error) {
       console.log(error);
-    }
-  }
-
-  function getErrorMessage() {
-    return handleCatchInputValidation(tempCatch);
-  }
-
-  function sanitizeTempCatch() {
-    for (const key in tempCatch) {
-      if (typeof tempCatch[key] == "string") {
-        tempCatch[key] = tempCatch[key].trim().replace(/\s+/g, " ");
-      }
     }
   }
 
@@ -129,6 +220,7 @@ function EditCatchModal({
   const labelStyles = "pt-1 sm:text-lg";
   const inputStyles =
     "px-2 py-1 bg-slate-50 border border-solid border-slate-400 rounded-sm shadow-sm shadow-slate-600 focus:bg-slate-200 focus:text-slate-900 outline-none";
+  const inputErrorMessageStyles = "text-red-600";
   const buttonContainerStyles = "flex justify-center items-center gap-x-4";
   const buttonStyles =
     "bg-slate-800 text-slate-200 px-6 py-2 rounded-sm shadow-md shadow-slate-600 hover:bg-slate-700";
@@ -142,7 +234,12 @@ function EditCatchModal({
           <form className={formStyles} action="">
             <div className={inputContainerStyles}>
               <label className={labelStyles} htmlFor="">
-                Time:
+                Time:{" "}
+                {
+                  <span className={inputErrorMessageStyles}>
+                    {timeErrorMessage}
+                  </span>
+                }
               </label>
               <input
                 className={inputStyles}
@@ -151,11 +248,17 @@ function EditCatchModal({
                 onChange={(e) =>
                   setTempCatch({ ...tempCatch, time: e.target.value })
                 }
+                onBlur={(e) => handleTimeInput(e.target.value)}
               />
             </div>
             <div className={inputContainerStyles}>
               <label className={labelStyles} htmlFor="">
-                Fish:
+                Fish:{" "}
+                {
+                  <span className={inputErrorMessageStyles}>
+                    {fishErrorMessage}
+                  </span>
+                }
               </label>
               <input
                 className={inputStyles}
@@ -165,11 +268,17 @@ function EditCatchModal({
                 onChange={(e) =>
                   setTempCatch({ ...tempCatch, fish: e.target.value })
                 }
+                onBlur={(e) => handleFishInput(e.target.value)}
               />
             </div>
             <div className={inputContainerStyles}>
               <label className={labelStyles} htmlFor="">
-                Bait:
+                Bait:{" "}
+                {
+                  <span className={inputErrorMessageStyles}>
+                    {baitErrorMessage}
+                  </span>
+                }
               </label>
               <input
                 className={inputStyles}
@@ -179,11 +288,17 @@ function EditCatchModal({
                 onChange={(e) =>
                   setTempCatch({ ...tempCatch, bait: e.target.value })
                 }
+                onBlur={(e) => handleBaitInput(e.target.value)}
               />
             </div>
             <div className={inputContainerStyles}>
               <label className={labelStyles} htmlFor="">
-                Weather:
+                Weather:{" "}
+                {
+                  <span className={inputErrorMessageStyles}>
+                    {weatherErrorMessage}
+                  </span>
+                }
               </label>
               <select
                 className={inputStyles}
@@ -191,6 +306,7 @@ function EditCatchModal({
                 onChange={(e) =>
                   setTempCatch({ ...tempCatch, weather: e.target.value })
                 }
+                onBlur={(e) => handleWeatherInput(e.target.value)}
               >
                 <option value="clear">clear</option>
                 <option value="partially cloudy">partially cloudy</option>
@@ -200,7 +316,12 @@ function EditCatchModal({
             </div>
             <div className={inputContainerStyles}>
               <label className={labelStyles} htmlFor="">
-                Latitude:
+                Latitude:{" "}
+                {
+                  <span className={inputErrorMessageStyles}>
+                    {latitudeErrorMessage}
+                  </span>
+                }
               </label>
               <input
                 className={inputStyles}
@@ -210,11 +331,17 @@ function EditCatchModal({
                 onChange={(e) =>
                   setTempCatch({ ...tempCatch, latitude: e.target.value })
                 }
+                onBlur={(e) => handleLatitudeInput(e.target.value)}
               />
             </div>
             <div className={inputContainerStyles}>
               <label className={labelStyles} htmlFor="">
-                Longitude:
+                Longitude:{" "}
+                {
+                  <span className={inputErrorMessageStyles}>
+                    {longitudeErrorMessage}
+                  </span>
+                }
               </label>
               <input
                 className={inputStyles}
@@ -224,11 +351,17 @@ function EditCatchModal({
                 onChange={(e) =>
                   setTempCatch({ ...tempCatch, longitude: e.target.value })
                 }
+                onBlur={(e) => handleLongitudeInput(e.target.value)}
               />
             </div>
             <div className={inputContainerStyles}>
               <label className={labelStyles} htmlFor="">
-                Air Temp:
+                Air Temp:{" "}
+                {
+                  <span className={inputErrorMessageStyles}>
+                    {airTempErrorMessage}
+                  </span>
+                }
               </label>
               <input
                 className={inputStyles}
@@ -238,11 +371,17 @@ function EditCatchModal({
                 onChange={(e) =>
                   setTempCatch({ ...tempCatch, airTemp: e.target.value })
                 }
+                onBlur={(e) => handleAirTempInput(e.target.value)}
               />
             </div>
             <div className={inputContainerStyles}>
               <label className={labelStyles} htmlFor="">
-                Water Temp:
+                Water Temp:{" "}
+                {
+                  <span className={inputErrorMessageStyles}>
+                    {waterTempErrorMessage}
+                  </span>
+                }
               </label>
               <input
                 className={inputStyles}
@@ -252,11 +391,17 @@ function EditCatchModal({
                 onChange={(e) =>
                   setTempCatch({ ...tempCatch, waterTemp: e.target.value })
                 }
+                onBlur={(e) => handleWaterTempInput(e.target.value)}
               />
             </div>
             <div className={inputContainerStyles}>
               <label className={labelStyles} htmlFor="">
-                Wind Speed:
+                Wind Speed:{" "}
+                {
+                  <span className={inputErrorMessageStyles}>
+                    {windSpeedErrorMessage}
+                  </span>
+                }
               </label>
               <input
                 className={inputStyles}
@@ -266,21 +411,19 @@ function EditCatchModal({
                 onChange={(e) =>
                   setTempCatch({ ...tempCatch, windSpeed: e.target.value })
                 }
+                onBlur={(e) => handleWindSpeedInput(e.target.value)}
               />
             </div>
           </form>
-          <div
-            className={`py-4 grid ${
-              errorMessage.length >= 3
-                ? "grid-cols-3"
-                : errorMessage.length == 2
-                ? "grid-cols-2"
-                : "grid-cols-1"
-            } gap-y-0.5 text-center text-red-500 font-bold`}
-          >
-            {errorMessage.map((line, index) => (
-              <p key={index}>{line}</p>
-            ))}
+          <div>
+            <p
+              className={`py-2 text-red-600 text-center ${
+                formSubmissionErrorMessage.length > 0 ? "visible" : "invisible"
+              }`}
+            >
+              {formSubmissionErrorMessage}
+              {"."}
+            </p>
           </div>
           <div className={buttonContainerStyles}>
             <button
