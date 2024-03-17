@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   handleCatchInputValidation,
   handleTimeInputValidation,
@@ -198,6 +198,108 @@ function AddCatchModal({
     });
   }
 
+  useEffect(() => {
+    const currentTime = new Date().toLocaleTimeString("it-IT", {
+      hour: "2-digit",
+      minute: "2-digit",
+    });
+    setNewCatch((prevState) => ({ ...prevState, time: currentTime }));
+  }, []);
+
+  const [geolocation, setGeolocation] = useState({
+    loaded: false,
+    isSuccess: false,
+    coordinates: { lat: "", long: "" },
+  });
+
+  function onGeolocationSuccess(position) {
+    setGeolocation({
+      loaded: true,
+      isSuccess: true,
+      coordinates: {
+        lat: position.coords.latitude,
+        long: position.coords.longitude,
+      },
+    });
+    setNewCatch((prevState) => ({
+      ...prevState,
+      latitude: position.coords.latitude,
+      longitude: position.coords.longitude,
+    }));
+  }
+
+  function onGeolocationError(error) {
+    setGeolocation({
+      loaded: true,
+      isSuccess: false,
+      error,
+    });
+  }
+
+  useEffect(() => {
+    if (!("geolocation" in navigator)) {
+      onGeolocationError({
+        message: "Geolocation is not supported",
+      });
+    } else {
+      navigator.geolocation.getCurrentPosition(
+        onGeolocationSuccess,
+        onGeolocationError
+      );
+    }
+  }, []);
+
+  useEffect(() => {
+    const getCurrentWeather = async (latitude, longitude) => {
+      const GET_CURRENT_WEATHER = `http://localhost:8080/weather?latitude=${latitude}&longitude=${longitude}`;
+      const token = localStorage.getItem("authToken");
+
+      try {
+        const response = await fetch(GET_CURRENT_WEATHER, {
+          method: "GET",
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(),
+        });
+
+        if (!response.ok) {
+          throw new Error(`HTTP error: ${response.status}`);
+        }
+
+        const result = await response.json();
+        if (result.weatherCondition !== "unknown") {
+          setNewCatch((prev) => ({
+            ...prev,
+            weather: result.weatherCondition,
+          }));
+        }
+        updateNewCatchOnWeatherResponse(result);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        getCurrentWeather(position.coords.latitude, position.coords.longitude);
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  }, []);
+
+  function updateNewCatchOnWeatherResponse(response) {
+    setNewCatch((prevState) => ({
+      ...prevState,
+      airTemp: Math.round(response.airTemperature),
+      waterTemp: Math.round(response.waterTemperature),
+      windSpeed: Math.round(response.windSpeed),
+    }));
+  }
+
   /* Tailwind Class Styles */
   const modalContainerStyles =
     "w-full h-screen fixed flex justify-center items-center bg-transparent-shadow text-slate-800 text-sm z-50";
@@ -234,6 +336,7 @@ function AddCatchModal({
               <input
                 className={inputStyles}
                 type="time"
+                value={newCatch.time}
                 onChange={(e) =>
                   setNewCatch({ ...newCatch, time: e.target.value })
                 }
@@ -296,9 +399,14 @@ function AddCatchModal({
                 onBlur={(e) => handleWeatherInput(e.target.value)}
               >
                 <option value="clear">clear</option>
-                <option value="partially cloudy">partially cloudy</option>
+                <option value="partly cloudy">partly cloudy</option>
+                <option value="cloudy">cloudy</option>
                 <option value="overcast">overcast</option>
-                <option value="rainy">rainy</option>
+                <option value="light precipitation">light precipitation</option>
+                <option value="moderate precipitation">
+                  moderate precipitation
+                </option>
+                <option value="heavy precipitation">heavy precipitation</option>
               </select>
             </div>
             <div className={inputContainerStyles}>
@@ -313,6 +421,7 @@ function AddCatchModal({
               <input
                 className={inputStyles}
                 type="number"
+                value={newCatch.latitude}
                 onKeyDown={(e) => preventPlus(e)}
                 onChange={(e) =>
                   setNewCatch({ ...newCatch, latitude: e.target.value })
@@ -332,6 +441,7 @@ function AddCatchModal({
               <input
                 className={inputStyles}
                 type="number"
+                value={newCatch.longitude}
                 onKeyDown={(e) => preventPlus(e)}
                 onChange={(e) =>
                   setNewCatch({ ...newCatch, longitude: e.target.value })
@@ -351,6 +461,7 @@ function AddCatchModal({
               <input
                 className={inputStyles}
                 type="number"
+                value={newCatch.airTemp}
                 onKeyDown={(e) => preventDecimalAndPlus(e)}
                 onChange={(e) =>
                   setNewCatch({ ...newCatch, airTemp: e.target.value })
@@ -370,6 +481,7 @@ function AddCatchModal({
               <input
                 className={inputStyles}
                 type="number"
+                value={newCatch.waterTemp}
                 onKeyDown={(e) => preventDecimalAndPlus(e)}
                 onChange={(e) =>
                   setNewCatch({ ...newCatch, waterTemp: e.target.value })
@@ -389,6 +501,7 @@ function AddCatchModal({
               <input
                 className={inputStyles}
                 type="number"
+                value={newCatch.windSpeed}
                 onKeyDown={(e) => preventDecimalAndPlusAndMinus(e)}
                 onChange={(e) =>
                   setNewCatch({ ...newCatch, windSpeed: e.target.value })
