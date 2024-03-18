@@ -3,6 +3,8 @@ import DateSearch from "../shared/DateSearch";
 function InfoSection({
   setOpenSelectDateModal,
   getTripDate,
+  setTripDate,
+  setTrip,
   backgroundImage,
   title,
   description,
@@ -23,6 +25,8 @@ function InfoSection({
         <DateSearch
           setOpenSelectDateModal={setOpenSelectDateModal}
           getTripDate={getTripDate}
+          setTripDate={setTripDate}
+          setTrip={setTrip}
         />
       </div>
     </div>

@@ -272,6 +272,8 @@ function ManageTrips({ user, screenWidth, baseURL }) {
         <InfoSection
           setOpenSelectDateModal={setOpenSelectDateModal}
           getTripDate={getTripDate}
+          setTripDate={setTripDate}
+          setTrip={setTrip}
           backgroundImage="bg-managetrips-image"
           title="Manage Your Fishing Trips"
           description="Create & manage your fishing trips. Select a date & add a new trip or select an existing one. Then create & manage catches made on your fishing trip. Catch records consist of relevant data such as fish caught, geographic coordinates, and weather conditions."
