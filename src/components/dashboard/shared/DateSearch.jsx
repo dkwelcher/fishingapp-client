@@ -2,7 +2,12 @@ import { useState } from "react";
 import DatePicker from "react-datepicker";
 import { HiOutlineCalendar } from "react-icons/hi";
 
-function DateSearch({ setOpenSelectDateModal, getTripDate }) {
+function DateSearch({
+  setOpenSelectDateModal,
+  getTripDate,
+  setTripDate,
+  setTrip,
+}) {
   const [startDate, setStartDate] = useState(new Date());
 
   const handleSearchClick = () => {
@@ -17,6 +22,11 @@ function DateSearch({ setOpenSelectDateModal, getTripDate }) {
 
     getTripDate(formattedDate);
   };
+
+  function handleLastSixMonthsClick() {
+    setTripDate();
+    setTrip({});
+  }
 
   /* Tailwind Class Styles */
   const dateSearchContainerStyles = "flex items-center";
@@ -47,6 +57,12 @@ function DateSearch({ setOpenSelectDateModal, getTripDate }) {
           }}
         >
           Select Date
+        </button>
+        <button
+          className={buttonStyles}
+          onClick={() => handleLastSixMonthsClick()}
+        >
+          Last Six Months
         </button>
       </div>
     </div>
