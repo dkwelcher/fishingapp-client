@@ -308,9 +308,14 @@ function EditCatchModal({
                 onBlur={(e) => handleWeatherInput(e.target.value)}
               >
                 <option value="clear">clear</option>
-                <option value="partially cloudy">partially cloudy</option>
+                <option value="partly cloudy">partly cloudy</option>
+                <option value="cloudy">cloudy</option>
                 <option value="overcast">overcast</option>
-                <option value="rainy">rainy</option>
+                <option value="light precipitation">light precipitation</option>
+                <option value="moderate precipitation">
+                  moderate precipitation
+                </option>
+                <option value="heavy precipitation">heavy precipitation</option>
               </select>
             </div>
             <div className={inputContainerStyles}>
