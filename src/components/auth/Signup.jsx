@@ -8,7 +8,7 @@ import {
   handleConfirmPasswordInputValidation,
 } from "../../lib/utilities/InputValidation";
 
-function Signup() {
+function Signup({ baseURL }) {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -98,7 +98,7 @@ function Signup() {
   }
 
   async function postNewUser(newUser) {
-    const POST_NEW_USER = "http://localhost:8080/auth/register";
+    const POST_NEW_USER = `${baseURL}/auth/register`;
 
     try {
       const response = await fetch(POST_NEW_USER, {

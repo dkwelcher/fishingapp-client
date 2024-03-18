@@ -16,6 +16,7 @@ function EditTripModal({
   setTempTrip,
   setTripDate,
   user,
+  baseURL,
 }) {
   if (!openEditTripModal) return null;
 
@@ -70,7 +71,7 @@ function EditTripModal({
   }
 
   async function editTrip(updatedTrip) {
-    const EDIT_TRIP_BY_ID = `http://localhost:8080/trips/${trip.id}?userId=${user.id}`;
+    const EDIT_TRIP_BY_ID = `${baseURL}/trips/${trip.id}?userId=${user.id}`;
     const token = localStorage.getItem("authToken");
 
     const convertedUpdatedTrip = {

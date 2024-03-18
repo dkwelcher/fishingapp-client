@@ -5,6 +5,7 @@ function DeleteTripModal({
   setTrip,
   setTripDate,
   user,
+  baseURL,
 }) {
   if (!openDeleteTripModal) return null;
 
@@ -15,7 +16,7 @@ function DeleteTripModal({
   }
 
   async function deleteTrip() {
-    const DELETE_TRIP_BY_ID = `http://localhost:8080/trips/${trip.id}?userId=${user.id}`;
+    const DELETE_TRIP_BY_ID = `${baseURL}/trips/${trip.id}?userId=${user.id}`;
     const token = localStorage.getItem("authToken");
 
     try {

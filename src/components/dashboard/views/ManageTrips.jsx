@@ -9,7 +9,7 @@ import EditTripModal from "../../modals/EditTripModal";
 import DeleteTripModal from "../../modals/DeleteTripModal";
 import Logo from "../../../assets/logo.png";
 
-function ManageTrips({ user, screenWidth }) {
+function ManageTrips({ user, screenWidth, baseURL }) {
   const [openSelectDateModal, setOpenSelectDateModal] = useState(false);
   const [openAddCatchModal, setOpenAddCatchModal] = useState(false);
   const [openEditCatchModal, setOpenEditCatchModal] = useState(false);
@@ -40,7 +40,7 @@ function ManageTrips({ user, screenWidth }) {
     const fetchTrips = async () => {
       if (!tripDate || !user.id) return;
 
-      const GET_TRIPS_BY_ID = `http://localhost:8080/trips?userId=${user.id}&date=${tripDate}`;
+      const GET_TRIPS_BY_ID = `${baseURL}/trips?userId=${user.id}&date=${tripDate}`;
 
       const token = localStorage.getItem("authToken");
 
@@ -74,7 +74,7 @@ function ManageTrips({ user, screenWidth }) {
     const fetchCatches = async () => {
       if (!trip || !trip.id) return;
 
-      const GET_CATCHES_BY_TRIP_ID = `http://localhost:8080/catches?userId=${user.id}&tripId=${trip.id}`;
+      const GET_CATCHES_BY_TRIP_ID = `${baseURL}/catches?userId=${user.id}&tripId=${trip.id}`;
       const token = localStorage.getItem("authToken");
 
       try {
@@ -128,7 +128,7 @@ function ManageTrips({ user, screenWidth }) {
     const fetchTripsLastSixMonths = async () => {
       if (!user.id) return;
 
-      const GET_TRIPS_BY_USER_ID = `http://localhost:8080/trips/sixMonths?userId=${user.id}`;
+      const GET_TRIPS_BY_USER_ID = `${baseURL}/trips/sixMonths?userId=${user.id}`;
       const token = localStorage.getItem("authToken");
 
       try {
@@ -216,6 +216,7 @@ function ManageTrips({ user, screenWidth }) {
         setTrip={setTrip}
         tripDate={tripDate}
         user={user}
+        baseURL={baseURL}
       />
       <AddCatchModal
         openAddCatchModal={openAddCatchModal}
@@ -225,6 +226,7 @@ function ManageTrips({ user, screenWidth }) {
         tempCatch={tempCatch}
         setTempCatch={setTempCatch}
         setCatches={setCatches}
+        baseURL={baseURL}
       />
       <EditCatchModal
         openEditCatchModal={openEditCatchModal}
@@ -234,6 +236,7 @@ function ManageTrips({ user, screenWidth }) {
         tempCatch={tempCatch}
         setTempCatch={setTempCatch}
         setCatches={setCatches}
+        baseURL={baseURL}
       />
       <DeleteCatchModal
         openDeleteCatchModal={openDeleteCatchModal}
@@ -242,6 +245,7 @@ function ManageTrips({ user, screenWidth }) {
         tempCatch={tempCatch}
         setTempCatch={setTempCatch}
         setCatches={setCatches}
+        baseURL={baseURL}
       />
       <EditTripModal
         openEditTripModal={openEditTripModal}
@@ -253,6 +257,7 @@ function ManageTrips({ user, screenWidth }) {
         setTempTrip={setTempTrip}
         setTripDate={setTripDate}
         user={user}
+        baseURL={baseURL}
       />
       <DeleteTripModal
         openDeleteTripModal={openDeleteTripModal}
@@ -261,6 +266,7 @@ function ManageTrips({ user, screenWidth }) {
         setTrip={setTrip}
         setTripDate={setTripDate}
         user={user}
+        baseURL={baseURL}
       />
       <div className={pageStyles}>
         <InfoSection

@@ -18,6 +18,7 @@ function AddCatchModal({
   user,
   trip,
   setCatches,
+  baseURL,
 }) {
   if (!openAddCatchModal) return null;
 
@@ -147,7 +148,7 @@ function AddCatchModal({
   }
 
   async function postNewCatch(newCatchData) {
-    const POST_CATCH = `http://localhost:8080/catches?userId=${user.id}`;
+    const POST_CATCH = `${baseURL}/catches?userId=${user.id}`;
     const token = localStorage.getItem("authToken");
 
     try {
@@ -251,7 +252,7 @@ function AddCatchModal({
 
   useEffect(() => {
     const getCurrentWeather = async (latitude, longitude) => {
-      const GET_CURRENT_WEATHER = `http://localhost:8080/weather?latitude=${latitude}&longitude=${longitude}`;
+      const GET_CURRENT_WEATHER = `${baseURL}/weather?latitude=${latitude}&longitude=${longitude}`;
       const token = localStorage.getItem("authToken");
 
       try {

@@ -12,6 +12,7 @@ function SelectDateModal({
   setTrip,
   tripDate,
   user,
+  baseURL,
 }) {
   if (!openSelectDateModal) return null;
 
@@ -63,7 +64,7 @@ function SelectDateModal({
   }
 
   async function postNewTrip(newTripData) {
-    const POST_TRIP = `http://localhost:8080/trips?userId=${user.id}`;
+    const POST_TRIP = `${baseURL}/trips?userId=${user.id}`;
     const token = localStorage.getItem("authToken");
 
     const tempId = Date.now();

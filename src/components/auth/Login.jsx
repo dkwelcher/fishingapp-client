@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import Logo from "../../assets/logo.png";
 import { handleLoginInputValidation } from "../../lib/utilities/InputValidation";
 
-function Login({ setUser }) {
+function Login({ setUser, baseURL }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
@@ -43,7 +43,7 @@ function Login({ setUser }) {
   }
 
   async function postExistingUser(existingUser) {
-    const POST_EXISTING_USER = "http://localhost:8080/auth/authenticate";
+    const POST_EXISTING_USER = `${baseURL}/auth/authenticate`;
 
     try {
       const response = await fetch(POST_EXISTING_USER, {
