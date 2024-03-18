@@ -21,6 +21,8 @@ function App() {
     const savedUser = localStorage.getItem("user");
     return savedUser ? JSON.parse(savedUser) : {};
   });
+
+  const baseURL = "http://localhost:8080";
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
 
   useEffect(() => {
@@ -40,10 +42,10 @@ function App() {
       <Router>
         <Routes>
           <Route path="/" element={<LandingPage />} />
-          <Route path="/signup" element={<Signup />} />
+          <Route path="/signup" element={<Signup baseURL={baseURL} />} />
           <Route
             path="/login"
-            element={<Login user={user} setUser={setUser} />}
+            element={<Login setUser={setUser} baseURL={baseURL} />}
           />
           <Route
             path="/dashboard"
@@ -56,7 +58,13 @@ function App() {
             <Route index element={<Home user={user} />} />
             <Route
               path="manage-trips"
-              element={<ManageTrips user={user} screenWidth={screenWidth} />}
+              element={
+                <ManageTrips
+                  user={user}
+                  screenWidth={screenWidth}
+                  baseURL={baseURL}
+                />
+              }
             />
           </Route>
         </Routes>
