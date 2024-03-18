@@ -336,7 +336,7 @@ function AddCatchModal({
               <input
                 className={inputStyles}
                 type="time"
-                value={newCatch.time}
+                value={newCatch.time ?? ""}
                 onChange={(e) =>
                   setNewCatch({ ...newCatch, time: e.target.value })
                 }
@@ -421,7 +421,7 @@ function AddCatchModal({
               <input
                 className={inputStyles}
                 type="number"
-                value={newCatch.latitude}
+                value={newCatch.latitude ?? ""}
                 onKeyDown={(e) => preventPlus(e)}
                 onChange={(e) =>
                   setNewCatch({ ...newCatch, latitude: e.target.value })
@@ -441,7 +441,7 @@ function AddCatchModal({
               <input
                 className={inputStyles}
                 type="number"
-                value={newCatch.longitude}
+                value={newCatch.longitude ?? ""}
                 onKeyDown={(e) => preventPlus(e)}
                 onChange={(e) =>
                   setNewCatch({ ...newCatch, longitude: e.target.value })
@@ -461,7 +461,7 @@ function AddCatchModal({
               <input
                 className={inputStyles}
                 type="number"
-                value={newCatch.airTemp}
+                value={newCatch.airTemp ?? ""}
                 onKeyDown={(e) => preventDecimalAndPlus(e)}
                 onChange={(e) =>
                   setNewCatch({ ...newCatch, airTemp: e.target.value })
@@ -481,7 +481,7 @@ function AddCatchModal({
               <input
                 className={inputStyles}
                 type="number"
-                value={newCatch.waterTemp}
+                value={newCatch.waterTemp ?? ""}
                 onKeyDown={(e) => preventDecimalAndPlus(e)}
                 onChange={(e) =>
                   setNewCatch({ ...newCatch, waterTemp: e.target.value })
@@ -501,7 +501,7 @@ function AddCatchModal({
               <input
                 className={inputStyles}
                 type="number"
-                value={newCatch.windSpeed}
+                value={newCatch.windSpeed ?? ""}
                 onKeyDown={(e) => preventDecimalAndPlusAndMinus(e)}
                 onChange={(e) =>
                   setNewCatch({ ...newCatch, windSpeed: e.target.value })
@@ -559,21 +559,13 @@ function preventDecimalAndPlusAndMinus(e) {
 }
 
 function preventDecimalAndPlus(e) {
-  const isAtStart = e.target.value.length === 0;
-
   if (e.key === "." || e.key == "+") {
-    e.preventDefault();
-  } else if (e.key == "-" && !isAtStart) {
     e.preventDefault();
   }
 }
 
 function preventPlus(e) {
-  const isAtStart = e.target.value.length === 0;
-
   if (e.key === "+") {
-    e.preventDefault();
-  } else if (e.key == "-" && !isAtStart) {
     e.preventDefault();
   }
 }
