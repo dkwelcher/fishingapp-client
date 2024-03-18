@@ -11,8 +11,6 @@ function DeleteTripModal({
 
   function handleDeleteTrip() {
     deleteTrip();
-    setTrip({});
-    setTripDate();
   }
 
   async function deleteTrip() {
@@ -31,6 +29,9 @@ function DeleteTripModal({
       if (!response.ok) {
         throw new Error(`HTTP error: ${response.status}`);
       }
+
+      setTrip({});
+      setTripDate();
     } catch (error) {
       console.log(error);
     }
