@@ -33,8 +33,9 @@ function DateSearch({
   const datePickerContainerStyles = "";
   const datePickerStyles =
     "w-[200px] ml-1 border border-slate-400 rounded-sm bg-slate-50 text-slate-800 focus:bg-slate-200 focus:text-slate-900 outline-none shadow-md shadow-slate-950";
+  const buttonContainerStyles = "flex flex-col gap-y-2 sm:flex-row";
   const buttonStyles =
-    "ml-4 px-4 py-1 bg-slate-50 text-slate-800 rounded-sm shadow-md shadow-slate-950";
+    "ml-4 px-4 py-1 bg-slate-50 text-slate-800 rounded-sm shadow-md shadow-slate-950 text-sm sm:text-base";
   /* End Tailwind Class Styles */
 
   return (
@@ -48,7 +49,7 @@ function DateSearch({
           icon={<HiOutlineCalendar fontSize={20} className="text-gray-400" />}
         />
       </div>
-      <div>
+      <div className={buttonContainerStyles}>
         <button
           className={buttonStyles}
           onClick={() => {
