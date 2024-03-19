@@ -8,6 +8,7 @@ import {
 import Layout from "./components/dashboard/shared/Layout";
 import Home from "./components/dashboard/views/Home";
 import ManageTrips from "./components/dashboard/views/ManageTrips";
+import Feedback from "./components/dashboard/views/Feedback";
 import LandingPage from "./components/landing/LandingPage";
 import Signup from "./components/auth/Signup";
 import Login from "./components/auth/Login";
@@ -66,6 +67,10 @@ function App() {
                 />
               }
             />
+            <Route
+              path="feedback"
+              element={<Feedback user={user} baseURL={baseURL} />}
+            ></Route>
           </Route>
         </Routes>
       </Router>
