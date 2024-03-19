@@ -12,8 +12,13 @@ export default {
         "signup-image": "url('/src/assets/red-drum.png')",
         "login-image": "url('/src/assets/trout.png')",
         "home-image": "url('/src/assets/home-lake.png')",
+        "feedback-image-mobile": "url('/src/assets/IMG_3576.JPG')",
+        "feedback-image-desktop": "url('/src/assets/IMG_0091.JPG')",
         "managetrips-image": "url('/src/assets/mountain-lake.png')",
         "transparent-shadow": "linear-gradient(rgb(0 0 0/40%) 0 0)",
+        "transparent-shadow-darker": "linear-gradient(rgb(0 0 0/70%) 0 0)",
+        "transparent-shadow-feedback-success":
+          "linear-gradient(rgb(255 255 255/40%) 0 0)",
       },
       fontFamily: {
         title: ["Rubik", "sans-serif"],
