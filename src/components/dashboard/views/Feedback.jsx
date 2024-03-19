@@ -80,10 +80,11 @@ function Feedback({ user, baseURL }) {
 
   /* Tailwind Class Styles */
   const pageStyles =
-    "p-4 flex flex-col h-screen justify-center items-center font-paragraph font-normal text-sm lg:text-base text-slate-200 bg-slate-800";
-  const successfulSubmissionParagraphStyles = "text-center";
+    "p-4 flex flex-col h-screen justify-center items-center font-paragraph font-normal text-sm lg:text-base text-slate-200 bg-feedback-image-mobile lg:bg-feedback-image-desktop bg-cover bg-center";
+  const successfulSubmissionParagraphStyles =
+    "font-title font-semibold text-lg text-center text-slate-800";
   const cardContainerStyles =
-    "p-8 max-w-[500px] rounded-sm bg-gradient-to-b from-slate-600 to-slate-700 shadow-md shadow-slate-900";
+    "p-8 max-w-[500px] rounded-sm bg-transparent-shadow-darker lg:bg-transparent-shadow shadow-md shadow-slate-900";
   const contentContainerStyles = "";
   const logoContainerStyles =
     "pb-4 flex gap-x-2 items-center font-cursive text-slate-300";
@@ -97,7 +98,8 @@ function Feedback({ user, baseURL }) {
   const formStyles = "w-full min-h-[180px]";
   const inputStyles =
     "px-2 py-1 bg-slate-50 text-slate-800 border border-solid border-slate-400 rounded-sm shadow-sm shadow-slate-600 focus:bg-slate-200 focus:text-slate-900 outline-none";
-  const textAreaStyles = "w-full min-h-[180px] mt-1 p-1 text-slate-800";
+  const textAreaStyles =
+    "w-full min-h-[180px] mt-1 p-1 text-slate-800 shadow-sm shadow-slate-600 rounded-sm";
   const buttonContainerStyles = "py-2 flex flex-col";
   const buttonStyles =
     "py-2 border-0 rounded-sm text-slate-800 bg-slate-300 hover:bg-slate-100 shadow-lg shadow-slate-800";
@@ -106,7 +108,7 @@ function Feedback({ user, baseURL }) {
   return (
     <div className={pageStyles}>
       <div
-        className={`max-w-[500px] w-full py-1 bg-transparent-shadow ${
+        className={`max-w-[500px] w-full lg:mb-2 py-1 bg-transparent-shadow-feedback-success rounded-sm ${
           successfulSubmission ? "visible" : "invisible"
         }`}
       >
