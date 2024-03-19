@@ -1,5 +1,6 @@
 import { IoFish } from "react-icons/io5";
-import { HiOutlineQuestionMarkCircle } from "react-icons/hi";
+import { HiOutlineChatAlt } from "react-icons/hi";
+import { GiBoatFishing } from "react-icons/gi";
 
 export const DASHBOARD_SIDEBAR_LINKS = [
   {
@@ -12,15 +13,15 @@ export const DASHBOARD_SIDEBAR_LINKS = [
     key: "manageTrips",
     label: "Manage Trips",
     path: "/dashboard/manage-trips",
-    icon: <IoFish />,
+    icon: <GiBoatFishing />,
   },
 ];
 
 export const DASHBOARD_SIDEBAR_BOTTOM_LINKS = [
-  // {
-  //   key: "faq",
-  //   label: "FAQ",
-  //   path: "/faq",
-  //   icon: <HiOutlineQuestionMarkCircle />,
-  // },
+  {
+    key: "feedback",
+    label: "Feedback",
+    path: "/dashboard/feedback",
+    icon: <HiOutlineChatAlt />,
+  },
 ];
