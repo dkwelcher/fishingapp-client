@@ -23,7 +23,8 @@ function App() {
     return savedUser ? JSON.parse(savedUser) : {};
   });
 
-  const baseURL = "http://localhost:8080";
+  const baseURL = import.meta.env.VITE_API_BASE_URL;
+
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
 
   useEffect(() => {
