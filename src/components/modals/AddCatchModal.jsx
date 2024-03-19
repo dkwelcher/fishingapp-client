@@ -252,7 +252,7 @@ function AddCatchModal({
 
   useEffect(() => {
     const getCurrentWeather = async (latitude, longitude) => {
-      const GET_CURRENT_WEATHER = `${baseURL}/weather?latitude=${latitude}&longitude=${longitude}`;
+      const GET_CURRENT_WEATHER = `${baseURL}/weather?userId=${user.id}&latitude=${latitude}&longitude=${longitude}`;
       const token = localStorage.getItem("authToken");
 
       try {
