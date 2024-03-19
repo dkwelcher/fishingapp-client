@@ -365,7 +365,7 @@ function AddCatchModal({
             </div>
             <div className={inputContainerStyles}>
               <label className={labelStyles} htmlFor="">
-                Bait:{" "}
+                Bait / Lure:{" "}
                 {
                   <span className={inputErrorMessageStyles}>
                     {baitErrorMessage}
@@ -452,7 +452,7 @@ function AddCatchModal({
             </div>
             <div className={inputContainerStyles}>
               <label className={labelStyles} htmlFor="">
-                Air Temp:{" "}
+                Air Temp (&deg;F):{" "}
                 {
                   <span className={inputErrorMessageStyles}>
                     {airTempErrorMessage}
@@ -472,7 +472,7 @@ function AddCatchModal({
             </div>
             <div className={inputContainerStyles}>
               <label className={labelStyles} htmlFor="">
-                Water Temp:{" "}
+                Water Temp (&deg;F):{" "}
                 {
                   <span className={inputErrorMessageStyles}>
                     {waterTempErrorMessage}
@@ -492,7 +492,7 @@ function AddCatchModal({
             </div>
             <div className={inputContainerStyles}>
               <label className={labelStyles} htmlFor="">
-                Wind Speed:{" "}
+                Wind Speed (MPH):{" "}
                 {
                   <span className={inputErrorMessageStyles}>
                     {windSpeedErrorMessage}

@@ -85,7 +85,7 @@ function DeleteCatchModal({
             <p>{tempCatch.fish}</p>
           </div>
           <div className={infoSectionContainerStyles}>
-            <p className={infoSubHeaderStyles}>Bait:</p>
+            <p className={infoSubHeaderStyles}>Bait / Lure:</p>
             <p>{tempCatch.bait}</p>
           </div>
           <div className={infoSectionContainerStyles}>
@@ -101,15 +101,15 @@ function DeleteCatchModal({
             <p>{tempCatch.longitude}</p>
           </div>
           <div className={infoSectionContainerStyles}>
-            <p className={infoSubHeaderStyles}>Air Temp:</p>
+            <p className={infoSubHeaderStyles}>Air Temp (&deg;F):</p>
             <p>{tempCatch.airTemp}</p>
           </div>
           <div className={infoSectionContainerStyles}>
-            <p className={infoSubHeaderStyles}>Water Temp:</p>
+            <p className={infoSubHeaderStyles}>Water Temp (&deg;F):</p>
             <p>{tempCatch.waterTemp}</p>
           </div>
           <div className={infoSectionContainerStyles}>
-            <p className={infoSubHeaderStyles}>Wind Speed:</p>
+            <p className={infoSubHeaderStyles}>Wind Speed (MPH):</p>
             <p>{tempCatch.windSpeed}</p>
           </div>
         </div>
