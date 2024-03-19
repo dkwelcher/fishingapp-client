@@ -62,13 +62,13 @@ function Feedback({ user, baseURL }) {
       });
 
       if (!response.ok) {
-        throw new Error(`HTTP error: ${response.error}`);
+        setFormSubmissionErrorMessage("Something went wrong. Please try again");
+      } else {
+        setFeedback("");
+        setSelectPage("landing page");
+        setFormSubmissionErrorMessage("");
+        setSuccessfulSubmission(true);
       }
-
-      setFeedback("");
-      setSelectPage("landing page");
-      setFormSubmissionErrorMessage("");
-      setSuccessfulSubmission(true);
     } catch (error) {
       console.log(error);
     }
