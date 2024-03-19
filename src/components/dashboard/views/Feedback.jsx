@@ -81,6 +81,7 @@ function Feedback({ user, baseURL }) {
   /* Tailwind Class Styles */
   const pageStyles =
     "p-4 flex flex-col h-screen justify-center items-center font-paragraph font-normal text-sm lg:text-base text-slate-200 bg-feedback-image-mobile lg:bg-feedback-image-desktop bg-cover bg-center";
+  const imageCreditStyles = "absolute bottom-0 right-0 text-xs 2xl:text-sm";
   const successfulSubmissionParagraphStyles =
     "font-title font-semibold text-lg text-center text-slate-800";
   const cardContainerStyles =
@@ -107,6 +108,7 @@ function Feedback({ user, baseURL }) {
 
   return (
     <div className={pageStyles}>
+      <p className={imageCreditStyles}>Image credit: Hala Strohmier Berry</p>
       <div
         className={`max-w-[500px] w-full lg:mb-2 py-1 bg-transparent-shadow-feedback-success rounded-sm ${
           successfulSubmission ? "visible" : "invisible"
