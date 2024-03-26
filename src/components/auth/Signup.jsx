@@ -1,3 +1,12 @@
+/* 
+
+Signup.jsx is the primary component for the Signup Page. It handles & delegates input validation
+& handles the POST request to the server for registering a user.
+
+@version 1.0
+@since 2024-03-18
+*/
+
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Logo from "../../assets/logo.png";
@@ -8,27 +17,47 @@ import {
   handleConfirmPasswordInputValidation,
 } from "../../lib/utilities/InputValidation";
 
+/* 
+Signup handles state related to user signup, imports input validation from a local file,
+POSTs user data to the server, & handles entry to the login page upon successful signup.
+
+@param baseURL The base URL of the POST request sent to the server
+@return HTML rendering the Signup page.
+*/
 function Signup({ baseURL }) {
+  // states that track data relevant to user signup to app.
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
+  // states that track successful / unsuccessful user input validation
   const [isUsernameValid, setIsUsernameValid] = useState(false);
   const [isEmailValid, setIsEmailValid] = useState(false);
   const [isPasswordValid, setIsPasswordValid] = useState(false);
   const [isConfirmPasswordValid, setIsConfirmPasswordValid] = useState(false);
 
+  // states used to display error messages related to a specific user input field.
   const [usernameErrorMessage, setUsernameErrorMessage] = useState("");
   const [emailErrorMessage, setEmailErrorMessage] = useState("");
   const [passwordErrorMessage, setPasswordErrorMessage] = useState("");
   const [confirmPasswordErrorMessage, setConfirmPasswordErrorMessage] =
     useState("");
+
+  // state used to display error message related to overall input validation state
   const [formSubmissionErrorMessage, setFormSubmissionErrorMessage] =
     useState("");
 
+  // function that changes pages without browser refresh
   const navigate = useNavigate();
 
+  /* 
+  handleUsernameInput is an data validation function that determines if the user's input is valid.
+  An error message specific to the input field will display is the user input is invalid & clear when it is valid.
+  If both all user input states are valid, then the setFormSubmissionErrorMessage is cleared.
+
+  @param currentUsername The username entered by the user in the input field.
+  */
   function handleUsernameInput(currentUsername) {
     const isValid = handleUsernameInputValidation(currentUsername);
     setIsUsernameValid(isValid);
@@ -40,6 +69,13 @@ function Signup({ baseURL }) {
     }
   }
 
+  /* 
+  handleEmailInput is an data validation function that determines if the user's input is valid.
+  An error message specific to the input field will display is the user input is invalid & clear when it is valid.
+  If both all user input states are valid, then the setFormSubmissionErrorMessage is cleared.
+
+  @param currentEmail The email entered by the user in the input field.
+  */
   function handleEmailInput(currentEmail) {
     const isValid = handleEmailInputValidation(currentEmail);
     setIsEmailValid(isValid);
@@ -54,6 +90,13 @@ function Signup({ baseURL }) {
     }
   }
 
+  /* 
+  handlePasswordInput is an data validation function that determines if the user's input is valid.
+  An error message specific to the input field will display is the user input is invalid & clear when it is valid.
+  If both all user input states are valid, then the setFormSubmissionErrorMessage is cleared.
+
+  @param currentPassword The password entered by the user in the input field.
+  */
   function handlePasswordInput(currentPassword) {
     const isValid = handlePasswordInputValidation(currentPassword);
     setIsPasswordValid(isValid);
@@ -65,6 +108,13 @@ function Signup({ baseURL }) {
     }
   }
 
+  /* 
+  handleConfirmPasswordInput is an data validation function that determines if the user's input is valid.
+  An error message specific to the input field will display is the user input is invalid & clear when it is valid.
+  If both all user input states are valid, then the setFormSubmissionErrorMessage is cleared.
+
+  @param currentConfirmPassword The confirm password entered by the user in the input field.
+  */
   function handleConfirmPasswordInput(currentConfirmPassword) {
     const isValid = handleConfirmPasswordInputValidation(
       password,
@@ -79,6 +129,10 @@ function Signup({ baseURL }) {
     }
   }
 
+  /* 
+  handleSignup validates the user input fields. If the data is valid, then the function processes the data & makes a call to postNewUser.
+  If the data is invalid, then the formSubmissionErrorMessage state is changed.
+  */
   function handleSignup() {
     if (
       isUsernameValid &&
@@ -97,6 +151,12 @@ function Signup({ baseURL }) {
     }
   }
 
+  /* 
+  postNewUser is an asynchronous function that makes a POST request to the server to sign up the user.
+  If successful, the user is navigated to the login page.
+
+  @param newUser An object formatted from individual states with the properties: username, email, & password.
+  */
   async function postNewUser(newUser) {
     const POST_NEW_USER = `${baseURL}/auth/register`;
 
@@ -123,6 +183,9 @@ function Signup({ baseURL }) {
     }
   }
 
+  /* 
+  handleNavigateToLogin navigates the user to the login page.
+  */
   function handleNavigateToLogin() {
     navigate("/login");
   }

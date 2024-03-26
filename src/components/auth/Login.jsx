@@ -1,19 +1,43 @@
+/* 
+Login.jsx is the primary component for the Login page. It handles & delegates input validation and handles the POST request to the server.
+
+@version 1.0
+@since 2024-03-18
+*/
+
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Logo from "../../assets/logo.png";
 import { handleLoginInputValidation } from "../../lib/utilities/InputValidation";
 
+/* 
+Login handles state related to user login, imports input validation from a local file, POSTs user data to the server and handles entry into the dashboard upon successful login.
+
+@param setUser Sets the user state when credentials are authenticated by server.
+@param baseURL The base URL of the POST request sent to server.
+@return HTML rendering the Login page.
+*/
 function Login({ setUser, baseURL }) {
+  // username & password state that is changed by user in input field.
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
+  // states that track successful / unsuccessful user input validation
   const [isUsernameValid, setIsUsernameValid] = useState(false);
   const [isPasswordValid, setIsPasswordValid] = useState(false);
 
+  // state that displays error message with invalid input
   const [inputErrorMessage, setInputErrorMessage] = useState("");
 
+  // function that changes pages without browser refresh
   const navigate = useNavigate();
 
+  /* 
+  handleUsernameInput is an data validation function that determines if the user's input is valid. If both username & password are valid,
+  then the inputErrorMessage is cleared.
+
+  @param currentUsername The username entered by the user in the input field.
+  */
   function handleUsernameInput(currentUsername) {
     const isValid = handleLoginInputValidation(currentUsername);
     setIsUsernameValid(isValid);
@@ -22,6 +46,12 @@ function Login({ setUser, baseURL }) {
     }
   }
 
+  /* 
+  handlePasswordInput is an data validation function that determines if the user's input is valid. If both username & password are valid,
+  then the inputErrorMessage is cleared.
+
+  @param currentPassword The password entered by the user in the input field.
+  */
   function handlePasswordInput(currentPassword) {
     const isValid = handleLoginInputValidation(currentPassword);
     setIsPasswordValid(isValid);
@@ -30,6 +60,10 @@ function Login({ setUser, baseURL }) {
     }
   }
 
+  /* 
+  handleLogin validates the username & password input by the user. If the data is valid, then the function prepares the data & makes a call to postExistingUser.
+  If the data is invalid, then the inputErrorMessage state is changed.
+  */
   function handleLogin() {
     if (isUsernameValid && isPasswordValid) {
       const existingUser = {
@@ -42,6 +76,12 @@ function Login({ setUser, baseURL }) {
     }
   }
 
+  /* 
+  postExistingUser is an asynchronous function that makes a POST request to the server. If successful, the server returns an object with the user id, username, & authToken.
+  The user state & authToken are saved for use across the system.
+
+  @param existingUser An object formatted from individual states with the properties: username & password.
+  */
   async function postExistingUser(existingUser) {
     const POST_EXISTING_USER = `${baseURL}/auth/authenticate`;
 
@@ -82,10 +122,16 @@ function Login({ setUser, baseURL }) {
     }
   }
 
+  /* 
+  handleDashboardEntry navigates the user to the dashboard.
+  */
   function handleDashboardEntry() {
     navigate("/dashboard");
   }
 
+  /* 
+  handleSignupEntry navigates the user to the signup page.
+  */
   function handleSignupEntry() {
     navigate("/signup");
   }
