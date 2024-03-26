@@ -3,7 +3,6 @@
 Signup.jsx is the primary component for the Signup Page. It handles & delegates input validation
 & handles the POST request to the server for registering a user.
 
-@version 1.0
 @since 2024-03-18
 */
 

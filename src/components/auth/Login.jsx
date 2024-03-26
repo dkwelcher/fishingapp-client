@@ -1,7 +1,6 @@
 /* 
 Login.jsx is the primary component for the Login page. It handles & delegates input validation and handles the POST request to the server.
 
-@version 1.0
 @since 2024-03-18
 */
 

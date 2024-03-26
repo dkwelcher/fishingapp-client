@@ -2,7 +2,6 @@
 Layout.jsx establishes the layout of the dashboard. The layout consists of the sidebar & the view. 
 The sidebar is dynamically rendered according to device screen size & the view is dynamically rendered according to the active link.
 
-@version 1.0
 @since 2024-03-14
 */
 

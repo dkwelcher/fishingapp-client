@@ -1,7 +1,6 @@
 /* 
 App.jsx establishes the Router, Routes, Route pattern with react-router-dom and is the component from which all components are derived.
 
-@version 1.0
 @since 2024-03-19
 */
 
