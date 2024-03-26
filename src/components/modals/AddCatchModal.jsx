@@ -1,3 +1,9 @@
+/* 
+AddCatchModal.jsx is a intermediate dashboard component that displays a form for adding a new catch.
+
+@since 2024-03-19
+*/
+
 import { useState, useEffect } from "react";
 import {
   handleCatchInputValidation,
@@ -12,6 +18,18 @@ import {
   handleWindSpeedInputValidation,
 } from "../../lib/utilities/InputValidation";
 
+/* 
+AddCatchModal renders a container with a form for adding a new catch to the associated trip. It provides immediate feedback on input validation &
+delegates final input validation on submission to the local input validation file.
+
+@param openAddCatchModal Boolean value that represents whether the add catch modal is open or closed.
+@param setOpenAddCatchModal Setter function that sets the openAddCatchModal to true or false.
+@param user An object that holds user properties.
+@param trip An object that holds trip properties.
+@param setCatches Setter function that sets the catches object array.
+@param baseURL String that represents the base URL of the server.
+@return HTML that renders the container that holds a form specific to catch data.
+*/
 function AddCatchModal({
   openAddCatchModal,
   setOpenAddCatchModal,
@@ -22,8 +40,10 @@ function AddCatchModal({
 }) {
   if (!openAddCatchModal) return null;
 
+  // state that holds an object with catch properties & a default weather property of "clear".
   const [newCatch, setNewCatch] = useState({ weather: "clear" });
 
+  // states that hold booleans related to whether an input field is valid or invalid.
   const [timeErrorMessage, setTimeErrorMessage] = useState(false);
   const [fishErrorMessage, setFishErrorMessage] = useState(false);
   const [baitErrorMessage, setBaitErrorMessage] = useState(false);
@@ -33,9 +53,15 @@ function AddCatchModal({
   const [airTempErrorMessage, setAirTempErrorMessage] = useState(false);
   const [waterTempErrorMessage, setWaterTempErrorMessage] = useState(false);
   const [windSpeedErrorMessage, setWindSpeedErrorMessage] = useState(false);
+
+  // state that holds a boolean related to whether any input fields are valid or invalid.
   const [formSubmissionErrorMessage, setFormSubmissionErrorMessage] =
     useState(false);
 
+  /* 
+  The function determines whether the formal parameter is valid. The corresponding error message is set accordingly.
+  The tempCatch state is sanitized, then the formSubmissionErrorMessage state is set to undefined.  
+  */
   function handleTimeInput(currentTime) {
     const isValid = handleTimeInputValidation(currentTime);
     isValid ? setTimeErrorMessage("") : setTimeErrorMessage("Invalid");
@@ -43,6 +69,10 @@ function AddCatchModal({
     clearFormSubmissionErrorMessage();
   }
 
+  /* 
+  The function determines whether the formal parameter is valid. The corresponding error message is set accordingly.
+  The tempCatch state is sanitized, then the formSubmissionErrorMessage state is set to undefined.  
+  */
   function handleFishInput(currentFish) {
     const isValid = handleFishInputValidation(currentFish);
     isValid ? setFishErrorMessage("") : setFishErrorMessage("Invalid");
@@ -50,6 +80,10 @@ function AddCatchModal({
     clearFormSubmissionErrorMessage();
   }
 
+  /* 
+  The function determines whether the formal parameter is valid. The corresponding error message is set accordingly.
+  The tempCatch state is sanitized, then the formSubmissionErrorMessage state is set to undefined.  
+  */
   function handleBaitInput(currentBait) {
     const isValid = handleBaitInputValidation(currentBait);
     isValid ? setBaitErrorMessage("") : setBaitErrorMessage("Invalid");
@@ -64,6 +98,10 @@ function AddCatchModal({
     clearFormSubmissionErrorMessage();
   }
 
+  /* 
+  The function determines whether the formal parameter is valid. The corresponding error message is set accordingly.
+  The tempCatch state is sanitized, then the formSubmissionErrorMessage state is set to undefined.  
+  */
   function handleLongitudeInput(currentLongitude) {
     const isValid = handleLongitudeInputValidation(currentLongitude);
     isValid
@@ -73,6 +111,10 @@ function AddCatchModal({
     clearFormSubmissionErrorMessage();
   }
 
+  /* 
+  The function determines whether the formal parameter is valid. The corresponding error message is set accordingly.
+  The tempCatch state is sanitized, then the formSubmissionErrorMessage state is set to undefined.  
+  */
   function handleWeatherInput(currentWeather) {
     const isValid = handleWeatherInputValidation(currentWeather);
     isValid ? setWeatherErrorMessage("") : setWeatherErrorMessage("Invalid");
@@ -80,6 +122,10 @@ function AddCatchModal({
     clearFormSubmissionErrorMessage();
   }
 
+  /* 
+  The function determines whether the formal parameter is valid. The corresponding error message is set accordingly.
+  The tempCatch state is sanitized, then the formSubmissionErrorMessage state is set to undefined.  
+  */
   function handleAirTempInput(currentAirTemp) {
     const isValid = handleAirTempInputValidation(currentAirTemp);
     isValid ? setAirTempErrorMessage("") : setAirTempErrorMessage("Invalid");
@@ -87,6 +133,10 @@ function AddCatchModal({
     clearFormSubmissionErrorMessage();
   }
 
+  /* 
+  The function determines whether the formal parameter is valid. The corresponding error message is set accordingly.
+  The tempCatch state is sanitized, then the formSubmissionErrorMessage state is set to undefined.  
+  */
   function handleWaterTempInput(currentWaterTemp) {
     const isValid = handleWaterTempInputValidation(currentWaterTemp);
     isValid
@@ -96,6 +146,10 @@ function AddCatchModal({
     clearFormSubmissionErrorMessage();
   }
 
+  /* 
+  The function determines whether the formal parameter is valid. The corresponding error message is set accordingly.
+  The tempCatch state is sanitized, then the formSubmissionErrorMessage state is set to undefined.  
+  */
   function handleWindSpeedInput(currentWindSpeed) {
     const isValid = handleWindSpeedInputValidation(currentWindSpeed);
     isValid
@@ -105,12 +159,18 @@ function AddCatchModal({
     clearFormSubmissionErrorMessage();
   }
 
+  /* 
+  The function sets the formSubmissionErrorMessage to an empty String if the newCatch object is valid.
+  */
   function clearFormSubmissionErrorMessage() {
     if (handleCatchInputValidation(newCatch)) {
       setFormSubmissionErrorMessage("");
     }
   }
 
+  /* 
+  The function trims all String-value properties of the newCatch object.
+  */
   function sanitizeTempCatch() {
     for (const key in newCatch) {
       if (typeof newCatch[key] == "string") {
@@ -119,6 +179,9 @@ function AddCatchModal({
     }
   }
 
+  /* 
+  The function processes the catch object & prepares it for a POST request to the server.
+  */
   function handlesNewCatch() {
     sanitizeTempCatch();
     if (handleCatchInputValidation(newCatch)) {
@@ -147,6 +210,12 @@ function AddCatchModal({
     }
   }
 
+  /* 
+  The asynchronous function makes a POST request to the server. If successful, then the server-returned catch object's properties are
+  converted to client-specific properties for catch objects. The catch object is inserted into the catches array & the catches array is sorted.
+
+  @param newCatchData An object with catch properties.
+  */
   async function postNewCatch(newCatchData) {
     const POST_CATCH = `${baseURL}/catches?userId=${user.id}`;
     const token = localStorage.getItem("authToken");
@@ -185,6 +254,11 @@ function AddCatchModal({
     }
   }
 
+  /* 
+  The function updates the catches state by sorting the catches object array with the newly inserted catch object.
+
+  @param newCatchItem An object containing catch properties.
+  */
   function sortCatches(newCatchItem) {
     setCatches((currentCatches) => {
       const updatedCatches = [...currentCatches, newCatchItem];
@@ -199,6 +273,9 @@ function AddCatchModal({
     });
   }
 
+  /* 
+  The useEffect creates a new Date object with a specified time format & sets the default time property of newCatch.
+  */
   useEffect(() => {
     const currentTime = new Date().toLocaleTimeString("it-IT", {
       hour: "2-digit",
@@ -207,12 +284,19 @@ function AddCatchModal({
     setNewCatch((prevState) => ({ ...prevState, time: currentTime }));
   }, []);
 
+  // state that holds an object with properties related to geolocation. The default states are set to indicate the state has not been changed according to user device geolocation data.
   const [geolocation, setGeolocation] = useState({
     loaded: false,
     isSuccess: false,
     coordinates: { lat: "", long: "" },
   });
 
+  /* 
+  The function takes data from the built-in navigator.geolocation JavaScript feature & modifies the existing geolocation state.
+  Then the function sets the newCatch state with the provided latitude & longitude data.
+
+  @param position An object with properties related to navigator.geolocation JavaScript feature.
+  */
   function onGeolocationSuccess(position) {
     setGeolocation({
       loaded: true,
@@ -229,6 +313,12 @@ function AddCatchModal({
     }));
   }
 
+  /* 
+  The function sets the geolocation state with data indicating that the navigator.geolocation is allowed, but
+  cannot retrieve the user's data.
+
+  @param error String representing error received from navigator.geolocation on unsuccessful function call.
+  */
   function onGeolocationError(error) {
     setGeolocation({
       loaded: true,
@@ -237,6 +327,9 @@ function AddCatchModal({
     });
   }
 
+  /* 
+  The useEffect triggers the built-in navigator.geolocation feature to obtain the user device's geographic coordinates once on component mount.
+  */
   useEffect(() => {
     if (!("geolocation" in navigator)) {
       onGeolocationError({
@@ -250,6 +343,11 @@ function AddCatchModal({
     }
   }, []);
 
+  /* 
+  The useEffect makes a GET post to the server to obtain weather-related data with the given latitude & longitude.
+  It is triggered once on component mount. If successful, then the corresponding user input fields are populated with
+  data return from the server.
+  */
   useEffect(() => {
     const getCurrentWeather = async (latitude, longitude) => {
       const GET_CURRENT_WEATHER = `${baseURL}/weather?userId=${user.id}&latitude=${latitude}&longitude=${longitude}`;
@@ -292,6 +390,11 @@ function AddCatchModal({
     );
   }, []);
 
+  /* 
+  The function force updates the newCatch state with properties from the formal parameter
+
+  @param response An object with catch-related properties.
+  */
   function updateNewCatchOnWeatherResponse(response) {
     setNewCatch((prevState) => ({
       ...prevState,
@@ -546,6 +649,11 @@ function AddCatchModal({
   );
 }
 
+/* 
+The function prevents the user from inputting digits and special characters.
+
+@param e A KeyBoard Event.
+*/
 function preventDigitAndSpecialCharacters(e) {
   // Letters & spaces only
   if (!/[a-zA-Z ]/.test(e.key)) {
@@ -553,18 +661,33 @@ function preventDigitAndSpecialCharacters(e) {
   }
 }
 
+/* 
+The function prevents the user from inputting decimal, plus, & minus characters.
+
+@param e A KeyBoard Event.
+*/
 function preventDecimalAndPlusAndMinus(e) {
   if (e.key === "." || e.key === "+" || e.key === "-") {
     e.preventDefault();
   }
 }
 
+/* 
+The function prevents the user from inputting decimal & plus characters.
+
+@param e A KeyBoard Event.
+*/
 function preventDecimalAndPlus(e) {
   if (e.key === "." || e.key == "+") {
     e.preventDefault();
   }
 }
 
+/* 
+The function prevents the user from inputting the plus character.
+
+@param e A KeyBoard Event.
+*/
 function preventPlus(e) {
   if (e.key === "+") {
     e.preventDefault();
