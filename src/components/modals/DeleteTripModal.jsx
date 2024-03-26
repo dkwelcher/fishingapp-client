@@ -1,3 +1,22 @@
+/* 
+DeleteTripModal.jsx is an intermediate dashboard component that displays the trip object to be deleted.
+
+@since 2024-03-18
+*/
+
+/* 
+DeleteTripModal renders a container with text related to the selected trip. It provides two buttons
+that allow the user to confirm or cancel deletion of the trip.
+
+@param openDeleteTripModal Boolean value the represents whether the delete trip modal is open or closed.
+@param setOpenDeleteTripModal Setter function that sets the openDeleteTripModal to true or false.
+@param trip An object that holds trip properties.
+@param setTrip Setter function that sets the state of the trip object.
+@param setTripDate Setter function that sets the state of the tripDate String.
+@param user An object that holds user properties.
+@param baseURL String that represents the base URL of the server.
+@return HTML that renders the container that holds data related to the trip to be deleted & buttons for confirmation & cancellation.
+*/
 function DeleteTripModal({
   openDeleteTripModal,
   setOpenDeleteTripModal,
@@ -9,10 +28,17 @@ function DeleteTripModal({
 }) {
   if (!openDeleteTripModal) return null;
 
+  /* 
+  The function calls the deleteTrip() function.
+  */
   function handleDeleteTrip() {
     deleteTrip();
   }
 
+  /* 
+  The function makes a DELETE request to the server. If successful, the deleted trip &
+  tripDate states are set to undefined.
+  */
   async function deleteTrip() {
     const DELETE_TRIP_BY_ID = `${baseURL}/trips/${trip.id}?userId=${user.id}`;
     const token = localStorage.getItem("authToken");
@@ -37,6 +63,11 @@ function DeleteTripModal({
     }
   }
 
+  /* 
+  The function converts the date object to a formatted String.
+
+  @param date An object with date properties: year, month, & day.
+  */
   function handleDateFormat(date) {
     const [year, month, day] = date.split("-");
     return `${month}/${day}/${year}`;

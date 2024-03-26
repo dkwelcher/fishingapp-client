@@ -1,9 +1,29 @@
+/* 
+SelectDateModal.jsx is an intermediate dashboard component that displays a form for adding a new trip or selecting an existing trip.
+
+@since 2024-03-18
+*/
+
 import { useState } from "react";
 import {
   handleTripInputValidation,
   handleLocationInputValidation,
 } from "../../lib/utilities/InputValidation";
 
+/* 
+SelectDateModal renders a container with a form for adding a new trip & dynamically displays existing trips associated with the given date.
+It provides immediate feedback on input validation & delegates final input validation on submission to the local input valition file.
+
+@param openSelectDateModal Boolean value that represents whether the select date modal is open or closed.
+@param setOpenSelectDateModal Setter function that sets the openSelectDateModal to true or false.
+@param trips An object array that contains trip objects.
+@param setTrips Setter function that sets the trips state.
+@param tripDate String that represents the date in YYYY-MM-DD format.
+@param user An object that holds user properties.
+@param baseURL String that represents the base URL of the server.
+@return HTML that renders the container that holds the form specific to trip data &
+        dynamically rendered trips with select buttons.
+*/
 function SelectDateModal({
   openSelectDateModal,
   setOpenSelectDateModal,
@@ -16,10 +36,18 @@ function SelectDateModal({
 }) {
   if (!openSelectDateModal) return null;
 
+  // state that holds a String representing the name of a body of water.
   const [location, setLocation] = useState();
 
+  // state that holds a boolean related to whether the input field is valid or invalid.
   const [locationErrorMessage, setLocationErrorMessage] = useState(false);
 
+  /* 
+  The function determines whether the formal parameter is valid. The corresponding error message
+  is set accordingly.
+
+  @param currentLocation String representing the name of a body of water.
+  */
   function handleLocationInput(currentLocation) {
     const isValid = handleLocationInputValidation(currentLocation);
     isValid
@@ -27,6 +55,10 @@ function SelectDateModal({
       : setLocationErrorMessage("Location is invalid");
   }
 
+  /* 
+  The function selects a trip from the trips object array according to the dataKey parameter.
+  The selected trip is then processed to be set as the trip object state.
+  */
   function handleSelectTrip(dataKey) {
     const selectedTrip = trips[dataKey];
     const updatedTripObject = {
@@ -37,6 +69,9 @@ function SelectDateModal({
     setTrip(updatedTripObject);
   }
 
+  /* 
+  The function processes the location state & prepares a new trip object for a POST request to the server.
+  */
   function handleAddTrip() {
     if (location === null || location === undefined || location === "") {
       setLocationErrorMessage("Location is invalid");
@@ -63,6 +98,12 @@ function SelectDateModal({
     }
   }
 
+  /* 
+  The asynchronous function makes a POST request to the server. If successful, then the server-returned trip object's properties are
+  converted to client-specific properties for trip objects. The trip object is inserted into the trips array & the trips array is sorted.
+
+  @param newTripData An object with trip properties.
+  */
   async function postNewTrip(newTripData) {
     const POST_TRIP = `${baseURL}/trips?userId=${user.id}`;
     const token = localStorage.getItem("authToken");
@@ -214,6 +255,11 @@ function SelectDateModal({
   );
 }
 
+/* 
+The function prevents the user from inputting digits and special characters.
+
+@param e A KeyBoard Event.
+*/
 function preventDigitAndSpecialCharacters(e) {
   // Letters & spaces only
   if (!/[a-zA-Z ]/.test(e.key)) {
