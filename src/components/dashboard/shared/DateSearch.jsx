@@ -1,15 +1,34 @@
+/* 
+DateSearch.jsx is an intermediate component that displays a DatePicker input field & button.
+
+@since 2024-03-19
+*/
+
 import { useState } from "react";
 import DatePicker from "react-datepicker";
 import { HiOutlineCalendar } from "react-icons/hi";
 
+/* 
+DateSearch renders a DatePicker from react-datepicker library & a button that processes the input from the DatePicker
+
+@param setOpenSelectDateModal Setter function that sets the openSelectDateModal state to true or false.
+@param getTripDate Function that retrieves a date.
+@param setTripDate Setter function that sets the tripDate state with a data object formatted YYYY-MM-DD.
+@param setTrip Setter function that sets the trip state.
+@return HTML that renders a container with the DatePicker & button elements.
+*/
 function DateSearch({
   setOpenSelectDateModal,
   getTripDate,
   setTripDate,
   setTrip,
 }) {
+  // state that holds a Date object & is changed by the user.
   const [startDate, setStartDate] = useState(new Date());
 
+  /* 
+  handleSearchClick formats the startDate Date object properties into a String & calls the getTripDate with the formatted String.
+  */
   const handleSearchClick = () => {
     if (startDate === null || startDate === undefined || startDate === "") {
       return;
@@ -23,6 +42,9 @@ function DateSearch({
     getTripDate(formattedDate);
   };
 
+  /* 
+  handleLastSixMonthsClicks sets the tripDate & trip to undefined
+  */
   function handleLastSixMonthsClick() {
     setTripDate();
     setTrip({});

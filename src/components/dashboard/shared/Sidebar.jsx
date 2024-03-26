@@ -1,3 +1,9 @@
+/* 
+Sidebar.jsx is component that displays the sidebar with links that navigate through the dashboard.
+
+@since 2024-02-22
+*/
+
 import Logo from "../../../assets/logo.png";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import {
@@ -13,9 +19,21 @@ const sidebarLinkStyles =
 const sidebarLinkIconStyles = "text-xl";
 /* End Tailwind Class Styles */
 
+/* 
+Sidebar renders the dashboard sidebar with text, styling, & Links to views within the dashboard.
+
+@param setUser Setter function that sets the user state.
+@param screenWidth Integer the holds value of user device's screen width.
+@return HTML rendering the sidebar & sidebar links to dashboard views.
+*/
 function Sidebar({ setUser, screenWidth }) {
+  // function that changes page without browser refresh.
   const navigate = useNavigate();
 
+  /* 
+  handleLogout removes user & token data from localStorage, sets user state to undefined, &
+  navigates the user back to the landing page.
+  */
   function handleLogout() {
     localStorage.removeItem("user");
     localStorage.removeItem("authToken");
@@ -65,6 +83,13 @@ function Sidebar({ setUser, screenWidth }) {
   );
 }
 
+/* 
+SidebarLink is an inner component that dynamically renders sidebar links with styling, icons, text, &
+the path to the corresponding view.
+
+@param item Object that stores data corresponding to sidebar links.
+@return A Link component with data corresponding to a specific sidebar link from index.jsx.
+*/
 function SidebarLink({ item }) {
   const { pathname } = useLocation();
 

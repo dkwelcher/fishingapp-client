@@ -1,5 +1,16 @@
+/* 
+SearchBar.jsx is an intermediate component that displays an input field.
+
+@since 2024-02-22
+*/
+
 import { HiOutlineSearch } from "react-icons/hi";
 
+/* 
+SearchBar renders a container with an input field intended for searching the dashboard
+
+@return HTML that renders a container with an input field.
+*/
 function SearchBar() {
   /* Tailwind Class Styles */
   const searchBarContainerStyles = "relative";
