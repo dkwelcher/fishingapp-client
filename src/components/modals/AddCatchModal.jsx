@@ -1,5 +1,5 @@
 /* 
-AddCatchModal.jsx is a intermediate dashboard component that displays a form for adding a new catch.
+AddCatchModal.jsx is an intermediate dashboard component that displays a form for adding a new catch.
 
 @since 2024-03-19
 */
