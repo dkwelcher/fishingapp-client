@@ -1,3 +1,9 @@
+/* 
+index.jsx is a utility module that holds data used for processing sidebar links.
+
+@since 2024-03-19
+*/
+
 import { IoFish } from "react-icons/io5";
 import { HiOutlineChatAlt } from "react-icons/hi";
 import { GiBoatFishing } from "react-icons/gi";

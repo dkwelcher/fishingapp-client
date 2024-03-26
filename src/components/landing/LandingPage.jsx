@@ -1,3 +1,9 @@
+/* 
+LandingPage.jsx is a primary component that displays the landing page of the app where users can navigate to the signup & login page.
+
+@since 2024-03-15
+*/
+
 import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import Logo from "../../assets/logo.png";
@@ -6,16 +12,34 @@ import Section2Image from "../../assets/blue-catfish.png";
 import Section3Image from "../../assets/pier.png";
 import { RxHamburgerMenu, RxCross1 } from "react-icons/rx";
 
+/* 
+LandingPage renders elements intended to encourage users to sign up for the app & elements that allow navigation to the signup page & login page.
+It is the entry point of the application.
+
+@return HTML that renders hero section, main content section, callout section, & headers & footers.
+*/
 function LandingPage() {
+  // state that holds a boolean representing whether the mobile hamburger menu is open or closed.
   const [isOpen, setIsOpen] = useState(false);
+
+  // function that allows user to navigate without browser refresh.
   const navigate = useNavigate();
 
+  // state that refers to an HTML element.
   const dropdownRef = useRef(null);
 
+  /* 
+  toggleNavbar sets isOpen state to the opposite of its current state.
+  */
   function toggleNavbar() {
     setIsOpen(!isOpen);
   }
 
+  /* 
+  The useEffect listens for mouse clicks outside of the specified dropdown component, and it will close the dropdown if such a click is detected.
+
+  @return Cleanup function that removes mousedown event listener when component unmounts.
+  */
   useEffect(() => {
     const handleClickOutsideDropdown = (event) => {
       let targetElement = event.target;
@@ -41,18 +65,32 @@ function LandingPage() {
     };
   }, []);
 
+  /* 
+  handleDisplayCurrentYear obtains current year.
+
+  @return Integer holding the full year extracted from Date object.
+  */
   function handleDisplayCurrentYear() {
     return new Date().getFullYear();
   }
 
+  /* 
+  handleLandingPageToTop navigates user to landing page.
+  */
   function handleLandingPageToTop() {
     navigate("/");
   }
 
+  /* 
+  handleLoginEntry navigates user to login page.
+  */
   function handleLoginEntry() {
     navigate("/login");
   }
 
+  /* 
+  handleSignupEntry navigates user to signup page.
+  */
   function handleSignupEntry() {
     navigate("/signup");
   }

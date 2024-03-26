@@ -1,3 +1,10 @@
+/* 
+InputValidation.jsx is a utility module that holds all functions related to input validation for
+trips, catches, user signup, & user login.
+
+@since 2024-03-15
+*/
+
 /* Main Catch Input Validation function */
 export function handleCatchInputValidation(catchItem) {
   return (
