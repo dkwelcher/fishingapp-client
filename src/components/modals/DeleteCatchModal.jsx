@@ -1,3 +1,22 @@
+/* 
+DeleteCatchModal.jsx is an intermediate dashboard component that displays the catch object to be deleted.
+
+@since 2024-03-19
+*/
+
+/*
+DeleteCatchModal renders a container with text related to the selected catch. It provides two buttons
+that allow the user to confirm or cancel deletion of the catch.
+
+@param openDeleteCatchModal Boolean value that represents whether the delete catch modal is open or closed.
+@param setOpenDeleteCatchModal Setter function that sets the openDeleteCatchModal to true or false.
+@param user An object that holds user properties.
+@param tempCatch An object that holds catch properties.
+@param setTempCatch An object that holds catch properties temporarily for editing or deleting a catch.
+@param setCatches Setter function that sets the state of the catches object array.
+@param baseURL String that represents the base URL of the server.
+@return HTML that renders the container that holds data related to the catch to be deleted & buttons for confirmation & cancellation.
+*/
 function DeleteCatchModal({
   openDeleteCatchModal,
   setOpenDeleteCatchModal,
@@ -9,10 +28,17 @@ function DeleteCatchModal({
 }) {
   if (!openDeleteCatchModal) return null;
 
+  /* 
+  The function calls the deleteCatch() function.
+  */
   function handleDeleteCatch() {
     deleteCatch();
   }
 
+  /* 
+  The function makes a DELETE request to the server. If successful, the deleted catch object
+  is filtered from the existing catches state.
+  */
   async function deleteCatch() {
     const tempCatchId = tempCatch.id;
     const deleteBody = {
@@ -48,6 +74,11 @@ function DeleteCatchModal({
     }
   }
 
+  /* 
+  The function converts the time from 24hr to 12hr format.
+
+  @param time A Date object that holds time in 24hr format.
+  */
   function handleTimeConversionTo12HourFormat(time) {
     const [hours, minutes] = time.split(":");
     const hoursInt = parseInt(hours, 10);

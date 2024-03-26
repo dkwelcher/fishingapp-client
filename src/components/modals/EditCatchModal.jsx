@@ -1,3 +1,9 @@
+/* 
+EditCatchModal.jsx is an intermediate dashboard component that displays a form for editing an existing catch.
+
+@since 2024-03-19
+*/
+
 import { useState } from "react";
 import {
   handleCatchInputValidation,
@@ -12,6 +18,19 @@ import {
   handleWindSpeedInputValidation,
 } from "../../lib/utilities/InputValidation";
 
+/* 
+EditCatchModal renders a container with a form for editing an existing catch. It provides immediate feedback on input validation &
+delegates final input validation on submission to the local input validation file.
+
+@param openEditCatchModal Boolean value that represents whether the edit catch modal is open or closed.
+@parem setOpenEditCatchModal Setter function that sets the openEditCatchModal to true or false.
+@param user An object that holds user properties.
+@param trip An object that holds trip properties.
+@param setTempCatch Setter function that sets the tempCatch state.
+@param setCatches Setter function that sets the catches state.
+@param baseURL String that represents the base URL of the server.
+@return HTML that renders the container that holds a form specific to catch data.
+*/
 function EditCatchModal({
   openEditCatchModal,
   setOpenEditCatchModal,
@@ -24,6 +43,7 @@ function EditCatchModal({
 }) {
   if (!openEditCatchModal) return null;
 
+  // states that hold booleans related to whether an input field is valid or invalid.
   const [timeErrorMessage, setTimeErrorMessage] = useState(false);
   const [fishErrorMessage, setFishErrorMessage] = useState(false);
   const [baitErrorMessage, setBaitErrorMessage] = useState(false);
@@ -33,9 +53,17 @@ function EditCatchModal({
   const [airTempErrorMessage, setAirTempErrorMessage] = useState(false);
   const [waterTempErrorMessage, setWaterTempErrorMessage] = useState(false);
   const [windSpeedErrorMessage, setWindSpeedErrorMessage] = useState(false);
+
+  // state that holds a boolean related to whether any input fields are valid or invalid.
   const [formSubmissionErrorMessage, setFormSubmissionErrorMessage] =
     useState(false);
 
+  /* 
+  The function determines whether the formal parameter is valid. The corresponding error message is set accordingly.
+  The tempCatch state is sanitized, then the formSubmissionErrorMessage state is set to undefined.  
+  
+  @param currentTime String representing a formatted time.
+  */
   function handleTimeInput(currentTime) {
     const isValid = handleTimeInputValidation(currentTime);
     isValid ? setTimeErrorMessage("") : setTimeErrorMessage("Invalid");
@@ -43,6 +71,12 @@ function EditCatchModal({
     clearFormSubmissionErrorMessage();
   }
 
+  /* 
+  The function determines whether the formal parameter is valid. The corresponding error message is set accordingly.
+  The tempCatch state is sanitized, then the formSubmissionErrorMessage state is set to undefined.  
+  
+  @param currentFish String representing a type of fish.
+  */
   function handleFishInput(currentFish) {
     const isValid = handleFishInputValidation(currentFish);
     isValid ? setFishErrorMessage("") : setFishErrorMessage("Invalid");
@@ -50,6 +84,12 @@ function EditCatchModal({
     clearFormSubmissionErrorMessage();
   }
 
+  /* 
+  The function determines whether the formal parameter is valid. The corresponding error message is set accordingly.
+  The tempCatch state is sanitized, then the formSubmissionErrorMessage state is set to undefined.  
+  
+  @param currentBait String representing a type of bait.
+  */
   function handleBaitInput(currentBait) {
     const isValid = handleBaitInputValidation(currentBait);
     isValid ? setBaitErrorMessage("") : setBaitErrorMessage("Invalid");
@@ -57,6 +97,12 @@ function EditCatchModal({
     clearFormSubmissionErrorMessage();
   }
 
+  /* 
+  The function determines whether the formal parameter is valid. The corresponding error message is set accordingly.
+  The tempCatch state is sanitized, then the formSubmissionErrorMessage state is set to undefined.  
+  
+  @param currentLatitude String representing a latitude coordinate
+  */
   function handleLatitudeInput(currentLatitude) {
     const isValid = handleLatitudeInputValidation(currentLatitude);
     isValid ? setLatitudeErrorMessage("") : setLatitudeErrorMessage("Invalid");
@@ -64,6 +110,12 @@ function EditCatchModal({
     clearFormSubmissionErrorMessage();
   }
 
+  /* 
+  The function determines whether the formal parameter is valid. The corresponding error message is set accordingly.
+  The tempCatch state is sanitized, then the formSubmissionErrorMessage state is set to undefined.  
+  
+  @param currentLongitude String representing a longitude coordinate.
+  */
   function handleLongitudeInput(currentLongitude) {
     const isValid = handleLongitudeInputValidation(currentLongitude);
     isValid
@@ -73,6 +125,12 @@ function EditCatchModal({
     clearFormSubmissionErrorMessage();
   }
 
+  /* 
+  The function determines whether the formal parameter is valid. The corresponding error message is set accordingly.
+  The tempCatch state is sanitized, then the formSubmissionErrorMessage state is set to undefined.  
+  
+  @param currentWeather String representing a weather condition.
+  */
   function handleWeatherInput(currentWeather) {
     const isValid = handleWeatherInputValidation(currentWeather);
     isValid ? setWeatherErrorMessage("") : setWeatherErrorMessage("Invalid");
@@ -80,6 +138,12 @@ function EditCatchModal({
     clearFormSubmissionErrorMessage();
   }
 
+  /* 
+  The function determines whether the formal parameter is valid. The corresponding error message is set accordingly.
+  The tempCatch state is sanitized, then the formSubmissionErrorMessage state is set to undefined.  
+  
+  @param currentAirTemp String representing an air temperature integer value.
+  */
   function handleAirTempInput(currentAirTemp) {
     const isValid = handleAirTempInputValidation(currentAirTemp);
     isValid ? setAirTempErrorMessage("") : setAirTempErrorMessage("Invalid");
@@ -87,6 +151,12 @@ function EditCatchModal({
     clearFormSubmissionErrorMessage();
   }
 
+  /* 
+  The function determines whether the formal parameter is valid. The corresponding error message is set accordingly.
+  The tempCatch state is sanitized, then the formSubmissionErrorMessage state is set to undefined.  
+  
+  @param currentWaterTemp String representing a water temperature integer value.
+  */
   function handleWaterTempInput(currentWaterTemp) {
     const isValid = handleWaterTempInputValidation(currentWaterTemp);
     isValid
@@ -96,6 +166,12 @@ function EditCatchModal({
     clearFormSubmissionErrorMessage();
   }
 
+  /* 
+  The function determines whether the formal parameter is valid. The corresponding error message is set accordingly.
+  The tempCatch state is sanitized, then the formSubmissionErrorMessage state is set to undefined.  
+  
+  @param currentWindSpeed String representing a wind speed integer value.
+  */
   function handleWindSpeedInput(currentWindSpeed) {
     const isValid = handleWindSpeedInputValidation(currentWindSpeed);
     isValid
@@ -105,12 +181,18 @@ function EditCatchModal({
     clearFormSubmissionErrorMessage();
   }
 
+  /* 
+  The function sets the formSubmissionErrorMessage to an empty String if the tempCatch object is valid.
+  */
   function clearFormSubmissionErrorMessage() {
     if (handleCatchInputValidation(tempCatch)) {
       setFormSubmissionErrorMessage("");
     }
   }
 
+  /* 
+  The function trims all String-value properties of the tempCatch object.
+  */
   function sanitizeTempCatch() {
     for (const key in tempCatch) {
       if (typeof tempCatch[key] == "string") {
@@ -119,6 +201,9 @@ function EditCatchModal({
     }
   }
 
+  /* 
+  The function processes the catch object & prepares it for a PUT request to the server.
+  */
   function handleCatches() {
     sanitizeTempCatch();
     if (handleCatchInputValidation(tempCatch)) {
@@ -148,6 +233,12 @@ function EditCatchModal({
     }
   }
 
+  /* 
+  The asynchronous function makes a PUT request to the server. If successful, then the server-returned catch object's properties are
+  converted to client-specific properties for catch objects. The catch object is inserted into the catches array & the catches array is sorted.
+
+  @param updatedCatchData An object with catch properties.
+  */
   async function editCatch(updatedCatchData) {
     const EDIT_CATCH_BY_ID = `${baseURL}/catches/${tempCatch.id}?userId=${user.id}`;
     const token = localStorage.getItem("authToken");
@@ -195,6 +286,9 @@ function EditCatchModal({
     }
   }
 
+  /* 
+  The function updates the catches state by sorting the catches object array.
+  */
   function sortCatches() {
     setCatches((catches) => {
       return catches.sort((a, b) => {
@@ -455,6 +549,11 @@ function EditCatchModal({
   );
 }
 
+/* 
+The function prevents the user from inputting digits and special characters.
+
+@param e A KeyBoard Event.
+*/
 function preventDigitAndSpecialCharacters(e) {
   // Letters & spaces only
   if (!/[a-zA-Z ]/.test(e.key)) {
@@ -462,18 +561,33 @@ function preventDigitAndSpecialCharacters(e) {
   }
 }
 
+/* 
+The function prevents the user from inputting decimal, plus, & minus characters.
+
+@param e A KeyBoard Event.
+*/
 function preventDecimalAndPlusAndMinus(e) {
   if (e.key === "." || e.key === "+" || e.key === "-") {
     e.preventDefault();
   }
 }
 
+/* 
+The function prevents the user from inputting decimal & plus characters.
+
+@param e A KeyBoard Event.
+*/
 function preventDecimalAndPlus(e) {
   if (e.key === "." || e.key == "+") {
     e.preventDefault();
   }
 }
 
+/* 
+The function prevents the user from inputting the plus character.
+
+@param e A KeyBoard Event.
+*/
 function preventPlus(e) {
   if (e.key === "+") {
     e.preventDefault();
