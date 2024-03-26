@@ -1,5 +1,31 @@
+/* 
+TripCard.jsx is an intermediate component that displays trip data & the CatchCard component.
+
+@since 2024-02-22
+*/
+
 import CatchCard from "./CatchCard";
 
+/* 
+TripCard dynamically renders trip data, prepares tempTrip state for editing or deletion, handles date formatting, &
+renders the CatchCard component.
+
+@param trip The current trip object that the user has selected to manage.
+@param setTempTrip The temporary trip object that will be edited or deleted by the user.
+@param catches An array of catch objects that are associated with a trip object.
+@param setCatches Setter function to set state of catches object array.
+@param setTempCatch Setter function that sets tempCatch state used for editing & deleting catch records.
+@param openAddCatchModal Boolean state used to determine open / closed state of add catch modal.
+@param setOpenAddCatchModal Setter function that sets openAddCatchModal to true or false.
+@param openEditCatchModal Boolean state used to determine open / closed state of edit catch modal.
+@param setOpenEditCatchModal Setter function that sets openEditCatchModal to true or false.
+@param openDeleteCatchModal Boolean state used to determine open / closed state of delete catch modal.
+@param setOpenDeleteCatchModal Setter function that sets openDeleteCatchModal to true or false.
+@param setOpenEditTripModal Setter function that sets openEditTripModal to true or false.
+@param setOpenDeleteTripModal Setter function that sets openDeleteTripModal to true or false.
+@param screenWidth Integer value of the user's device screen width.
+@return HTML that renders a text card with headings, text, & buttons related to the selected trip & the CatchCard component.
+*/
 function TripCard({
   trip,
   setTempTrip,
@@ -16,10 +42,19 @@ function TripCard({
   setOpenDeleteTripModal,
   screenWidth,
 }) {
+  /* 
+  handleEditTrip sets the tempTrip state to the trip object.
+  */
   function handleEditTrip() {
     setTempTrip(trip);
   }
 
+  /* 
+  handleDateFormat converts the date object to Strings to be formatted & displayed in a user-friendly way.
+
+  @param date The data object associated with the trip object.
+  @return String that formats date to MM/DD/YYYY
+  */
   function handleDateFormat(date) {
     const [year, month, day] = date.split("-");
     return `${month}/${day}/${year}`;

@@ -1,5 +1,23 @@
+/* 
+InfoSection.jsx is an intermediate component that displays a background image, text, & the DateSearch component.
+
+@since 2024-03-18
+*/
+
 import DateSearch from "../shared/DateSearch";
 
+/* 
+InfoSection renders a div that contains a background image, heading & paragraph text, & the DateSearch component.
+
+@param setOpenSelectDateModal Setter function that sets the openSelectDateModal to true or false.
+@param getTripDate Function that retrieves a date.
+@param setTripDate Setter function that sets the tripDate state with a date object formatted YYYY-MM-DD.
+@param setTrip Setter function that sets the trip state.
+@param backgroundImage String that holds the path to an image file.
+@param title String that holds the heading text.
+@param description String that holds the paragraph text.
+@return HTML that renders a background image, heading & paragraph elements, & the DateSearch component.
+*/
 function InfoSection({
   setOpenSelectDateModal,
   getTripDate,

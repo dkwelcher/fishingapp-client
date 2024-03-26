@@ -1,3 +1,19 @@
+/* 
+CatchCard.jsx is a component that displays catch data.
+
+@since 2024-02-23
+*/
+
+/* 
+CatchCard dynamically renders catch data, prepares tempCatch states for editing or deletion, & converts 24hr time to 12hr time.
+
+@param catches An array of catch objects that are associated with a trip object.
+@param setTempCatch Setter function that sets tempCatch state which is used for editing & deleting catch records.
+@param setOpenAddCatchModal Setter function that sets openAddCatchModal to true or false.
+@param setOpenEditCatchModal Setter function that sets openEditCatchModal to true or false.
+@param setOpenDeleteCatchModal Setter function that sets openDeleteCatchModal to true or false.
+@return HTML that dynamically renders a styled card containing catch data.
+*/
 function CatchCard({
   catches,
   setTempCatch,
@@ -5,17 +21,33 @@ function CatchCard({
   setOpenEditCatchModal,
   setOpenDeleteCatchModal,
 }) {
+  /* 
+  handleEditCatch extracts the catch record associated with the button, processes it, then sets the tempCatch state with that data.
+
+  @param dataKey The index used to match catch record to catch object in the catches array.
+  */
   function handleEditCatch(dataKey) {
     const catchItem = catches[dataKey];
     const newCatchItem = { ...catchItem, index: dataKey };
     setTempCatch(newCatchItem);
   }
 
+  /* 
+  handleDeleteCatch extracts the catch record associated with the button, then sets the tempCatch state with that data.
+
+  @param dataKey The index used to match catch record to catch object in the catches array.
+  */
   function handleDeleteCatch(dataKey) {
     const catchItem = catches[dataKey];
     setTempCatch(catchItem);
   }
 
+  /* 
+  handleTimeConversionTo12HourFormat converts 24hr time to 12hr time for display in catch cards.
+
+  @param time The time formatted in 24hr time.
+  @return The time converted to 12hr time & formatted for display.
+  */
   function handleTimeConversionTo12HourFormat(time) {
     const [hours, minutes] = time.split(":");
     const hoursInt = parseInt(hours, 10);
