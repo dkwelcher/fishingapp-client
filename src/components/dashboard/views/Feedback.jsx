@@ -1,14 +1,40 @@
+/* 
+Feedback.jsx is a dashboard component that displays a page where the user can provide feedback about the app.
+
+@since 2024-03-19
+*/
+
 import { useState, useEffect } from "react";
 import Logo from "../../../assets/logo.png";
 
+/* 
+Feedback renders a dashboard view with a form where users can provide feedback.
+
+@param user An object with that holds user properties.
+@param baseURL String that contains base URL of server.
+@return HTML that renders a view with a form that contains a select box, text area, & a submit button.
+*/
 function Feedback({ user, baseURL }) {
+  // state that holds a String based on user input in textArea.
   const [feedback, setFeedback] = useState("");
+
+  // state that holds a String corresponding to pages in the app.
   const [selectPage, setSelectPage] = useState("landing page");
+
+  // state that holds a boolean representing whether the user has submitted feedback by clicking the submit button.
   const [submitFeedback, setSubmitFeedback] = useState(false);
+
+  // state that holds a boolean which controls display of successful submission text.
   const [successfulSubmission, setSuccessfulSubmission] = useState(false);
+
+  // state that holds a String that holds text related to invalid input.
   const [formSubmissionErrorMessage, setFormSubmissionErrorMessage] =
     useState("");
 
+  /* 
+    The useEffect detects if feedback is truthy & submitFeedback is true, then calls postFeedback(), & sets submitFeedback state to false.
+    Its purpose is to ensure the feedback state is updated before sending a POST request to the server.
+  */
   useEffect(() => {
     if (submitFeedback && feedback) {
       postFeedback();
@@ -16,6 +42,11 @@ function Feedback({ user, baseURL }) {
     }
   }, [feedback, submitFeedback]);
 
+  /* 
+  handleFeedback validates feedback state modified by user. If feedback state is valid, then
+  the function calls formatFeedback() & sets submitFeedback to true to trigger useEffect that will
+  trigger the POST request to the server.
+  */
   function handleFeedback() {
     const trimmedFeedback = feedback.trim();
 
@@ -36,6 +67,9 @@ function Feedback({ user, baseURL }) {
     setSubmitFeedback(true);
   }
 
+  /* 
+  formatFeedback formats the String that will be sent in the POST request.
+  */
   function formatFeedback() {
     const currentTime = new Date().toLocaleTimeString("it-IT", {
       hour: "2-digit",
@@ -47,6 +81,10 @@ function Feedback({ user, baseURL }) {
     );
   }
 
+  /* 
+  postFeedback is an asynchronous function that makes a POST request to the server using the feedback state.
+  If the HTTP status is OK, then all states are reset to initial mounted state; otherwise, an error message is displayed to the user.
+  */
   async function postFeedback() {
     const POST_FEEDBACK = `${baseURL}/feedback?userId=${user.id}`;
     const token = localStorage.getItem("authToken");
@@ -74,6 +112,11 @@ function Feedback({ user, baseURL }) {
     }
   }
 
+  /* 
+  handleClearSubmissionConfirmation sets the successfulSubmission state to false.
+  After successful submission, a message will display to the user. When the user begins typing in
+  the textArea again, the message will disappear.
+  */
   function handleClearSubmissionConfirmation() {
     setSuccessfulSubmission(false);
   }
