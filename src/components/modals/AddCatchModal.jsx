@@ -61,6 +61,8 @@ function AddCatchModal({
   /* 
   The function determines whether the formal parameter is valid. The corresponding error message is set accordingly.
   The tempCatch state is sanitized, then the formSubmissionErrorMessage state is set to undefined.  
+  
+  @param currentTime String representing a formatted time.
   */
   function handleTimeInput(currentTime) {
     const isValid = handleTimeInputValidation(currentTime);
@@ -72,6 +74,8 @@ function AddCatchModal({
   /* 
   The function determines whether the formal parameter is valid. The corresponding error message is set accordingly.
   The tempCatch state is sanitized, then the formSubmissionErrorMessage state is set to undefined.  
+  
+  @param currentFish String representing a type of fish.
   */
   function handleFishInput(currentFish) {
     const isValid = handleFishInputValidation(currentFish);
@@ -83,6 +87,8 @@ function AddCatchModal({
   /* 
   The function determines whether the formal parameter is valid. The corresponding error message is set accordingly.
   The tempCatch state is sanitized, then the formSubmissionErrorMessage state is set to undefined.  
+  
+  @param currentBait String representing a type of bait.
   */
   function handleBaitInput(currentBait) {
     const isValid = handleBaitInputValidation(currentBait);
@@ -91,6 +97,12 @@ function AddCatchModal({
     clearFormSubmissionErrorMessage();
   }
 
+  /* 
+  The function determines whether the formal parameter is valid. The corresponding error message is set accordingly.
+  The tempCatch state is sanitized, then the formSubmissionErrorMessage state is set to undefined.  
+  
+  @param currentLatitude String representing a latitude coordinate
+  */
   function handleLatitudeInput(currentLatitude) {
     const isValid = handleLatitudeInputValidation(currentLatitude);
     isValid ? setLatitudeErrorMessage("") : setLatitudeErrorMessage("Invalid");
@@ -101,6 +113,8 @@ function AddCatchModal({
   /* 
   The function determines whether the formal parameter is valid. The corresponding error message is set accordingly.
   The tempCatch state is sanitized, then the formSubmissionErrorMessage state is set to undefined.  
+  
+  @param currentLongitude String representing a longitude coordinate.
   */
   function handleLongitudeInput(currentLongitude) {
     const isValid = handleLongitudeInputValidation(currentLongitude);
@@ -114,6 +128,8 @@ function AddCatchModal({
   /* 
   The function determines whether the formal parameter is valid. The corresponding error message is set accordingly.
   The tempCatch state is sanitized, then the formSubmissionErrorMessage state is set to undefined.  
+  
+  @param currentWeather String representing a weather condition.
   */
   function handleWeatherInput(currentWeather) {
     const isValid = handleWeatherInputValidation(currentWeather);
@@ -125,6 +141,8 @@ function AddCatchModal({
   /* 
   The function determines whether the formal parameter is valid. The corresponding error message is set accordingly.
   The tempCatch state is sanitized, then the formSubmissionErrorMessage state is set to undefined.  
+  
+  @param currentAirTemp String representing an air temperature integer value.
   */
   function handleAirTempInput(currentAirTemp) {
     const isValid = handleAirTempInputValidation(currentAirTemp);
@@ -136,6 +154,8 @@ function AddCatchModal({
   /* 
   The function determines whether the formal parameter is valid. The corresponding error message is set accordingly.
   The tempCatch state is sanitized, then the formSubmissionErrorMessage state is set to undefined.  
+  
+  @param currentWaterTemp String representing a water temperature integer value.
   */
   function handleWaterTempInput(currentWaterTemp) {
     const isValid = handleWaterTempInputValidation(currentWaterTemp);
@@ -149,6 +169,8 @@ function AddCatchModal({
   /* 
   The function determines whether the formal parameter is valid. The corresponding error message is set accordingly.
   The tempCatch state is sanitized, then the formSubmissionErrorMessage state is set to undefined.  
+  
+  @param currentWindSpeed String representing a wind speed integer value.
   */
   function handleWindSpeedInput(currentWindSpeed) {
     const isValid = handleWindSpeedInputValidation(currentWindSpeed);
