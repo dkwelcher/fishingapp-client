@@ -1,10 +1,16 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import App from './App.jsx'
-import './index.css'
+/* 
+main.jsx is where the application is initialized & mounted to the DOM.
 
-ReactDOM.createRoot(document.getElementById('root')).render(
+@since 2024-01-16
+*/
+
+import React from "react";
+import ReactDOM from "react-dom/client";
+import App from "./App.jsx";
+import "./index.css";
+
+ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <App />
-  </React.StrictMode>,
-)
+  </React.StrictMode>
+);
