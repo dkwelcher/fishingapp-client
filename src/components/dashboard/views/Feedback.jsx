@@ -124,7 +124,7 @@ function Feedback({ user, baseURL }) {
   /* Tailwind Class Styles */
   const pageStyles =
     "p-4 flex flex-col h-screen justify-center items-center font-paragraph font-normal text-sm lg:text-base text-slate-200 bg-feedback-image-mobile lg:bg-feedback-image-desktop bg-cover bg-center";
-  const imageCreditStyles = "absolute bottom-0 right-0 text-xs 2xl:text-sm";
+  const imageCreditStyles = "absolute bottom-1 right-1 text-xs 2xl:text-sm";
   const successfulSubmissionParagraphStyles =
     "font-title font-semibold text-lg text-center text-slate-800";
   const cardContainerStyles =
