@@ -1,11 +1,10 @@
 # Fishing App Client
 
-Client code for Fishing App project for CSCI 592.
+Client source code for the Fishing App.
 
-## How to Run (02/12/2024)
+## Stack
 
-After cloning the repository:
-
-1. Use command: `npm install vite@latest` to install Vite.
-2. Use command: `npm run dev` to run the application locally in your browser.
-3. Take note of the port, in case you need to modify / add allowed origins in the Web Config for Cors Mapping in the server project directory.
+- React v18.2.0
+- JavaScript
+- TailwindCSS v3.4.1
+- Vite v5.4.9
