@@ -1,120 +1,35 @@
 /* 
 LandingPage.jsx is a primary component that displays the landing page of the app where users can navigate to the signup & login page.
 
-@since 2024-03-15
+@since 2024-10-30
 */
-
-import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
-import Logo from "../../assets/logo.png";
 import Section1Image from "../../assets/striped-bass.png";
 import Section2Image from "../../assets/blue-catfish.png";
 import Section3Image from "../../assets/pier.png";
-import { RxHamburgerMenu, RxCross1 } from "react-icons/rx";
+import Header from "./shared/header/LandingPageHeader.jsx";
 
-/* 
-LandingPage renders elements intended to encourage users to sign up for the app & elements that allow navigation to the signup page & login page.
-It is the entry point of the application.
-
-@return HTML that renders hero section, main content section, callout section, & headers & footers.
-*/
 function LandingPage() {
-  // state that holds a boolean representing whether the mobile hamburger menu is open or closed.
-  const [isOpen, setIsOpen] = useState(false);
-
-  // function that allows user to navigate without browser refresh.
   const navigate = useNavigate();
 
-  // state that refers to an HTML element.
-  const dropdownRef = useRef(null);
-
-  /* 
-  toggleNavbar sets isOpen state to the opposite of its current state.
-  */
-  function toggleNavbar() {
-    setIsOpen(!isOpen);
-  }
-
-  /* 
-  The useEffect listens for mouse clicks outside of the specified dropdown component, and it will close the dropdown if such a click is detected.
-
-  @return Cleanup function that removes mousedown event listener when component unmounts.
-  */
-  useEffect(() => {
-    const handleClickOutsideDropdown = (event) => {
-      let targetElement = event.target;
-      let isInsideDropdown = false;
-
-      while (targetElement != null) {
-        if (targetElement === dropdownRef.current) {
-          isInsideDropdown = true;
-          break;
-        }
-        targetElement = targetElement.parentNode;
-      }
-
-      if (!isInsideDropdown) {
-        setIsOpen(false);
-      }
-    };
-
-    document.addEventListener("mousedown", handleClickOutsideDropdown);
-
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutsideDropdown);
-    };
-  }, []);
-
-  /* 
-  handleDisplayCurrentYear obtains current year.
-
-  @return Integer holding the full year extracted from Date object.
-  */
   function handleDisplayCurrentYear() {
     return new Date().getFullYear();
   }
 
-  /* 
-  handleLandingPageToTop navigates user to landing page.
-  */
-  function handleLandingPageToTop() {
-    navigate("/");
-  }
-
-  /* 
-  handleLoginEntry navigates user to login page.
-  */
   function handleLoginEntry() {
     navigate("/login");
   }
 
-  /* 
-  handleSignupEntry navigates user to signup page.
-  */
   function handleSignupEntry() {
     navigate("/signup");
   }
 
   /* Tailwind Class Styles */
   const pageStyles = "font-paragraph bg-slate-200 text-slate-200";
-  /* Header */
   const heroAndNavigationContainerStyles =
     "h-[80vh] bg-hero-image bg-cover bg-center shadow-slate-800";
-  const navHeaderStyles = "flex justify-between pt-2 px-2 lg:pt-4 lg:px-4";
-  const logoContainerStyles = "flex gap-x-2 items-center font-cursive";
-  const anchorLinkStyles = "cursor-pointer";
-  const logoImageStyles = "size-8 sm:size-9 md:size-10 lg:size-14";
-  const logoLinkStyles = "cursor-pointer hover:no-underline";
-  const logoNameStyles =
-    "text-2xl text-slate-200 sm:text-3xl md:text-4xl lg:text-5xl";
-  const headerLinkContainerStyles =
-    "flex items-center cursor-pointer invisible md:visible";
-  const headerButtonHamburgerStyles =
-    "absolute right-4 text-3xl text-slate-500 z-50 md:invisible";
-  const headerLinkHamburgerStyles =
-    "hover:no-underline text-slate-800 text-lg hover:text-slate-700";
-  const headerLinkStyles =
-    "py-2 px-4 hover:no-underline text-slate-500 text-lg rounded-lg hover:bg-slate-500 hover:text-slate-200 active:bg-slate-500 active:text-slate-200 lg:text-2xl";
+
+  /* Hero */
   const heroContentContainerStyles =
     "p-2 flex flex-col justify-center items-center gap-y-2 h-4/5 md:gap-y-4";
   const heroTitleStyles =
@@ -161,79 +76,10 @@ function LandingPage() {
     <div className={pageStyles}>
       <div className={heroAndNavigationContainerStyles}>
         <nav>
-          <header className={navHeaderStyles}>
-            <div className={logoContainerStyles}>
-              <a
-                className={anchorLinkStyles}
-                onClick={() => {
-                  handleLandingPageToTop();
-                }}
-              >
-                <img
-                  className={logoImageStyles}
-                  src={Logo}
-                  alt="Man fishing in a row boat"
-                />
-              </a>
-              <a
-                className={logoLinkStyles}
-                onClick={() => {
-                  handleLandingPageToTop();
-                }}
-              >
-                <h2 className={logoNameStyles}>Fishing App</h2>
-              </a>
-            </div>
-            <button
-              className={headerButtonHamburgerStyles}
-              onClick={() => {
-                toggleNavbar();
-              }}
-            >
-              {isOpen ? <RxCross1 /> : <RxHamburgerMenu />}
-            </button>
-            <div className={headerLinkContainerStyles}>
-              <a
-                className={headerLinkStyles}
-                onClick={() => {
-                  handleSignupEntry();
-                }}
-              >
-                <p>Sign up</p>
-              </a>
-              <a
-                className={headerLinkStyles}
-                onClick={() => {
-                  handleLoginEntry();
-                }}
-              >
-                <p>Log in</p>
-              </a>
-            </div>
-            <div
-              ref={dropdownRef}
-              className={`w-full md:w-11/12 flex flex-col justify-center items-center gap-y-2 absolute bg-white h-1/4 rounded-sm transition-all duration-1000 ease-in-out -translate-x-2 translate-y-11 ${
-                isOpen ? "opacity-100 visible" : "opacity-0 invisible"
-              }`}
-            >
-              <a
-                className={headerLinkHamburgerStyles}
-                onClick={() => {
-                  handleSignupEntry();
-                }}
-              >
-                <p>Sign up</p>
-              </a>
-              <a
-                className={headerLinkHamburgerStyles}
-                onClick={() => {
-                  handleLoginEntry();
-                }}
-              >
-                <p>Log in</p>
-              </a>
-            </div>
-          </header>
+          <Header
+            handleLoginEntry={handleLoginEntry}
+            handleSignupEntry={handleSignupEntry}
+          />
         </nav>
         <div className={heroContentContainerStyles}>
           <h1 className={heroTitleStyles}>
