@@ -1,5 +1,4 @@
 import { useNavigate } from "react-router-dom";
-import Header from "./shared/header/LandingPageHeader.jsx";
 import Hero from "./shared/hero/Hero.jsx";
 import MainContent from "./shared/content/MainContent.jsx";
 import Callout from "./shared/callout/Callout.jsx";
@@ -18,15 +17,10 @@ function LandingPage() {
 
   return (
     <div className="font-paragraph bg-slate-200 text-slate-200">
-      <div className="h-[80vh] bg-hero-image bg-cover bg-center shadow-slate-800">
-        <nav>
-          <Header
-            handleLoginEntry={handleLoginEntry}
-            handleSignupEntry={handleSignupEntry}
-          />
-        </nav>
-        <Hero handleSignupEntry={handleSignupEntry} />
-      </div>
+      <Hero
+        handleLoginEntry={handleLoginEntry}
+        handleSignupEntry={handleSignupEntry}
+      />
       <MainContent />
       <Callout handleSignupEntry={handleSignupEntry} />
       <Footer />
