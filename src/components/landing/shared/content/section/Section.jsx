@@ -1,6 +1,6 @@
 import Image from "./SectionImage.jsx";
 import Description from "./SectionDescription.jsx";
-import { STRIPED_BASS_ALT_TEXT } from "../../../../../lib/constants/landing/LandingPageAltTexts.jsx";
+import { STRIPED_BASS_ALT_TEXT } from "../../../../../lib/constants/landing/MainContentConstants.jsx";
 
 function Section({ image, description }) {
   return (
