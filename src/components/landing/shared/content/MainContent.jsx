@@ -5,8 +5,8 @@ import { SUBSECTION_IMAGE_ALT_TEXTS } from "../../../../lib/constants/landing/La
 import { SECTION1_DESCRIPTION } from "../../../../lib/constants/landing/LandingPageText";
 import { SUBSECTION_TITLES } from "../../../../lib/constants/landing/LandingPageText";
 import { SUBSECTION_DESCRIPTIONS } from "../../../../lib/constants/landing/LandingPageText";
-import Section from "./shared/Section.jsx";
-import MultiSection from "./shared/MultiSection.jsx";
+import Section from "./section/Section.jsx";
+import MultiSection from "./section/MultiSection.jsx";
 
 function MainContent() {
   const subsectionImages = [Section2Image, Section3Image];
