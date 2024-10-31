@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { handleLoginInputValidation } from "../../../lib/utilities/InputValidation";
-import Logo from "./shared/LoginLogo.jsx";
+import Logo from "../shared/AuthLogo.jsx";
 import Form from "./shared/LoginForm.jsx";
 import ErrorMessage from "./shared/LoginError.jsx";
-import LoginButton from "./shared/LoginButton.jsx";
+import LoginButton from "../shared/AuthButton.jsx";
 import LinkToSignup from "./shared/LoginLink.jsx";
 
 function Login({ setUser, baseURL }) {
@@ -105,7 +105,7 @@ function Login({ setUser, baseURL }) {
           validatePasswordInput={validatePasswordInput}
         />
         <ErrorMessage errorMessage={inputErrorMessage} />
-        <LoginButton handleLogin={handleLogin} />
+        <LoginButton handleAuth={handleLogin} authText={"Log in"} />
         <LinkToSignup handleSignupEntry={handleSignupEntry} />
       </div>
     </div>
