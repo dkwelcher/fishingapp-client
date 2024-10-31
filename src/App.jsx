@@ -16,7 +16,7 @@ import Home from "./components/dashboard/views/Home";
 import ManageTrips from "./components/dashboard/views/ManageTrips";
 import Feedback from "./components/dashboard/views/Feedback";
 import LandingPage from "./components/landing/LandingPage";
-import Signup from "./components/auth/Signup";
+import Signup from "./components/auth/signup/Signup";
 import Login from "./components/auth/login/Login";
 
 /* 
