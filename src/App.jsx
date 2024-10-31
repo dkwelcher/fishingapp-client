@@ -17,7 +17,7 @@ import ManageTrips from "./components/dashboard/views/ManageTrips";
 import Feedback from "./components/dashboard/views/Feedback";
 import LandingPage from "./components/landing/LandingPage";
 import Signup from "./components/auth/Signup";
-import Login from "./components/auth/Login";
+import Login from "./components/auth/login/Login";
 
 /* 
 PrivateView is an inner component that restricts the user to the login page when no user exists.
