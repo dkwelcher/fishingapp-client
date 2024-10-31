@@ -4,7 +4,7 @@ import { handleLoginInputValidation } from "../../../lib/utilities/InputValidati
 import Logo from "./shared/LoginLogo.jsx";
 import Form from "./shared/LoginForm.jsx";
 import ErrorMessage from "./shared/LoginError.jsx";
-import Button from "./shared/LoginButton.jsx";
+import LoginButton from "./shared/LoginButton.jsx";
 import LinkToSignup from "./shared/LoginLink.jsx";
 
 function Login({ setUser, baseURL }) {
@@ -105,7 +105,7 @@ function Login({ setUser, baseURL }) {
           validatePasswordInput={validatePasswordInput}
         />
         <ErrorMessage errorMessage={inputErrorMessage} />
-        <Button handleLogin={handleLogin} />
+        <LoginButton handleLogin={handleLogin} />
         <LinkToSignup handleSignupEntry={handleSignupEntry} />
       </div>
     </div>
