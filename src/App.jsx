@@ -1,9 +1,3 @@
-/* 
-App.jsx establishes the Router, Routes, Route pattern with react-router-dom and is the component from which all components are derived.
-
-@since 2024-03-19
-*/
-
 import { useState, useEffect } from "react";
 import {
   BrowserRouter as Router,
@@ -11,7 +5,7 @@ import {
   Route,
   Navigate,
 } from "react-router-dom";
-import Layout from "./components/dashboard/shared/Layout";
+import Dashboard from "./components/dashboard/shared/Dashboard";
 import Home from "./components/dashboard/views/Home";
 import ManageTrips from "./components/dashboard/views/ManageTrips";
 import Feedback from "./components/dashboard/views/Feedback";
@@ -84,7 +78,7 @@ function App() {
             path="/dashboard"
             element={
               <PrivateView user={user}>
-                <Layout setUser={setUser} screenWidth={screenWidth} />
+                <Dashboard setUser={setUser} screenWidth={screenWidth} />
               </PrivateView>
             }
           >
