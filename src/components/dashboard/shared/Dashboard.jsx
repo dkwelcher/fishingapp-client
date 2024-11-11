@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { Outlet } from "react-router-dom";
-import Sidebar from "./Sidebar";
+import Sidebar from "./sidebar/Sidebar.jsx";
 import MobileSideBarButton from "./MobileSidebarButton.jsx";
 
 function Dashboard({ setUser, screenWidth }) {
