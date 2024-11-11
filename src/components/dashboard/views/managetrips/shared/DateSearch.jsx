@@ -2,12 +2,7 @@ import { useState } from "react";
 import DatePicker from "react-datepicker";
 import { HiOutlineCalendar } from "react-icons/hi";
 
-function DateSearch({
-  setOpenSelectDateModal,
-  getTripDate,
-  setTripDate,
-  setTrip,
-}) {
+function DateSearch({ setOpenSelectDateModal, setTripDate, setTrip }) {
   const [tripStartDate, setTripStartDate] = useState(new Date());
 
   const handleSearchClick = () => {
@@ -24,7 +19,7 @@ function DateSearch({
 
     const formattedDate = `${year}-${month}-${day}`;
 
-    getTripDate(formattedDate);
+    setTripDate(formattedDate);
   };
 
   function handleLastSixMonthsClick() {
