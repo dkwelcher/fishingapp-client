@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { Outlet } from "react-router-dom";
+import { TW_MD as mediumScreenSize } from "./../../../lib/constants/dashboard/ScreenWidth.jsx";
 import Sidebar from "./sidebar/Sidebar.jsx";
 import MobileSideBarButton from "./MobileSidebarButton.jsx";
 
@@ -46,15 +47,19 @@ function Dashboard({ setUser, screenWidth }) {
         />
       </div>
       <div className="invisible absolute md:visible md:static">
-        {screenWidth >= 768 && (
+        {screenWidth >= mediumScreenSize && (
           <Sidebar setUser={setUser} screenWidth={screenWidth} />
         )}
       </div>
-      <div className={`z-40 h-full ${screenWidth < 768 ? "" : "hidden"}`}>
+      <div
+        className={`z-40 h-full ${
+          screenWidth < mediumScreenSize ? "" : "hidden"
+        }`}
+      >
         <div
           ref={dropdownRef}
           className={`z-30 transition-all duration-700 ease-in-out ${
-            isSidebarOpen && screenWidth < 768
+            isSidebarOpen && screenWidth < mediumScreenSize
               ? "opacity-100 visible"
               : "opacity-0 invisible"
           }`}
