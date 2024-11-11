@@ -7,7 +7,7 @@ import {
 } from "react-router-dom";
 import Dashboard from "./components/dashboard/shared/Dashboard";
 import Home from "./components/dashboard/views/Home";
-import ManageTrips from "./components/dashboard/views/ManageTrips";
+import ManageTrips from "./components/dashboard/views/managetrips/ManageTrips";
 import Feedback from "./components/dashboard/views/feedback/Feedback";
 import LandingPage from "./components/landing/LandingPage";
 import Signup from "./components/auth/signup/Signup";
