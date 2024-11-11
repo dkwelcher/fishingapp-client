@@ -9,10 +9,11 @@ function FeedbackForm({
 }) {
   return (
     <>
-      <form className="w-full min-h-[180px]">
+      <form htmlFor="feedback" className="w-full min-h-[180px]">
         <div className="flex flex-col gap-y-1">
           <p>Please select which part of the app:</p>
           <select
+            id="select-page"
             className="px-2 py-1 bg-slate-50 text-slate-800 border border-solid border-slate-400 rounded-sm shadow-sm shadow-slate-600 focus:bg-slate-200 focus:text-slate-900 outline-none"
             value={selectPage}
             type="text"
@@ -27,6 +28,7 @@ function FeedbackForm({
           </select>
         </div>
         <textarea
+          id="feedback"
           className="w-full min-h-[180px] mt-1 p-1 text-slate-800 shadow-sm shadow-slate-600 rounded-sm"
           value={userInput}
           onChange={(e) => {
