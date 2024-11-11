@@ -8,7 +8,7 @@ function FeedbackForm({
   handleFeedback,
 }) {
   return (
-    <div className="w-full">
+    <>
       <form className="w-full min-h-[180px]">
         <div className="flex flex-col gap-y-1">
           <p>Please select which part of the app:</p>
@@ -55,7 +55,7 @@ function FeedbackForm({
           Submit Feedback
         </button>
       </div>
-    </div>
+    </>
   );
 }
 
