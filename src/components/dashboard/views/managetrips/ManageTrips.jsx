@@ -1,37 +1,16 @@
-/* 
-ManageTrips.jsx is a dashboard component that displays the InfoSection & TripCard components, last six months of trip data, app logo,
-& every trip and catch modal, which are triggered by specific useStates.
-
-@since 2024-03-18
-*/
-
 import { useEffect, useState } from "react";
-import TripCard from "../../cards/TripCard";
 import SelectDateModal from "../../../modals/SelectDateModal";
 import AddCatchModal from "../../../modals/AddCatchModal";
 import EditCatchModal from "../../../modals/EditCatchModal";
 import DeleteCatchModal from "../../../modals/DeleteCatchModal";
 import EditTripModal from "../../../modals/EditTripModal";
 import DeleteTripModal from "../../../modals/DeleteTripModal";
+import TripCard from "../../cards/TripCard";
 import ManageTripsText from "./shared/ManageTripsText.jsx";
 import DateSearch from "./shared/DateSearch.jsx";
 import RecentTrips from "./shared/RecentTrips.jsx";
 
-/* 
-ManageTrips renders the InfoSection & TripCard components. When no trip is selected, the last six months of trips are displayed & the app logo is displayed.
-ManageTrips also renders every modal related to editing & deleting trips & catches.
-
-ManageTrips holds states related to trip & catch data that is passed to & between InfoSection, TripCard, & modal components.
-Multiple useEffect functions are used to make requests to the server & dynamically render trip & catch data as it is accessed by the user.
-
-@param user An object that holds user properties.
-@param screenWidth Integer value of the user device's screen width.
-@param baseURL String representation of path to base URL of server.
-@return HTML that renders InfoSection, TripCard, & modal components &
-        container for last six months of trips & app logo.
-*/
 function ManageTrips({ user, screenWidth, baseURL }) {
-  // states that hold booleans representing whether the modal is open or closed.
   const [openSelectDateModal, setOpenSelectDateModal] = useState(false);
   const [openAddCatchModal, setOpenAddCatchModal] = useState(false);
   const [openEditCatchModal, setOpenEditCatchModal] = useState(false);
@@ -39,32 +18,15 @@ function ManageTrips({ user, screenWidth, baseURL }) {
   const [openEditTripModal, setOpenEditTripModal] = useState(false);
   const [openDeleteTripModal, setOpenDeleteTripModal] = useState(false);
 
-  // states that hold objects related to trip & catch data that are modified by the user for editing & deletion purposes.
-  const [tempCatch, setTempCatch] = useState({});
+  const [tripDate, setTripDate] = useState();
+  const [trips, setTrips] = useState([]);
+  const [trip, setTrip] = useState({});
   const [tempTrip, setTempTrip] = useState({});
 
-  // state that holds a formatted String of a date.
-  const [tripDate, setTripDate] = useState();
-
-  // state that holds a date String.
-  function getTripDate(tripDate) {
-    setTripDate(tripDate);
-  }
-
-  // state that holds an array of trip objects from last six months.
-  const [tripsLastSixMonths, setTripsLastSixMonths] = useState([]);
-
-  // state that holds an array of trip objects from a specific date.
-  const [trips, setTrips] = useState([]);
-
-  // state that holds an object with trip properties.
-  const [trip, setTrip] = useState({});
-
-  // state that holds an array of catch objects.
   const [catches, setCatches] = useState([]);
+  const [tempCatch, setTempCatch] = useState({});
 
-  // state that holds a String intended to inform user that the selected date has not trips associated with it.
-  const [fetchTripsError, setFetchTripsError] = useState();
+  const [tripsLastSixMonths, setTripsLastSixMonths] = useState([]);
 
   /* 
   The useEffect makes a GET request to the server to obtain trips associated with a trip date & the
@@ -94,16 +56,12 @@ function ManageTrips({ user, screenWidth, baseURL }) {
         const tripObjects = await response.json();
         setTrips(tripObjects);
       } catch (error) {
-        console.log(fetchTripsError);
-        setFetchTripsError(error);
+        console.log(error);
       }
     };
 
     fetchTrips();
   }, [tripDate, user.id]);
-
-  // state that holds a String intended to inform the user when no catches are associated with specified trip.
-  const [fetchCatchesError, setFetchCatchesError] = useState();
 
   /* 
   The useEffect makes a GET request to the server obtain catches associated with a specified trip id &
@@ -143,8 +101,7 @@ function ManageTrips({ user, screenWidth, baseURL }) {
         setCatches(convertedCatches);
         sortCatches();
       } catch (error) {
-        setFetchCatchesError(error);
-        console.log(fetchCatchesError);
+        console.log(error);
       }
     };
 
@@ -167,11 +124,6 @@ function ManageTrips({ user, screenWidth, baseURL }) {
     });
   }
 
-  /* 
-  The useEffect makes a GET request to the server to obtain trip objects from the last six months of the user's existing data.
-  If successful, the returned trip objects are processed to a new object array with properties that reflect the monthYear (e.g, January 2000) to which
-  the trips belong.
-  */
   useEffect(() => {
     const fetchTripsLastSixMonths = async () => {
       if (!user.id) return;
@@ -221,12 +173,6 @@ function ManageTrips({ user, screenWidth, baseURL }) {
     fetchTripsLastSixMonths();
   }, [trip]);
 
-  /* 
-  handleRecentTrip extracts a trip from the tripsLastSixMonths object array to be
-  set as the current trip state.
-
-  @param dataKey Integer value that holds a trip id.
-  */
   function handleRecentTrip(dataKey) {
     const selectedTrip = getTripByTripId(dataKey);
     const updatedTripObject = {
@@ -237,12 +183,6 @@ function ManageTrips({ user, screenWidth, baseURL }) {
     setTrip(updatedTripObject);
   }
 
-  /* 
-  getTripByTripId extracts a trip object from the tripsLastSizeMonths object array based on the formal parameter.
-
-  @param dataKey Integer value that holds a trip id.
-  @return Trip object with id matching dataKey.
-  */
   function getTripByTripId(dataKey) {
     for (let month in tripsLastSixMonths) {
       if (tripsLastSixMonths.hasOwnProperty(month)) {
@@ -322,7 +262,6 @@ function ManageTrips({ user, screenWidth, baseURL }) {
           <ManageTripsText />
           <DateSearch
             setOpenSelectDateModal={setOpenSelectDateModal}
-            getTripDate={getTripDate}
             setTripDate={setTripDate}
             setTrip={setTrip}
           />
