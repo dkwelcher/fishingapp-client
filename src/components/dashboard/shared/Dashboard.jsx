@@ -1,15 +1,11 @@
 import { useState, useEffect, useRef } from "react";
 import { Outlet } from "react-router-dom";
 import Sidebar from "./Sidebar";
-import { RxHamburgerMenu, RxCross1 } from "react-icons/rx";
+import MobileSideBarButton from "./MobileSidebarButton.jsx";
 
 function Dashboard({ setUser, screenWidth }) {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const dropdownRef = useRef(null);
-
-  function toggleNavbar() {
-    setIsSidebarOpen(!isSidebarOpen);
-  }
 
   /* 
   The useEffect listens for mouse clicks outside of the specified dropdown component, and it will close the dropdown if such a click is detected.
@@ -44,16 +40,10 @@ function Dashboard({ setUser, screenWidth }) {
   return (
     <div className="flex flex-row bg-slate-100 h-screen w-screen overflow-hidden">
       <div>
-        <button
-          className={`absolute w-full p-2 text-3xl text-slate-200 z-50 md:invisible ${
-            !isSidebarOpen && "bg-transparent-shadow"
-          }`}
-          onClick={() => {
-            toggleNavbar();
-          }}
-        >
-          {isSidebarOpen ? <RxCross1 /> : <RxHamburgerMenu />}
-        </button>
+        <MobileSideBarButton
+          isSidebarOpen={isSidebarOpen}
+          setIsSidebarOpen={setIsSidebarOpen}
+        />
       </div>
       <div className="invisible absolute md:visible md:static">
         {screenWidth >= 768 && (
