@@ -1,6 +1,6 @@
 import TripDetails from "./TripDetails.jsx";
 import TripButtons from "./TripButtons.jsx";
-import CatchCard from "../catch/CatchCard.jsx";
+import CatchCards from "../catch/CatchCards.jsx";
 
 function TripCard({
   trip,
@@ -33,7 +33,7 @@ function TripCard({
         </div>
         <div className="px-6">
           {trip.location && trip.date && (
-            <CatchCard
+            <CatchCards
               catches={catches}
               setCatches={setCatches}
               setTempCatch={setTempCatch}
