@@ -34,6 +34,7 @@ function CatchCards({
         <div className="grid gap-4 grid-cols-[repeat(auto-fill,300px)] justify-center">
           {catches.map((catchItem, index) => (
             <CatchCard
+              key={catchItem.id}
               catchItem={catchItem}
               index={index}
               handleEditCatch={handleEditCatch}
