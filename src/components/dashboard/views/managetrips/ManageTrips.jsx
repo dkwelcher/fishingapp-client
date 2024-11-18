@@ -31,18 +31,26 @@ function ManageTrips({ user, screenWidth, baseURL }) {
 
   const [tripsLastSixMonths, setTripsLastSixMonths] = useState([]);
 
-  const handleDateSelect = (date) => {
+  function handleDateSelect(date) {
     if (date === null || date === undefined || date === "") {
       return;
     }
+    setTripDate(formatDate(date));
+    setOpenSelectDateModal(true);
+  }
+
+  function formatDate(date) {
     const year = date.getFullYear();
     const month = (date.getMonth() + 1).toString().padStart(2, "0");
     const day = date.getDate().toString().padStart(2, "0");
 
-    const formattedDate = `${year}-${month}-${day}`;
+    return `${year}-${month}-${day}`;
+  }
 
-    setTripDate(formattedDate);
-  };
+  function handleLastSixMonthsClick() {
+    setTripDate();
+    setTrip({});
+  }
 
   function handleEditTripClick() {
     setOpenEditTripModal(true);
@@ -51,6 +59,23 @@ function ManageTrips({ user, screenWidth, baseURL }) {
 
   function handleDeleteTripClick() {
     setOpenDeleteTripModal(true);
+  }
+
+  function handleAddCatchClick() {
+    setOpenAddCatchModal(true);
+  }
+
+  function handleEditCatchClick(dataKey) {
+    const catchItem = catches[dataKey];
+    const newCatchItem = { ...catchItem, index: dataKey };
+    setTempCatch(newCatchItem);
+    setOpenEditCatchModal(true);
+  }
+
+  function handleDeleteCatchClick(dataKey) {
+    const catchItem = catches[dataKey];
+    setTempCatch(catchItem);
+    setOpenDeleteCatchModal(true);
   }
 
   /* 
@@ -290,15 +315,12 @@ function ManageTrips({ user, screenWidth, baseURL }) {
               className="w-[200px] border border-slate-400 rounded-sm bg-slate-50 text-slate-800 focus:bg-slate-200 focus:text-slate-900 outline-none shadow-md shadow-slate-950"
               showIcon
               selected={new Date()}
-              onChange={(date) => {
-                handleDateSelect(date);
-                setOpenSelectDateModal(true);
-              }}
+              onChange={(date) => handleDateSelect(date)}
               icon={
                 <HiOutlineCalendar fontSize={20} className="text-slate-400" />
               }
             />
-            <LastSixMonthsButton setTripDate={setTripDate} setTrip={setTrip} />
+            <LastSixMonthsButton handleClick={handleLastSixMonthsClick} />
           </div>
         </div>
         {trip && trip.id && trip.location && trip.date ? (
@@ -306,13 +328,12 @@ function ManageTrips({ user, screenWidth, baseURL }) {
             <TripCard
               trip={trip}
               catches={catches}
-              setTempCatch={setTempCatch}
-              setOpenAddCatchModal={setOpenAddCatchModal}
-              setOpenEditCatchModal={setOpenEditCatchModal}
-              setOpenDeleteCatchModal={setOpenDeleteCatchModal}
               screenWidth={screenWidth}
               handleEditTripClick={handleEditTripClick}
               handleDeleteTripClick={handleDeleteTripClick}
+              handleAddCatchClick={handleAddCatchClick}
+              handleEditCatchClick={handleEditCatchClick}
+              handleDeleteCatchClick={handleDeleteCatchClick}
             />
           </div>
         ) : (
