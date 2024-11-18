@@ -20,6 +20,7 @@ function ManageTrips({ user, screenWidth, baseURL }) {
   const [openDeleteCatchModal, setOpenDeleteCatchModal] = useState(false);
   const [openEditTripModal, setOpenEditTripModal] = useState(false);
   const [openDeleteTripModal, setOpenDeleteTripModal] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const [tripDate, setTripDate] = useState();
   const [trips, setTrips] = useState([]);
@@ -245,68 +246,90 @@ function ManageTrips({ user, screenWidth, baseURL }) {
     }
   }
 
+  useEffect(() => {
+    setIsModalOpen(
+      openSelectDateModal ||
+        openEditTripModal ||
+        openDeleteTripModal ||
+        openAddCatchModal ||
+        openEditCatchModal ||
+        openDeleteCatchModal
+    );
+  }, [
+    openSelectDateModal,
+    openEditTripModal,
+    openDeleteTripModal,
+    openAddCatchModal,
+    openEditCatchModal,
+    openDeleteCatchModal,
+  ]);
+
   return (
     <div>
-      <SelectDateModal
-        openSelectDateModal={openSelectDateModal}
-        setOpenSelectDateModal={setOpenSelectDateModal}
-        trips={trips}
-        setTrips={setTrips}
-        setTrip={setTrip}
-        tripDate={tripDate}
-        user={user}
-        baseURL={baseURL}
-      />
-      <AddCatchModal
-        openAddCatchModal={openAddCatchModal}
-        setOpenAddCatchModal={setOpenAddCatchModal}
-        user={user}
-        trip={trip}
-        tempCatch={tempCatch}
-        setTempCatch={setTempCatch}
-        setCatches={setCatches}
-        baseURL={baseURL}
-      />
-      <EditCatchModal
-        openEditCatchModal={openEditCatchModal}
-        setOpenEditCatchModal={setOpenEditCatchModal}
-        user={user}
-        trip={trip}
-        tempCatch={tempCatch}
-        setTempCatch={setTempCatch}
-        setCatches={setCatches}
-        baseURL={baseURL}
-      />
-      <DeleteCatchModal
-        openDeleteCatchModal={openDeleteCatchModal}
-        setOpenDeleteCatchModal={setOpenDeleteCatchModal}
-        user={user}
-        tempCatch={tempCatch}
-        setTempCatch={setTempCatch}
-        setCatches={setCatches}
-        baseURL={baseURL}
-      />
-      <EditTripModal
-        openEditTripModal={openEditTripModal}
-        setOpenEditTripModal={setOpenEditTripModal}
-        trip={trip}
-        setTrip={setTrip}
-        setTrips={setTrips}
-        tempTrip={tempTrip}
-        setTempTrip={setTempTrip}
-        setTripDate={setTripDate}
-        user={user}
-        baseURL={baseURL}
-      />
-      <DeleteTripModal
-        openDeleteTripModal={openDeleteTripModal}
-        setOpenDeleteTripModal={setOpenDeleteTripModal}
-        trip={trip}
-        setTrip={setTrip}
-        setTripDate={setTripDate}
-        user={user}
-        baseURL={baseURL}
-      />
+      {isModalOpen && (
+        <div className="w-full h-screen fixed flex justify-center items-center bg-transparent-shadow text-slate-800 z-50">
+          <SelectDateModal
+            openSelectDateModal={openSelectDateModal}
+            setOpenSelectDateModal={setOpenSelectDateModal}
+            trips={trips}
+            setTrips={setTrips}
+            setTrip={setTrip}
+            tripDate={tripDate}
+            user={user}
+            baseURL={baseURL}
+          />
+          <AddCatchModal
+            openAddCatchModal={openAddCatchModal}
+            setOpenAddCatchModal={setOpenAddCatchModal}
+            user={user}
+            trip={trip}
+            tempCatch={tempCatch}
+            setTempCatch={setTempCatch}
+            setCatches={setCatches}
+            baseURL={baseURL}
+          />
+          <EditCatchModal
+            openEditCatchModal={openEditCatchModal}
+            setOpenEditCatchModal={setOpenEditCatchModal}
+            user={user}
+            trip={trip}
+            tempCatch={tempCatch}
+            setTempCatch={setTempCatch}
+            setCatches={setCatches}
+            baseURL={baseURL}
+          />
+          <DeleteCatchModal
+            openDeleteCatchModal={openDeleteCatchModal}
+            setOpenDeleteCatchModal={setOpenDeleteCatchModal}
+            user={user}
+            tempCatch={tempCatch}
+            setTempCatch={setTempCatch}
+            setCatches={setCatches}
+            baseURL={baseURL}
+          />
+          <EditTripModal
+            openEditTripModal={openEditTripModal}
+            setOpenEditTripModal={setOpenEditTripModal}
+            trip={trip}
+            setTrip={setTrip}
+            setTrips={setTrips}
+            tempTrip={tempTrip}
+            setTempTrip={setTempTrip}
+            setTripDate={setTripDate}
+            user={user}
+            baseURL={baseURL}
+          />
+          <DeleteTripModal
+            openDeleteTripModal={openDeleteTripModal}
+            setOpenDeleteTripModal={setOpenDeleteTripModal}
+            trip={trip}
+            setTrip={setTrip}
+            setTripDate={setTripDate}
+            user={user}
+            baseURL={baseURL}
+          />
+        </div>
+      )}
       <>
         <div className="flex flex-col justify-center items-left px-4 pt-12 pb-4 bg-cover bg-center text-white bg-managetrips-image md:py-12 md:px-4 shadow-md shadow-slate-800">
           <ManageTripsText />
