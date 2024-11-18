@@ -33,7 +33,7 @@ function DateSearch({ setOpenSelectDateModal, setTripDate, setTrip }) {
   /* End Tailwind Class Styles */
 
   return (
-    <div className="flex items-center">
+    <>
       <DatePicker
         className="w-[200px] ml-1 border border-slate-400 rounded-sm bg-slate-50 text-slate-800 focus:bg-slate-200 focus:text-slate-900 outline-none shadow-md shadow-slate-950"
         showIcon
@@ -58,7 +58,7 @@ function DateSearch({ setOpenSelectDateModal, setTripDate, setTrip }) {
           Last Six Months
         </button>
       </div>
-    </div>
+    </>
   );
 }
 

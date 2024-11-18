@@ -260,11 +260,13 @@ function ManageTrips({ user, screenWidth, baseURL }) {
       <div className="bg-slate-100 text-slate-800">
         <div className="flex flex-col justify-center items-left px-4 pt-12 pb-4 bg-cover bg-center text-white bg-managetrips-image md:py-12 md:px-4 shadow-md shadow-slate-800">
           <ManageTripsText />
-          <DateSearch
-            setOpenSelectDateModal={setOpenSelectDateModal}
-            setTripDate={setTripDate}
-            setTrip={setTrip}
-          />
+          <div className="flex items-center">
+            <DateSearch
+              setOpenSelectDateModal={setOpenSelectDateModal}
+              setTripDate={setTripDate}
+              setTrip={setTrip}
+            />
+          </div>
         </div>
         {trip && trip.id && trip.location && trip.date ? (
           <TripCard
