@@ -23,11 +23,6 @@ function DateSearch({ setOpenSelectDateModal, setTripDate, setTrip }) {
     setTrip({});
   }
 
-  /* Tailwind Class Styles */
-  const buttonStyles =
-    "ml-4 px-4 py-1 bg-slate-50 text-slate-800 rounded-sm shadow-md shadow-slate-950 text-sm sm:text-base";
-  /* End Tailwind Class Styles */
-
   return (
     <>
       <DatePicker
@@ -41,7 +36,7 @@ function DateSearch({ setOpenSelectDateModal, setTripDate, setTrip }) {
         icon={<HiOutlineCalendar fontSize={20} className="text-gray-400" />}
       />
       <button
-        className={buttonStyles}
+        className="ml-4 px-4 py-1 bg-slate-50 text-slate-800 rounded-sm shadow-md shadow-slate-950 text-sm sm:text-base"
         onClick={() => handleLastSixMonthsClick()}
       >
         Show Last Six Months
