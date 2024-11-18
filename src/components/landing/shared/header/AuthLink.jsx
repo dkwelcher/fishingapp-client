@@ -1,7 +1,7 @@
 function AuthLink({ handleAuth, linkText }) {
   return (
     <a
-      className="py-2 px-4 hover:no-underline text-slate-500 text-lg rounded-lg hover:bg-slate-500 hover:text-slate-200 active:bg-slate-500 active:text-slate-200 lg:text-2xl"
+      className="p-2 hover:no-underline text-slate-600 text-lg rounded-lg hover:bg-blue-600 hover:text-white active:bg-blue-600 active:text-white lg:text-2xl"
       onClick={() => {
         handleAuth();
       }}

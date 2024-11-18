@@ -4,7 +4,7 @@ import MobileMenu from "./MobileMenu.jsx";
 import AuthLink from "./AuthLink.jsx";
 import MobileAuthLink from "./MobileAuthLink.jsx";
 
-function LandingPageHeader({ handleLoginEntry, handleSignupEntry }) {
+function Heading({ handleLoginEntry, handleSignupEntry }) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const dropdownRef = useRef(null);
 
@@ -43,17 +43,17 @@ function LandingPageHeader({ handleLoginEntry, handleSignupEntry }) {
   }, []);
 
   return (
-    <header className="flex justify-between pt-2 px-2 lg:pt-4 lg:px-4">
+    <>
       <Logo />
       <MobileMenu
         toggleNavbar={toggleNavbar}
         isMobileMenuOpen={isMobileMenuOpen}
       />
-      <div className="flex items-center cursor-pointer invisible md:visible">
+      <nav className="flex gap-x-4 items-center cursor-pointer invisible md:visible">
         <AuthLink handleAuth={handleSignupEntry} linkText={"Sign up"} />
         <AuthLink handleAuth={handleLoginEntry} linkText={"Log in"} />
-      </div>
-      <div
+      </nav>
+      <nav
         ref={dropdownRef}
         className={`w-full md:w-11/12 flex flex-col justify-center items-center gap-y-2 absolute bg-white h-1/4 rounded-sm transition-all duration-1000 ease-in-out -translate-x-2 translate-y-11 ${
           isMobileMenuOpen ? "opacity-100 visible" : "opacity-0 invisible"
@@ -61,9 +61,9 @@ function LandingPageHeader({ handleLoginEntry, handleSignupEntry }) {
       >
         <MobileAuthLink handleAuth={handleSignupEntry} linkText={"Sign up"} />
         <MobileAuthLink handleAuth={handleLoginEntry} linkText={"Log in"} />
-      </div>
-    </header>
+      </nav>
+    </>
   );
 }
 
-export default LandingPageHeader;
+export default Heading;

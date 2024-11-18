@@ -1,20 +1,25 @@
-import SubSection from "./SubSection.jsx";
+import SubSectionContent from "./SubSectionContent.jsx";
 
 function MultiSection({ objects }) {
   return (
-    <div className="flex flex-col 2xl:flex-row 2xl:justify-center 2xl:gap-x-20">
+    <>
       {objects.map((object, index) => {
         return (
-          <SubSection
+          <section
             key={index}
-            image={object.image}
-            altText={object.altText}
-            title={object.title}
-            description={object.description}
-          />
+            className="pb-12 last:pb-0 flex flex-col items-center sm:pb-20 lg:pb-28 2xl:pb-0"
+          >
+            <SubSectionContent
+              key={index}
+              image={object.image}
+              altText={object.altText}
+              title={object.title}
+              description={object.description}
+            />
+          </section>
         );
       })}
-    </div>
+    </>
   );
 }
 

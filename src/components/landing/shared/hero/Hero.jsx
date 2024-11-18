@@ -1,17 +1,19 @@
-import Header from "../header/LandingPageHeader.jsx";
-import HeroContent from "./HeroContent.jsx";
+import Heading from "../header/Heading.jsx";
+import Content from "./HeroContent.jsx";
 
 function Hero({ handleLoginEntry, handleSignupEntry }) {
   return (
-    <div className="h-[80vh] bg-hero-image bg-cover bg-center shadow-slate-800">
-      <nav>
-        <Header
+    <>
+      <header className="flex justify-between p-2 lg:p-4">
+        <Heading
           handleLoginEntry={handleLoginEntry}
           handleSignupEntry={handleSignupEntry}
         />
-      </nav>
-      <HeroContent handleSignupEntry={handleSignupEntry} />
-    </div>
+      </header>
+      <div className="p-2 flex flex-col justify-center items-center gap-y-2 h-4/5 md:gap-y-4">
+        <Content handleSignupEntry={handleSignupEntry} />
+      </div>
+    </>
   );
 }
 
