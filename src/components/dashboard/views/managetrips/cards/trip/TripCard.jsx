@@ -5,13 +5,9 @@ import CatchCards from "../catch/CatchCards.jsx";
 function TripCard({
   trip,
   catches,
-  setCatches,
   setTempCatch,
-  openAddCatchModal,
   setOpenAddCatchModal,
-  openEditCatchModal,
   setOpenEditCatchModal,
-  openDeleteCatchModal,
   setOpenDeleteCatchModal,
   screenWidth,
   handleEditTripClick,
@@ -42,13 +38,9 @@ function TripCard({
         {trip.location && trip.date && (
           <CatchCards
             catches={catches}
-            setCatches={setCatches}
             setTempCatch={setTempCatch}
-            openAddCatchModal={openAddCatchModal}
             setOpenAddCatchModal={setOpenAddCatchModal}
-            openEditCatchModal={openEditCatchModal}
             setOpenEditCatchModal={setOpenEditCatchModal}
-            openDeleteCatchModal={openDeleteCatchModal}
             setOpenDeleteCatchModal={setOpenDeleteCatchModal}
           />
         )}
