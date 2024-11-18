@@ -3,16 +3,21 @@ import CatchButton from "./CatchButton.jsx";
 function CatchCard({
   catchItem,
   index,
-  handleEditCatch,
-  handleDeleteCatch,
-  handleTimeConversionTo12HourFormat,
-  setOpenEditCatchModal,
-  setOpenDeleteCatchModal,
+  handleEditCatchClick,
+  handleDeleteCatchClick,
 }) {
   function formatKey(key) {
     return key
       .replace(/([A-Z])/g, " $1")
       .replace(/^./, (str) => str.toUpperCase());
+  }
+
+  function handleTimeConversionTo12HourFormat(time) {
+    const [hours, minutes] = time.split(":");
+    const hoursInt = parseInt(hours, 10);
+    const suffix = hoursInt >= 12 ? "pm" : "am";
+    const newHours = ((hoursInt + 11) % 12) + 1;
+    return `${newHours.toString().padStart(2, "0")}:${minutes} ${suffix}`;
   }
 
   return (
@@ -43,14 +48,12 @@ function CatchCard({
         <CatchButton
           buttonText={"Edit"}
           index={index}
-          setOpenModal={setOpenEditCatchModal}
-          handleCatch={handleEditCatch}
+          handleClick={handleEditCatchClick}
         />
         <CatchButton
           buttonText={"Delete"}
           index={index}
-          setOpenModal={setOpenDeleteCatchModal}
-          handleCatch={handleDeleteCatch}
+          handleClick={handleDeleteCatchClick}
         />
       </div>
     </div>
