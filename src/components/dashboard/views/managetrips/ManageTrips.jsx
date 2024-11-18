@@ -306,13 +306,9 @@ function ManageTrips({ user, screenWidth, baseURL }) {
             <TripCard
               trip={trip}
               catches={catches}
-              setCatches={setCatches}
               setTempCatch={setTempCatch}
-              openAddCatchModal={openAddCatchModal}
               setOpenAddCatchModal={setOpenAddCatchModal}
-              openEditCatchModal={openEditCatchModal}
               setOpenEditCatchModal={setOpenEditCatchModal}
-              openDeleteCatchModal={openDeleteCatchModal}
               setOpenDeleteCatchModal={setOpenDeleteCatchModal}
               screenWidth={screenWidth}
               handleEditTripClick={handleEditTripClick}
