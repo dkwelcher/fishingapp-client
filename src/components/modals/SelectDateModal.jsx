@@ -1,29 +1,9 @@
-/* 
-SelectDateModal.jsx is an intermediate dashboard component that displays a form for adding a new trip or selecting an existing trip.
-
-@since 2024-03-18
-*/
-
 import { useState } from "react";
 import {
   handleTripInputValidation,
   handleLocationInputValidation,
 } from "../../lib/utilities/InputValidation";
 
-/* 
-SelectDateModal renders a container with a form for adding a new trip & dynamically displays existing trips associated with the given date.
-It provides immediate feedback on input validation & delegates final input validation on submission to the local input valition file.
-
-@param openSelectDateModal Boolean value that represents whether the select date modal is open or closed.
-@param setOpenSelectDateModal Setter function that sets the openSelectDateModal to true or false.
-@param trips An object array that contains trip objects.
-@param setTrips Setter function that sets the trips state.
-@param tripDate String that represents the date in YYYY-MM-DD format.
-@param user An object that holds user properties.
-@param baseURL String that represents the base URL of the server.
-@return HTML that renders the container that holds the form specific to trip data &
-        dynamically rendered trips with select buttons.
-*/
 function SelectDateModal({
   openSelectDateModal,
   setOpenSelectDateModal,
@@ -149,10 +129,8 @@ function SelectDateModal({
   }
 
   /* Tailwind Class Styles */
-  const modalContainerStyles =
-    "w-full h-screen fixed flex justify-center items-center bg-transparent-shadow text-slate-800 z-50";
   const modalCardStyles =
-    "m-4 p-4 bg-slate-50 rounded-sm font-paragraph md:-translate-x-32 shadow-md shadow-slate-950";
+    "px-10 py-4 bg-slate-50 rounded-sm font-paragraph md:-translate-x-32 shadow-md shadow-slate-950";
   const userActionContainerStyles = " ";
   const addTripContainerStyles =
     "mb-4 px-2 border border-0 border-b-4 border-slate-700 md:text-lg";
@@ -171,7 +149,7 @@ function SelectDateModal({
   /* End Tailwind Class Styles */
 
   return (
-    <div className={modalContainerStyles}>
+    <>
       <div className={modalCardStyles}>
         <div className={userActionContainerStyles}>
           <div className={addTripContainerStyles}>
@@ -251,7 +229,7 @@ function SelectDateModal({
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }
 

@@ -1,9 +1,3 @@
-/* 
-EditTripModal.jsx is an intermediate dashboard component that displays a form for editing an existing trip.
-
-@since 2024-03-18
-*/
-
 import { useState } from "react";
 import {
   handleTripInputValidation,
@@ -12,22 +6,6 @@ import {
 } from "../../lib/utilities/InputValidation";
 import DatePicker from "react-datepicker";
 
-/* 
-EditTripModal renders a container with a form for editing an existing trip. It provides immediate feedback on input validation &
-delegates final input validation on submission to the local input validation file.
-
-@param openEditTripModal Boolean value that represents whether the edit trip modal is open or closed.
-@param setOpenEditTripModal Setter function that sets the openEditTripModal to true or false.
-@param trip An object that holds trip properties.
-@param setTrip Setter function that sets the trip state.
-@param setTrips Setter function that sets the trips state.
-@param tempTrip An object that holds trip properties temporarily for user-made editing & deletion.
-@param setTempTrip Setter function that sets the tempTrip state.
-@param setTripDate Setter function that sets the tripDate state.
-@param user An object that holds user properties.
-@param baseURL String that represents the base URL of the server.
-@return HTML that renders the container that holds a form specific to trip data.
-*/
 function EditTripModal({
   openEditTripModal,
   setOpenEditTripModal,
@@ -205,8 +183,6 @@ function EditTripModal({
   }
 
   /* Tailwind Class Styles */
-  const modalContainerStyles =
-    "w-full h-screen fixed flex justify-center items-center bg-transparent-shadow text-slate-800 z-50";
   const modalCardStyles =
     "px-10 py-4 bg-slate-50 rounded-md font-paragraph md:-translate-x-32 shadow-md shadow-slate-950";
   const formContainerStyles = "";
@@ -222,78 +198,76 @@ function EditTripModal({
   /* End Tailwind Class Styles */
 
   return (
-    <div className={modalContainerStyles}>
-      <div className={modalCardStyles}>
-        <div className={formContainerStyles}>
-          <h2 className={formTitleStyles}>Edit Current Trip</h2>
-          <form action="">
-            <div className={inputContainerStyles}>
-              <label htmlFor="">
-                Location:{" "}
-                {
-                  <span className={inputErrorMessageStyles}>
-                    {locationErrorMessage}
-                  </span>
-                }
-              </label>
-              <input
+    <div className={modalCardStyles}>
+      <div className={formContainerStyles}>
+        <h2 className={formTitleStyles}>Edit Current Trip</h2>
+        <form action="">
+          <div className={inputContainerStyles}>
+            <label htmlFor="">
+              Location:{" "}
+              {
+                <span className={inputErrorMessageStyles}>
+                  {locationErrorMessage}
+                </span>
+              }
+            </label>
+            <input
+              className={inputStyles}
+              type="text"
+              value={tempTrip.location}
+              onKeyDown={(e) => preventDigitAndSpecialCharacters(e)}
+              onChange={(e) =>
+                setTempTrip({ ...tempTrip, location: e.target.value })
+              }
+              onBlur={(e) => handleLocationInput(e.target.value)}
+            />
+            <label htmlFor="">
+              Date:{" "}
+              {
+                <span className={inputErrorMessageStyles}>
+                  {dateErrorMessage}
+                </span>
+              }
+            </label>
+            <div className={datePickerContainerStyles}>
+              <DatePicker
                 className={inputStyles}
-                type="text"
-                value={tempTrip.location}
-                onKeyDown={(e) => preventDigitAndSpecialCharacters(e)}
-                onChange={(e) =>
-                  setTempTrip({ ...tempTrip, location: e.target.value })
-                }
-                onBlur={(e) => handleLocationInput(e.target.value)}
+                showIcon
+                selected={editDate}
+                onChange={(date) => setEditDate(date)}
+                onBlur={(e) => handleDateInput(e.target.value)}
               />
-              <label htmlFor="">
-                Date:{" "}
-                {
-                  <span className={inputErrorMessageStyles}>
-                    {dateErrorMessage}
-                  </span>
-                }
-              </label>
-              <div className={datePickerContainerStyles}>
-                <DatePicker
-                  className={inputStyles}
-                  showIcon
-                  selected={editDate}
-                  onChange={(date) => setEditDate(date)}
-                  onBlur={(e) => handleDateInput(e.target.value)}
-                />
-              </div>
             </div>
-          </form>
-          <div>
-            <p
-              className={`pb-2 text-red-600 text-center ${
-                formSubmissionErrorMessage.length > 0 ? "visible" : "hidden"
-              }`}
-            >
-              {formSubmissionErrorMessage}
-              {"."}
-            </p>
           </div>
-          <div className={buttonContainerStyles}>
-            <button
-              className={buttonStyles}
-              onClick={() => {
-                handleEditTrip();
-              }}
-            >
-              Edit
-            </button>
-            <button
-              className={buttonStyles}
-              onClick={() => {
-                setOpenEditTripModal(false);
-                setTempTrip({});
-              }}
-            >
-              Cancel
-            </button>
-          </div>
+        </form>
+        <div>
+          <p
+            className={`pb-2 text-red-600 text-center ${
+              formSubmissionErrorMessage.length > 0 ? "visible" : "hidden"
+            }`}
+          >
+            {formSubmissionErrorMessage}
+            {"."}
+          </p>
+        </div>
+        <div className={buttonContainerStyles}>
+          <button
+            className={buttonStyles}
+            onClick={() => {
+              handleEditTrip();
+            }}
+          >
+            Edit
+          </button>
+          <button
+            className={buttonStyles}
+            onClick={() => {
+              setOpenEditTripModal(false);
+              setTempTrip({});
+            }}
+          >
+            Cancel
+          </button>
         </div>
       </div>
     </div>

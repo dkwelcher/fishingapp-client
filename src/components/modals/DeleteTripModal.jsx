@@ -1,22 +1,3 @@
-/* 
-DeleteTripModal.jsx is an intermediate dashboard component that displays the trip object to be deleted.
-
-@since 2024-03-18
-*/
-
-/* 
-DeleteTripModal renders a container with text related to the selected trip. It provides two buttons
-that allow the user to confirm or cancel deletion of the trip.
-
-@param openDeleteTripModal Boolean value the represents whether the delete trip modal is open or closed.
-@param setOpenDeleteTripModal Setter function that sets the openDeleteTripModal to true or false.
-@param trip An object that holds trip properties.
-@param setTrip Setter function that sets the state of the trip object.
-@param setTripDate Setter function that sets the state of the tripDate String.
-@param user An object that holds user properties.
-@param baseURL String that represents the base URL of the server.
-@return HTML that renders the container that holds data related to the trip to be deleted & buttons for confirmation & cancellation.
-*/
 function DeleteTripModal({
   openDeleteTripModal,
   setOpenDeleteTripModal,
@@ -74,8 +55,6 @@ function DeleteTripModal({
   }
 
   /* Tailwind Class Styles */
-  const modalContainerStyles =
-    "w-full h-screen fixed p-2 flex justify-center items-center bg-transparent-shadow text-slate-800 z-50";
   const modalCardStyles =
     "bg-slate-50 rounded-md font-paragraph md:-translate-x-32 shadow-md shadow-slate-950";
   const infoContainerStyles = "px-10 py-4";
@@ -88,32 +67,30 @@ function DeleteTripModal({
   /* End Tailwind Class Styles */
 
   return (
-    <div className={modalContainerStyles}>
-      <div className={modalCardStyles}>
-        <div className={infoContainerStyles}>
-          <h2 className={infoTitleStyles}>Are you sure you want to delete?</h2>
-          <div className={infoSectionContainerStyles}>
-            <p className={infoSectionParagraphStyles}>
-              {trip.location} on {handleDateFormat(trip.date)}
-            </p>
-          </div>
-          <div className={buttonContainerStyles}>
-            <button
-              className={buttonStyles}
-              onClick={() => {
-                handleDeleteTrip();
-                setOpenDeleteTripModal(false);
-              }}
-            >
-              Yes
-            </button>
-            <button
-              className={buttonStyles}
-              onClick={() => setOpenDeleteTripModal(false)}
-            >
-              No
-            </button>
-          </div>
+    <div className={modalCardStyles}>
+      <div className={infoContainerStyles}>
+        <h2 className={infoTitleStyles}>Are you sure you want to delete?</h2>
+        <div className={infoSectionContainerStyles}>
+          <p className={infoSectionParagraphStyles}>
+            {trip.location} on {handleDateFormat(trip.date)}
+          </p>
+        </div>
+        <div className={buttonContainerStyles}>
+          <button
+            className={buttonStyles}
+            onClick={() => {
+              handleDeleteTrip();
+              setOpenDeleteTripModal(false);
+            }}
+          >
+            Yes
+          </button>
+          <button
+            className={buttonStyles}
+            onClick={() => setOpenDeleteTripModal(false)}
+          >
+            No
+          </button>
         </div>
       </div>
     </div>

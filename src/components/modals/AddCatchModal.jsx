@@ -1,9 +1,3 @@
-/* 
-AddCatchModal.jsx is an intermediate dashboard component that displays a form for adding a new catch.
-
-@since 2024-03-19
-*/
-
 import { useState, useEffect } from "react";
 import {
   handleCatchInputValidation,
@@ -18,18 +12,6 @@ import {
   handleWindSpeedInputValidation,
 } from "../../lib/utilities/InputValidation";
 
-/* 
-AddCatchModal renders a container with a form for adding a new catch to the associated trip. It provides immediate feedback on input validation &
-delegates final input validation on submission to the local input validation file.
-
-@param openAddCatchModal Boolean value that represents whether the add catch modal is open or closed.
-@param setOpenAddCatchModal Setter function that sets the openAddCatchModal to true or false.
-@param user An object that holds user properties.
-@param trip An object that holds trip properties.
-@param setCatches Setter function that sets the catches object array.
-@param baseURL String that represents the base URL of the server.
-@return HTML that renders the container that holds a form specific to catch data.
-*/
 function AddCatchModal({
   openAddCatchModal,
   setOpenAddCatchModal,
@@ -427,8 +409,6 @@ function AddCatchModal({
   }
 
   /* Tailwind Class Styles */
-  const modalContainerStyles =
-    "w-full h-screen fixed flex justify-center items-center bg-transparent-shadow text-slate-800 text-sm z-50";
   const modalCardStyles =
     "px-10 py-4 bg-slate-50 rounded-md font-paragraph md:-translate-x-32 shadow-md shadow-slate-950";
   const formContainerStyles = "";
@@ -445,226 +425,224 @@ function AddCatchModal({
   /* End Tailwind Class Styles */
 
   return (
-    <div className={modalContainerStyles}>
-      <div className={modalCardStyles}>
-        <div className={formContainerStyles}>
-          <h2 className={formTitleStyles}>Add a Catch</h2>
-          <form className={formStyles} action="">
-            <div className={inputContainerStyles}>
-              <label className={labelStyles} htmlFor="">
-                Time:{" "}
-                {
-                  <span className={inputErrorMessageStyles}>
-                    {timeErrorMessage}
-                  </span>
-                }
-              </label>
-              <input
-                className={inputStyles}
-                type="time"
-                value={newCatch.time ?? ""}
-                onChange={(e) =>
-                  setNewCatch({ ...newCatch, time: e.target.value })
-                }
-                onBlur={(e) => handleTimeInput(e.target.value)}
-              />
-            </div>
-            <div className={inputContainerStyles}>
-              <label className={labelStyles} htmlFor="">
-                Fish:{" "}
-                {
-                  <span className={inputErrorMessageStyles}>
-                    {fishErrorMessage}
-                  </span>
-                }
-              </label>
-              <input
-                className={inputStyles}
-                type="text"
-                onKeyDown={(e) => preventDigitAndSpecialCharacters(e)}
-                onChange={(e) =>
-                  setNewCatch({ ...newCatch, fish: e.target.value })
-                }
-                onBlur={(e) => handleFishInput(e.target.value)}
-              />
-            </div>
-            <div className={inputContainerStyles}>
-              <label className={labelStyles} htmlFor="">
-                Bait / Lure:{" "}
-                {
-                  <span className={inputErrorMessageStyles}>
-                    {baitErrorMessage}
-                  </span>
-                }
-              </label>
-              <input
-                className={inputStyles}
-                type="text"
-                onKeyDown={(e) => preventDigitAndSpecialCharacters(e)}
-                onChange={(e) =>
-                  setNewCatch({ ...newCatch, bait: e.target.value })
-                }
-                onBlur={(e) => handleBaitInput(e.target.value)}
-              />
-            </div>
-            <div className={inputContainerStyles}>
-              <label className={labelStyles} htmlFor="">
-                Weather:{" "}
-                {
-                  <span className={inputErrorMessageStyles}>
-                    {weatherErrorMessage}
-                  </span>
-                }
-              </label>
-              <select
-                className={inputStyles}
-                type="text"
-                onChange={(e) =>
-                  setNewCatch({ ...newCatch, weather: e.target.value })
-                }
-                onBlur={(e) => handleWeatherInput(e.target.value)}
-              >
-                <option value="clear">clear</option>
-                <option value="partly cloudy">partly cloudy</option>
-                <option value="cloudy">cloudy</option>
-                <option value="overcast">overcast</option>
-                <option value="light precipitation">light precipitation</option>
-                <option value="moderate precipitation">
-                  moderate precipitation
-                </option>
-                <option value="heavy precipitation">heavy precipitation</option>
-              </select>
-            </div>
-            <div className={inputContainerStyles}>
-              <label className={labelStyles} htmlFor="">
-                Latitude:{" "}
-                {
-                  <span className={inputErrorMessageStyles}>
-                    {latitudeErrorMessage}
-                  </span>
-                }
-              </label>
-              <input
-                className={inputStyles}
-                type="number"
-                value={newCatch.latitude ?? ""}
-                onKeyDown={(e) => preventPlus(e)}
-                onChange={(e) =>
-                  setNewCatch({ ...newCatch, latitude: e.target.value })
-                }
-                onBlur={(e) => handleLatitudeInput(e.target.value)}
-              />
-            </div>
-            <div className={inputContainerStyles}>
-              <label className={labelStyles} htmlFor="">
-                Longitude:{" "}
-                {
-                  <span className={inputErrorMessageStyles}>
-                    {longitudeErrorMessage}
-                  </span>
-                }
-              </label>
-              <input
-                className={inputStyles}
-                type="number"
-                value={newCatch.longitude ?? ""}
-                onKeyDown={(e) => preventPlus(e)}
-                onChange={(e) =>
-                  setNewCatch({ ...newCatch, longitude: e.target.value })
-                }
-                onBlur={(e) => handleLongitudeInput(e.target.value)}
-              />
-            </div>
-            <div className={inputContainerStyles}>
-              <label className={labelStyles} htmlFor="">
-                Air Temp (&deg;F):{" "}
-                {
-                  <span className={inputErrorMessageStyles}>
-                    {airTempErrorMessage}
-                  </span>
-                }
-              </label>
-              <input
-                className={inputStyles}
-                type="number"
-                value={newCatch.airTemp ?? ""}
-                onKeyDown={(e) => preventDecimalAndPlus(e)}
-                onChange={(e) =>
-                  setNewCatch({ ...newCatch, airTemp: e.target.value })
-                }
-                onBlur={(e) => handleAirTempInput(e.target.value)}
-              />
-            </div>
-            <div className={inputContainerStyles}>
-              <label className={labelStyles} htmlFor="">
-                Water Temp (&deg;F):{" "}
-                {
-                  <span className={inputErrorMessageStyles}>
-                    {waterTempErrorMessage}
-                  </span>
-                }
-              </label>
-              <input
-                className={inputStyles}
-                type="number"
-                value={newCatch.waterTemp ?? ""}
-                onKeyDown={(e) => preventDecimalAndPlus(e)}
-                onChange={(e) =>
-                  setNewCatch({ ...newCatch, waterTemp: e.target.value })
-                }
-                onBlur={(e) => handleWaterTempInput(e.target.value)}
-              />
-            </div>
-            <div className={inputContainerStyles}>
-              <label className={labelStyles} htmlFor="">
-                Wind Speed (MPH):{" "}
-                {
-                  <span className={inputErrorMessageStyles}>
-                    {windSpeedErrorMessage}
-                  </span>
-                }
-              </label>
-              <input
-                className={inputStyles}
-                type="number"
-                value={newCatch.windSpeed ?? ""}
-                onKeyDown={(e) => preventDecimalAndPlusAndMinus(e)}
-                onChange={(e) =>
-                  setNewCatch({ ...newCatch, windSpeed: e.target.value })
-                }
-                onBlur={(e) => handleWindSpeedInput(e.target.value)}
-              />
-            </div>
-          </form>
-          <div>
-            <p
-              className={`py-2 text-red-600 text-center ${
-                formSubmissionErrorMessage.length > 0 ? "visible" : "invisible"
-              }`}
-            >
-              {formSubmissionErrorMessage}
-              {"."}
-            </p>
+    <div className={modalCardStyles}>
+      <div className={formContainerStyles}>
+        <h2 className={formTitleStyles}>Add a Catch</h2>
+        <form className={formStyles} action="">
+          <div className={inputContainerStyles}>
+            <label className={labelStyles} htmlFor="">
+              Time:{" "}
+              {
+                <span className={inputErrorMessageStyles}>
+                  {timeErrorMessage}
+                </span>
+              }
+            </label>
+            <input
+              className={inputStyles}
+              type="time"
+              value={newCatch.time ?? ""}
+              onChange={(e) =>
+                setNewCatch({ ...newCatch, time: e.target.value })
+              }
+              onBlur={(e) => handleTimeInput(e.target.value)}
+            />
           </div>
-          <div className={buttonContainerStyles}>
-            <button
-              className={buttonStyles}
-              onClick={() => {
-                handlesNewCatch();
-              }}
-            >
-              Add
-            </button>
-            <button
-              className={buttonStyles}
-              onClick={() => {
-                setOpenAddCatchModal(false);
-                setNewCatch({ weather: "clear" });
-              }}
-            >
-              Cancel
-            </button>
+          <div className={inputContainerStyles}>
+            <label className={labelStyles} htmlFor="">
+              Fish:{" "}
+              {
+                <span className={inputErrorMessageStyles}>
+                  {fishErrorMessage}
+                </span>
+              }
+            </label>
+            <input
+              className={inputStyles}
+              type="text"
+              onKeyDown={(e) => preventDigitAndSpecialCharacters(e)}
+              onChange={(e) =>
+                setNewCatch({ ...newCatch, fish: e.target.value })
+              }
+              onBlur={(e) => handleFishInput(e.target.value)}
+            />
           </div>
+          <div className={inputContainerStyles}>
+            <label className={labelStyles} htmlFor="">
+              Bait / Lure:{" "}
+              {
+                <span className={inputErrorMessageStyles}>
+                  {baitErrorMessage}
+                </span>
+              }
+            </label>
+            <input
+              className={inputStyles}
+              type="text"
+              onKeyDown={(e) => preventDigitAndSpecialCharacters(e)}
+              onChange={(e) =>
+                setNewCatch({ ...newCatch, bait: e.target.value })
+              }
+              onBlur={(e) => handleBaitInput(e.target.value)}
+            />
+          </div>
+          <div className={inputContainerStyles}>
+            <label className={labelStyles} htmlFor="">
+              Weather:{" "}
+              {
+                <span className={inputErrorMessageStyles}>
+                  {weatherErrorMessage}
+                </span>
+              }
+            </label>
+            <select
+              className={inputStyles}
+              type="text"
+              onChange={(e) =>
+                setNewCatch({ ...newCatch, weather: e.target.value })
+              }
+              onBlur={(e) => handleWeatherInput(e.target.value)}
+            >
+              <option value="clear">clear</option>
+              <option value="partly cloudy">partly cloudy</option>
+              <option value="cloudy">cloudy</option>
+              <option value="overcast">overcast</option>
+              <option value="light precipitation">light precipitation</option>
+              <option value="moderate precipitation">
+                moderate precipitation
+              </option>
+              <option value="heavy precipitation">heavy precipitation</option>
+            </select>
+          </div>
+          <div className={inputContainerStyles}>
+            <label className={labelStyles} htmlFor="">
+              Latitude:{" "}
+              {
+                <span className={inputErrorMessageStyles}>
+                  {latitudeErrorMessage}
+                </span>
+              }
+            </label>
+            <input
+              className={inputStyles}
+              type="number"
+              value={newCatch.latitude ?? ""}
+              onKeyDown={(e) => preventPlus(e)}
+              onChange={(e) =>
+                setNewCatch({ ...newCatch, latitude: e.target.value })
+              }
+              onBlur={(e) => handleLatitudeInput(e.target.value)}
+            />
+          </div>
+          <div className={inputContainerStyles}>
+            <label className={labelStyles} htmlFor="">
+              Longitude:{" "}
+              {
+                <span className={inputErrorMessageStyles}>
+                  {longitudeErrorMessage}
+                </span>
+              }
+            </label>
+            <input
+              className={inputStyles}
+              type="number"
+              value={newCatch.longitude ?? ""}
+              onKeyDown={(e) => preventPlus(e)}
+              onChange={(e) =>
+                setNewCatch({ ...newCatch, longitude: e.target.value })
+              }
+              onBlur={(e) => handleLongitudeInput(e.target.value)}
+            />
+          </div>
+          <div className={inputContainerStyles}>
+            <label className={labelStyles} htmlFor="">
+              Air Temp (&deg;F):{" "}
+              {
+                <span className={inputErrorMessageStyles}>
+                  {airTempErrorMessage}
+                </span>
+              }
+            </label>
+            <input
+              className={inputStyles}
+              type="number"
+              value={newCatch.airTemp ?? ""}
+              onKeyDown={(e) => preventDecimalAndPlus(e)}
+              onChange={(e) =>
+                setNewCatch({ ...newCatch, airTemp: e.target.value })
+              }
+              onBlur={(e) => handleAirTempInput(e.target.value)}
+            />
+          </div>
+          <div className={inputContainerStyles}>
+            <label className={labelStyles} htmlFor="">
+              Water Temp (&deg;F):{" "}
+              {
+                <span className={inputErrorMessageStyles}>
+                  {waterTempErrorMessage}
+                </span>
+              }
+            </label>
+            <input
+              className={inputStyles}
+              type="number"
+              value={newCatch.waterTemp ?? ""}
+              onKeyDown={(e) => preventDecimalAndPlus(e)}
+              onChange={(e) =>
+                setNewCatch({ ...newCatch, waterTemp: e.target.value })
+              }
+              onBlur={(e) => handleWaterTempInput(e.target.value)}
+            />
+          </div>
+          <div className={inputContainerStyles}>
+            <label className={labelStyles} htmlFor="">
+              Wind Speed (MPH):{" "}
+              {
+                <span className={inputErrorMessageStyles}>
+                  {windSpeedErrorMessage}
+                </span>
+              }
+            </label>
+            <input
+              className={inputStyles}
+              type="number"
+              value={newCatch.windSpeed ?? ""}
+              onKeyDown={(e) => preventDecimalAndPlusAndMinus(e)}
+              onChange={(e) =>
+                setNewCatch({ ...newCatch, windSpeed: e.target.value })
+              }
+              onBlur={(e) => handleWindSpeedInput(e.target.value)}
+            />
+          </div>
+        </form>
+        <div>
+          <p
+            className={`py-2 text-red-600 text-center ${
+              formSubmissionErrorMessage.length > 0 ? "visible" : "invisible"
+            }`}
+          >
+            {formSubmissionErrorMessage}
+            {"."}
+          </p>
+        </div>
+        <div className={buttonContainerStyles}>
+          <button
+            className={buttonStyles}
+            onClick={() => {
+              handlesNewCatch();
+            }}
+          >
+            Add
+          </button>
+          <button
+            className={buttonStyles}
+            onClick={() => {
+              setOpenAddCatchModal(false);
+              setNewCatch({ weather: "clear" });
+            }}
+          >
+            Cancel
+          </button>
         </div>
       </div>
     </div>
