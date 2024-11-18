@@ -3,19 +3,15 @@ import DatePicker from "react-datepicker";
 import { HiOutlineCalendar } from "react-icons/hi";
 
 function DateSearch({ setOpenSelectDateModal, setTripDate, setTrip }) {
-  const [tripStartDate, setTripStartDate] = useState(new Date());
+  // const [tripStartDate, setTripStartDate] = useState(new Date());
 
-  const handleSearchClick = () => {
-    if (
-      tripStartDate === null ||
-      tripStartDate === undefined ||
-      tripStartDate === ""
-    ) {
+  const handleDateSelect = (date) => {
+    if (date === null || date === undefined || date === "") {
       return;
     }
-    const year = tripStartDate.getFullYear();
-    const month = (tripStartDate.getMonth() + 1).toString().padStart(2, "0");
-    const day = tripStartDate.getDate().toString().padStart(2, "0");
+    const year = date.getFullYear();
+    const month = (date.getMonth() + 1).toString().padStart(2, "0");
+    const day = date.getDate().toString().padStart(2, "0");
 
     const formattedDate = `${year}-${month}-${day}`;
 
@@ -37,27 +33,19 @@ function DateSearch({ setOpenSelectDateModal, setTripDate, setTrip }) {
       <DatePicker
         className="w-[200px] ml-1 border border-slate-400 rounded-sm bg-slate-50 text-slate-800 focus:bg-slate-200 focus:text-slate-900 outline-none shadow-md shadow-slate-950"
         showIcon
-        selected={tripStartDate}
-        onChange={(date) => setTripStartDate(date)}
+        selected={new Date()}
+        onChange={(date) => {
+          handleDateSelect(date);
+          setOpenSelectDateModal(true);
+        }}
         icon={<HiOutlineCalendar fontSize={20} className="text-gray-400" />}
       />
-      <div className="flex flex-col gap-y-2 sm:flex-row">
-        <button
-          className={buttonStyles}
-          onClick={() => {
-            setOpenSelectDateModal(true);
-            handleSearchClick();
-          }}
-        >
-          Select Date
-        </button>
-        <button
-          className={buttonStyles}
-          onClick={() => handleLastSixMonthsClick()}
-        >
-          Last Six Months
-        </button>
-      </div>
+      <button
+        className={buttonStyles}
+        onClick={() => handleLastSixMonthsClick()}
+      >
+        Show Last Six Months
+      </button>
     </>
   );
 }
