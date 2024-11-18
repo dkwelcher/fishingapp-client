@@ -1,14 +1,14 @@
 function LoginLink({ handleSignupEntry }) {
   return (
-    <p className="pt-2 text-center">
-      Need to create an
+    <p className="text-center">
+      Need to
       <a
-        className="pl-1 underline text-slate-300 cursor-pointer hover:text-slate-100"
+        className="pl-1 underline text-slate-200 cursor-pointer hover:no-underline active:no-underline"
         onClick={() => {
           handleSignupEntry();
         }}
       >
-        account
+        create an account
       </a>
       ?
     </p>

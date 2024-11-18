@@ -6,6 +6,7 @@ import {
   handlePasswordInputValidation,
   handleConfirmPasswordInputValidation,
 } from "../../../lib/utilities/InputValidation";
+import Logo from "../shared/AuthLogo.jsx";
 import SignupText from "./shared/SignupText.jsx";
 import SignupForm from "./shared/SignupForm.jsx";
 import ErrorMessage from "./shared/SignupError.jsx";
@@ -135,7 +136,10 @@ function Signup({ baseURL }) {
   return (
     <div className="p-4 flex h-screen justify-center items-center font-paragraph font-normal text-sm lg:text-base text-slate-200 bg-slate-800">
       <div className="p-8 max-w-[500px] rounded-sm bg-gradient-to-b from-slate-600 to-slate-700 shadow-md shadow-slate-900">
-        <SignupText />
+        <Logo />
+        <div className="pb-8">
+          <SignupText />
+        </div>
         <SignupForm
           setUsername={setUsername}
           setEmail={setEmail}
@@ -152,10 +156,12 @@ function Signup({ baseURL }) {
           confirmPassword={confirmPassword}
         />
         <ErrorMessage errorMessage={formSubmissionErrorMessage} />
-        <SignupButton
-          handleAuth={handleSignup}
-          authText="Create your account"
-        />
+        <div className="mb-2 py-2 flex flex-col">
+          <SignupButton
+            handleAuth={handleSignup}
+            authText="Create your account"
+          />
+        </div>
         <LinkToLogin handleNavigateToLogin={handleNavigateToLogin} />
       </div>
     </div>

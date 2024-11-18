@@ -1,17 +1,16 @@
 function SignupLink({ handleNavigateToLogin }) {
-  "pl-1 underline text-slate-300 cursor-pointer hover:text-slate-100";
   return (
-    <p className="pt-2 text-center">
-      Already have an
+    <p className="text-center">
+      Already have an account?
       <a
-        className="pl-1 underline text-slate-300 cursor-pointer hover:text-slate-100"
+        className="pl-1 underline text-slate-200 cursor-pointer hover:no-underline active:no-underline"
         onClick={() => {
           handleNavigateToLogin();
         }}
       >
-        account
+        Log in here
       </a>
-      ?
+      .
     </p>
   );
 }

@@ -105,7 +105,9 @@ function Login({ setUser, baseURL }) {
           validatePasswordInput={validatePasswordInput}
         />
         <ErrorMessage errorMessage={inputErrorMessage} />
-        <LoginButton handleAuth={handleLogin} authText={"Log in"} />
+        <div className="mb-2 py-2 flex flex-col">
+          <LoginButton handleAuth={handleLogin} authText={"Log in"} />
+        </div>
         <LinkToSignup handleSignupEntry={handleSignupEntry} />
       </div>
     </div>
