@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+import DatePicker from "react-datepicker";
+import { HiOutlineCalendar } from "react-icons/hi";
 import SelectDateModal from "../../../modals/SelectDateModal";
 import AddCatchModal from "../../../modals/AddCatchModal";
 import EditCatchModal from "../../../modals/EditCatchModal";
@@ -7,8 +9,9 @@ import EditTripModal from "../../../modals/EditTripModal";
 import DeleteTripModal from "../../../modals/DeleteTripModal";
 import TripCard from "./cards/trip/TripCard.jsx";
 import ManageTripsText from "./shared/ManageTripsText.jsx";
-import DateSearch from "./shared/DateSearch.jsx";
+import LastSixMonthsButton from "./shared/LastSixMonthsButton.jsx";
 import RecentTrips from "./shared/RecentTrips.jsx";
+import Logo from "./shared/RecentTripsLogo.jsx";
 
 function ManageTrips({ user, screenWidth, baseURL }) {
   const [openSelectDateModal, setOpenSelectDateModal] = useState(false);
@@ -27,6 +30,28 @@ function ManageTrips({ user, screenWidth, baseURL }) {
   const [tempCatch, setTempCatch] = useState({});
 
   const [tripsLastSixMonths, setTripsLastSixMonths] = useState([]);
+
+  const handleDateSelect = (date) => {
+    if (date === null || date === undefined || date === "") {
+      return;
+    }
+    const year = date.getFullYear();
+    const month = (date.getMonth() + 1).toString().padStart(2, "0");
+    const day = date.getDate().toString().padStart(2, "0");
+
+    const formattedDate = `${year}-${month}-${day}`;
+
+    setTripDate(formattedDate);
+  };
+
+  function handleEditTripClick() {
+    setOpenEditTripModal(true);
+    setTempTrip(trip);
+  }
+
+  function handleDeleteTripClick() {
+    setOpenDeleteTripModal(true);
+  }
 
   /* 
   The useEffect makes a GET request to the server to obtain trips associated with a trip date & the
@@ -257,41 +282,55 @@ function ManageTrips({ user, screenWidth, baseURL }) {
         user={user}
         baseURL={baseURL}
       />
-      <div className="bg-slate-100 text-slate-800">
+      <>
         <div className="flex flex-col justify-center items-left px-4 pt-12 pb-4 bg-cover bg-center text-white bg-managetrips-image md:py-12 md:px-4 shadow-md shadow-slate-800">
           <ManageTripsText />
-          <div className="flex items-center">
-            <DateSearch
-              setOpenSelectDateModal={setOpenSelectDateModal}
-              setTripDate={setTripDate}
-              setTrip={setTrip}
+          <div className="ml-1 flex gap-x-4 items-center">
+            <DatePicker
+              className="w-[200px] border border-slate-400 rounded-sm bg-slate-50 text-slate-800 focus:bg-slate-200 focus:text-slate-900 outline-none shadow-md shadow-slate-950"
+              showIcon
+              selected={new Date()}
+              onChange={(date) => {
+                handleDateSelect(date);
+                setOpenSelectDateModal(true);
+              }}
+              icon={
+                <HiOutlineCalendar fontSize={20} className="text-slate-400" />
+              }
             />
+            <LastSixMonthsButton setTripDate={setTripDate} setTrip={setTrip} />
           </div>
         </div>
         {trip && trip.id && trip.location && trip.date ? (
-          <TripCard
-            trip={trip}
-            setTempTrip={setTempTrip}
-            catches={catches}
-            setCatches={setCatches}
-            setTempCatch={setTempCatch}
-            openAddCatchModal={openAddCatchModal}
-            setOpenAddCatchModal={setOpenAddCatchModal}
-            openEditCatchModal={openEditCatchModal}
-            setOpenEditCatchModal={setOpenEditCatchModal}
-            openDeleteCatchModal={openDeleteCatchModal}
-            setOpenDeleteCatchModal={setOpenDeleteCatchModal}
-            setOpenEditTripModal={setOpenEditTripModal}
-            setOpenDeleteTripModal={setOpenDeleteTripModal}
-            screenWidth={screenWidth}
-          />
+          <div className="py-4 sm:p-4 lg:py6 2xl:py-10">
+            <TripCard
+              trip={trip}
+              catches={catches}
+              setCatches={setCatches}
+              setTempCatch={setTempCatch}
+              openAddCatchModal={openAddCatchModal}
+              setOpenAddCatchModal={setOpenAddCatchModal}
+              openEditCatchModal={openEditCatchModal}
+              setOpenEditCatchModal={setOpenEditCatchModal}
+              openDeleteCatchModal={openDeleteCatchModal}
+              setOpenDeleteCatchModal={setOpenDeleteCatchModal}
+              screenWidth={screenWidth}
+              handleEditTripClick={handleEditTripClick}
+              handleDeleteTripClick={handleDeleteTripClick}
+            />
+          </div>
         ) : (
-          <RecentTrips
-            tripsLastSixMonths={tripsLastSixMonths}
-            handleRecentTrip={handleRecentTrip}
-          />
+          <div className="py-10 px-4">
+            <RecentTrips
+              tripsLastSixMonths={tripsLastSixMonths}
+              handleRecentTrip={handleRecentTrip}
+            />
+            <div className="mt-10 pb-10 flex flex-col justify-center items-center gap-x-2 font-cursive text-slate-900">
+              <Logo />
+            </div>
+          </div>
         )}
-      </div>
+      </>
     </div>
   );
 }
