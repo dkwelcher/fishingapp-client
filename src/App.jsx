@@ -13,6 +13,7 @@ import LandingPage from "./components/landing/LandingPage";
 import Signup from "./components/auth/signup/Signup";
 import Login from "./components/auth/login/Login";
 import { BaseURLContext } from "./lib/context/Context";
+import { AuthContext } from "./lib/context/Context";
 
 /* 
 PrivateView is an inner component that restricts the user to the login page when no user exists.
@@ -71,21 +72,50 @@ function App() {
         <Routes>
           <Route path="/" element={<LandingPage />} />
           <Route path="/signup" element={<Signup />} />
-          <Route path="/login" element={<Login setUser={setUser} />} />
+
+          <Route
+            path="/login"
+            element={
+              <AuthContext.Provider value={{ user, setUser }}>
+                <Login />
+              </AuthContext.Provider>
+            }
+          />
+
           <Route
             path="/dashboard"
             element={
               <PrivateView user={user}>
-                <Dashboard setUser={setUser} screenWidth={screenWidth} />
+                <AuthContext.Provider value={{ user, setUser }}>
+                  <Dashboard screenWidth={screenWidth} />
+                </AuthContext.Provider>
               </PrivateView>
             }
           >
-            <Route index element={<Home user={user} />} />
+            <Route
+              index
+              element={
+                <AuthContext.Provider value={{ user, setUser }}>
+                  <Home />
+                </AuthContext.Provider>
+              }
+            />
             <Route
               path="manage-trips"
-              element={<ManageTrips user={user} screenWidth={screenWidth} />}
+              element={
+                <AuthContext.Provider value={{ user, setUser }}>
+                  <ManageTrips screenWidth={screenWidth} />
+                </AuthContext.Provider>
+              }
             />
-            <Route path="feedback" element={<Feedback user={user} />}></Route>
+            <Route
+              path="feedback"
+              element={
+                <AuthContext.Provider value={{ user, setUser }}>
+                  <Feedback />
+                </AuthContext.Provider>
+              }
+            ></Route>
           </Route>
         </Routes>
       </Router>
