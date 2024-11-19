@@ -7,9 +7,7 @@ function MobileSideBarButton({ isSidebarOpen, setIsSidebarOpen }) {
 
   return (
     <button
-      className={`absolute w-full p-2 text-3xl text-slate-200 z-50 md:invisible ${
-        !isSidebarOpen && "bg-transparent-shadow"
-      }`}
+      className="absolute w-full p-2 text-3xl text-slate-200 z-50 md:invisible"
       onClick={() => {
         toggleSidebar();
       }}
