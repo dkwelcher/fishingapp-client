@@ -1,9 +1,8 @@
-function TripCardButton({
-  buttonTextShort,
-  buttonTextLong,
-  screenWidth,
-  handleClick,
-}) {
+import { useContext } from "react";
+import { ScreenWidthContext } from "../../../../../../../lib/context/Context";
+
+function TripCardButton({ buttonTextShort, buttonTextLong, handleClick }) {
+  const screenWidth = useContext(ScreenWidthContext);
   const customBreakpoint = 1139;
 
   return (

@@ -6,7 +6,6 @@ import CatchCard from "./../catch/CatchCard.jsx";
 function TripCard({
   trip,
   catches,
-  screenWidth,
   handleEditTripClick,
   handleDeleteTripClick,
   handleAddCatchClick,
@@ -23,13 +22,11 @@ function TripCard({
           <Button
             buttonTextShort={"Edit"}
             buttonTextLong={"Edit Current Trip"}
-            screenWidth={screenWidth}
             handleClick={handleEditTripClick}
           />
           <Button
             buttonTextShort={"Delete"}
             buttonTextLong={"Delete Current Trip"}
-            screenWidth={screenWidth}
             handleClick={handleDeleteTripClick}
           />
         </div>

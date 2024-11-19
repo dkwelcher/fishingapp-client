@@ -14,6 +14,7 @@ import Signup from "./components/auth/signup/Signup";
 import Login from "./components/auth/login/Login";
 import { BaseURLContext } from "./lib/context/Context";
 import { AuthContext } from "./lib/context/Context";
+import { ScreenWidthContext } from "./lib/context/Context";
 
 /* 
 PrivateView is an inner component that restricts the user to the login page when no user exists.
@@ -87,7 +88,9 @@ function App() {
             element={
               <PrivateView user={user}>
                 <AuthContext.Provider value={{ user, setUser }}>
-                  <Dashboard screenWidth={screenWidth} />
+                  <ScreenWidthContext.Provider value={screenWidth}>
+                    <Dashboard />
+                  </ScreenWidthContext.Provider>
                 </AuthContext.Provider>
               </PrivateView>
             }
@@ -104,7 +107,9 @@ function App() {
               path="manage-trips"
               element={
                 <AuthContext.Provider value={{ user, setUser }}>
-                  <ManageTrips screenWidth={screenWidth} />
+                  <ScreenWidthContext.Provider value={screenWidth}>
+                    <ManageTrips />
+                  </ScreenWidthContext.Provider>
                 </AuthContext.Provider>
               }
             />

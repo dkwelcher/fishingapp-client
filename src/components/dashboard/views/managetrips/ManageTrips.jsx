@@ -15,7 +15,7 @@ import Logo from "./shared/RecentTripsLogo.jsx";
 import { BaseURLContext } from "../../../../lib/context/Context.jsx";
 import { AuthContext } from "../../../../lib/context/Context.jsx";
 
-function ManageTrips({ screenWidth }) {
+function ManageTrips() {
   const baseURL = useContext(BaseURLContext);
   const { user, setUser } = useContext(AuthContext);
 
@@ -348,7 +348,6 @@ function ManageTrips({ screenWidth }) {
             <TripCard
               trip={trip}
               catches={catches}
-              screenWidth={screenWidth}
               handleEditTripClick={handleEditTripClick}
               handleDeleteTripClick={handleDeleteTripClick}
               handleAddCatchClick={handleAddCatchClick}

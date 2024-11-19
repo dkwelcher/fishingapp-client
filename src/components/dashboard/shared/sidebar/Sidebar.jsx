@@ -1,3 +1,4 @@
+import { useContext } from "react";
 import {
   DASHBOARD_SIDEBAR_BOTTOM_LINKS,
   DASHBOARD_SIDEBAR_LINKS,
@@ -5,8 +6,10 @@ import {
 import Logo from "./SidebarLogo.jsx";
 import SidebarLink from "./SidebarLink.jsx";
 import LogoutLink from "./SidebarLogoutLink.jsx";
+import { ScreenWidthContext } from "../../../../lib/context/Context.jsx";
 
-function Sidebar({ screenWidth }) {
+function Sidebar() {
+  const screenWidth = useContext(ScreenWidthContext);
   return (
     <div
       className={`pt-10 h-full bg-slate-950 w-60 p-3 flex flex-col border-r border-slate-700 md:pt-0 ${
