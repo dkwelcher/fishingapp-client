@@ -3,7 +3,7 @@ import DatePicker from "react-datepicker";
 import { HiOutlineCalendar } from "react-icons/hi";
 import SelectDateModal from "../../../modals/selectdate/SelectDateModal.jsx";
 import AddCatchModal from "../../../modals/addcatch/AddCatchModal";
-import EditCatchModal from "../../../modals/EditCatchModal";
+import EditCatchModal from "../../../modals/editcatch/EditCatchModal";
 import DeleteCatchModal from "../../../modals/DeleteCatchModal";
 import EditTripModal from "../../../modals/edittrip/EditTripModal";
 import DeleteTripModal from "../../../modals/deletetrip/DeleteTripModal.jsx";
