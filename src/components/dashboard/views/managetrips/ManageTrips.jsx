@@ -5,7 +5,7 @@ import SelectDateModal from "../../../modals/selectdate/SelectDateModal.jsx";
 import AddCatchModal from "../../../modals/AddCatchModal";
 import EditCatchModal from "../../../modals/EditCatchModal";
 import DeleteCatchModal from "../../../modals/DeleteCatchModal";
-import EditTripModal from "../../../modals/EditTripModal";
+import EditTripModal from "../../../modals/edittrip/EditTripModal";
 import DeleteTripModal from "../../../modals/DeleteTripModal";
 import TripCard from "./cards/trip/TripCard.jsx";
 import ManageTripsText from "./shared/ManageTripsText.jsx";
