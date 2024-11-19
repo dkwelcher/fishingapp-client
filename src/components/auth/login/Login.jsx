@@ -18,23 +18,27 @@ function Login({ setUser, baseURL }) {
 
   const navigate = useNavigate();
 
-  function validateUsernameInput(currentUsername) {
-    const isValid = handleLoginInputValidation(currentUsername);
-    setIsUsernameValid(isValid);
+  function handleUsernameInput(usernameInput) {
+    setIsUsernameValid(isInputValid(usernameInput));
+    clearInputErrorMessageIfAllFieldsValid();
+  }
+
+  function handlePasswordInput(passwordInput) {
+    setIsPasswordValid(isInputValid(passwordInput));
+    clearInputErrorMessageIfAllFieldsValid();
+  }
+
+  function isInputValid(input) {
+    return handleLoginInputValidation(input);
+  }
+
+  function clearInputErrorMessageIfAllFieldsValid() {
     if (isValid && isPasswordValid) {
       setInputErrorMessage("");
     }
   }
 
-  function validatePasswordInput(currentPassword) {
-    const isValid = handleLoginInputValidation(currentPassword);
-    setIsPasswordValid(isValid);
-    if (isValid && isUsernameValid) {
-      setInputErrorMessage("");
-    }
-  }
-
-  function handleLogin() {
+  function handleLoginClick() {
     if (isUsernameValid && isPasswordValid) {
       const existingUser = {
         username: username,
@@ -100,13 +104,13 @@ function Login({ setUser, baseURL }) {
         <Logo />
         <Form
           setUsername={setUsername}
-          validateUsernameInput={validateUsernameInput}
+          validateUsernameInput={handleUsernameInput}
           setPassword={setPassword}
-          validatePasswordInput={validatePasswordInput}
+          validatePasswordInput={handlePasswordInput}
         />
         <ErrorMessage errorMessage={inputErrorMessage} />
         <div className="mb-2 py-2 flex flex-col">
-          <LoginButton handleAuth={handleLogin} authText={"Log in"} />
+          <LoginButton handleAuth={handleLoginClick} authText={"Log in"} />
         </div>
         <LinkToSignup handleSignupEntry={handleSignupEntry} />
       </div>
