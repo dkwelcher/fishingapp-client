@@ -12,6 +12,7 @@ import Feedback from "./components/dashboard/views/feedback/Feedback";
 import LandingPage from "./components/landing/LandingPage";
 import Signup from "./components/auth/signup/Signup";
 import Login from "./components/auth/login/Login";
+import { BaseURLContext } from "./lib/context/Context";
 
 /* 
 PrivateView is an inner component that restricts the user to the login page when no user exists.
@@ -65,15 +66,12 @@ function App() {
   }, []);
 
   return (
-    <>
+    <BaseURLContext.Provider value={baseURL}>
       <Router>
         <Routes>
           <Route path="/" element={<LandingPage />} />
-          <Route path="/signup" element={<Signup baseURL={baseURL} />} />
-          <Route
-            path="/login"
-            element={<Login setUser={setUser} baseURL={baseURL} />}
-          />
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/login" element={<Login setUser={setUser} />} />
           <Route
             path="/dashboard"
             element={
@@ -85,22 +83,13 @@ function App() {
             <Route index element={<Home user={user} />} />
             <Route
               path="manage-trips"
-              element={
-                <ManageTrips
-                  user={user}
-                  screenWidth={screenWidth}
-                  baseURL={baseURL}
-                />
-              }
+              element={<ManageTrips user={user} screenWidth={screenWidth} />}
             />
-            <Route
-              path="feedback"
-              element={<Feedback user={user} baseURL={baseURL} />}
-            ></Route>
+            <Route path="feedback" element={<Feedback user={user} />}></Route>
           </Route>
         </Routes>
       </Router>
-    </>
+    </BaseURLContext.Provider>
   );
 }
 
