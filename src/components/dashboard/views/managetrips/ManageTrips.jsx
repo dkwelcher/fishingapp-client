@@ -13,9 +13,12 @@ import LastSixMonthsButton from "./shared/LastSixMonthsButton.jsx";
 import RecentTrips from "./shared/RecentTrips.jsx";
 import Logo from "./shared/RecentTripsLogo.jsx";
 import { BaseURLContext } from "../../../../lib/context/Context.jsx";
+import { AuthContext } from "../../../../lib/context/Context.jsx";
 
-function ManageTrips({ user, screenWidth }) {
+function ManageTrips({ screenWidth }) {
   const baseURL = useContext(BaseURLContext);
+  const { user, setUser } = useContext(AuthContext);
+
   const [openSelectDateModal, setOpenSelectDateModal] = useState(false);
   const [openAddCatchModal, setOpenAddCatchModal] = useState(false);
   const [openEditCatchModal, setOpenEditCatchModal] = useState(false);
@@ -280,12 +283,10 @@ function ManageTrips({ user, screenWidth }) {
             setTrips={setTrips}
             setTrip={setTrip}
             tripDate={tripDate}
-            user={user}
           />
           <AddCatchModal
             openAddCatchModal={openAddCatchModal}
             setOpenAddCatchModal={setOpenAddCatchModal}
-            user={user}
             trip={trip}
             tempCatch={tempCatch}
             setTempCatch={setTempCatch}
@@ -294,7 +295,6 @@ function ManageTrips({ user, screenWidth }) {
           <EditCatchModal
             openEditCatchModal={openEditCatchModal}
             setOpenEditCatchModal={setOpenEditCatchModal}
-            user={user}
             trip={trip}
             tempCatch={tempCatch}
             setTempCatch={setTempCatch}
@@ -303,7 +303,6 @@ function ManageTrips({ user, screenWidth }) {
           <DeleteCatchModal
             openDeleteCatchModal={openDeleteCatchModal}
             setOpenDeleteCatchModal={setOpenDeleteCatchModal}
-            user={user}
             tempCatch={tempCatch}
             setTempCatch={setTempCatch}
             setCatches={setCatches}
@@ -317,7 +316,6 @@ function ManageTrips({ user, screenWidth }) {
             tempTrip={tempTrip}
             setTempTrip={setTempTrip}
             setTripDate={setTripDate}
-            user={user}
           />
           <DeleteTripModal
             openDeleteTripModal={openDeleteTripModal}
@@ -325,7 +323,6 @@ function ManageTrips({ user, screenWidth }) {
             trip={trip}
             setTrip={setTrip}
             setTripDate={setTripDate}
-            user={user}
           />
         </div>
       )}

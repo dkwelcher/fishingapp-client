@@ -15,11 +15,11 @@ import Form from "./shared/EditCatchForm.jsx";
 import ErrorMessage from "../shared/ModalErrorMessage.jsx";
 import Button from "../shared/ModalButton.jsx";
 import { BaseURLContext } from "../../../lib/context/Context.jsx";
+import { AuthContext } from "../../../lib/context/Context.jsx";
 
 function EditCatchModal({
   openEditCatchModal,
   setOpenEditCatchModal,
-  user,
   trip,
   tempCatch,
   setTempCatch,
@@ -28,6 +28,7 @@ function EditCatchModal({
   if (!openEditCatchModal) return null;
 
   const baseURL = useContext(BaseURLContext);
+  const { user, setUser } = useContext(AuthContext);
 
   const [timeErrorMessage, setTimeErrorMessage] = useState("");
   const [fishErrorMessage, setFishErrorMessage] = useState("");

@@ -7,9 +7,12 @@ import ErrorMessage from "./shared/LoginError.jsx";
 import LoginButton from "../shared/AuthButton.jsx";
 import LinkToSignup from "./shared/LoginLink.jsx";
 import { BaseURLContext } from "../../../lib/context/Context.jsx";
+import { AuthContext } from "../../../lib/context/Context.jsx";
 
-function Login({ setUser }) {
+function Login() {
   const baseURL = useContext(BaseURLContext);
+  const { user, setUser } = useContext(AuthContext);
+
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 

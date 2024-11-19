@@ -1,10 +1,10 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useContext } from "react";
 import { Outlet } from "react-router-dom";
 import { TW_MD as mediumScreenSize } from "./../../../lib/constants/dashboard/ScreenWidth.jsx";
 import Sidebar from "./sidebar/Sidebar.jsx";
 import MobileSideBarButton from "./MobileSidebarButton.jsx";
 
-function Dashboard({ setUser, screenWidth }) {
+function Dashboard({ screenWidth }) {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const dropdownRef = useRef(null);
 
@@ -48,7 +48,7 @@ function Dashboard({ setUser, screenWidth }) {
       </div>
       <div className="invisible absolute md:visible md:static">
         {screenWidth >= mediumScreenSize && (
-          <Sidebar setUser={setUser} screenWidth={screenWidth} />
+          <Sidebar screenWidth={screenWidth} />
         )}
       </div>
       <div
@@ -64,7 +64,7 @@ function Dashboard({ setUser, screenWidth }) {
               : "opacity-0 invisible"
           }`}
         >
-          <Sidebar setUser={setUser} screenWidth={screenWidth} />
+          <Sidebar screenWidth={screenWidth} />
         </div>
       </div>
       <div className="flex flex-col flex-1 overflow-auto">

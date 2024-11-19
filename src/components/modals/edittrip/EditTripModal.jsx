@@ -8,6 +8,7 @@ import Button from "../shared/ModalButton.jsx";
 import Form from "./shared/EditTripForm.jsx";
 import SubmissionErrorMessage from "../shared/ModalErrorMessage.jsx";
 import { BaseURLContext } from "../../../lib/context/Context.jsx";
+import { AuthContext } from "../../../lib/context/Context.jsx";
 
 function EditTripModal({
   openEditTripModal,
@@ -18,11 +19,11 @@ function EditTripModal({
   tempTrip,
   setTempTrip,
   setTripDate,
-  user,
 }) {
   if (!openEditTripModal) return null;
 
   const baseURL = useContext(BaseURLContext);
+  const { user, setUser } = useContext(AuthContext);
 
   const [editDate, setEditDate] = useState(new Date(handleDateConversion()));
 

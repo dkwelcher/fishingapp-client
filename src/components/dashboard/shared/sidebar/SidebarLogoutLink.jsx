@@ -1,7 +1,10 @@
+import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { HiOutlineLogout } from "react-icons/hi";
+import { AuthContext } from "../../../../lib/context/Context.jsx";
 
-function SidebarLogoutLink({ setUser }) {
+function SidebarLogoutLink() {
+  const { user, setUser } = useContext(AuthContext);
   const navigate = useNavigate();
 
   function handleLogout() {

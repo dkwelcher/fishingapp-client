@@ -8,6 +8,7 @@ import Form from "./shared/SelectDateForm.jsx";
 import ErrorMessage from "../shared/ModalErrorMessage.jsx";
 import SelectTripCard from "./shared/SelectTripCard.jsx";
 import { BaseURLContext } from "../../../lib/context/Context.jsx";
+import { AuthContext } from "../../../lib/context/Context.jsx";
 
 function SelectDateModal({
   openSelectDateModal,
@@ -16,11 +17,11 @@ function SelectDateModal({
   setTrips,
   setTrip,
   tripDate,
-  user,
 }) {
   if (!openSelectDateModal) return null;
 
   const baseURL = useContext(BaseURLContext);
+  const { user, setUser } = useContext(AuthContext);
 
   const [location, setLocation] = useState();
   const [locationErrorMessage, setLocationErrorMessage] = useState("");

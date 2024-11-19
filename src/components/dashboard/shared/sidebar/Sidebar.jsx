@@ -6,7 +6,7 @@ import Logo from "./SidebarLogo.jsx";
 import SidebarLink from "./SidebarLink.jsx";
 import LogoutLink from "./SidebarLogoutLink.jsx";
 
-function Sidebar({ setUser, screenWidth }) {
+function Sidebar({ screenWidth }) {
   return (
     <div
       className={`pt-10 h-full bg-slate-950 w-60 p-3 flex flex-col border-r border-slate-700 md:pt-0 ${
@@ -23,7 +23,7 @@ function Sidebar({ setUser, screenWidth }) {
         {DASHBOARD_SIDEBAR_BOTTOM_LINKS.map((item) => (
           <SidebarLink key={item.key} item={item} />
         ))}
-        <LogoutLink setUser={setUser} />
+        <LogoutLink />
       </div>
     </div>
   );

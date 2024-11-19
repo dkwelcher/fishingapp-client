@@ -15,17 +15,18 @@ import Form from "./shared/AddCatchForm.jsx";
 import ErrorMessage from "../shared/ModalErrorMessage.jsx";
 import Button from "../shared/ModalButton.jsx";
 import { BaseURLContext } from "../../../lib/context/Context.jsx";
+import { AuthContext } from "../../../lib/context/Context.jsx";
 
 function AddCatchModal({
   openAddCatchModal,
   setOpenAddCatchModal,
-  user,
   trip,
   setCatches,
 }) {
   if (!openAddCatchModal) return null;
 
   const baseURL = useContext(BaseURLContext);
+  const { user, setUser } = useContext(AuthContext);
 
   const [newCatch, setNewCatch] = useState({ weather: "clear" });
 
