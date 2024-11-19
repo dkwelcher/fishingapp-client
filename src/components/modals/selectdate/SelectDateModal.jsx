@@ -5,7 +5,7 @@ import {
 } from "../../../lib/utilities/InputValidation.jsx";
 import Button from "../shared/ModalButton.jsx";
 import Form from "./shared/SelectDateForm.jsx";
-import ErrorMessage from "./shared/SelectDateErrorMessage.jsx";
+import ErrorMessage from "../shared/ModalErrorMessage.jsx";
 import SelectTripCard from "./shared/SelectTripCard.jsx";
 
 function SelectDateModal({
