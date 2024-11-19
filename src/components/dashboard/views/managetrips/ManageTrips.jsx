@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import DatePicker from "react-datepicker";
 import { HiOutlineCalendar } from "react-icons/hi";
 import SelectDateModal from "../../../modals/selectdate/SelectDateModal.jsx";
@@ -12,8 +12,10 @@ import ManageTripsText from "./shared/ManageTripsText.jsx";
 import LastSixMonthsButton from "./shared/LastSixMonthsButton.jsx";
 import RecentTrips from "./shared/RecentTrips.jsx";
 import Logo from "./shared/RecentTripsLogo.jsx";
+import { BaseURLContext } from "../../../../lib/context/Context.jsx";
 
-function ManageTrips({ user, screenWidth, baseURL }) {
+function ManageTrips({ user, screenWidth }) {
+  const baseURL = useContext(BaseURLContext);
   const [openSelectDateModal, setOpenSelectDateModal] = useState(false);
   const [openAddCatchModal, setOpenAddCatchModal] = useState(false);
   const [openEditCatchModal, setOpenEditCatchModal] = useState(false);
@@ -279,7 +281,6 @@ function ManageTrips({ user, screenWidth, baseURL }) {
             setTrip={setTrip}
             tripDate={tripDate}
             user={user}
-            baseURL={baseURL}
           />
           <AddCatchModal
             openAddCatchModal={openAddCatchModal}
@@ -289,7 +290,6 @@ function ManageTrips({ user, screenWidth, baseURL }) {
             tempCatch={tempCatch}
             setTempCatch={setTempCatch}
             setCatches={setCatches}
-            baseURL={baseURL}
           />
           <EditCatchModal
             openEditCatchModal={openEditCatchModal}
@@ -299,7 +299,6 @@ function ManageTrips({ user, screenWidth, baseURL }) {
             tempCatch={tempCatch}
             setTempCatch={setTempCatch}
             setCatches={setCatches}
-            baseURL={baseURL}
           />
           <DeleteCatchModal
             openDeleteCatchModal={openDeleteCatchModal}
@@ -308,7 +307,6 @@ function ManageTrips({ user, screenWidth, baseURL }) {
             tempCatch={tempCatch}
             setTempCatch={setTempCatch}
             setCatches={setCatches}
-            baseURL={baseURL}
           />
           <EditTripModal
             openEditTripModal={openEditTripModal}
@@ -320,7 +318,6 @@ function ManageTrips({ user, screenWidth, baseURL }) {
             setTempTrip={setTempTrip}
             setTripDate={setTripDate}
             user={user}
-            baseURL={baseURL}
           />
           <DeleteTripModal
             openDeleteTripModal={openDeleteTripModal}
@@ -329,7 +326,6 @@ function ManageTrips({ user, screenWidth, baseURL }) {
             setTrip={setTrip}
             setTripDate={setTripDate}
             user={user}
-            baseURL={baseURL}
           />
         </div>
       )}

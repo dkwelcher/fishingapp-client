@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import {
   handleCatchInputValidation,
   handleTimeInputValidation,
@@ -14,6 +14,7 @@ import {
 import Form from "./shared/AddCatchForm.jsx";
 import ErrorMessage from "../shared/ModalErrorMessage.jsx";
 import Button from "../shared/ModalButton.jsx";
+import { BaseURLContext } from "../../../lib/context/Context.jsx";
 
 function AddCatchModal({
   openAddCatchModal,
@@ -21,9 +22,10 @@ function AddCatchModal({
   user,
   trip,
   setCatches,
-  baseURL,
 }) {
   if (!openAddCatchModal) return null;
+
+  const baseURL = useContext(BaseURLContext);
 
   const [newCatch, setNewCatch] = useState({ weather: "clear" });
 

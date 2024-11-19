@@ -1,4 +1,6 @@
+import { useContext } from "react";
 import Button from "../shared/ModalButton.jsx";
+import { BaseURLContext } from "../../../lib/context/Context.jsx";
 
 function DeleteTripModal({
   openDeleteTripModal,
@@ -7,9 +9,10 @@ function DeleteTripModal({
   setTrip,
   setTripDate,
   user,
-  baseURL,
 }) {
   if (!openDeleteTripModal) return null;
+
+  const baseURL = useContext(BaseURLContext);
 
   function handleDeleteTripClick() {
     deleteTrip();

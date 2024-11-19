@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { handleLoginInputValidation } from "../../../lib/utilities/InputValidation";
 import Logo from "../shared/AuthLogo.jsx";
@@ -6,8 +6,10 @@ import Form from "./shared/LoginForm.jsx";
 import ErrorMessage from "./shared/LoginError.jsx";
 import LoginButton from "../shared/AuthButton.jsx";
 import LinkToSignup from "./shared/LoginLink.jsx";
+import { BaseURLContext } from "../../../lib/context/Context.jsx";
 
-function Login({ setUser, baseURL }) {
+function Login({ setUser }) {
+  const baseURL = useContext(BaseURLContext);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
@@ -19,21 +21,17 @@ function Login({ setUser, baseURL }) {
   const navigate = useNavigate();
 
   function handleUsernameInput(usernameInput) {
-    setIsUsernameValid(isInputValid(usernameInput));
-    clearInputErrorMessageIfAllFieldsValid();
+    const isValid = handleLoginInputValidation(usernameInput);
+    setIsUsernameValid(isValid);
+    if (isValid && isPasswordValid) {
+      setInputErrorMessage("");
+    }
   }
 
   function handlePasswordInput(passwordInput) {
-    setIsPasswordValid(isInputValid(passwordInput));
-    clearInputErrorMessageIfAllFieldsValid();
-  }
-
-  function isInputValid(input) {
-    return handleLoginInputValidation(input);
-  }
-
-  function clearInputErrorMessageIfAllFieldsValid() {
-    if (isValid && isPasswordValid) {
+    const isValid = handleLoginInputValidation(passwordInput);
+    setIsPasswordValid(isValid);
+    if (isValid && isUsernameValid) {
       setInputErrorMessage("");
     }
   }

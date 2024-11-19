@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import {
   handleTripInputValidation,
   handleLocationInputValidation,
@@ -7,6 +7,7 @@ import {
 import Button from "../shared/ModalButton.jsx";
 import Form from "./shared/EditTripForm.jsx";
 import SubmissionErrorMessage from "../shared/ModalErrorMessage.jsx";
+import { BaseURLContext } from "../../../lib/context/Context.jsx";
 
 function EditTripModal({
   openEditTripModal,
@@ -18,9 +19,10 @@ function EditTripModal({
   setTempTrip,
   setTripDate,
   user,
-  baseURL,
 }) {
   if (!openEditTripModal) return null;
+
+  const baseURL = useContext(BaseURLContext);
 
   const [editDate, setEditDate] = useState(new Date(handleDateConversion()));
 

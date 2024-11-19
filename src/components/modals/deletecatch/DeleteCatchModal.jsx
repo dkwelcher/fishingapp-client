@@ -1,4 +1,6 @@
+import { useContext } from "react";
 import Button from "../shared/ModalButton.jsx";
+import { BaseURLContext } from "../../../lib/context/Context.jsx";
 
 function DeleteCatchModal({
   openDeleteCatchModal,
@@ -7,9 +9,10 @@ function DeleteCatchModal({
   tempCatch,
   setTempCatch,
   setCatches,
-  baseURL,
 }) {
   if (!openDeleteCatchModal) return null;
+
+  const baseURL = useContext(BaseURLContext);
 
   function handleDeleteCatchClick() {
     deleteCatch();

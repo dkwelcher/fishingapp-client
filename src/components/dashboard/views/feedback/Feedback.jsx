@@ -1,8 +1,11 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import Content from "./shared/FeedbackContent.jsx";
 import Form from "./shared/FeedbackForm.jsx";
+import { BaseURLContext } from "../../../../lib/context/Context.jsx";
 
-function Feedback({ user, baseURL }) {
+function Feedback({ user }) {
+  const baseURL = useContext(BaseURLContext);
+
   const [userInput, setUserInput] = useState("");
   const [selectPage, setSelectPage] = useState("Landing page");
   const [hasSubmittedFeedback, setHasSubmittedFeedback] = useState(false);

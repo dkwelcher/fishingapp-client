@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import {
   handleUsernameInputValidation,
@@ -12,8 +12,10 @@ import SignupForm from "./shared/SignupForm.jsx";
 import ErrorMessage from "./shared/SignupError.jsx";
 import SignupButton from "../shared/AuthButton.jsx";
 import LinkToLogin from "./shared/SignupLink.jsx";
+import { BaseURLContext } from "../../../lib/context/Context.jsx";
 
-function Signup({ baseURL }) {
+function Signup() {
+  const baseURL = useContext(BaseURLContext);
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");

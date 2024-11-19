@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import {
   handleTripInputValidation,
   handleLocationInputValidation,
@@ -7,6 +7,7 @@ import Button from "../shared/ModalButton.jsx";
 import Form from "./shared/SelectDateForm.jsx";
 import ErrorMessage from "../shared/ModalErrorMessage.jsx";
 import SelectTripCard from "./shared/SelectTripCard.jsx";
+import { BaseURLContext } from "../../../lib/context/Context.jsx";
 
 function SelectDateModal({
   openSelectDateModal,
@@ -16,9 +17,10 @@ function SelectDateModal({
   setTrip,
   tripDate,
   user,
-  baseURL,
 }) {
   if (!openSelectDateModal) return null;
+
+  const baseURL = useContext(BaseURLContext);
 
   const [location, setLocation] = useState();
   const [locationErrorMessage, setLocationErrorMessage] = useState("");

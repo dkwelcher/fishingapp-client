@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import {
   handleCatchInputValidation,
   handleTimeInputValidation,
@@ -14,6 +14,7 @@ import {
 import Form from "./shared/EditCatchForm.jsx";
 import ErrorMessage from "../shared/ModalErrorMessage.jsx";
 import Button from "../shared/ModalButton.jsx";
+import { BaseURLContext } from "../../../lib/context/Context.jsx";
 
 function EditCatchModal({
   openEditCatchModal,
@@ -23,9 +24,10 @@ function EditCatchModal({
   tempCatch,
   setTempCatch,
   setCatches,
-  baseURL,
 }) {
   if (!openEditCatchModal) return null;
+
+  const baseURL = useContext(BaseURLContext);
 
   const [timeErrorMessage, setTimeErrorMessage] = useState("");
   const [fishErrorMessage, setFishErrorMessage] = useState("");
