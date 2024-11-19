@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import DatePicker from "react-datepicker";
 import { HiOutlineCalendar } from "react-icons/hi";
-import SelectDateModal from "../../../modals/SelectDateModal";
+import SelectDateModal from "../../../modals/selectdate/SelectDateModal.jsx";
 import AddCatchModal from "../../../modals/AddCatchModal";
 import EditCatchModal from "../../../modals/EditCatchModal";
 import DeleteCatchModal from "../../../modals/DeleteCatchModal";
@@ -32,10 +32,13 @@ function ManageTrips({ user, screenWidth, baseURL }) {
 
   const [tripsLastSixMonths, setTripsLastSixMonths] = useState([]);
 
+  const [currentDate, setCurrentDate] = useState("");
+
   function handleDateSelect(date) {
     if (date === null || date === undefined || date === "") {
       return;
     }
+    setCurrentDate(date);
     setTripDate(formatDate(date));
     setOpenSelectDateModal(true);
   }
@@ -335,9 +338,10 @@ function ManageTrips({ user, screenWidth, baseURL }) {
           <ManageTripsText />
           <div className="ml-1 flex gap-x-4 items-center">
             <DatePicker
+              id="datepicker"
               className="w-[200px] border border-slate-400 rounded-sm bg-slate-50 text-slate-800 focus:bg-slate-200 focus:text-slate-900 outline-none shadow-md shadow-slate-950"
               showIcon
-              selected={new Date()}
+              selected={currentDate === "" ? new Date() : currentDate}
               onChange={(date) => handleDateSelect(date)}
               icon={
                 <HiOutlineCalendar fontSize={20} className="text-slate-400" />
