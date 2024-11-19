@@ -1,10 +1,12 @@
 # Fishing App Client
 
-Client source code for the Fishing App.
+Client source code for the Fishing App (https://github.com/dkwelcher/fishingapp-project).
 
 ## Current Work
 
-The source code is being refactored to abstract components from larger components. Consideration is being made for the use of React Context.
+- Further modularization of code
+- Refactoring functions into testable units
+- Write Cypress tests
 
 ## Stack
 
