@@ -4,7 +4,7 @@ import { handleLoginInputValidation } from "../../../lib/utilities/InputValidati
 import { AUTHENTICATE_USER_POST_REQUEST } from "../../../lib/http/PostRequests.jsx";
 import Logo from "../shared/AuthLogo.jsx";
 import Form from "./shared/LoginForm.jsx";
-import ErrorMessage from "./shared/LoginError.jsx";
+import SubmissionErrorMessage from "../../shared/SubmissionErrorMessage.jsx";
 import LoginButton from "../shared/AuthButton.jsx";
 import LinkToSignup from "./shared/LoginLink.jsx";
 import { AuthContext } from "../../../lib/context/Context.jsx";
@@ -101,7 +101,10 @@ function Login() {
           setPassword={setPassword}
           validatePasswordInput={validatePasswordInput}
         />
-        <ErrorMessage errorMessage={inputErrorMessage} />
+
+        <div className="my-2">
+          <SubmissionErrorMessage errorMessage={inputErrorMessage} />
+        </div>
         <div className="mb-2 py-2 flex flex-col">
           <LoginButton handleAuth={handleLoginClick} authText={"Log in"} />
         </div>
