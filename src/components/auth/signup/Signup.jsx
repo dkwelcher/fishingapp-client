@@ -1,4 +1,4 @@
-import { useState, useContext } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import {
   handleUsernameInputValidation,
@@ -6,16 +6,15 @@ import {
   handlePasswordInputValidation,
   handleConfirmPasswordInputValidation,
 } from "../../../lib/utilities/InputValidation";
+import { REGISTER_USER_POST_REQUEST } from "../../../lib/http/PostRequests.jsx";
 import Logo from "../shared/AuthLogo.jsx";
 import SignupText from "./shared/SignupText.jsx";
 import SignupForm from "./shared/SignupForm.jsx";
 import ErrorMessage from "./shared/SignupError.jsx";
 import SignupButton from "../shared/AuthButton.jsx";
 import LinkToLogin from "./shared/SignupLink.jsx";
-import { BaseURLContext } from "../../../lib/context/Context.jsx";
 
 function Signup() {
-  const baseURL = useContext(BaseURLContext);
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -37,79 +36,76 @@ function Signup() {
 
   const navigate = useNavigate();
 
-  function handleUsernameInput(currentUsername) {
-    const isValid = handleUsernameInputValidation(currentUsername);
+  function handleUsernameInput(usernameInput) {
+    const isValid = handleUsernameInputValidation(usernameInput);
     setIsUsernameValid(isValid);
-    isValid
-      ? setUsernameErrorMessage("")
-      : setUsernameErrorMessage("Invalid username");
-    if (isValid && isEmailValid && isPasswordValid && isConfirmPasswordValid) {
-      setFormSubmissionErrorMessage("");
-    }
+    displayErrorMessage(isValid, setUsernameErrorMessage, "Invalid username");
   }
 
-  function handleEmailInput(currentEmail) {
-    const isValid = handleEmailInputValidation(currentEmail);
+  function handleEmailInput(emailInput) {
+    const isValid = handleEmailInputValidation(emailInput);
     setIsEmailValid(isValid);
-    isValid ? setEmailErrorMessage("") : setEmailErrorMessage("Invalid email");
-    if (
-      isValid &&
-      isUsernameValid &&
-      isPasswordValid &&
-      isConfirmPasswordValid
-    ) {
-      setFormSubmissionErrorMessage("");
-    }
+    displayErrorMessage(isValid, setEmailErrorMessage, "Invalid email");
   }
 
-  function handlePasswordInput(currentPassword) {
-    const isValid = handlePasswordInputValidation(currentPassword);
+  function handlePasswordInput(passwordInput) {
+    const isValid = handlePasswordInputValidation(passwordInput);
     setIsPasswordValid(isValid);
-    isValid
-      ? setPasswordErrorMessage("")
-      : setPasswordErrorMessage("Invalid Password");
-    if (isValid && isUsernameValid && isEmailValid && isConfirmPasswordValid) {
-      setFormSubmissionErrorMessage("");
-    }
+    displayErrorMessage(isValid, setPasswordErrorMessage, "Invalid password");
+
+    handleConfirmPasswordInput(confirmPassword);
   }
 
-  function handleConfirmPasswordInput(currentConfirmPassword) {
+  function handleConfirmPasswordInput(confirmPasswordInput) {
     const isValid = handleConfirmPasswordInputValidation(
       password,
-      currentConfirmPassword
+      confirmPasswordInput
     );
     setIsConfirmPasswordValid(isValid);
-    isValid
-      ? setConfirmPasswordErrorMessage("")
-      : setConfirmPasswordErrorMessage("Passwords do not match");
-    if (isValid && isUsernameValid && isEmailValid && isPasswordValid) {
-      setFormSubmissionErrorMessage("");
-    }
+    displayErrorMessage(
+      isValid,
+      setConfirmPasswordErrorMessage,
+      "Passwords do not match"
+    );
   }
 
-  function handleSignup() {
+  function displayErrorMessage(isValid, setErrorMessage, errorMessageText) {
+    isValid ? setErrorMessage("") : setErrorMessage(errorMessageText);
+  }
+
+  useEffect(() => {
     if (
       isUsernameValid &&
       isEmailValid &&
       isPasswordValid &&
       isConfirmPasswordValid
     ) {
-      const newUser = {
-        username: username,
-        password: password,
-        email: email,
-      };
-      postNewUser(newUser);
-    } else {
-      setFormSubmissionErrorMessage("One or more input fields are invalid");
+      setFormSubmissionErrorMessage("");
     }
+  }, [isUsernameValid, isEmailValid, isPasswordValid, isConfirmPasswordValid]);
+
+  function handleSignup() {
+    if (
+      !isUsernameValid ||
+      !isEmailValid ||
+      !isPasswordValid ||
+      !isConfirmPasswordValid
+    ) {
+      setFormSubmissionErrorMessage("One or more input fields are invalid");
+      return;
+    }
+
+    const newUser = {
+      username: username,
+      password: password,
+      email: email,
+    };
+    postNewUser(newUser);
   }
 
   async function postNewUser(newUser) {
-    const POST_NEW_USER = `${baseURL}/auth/register`;
-
     try {
-      const response = await fetch(POST_NEW_USER, {
+      const response = await fetch(REGISTER_USER_POST_REQUEST, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -124,14 +120,14 @@ function Signup() {
       const data = await response.json();
 
       if (data.token) {
-        handleNavigateToLogin();
+        navigateToLogin();
       }
     } catch (error) {
       console.log(error);
     }
   }
 
-  function handleNavigateToLogin() {
+  function navigateToLogin() {
     navigate("/login");
   }
 
@@ -164,7 +160,7 @@ function Signup() {
             authText="Create your account"
           />
         </div>
-        <LinkToLogin handleNavigateToLogin={handleNavigateToLogin} />
+        <LinkToLogin handleNavigation={navigateToLogin} />
       </div>
     </div>
   );
