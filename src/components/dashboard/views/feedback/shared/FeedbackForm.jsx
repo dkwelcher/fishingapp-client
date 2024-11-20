@@ -1,4 +1,5 @@
 import SelectBox from "./FeedbackSelectBox";
+import SubmissionErrorMessage from "../../../../shared/SubmissionErrorMessage.jsx";
 
 function FeedbackForm({
   userInput,
@@ -17,6 +18,7 @@ function FeedbackForm({
     "manage-trips-page",
     "other",
   ];
+
   return (
     <>
       <form htmlFor="feedback" className="w-full min-h-[180px]">
@@ -38,14 +40,7 @@ function FeedbackForm({
         ></textarea>
       </form>
       <div className="my-2">
-        <p
-          className={`text-red-600 text-center ${
-            formSubmissionErrorMessage.length > 0 ? "visible" : "hidden"
-          }`}
-        >
-          {formSubmissionErrorMessage}
-          {"."}
-        </p>
+        <SubmissionErrorMessage errorMessage={formSubmissionErrorMessage} />
       </div>
       <div className="py-2 flex flex-col">
         <button
