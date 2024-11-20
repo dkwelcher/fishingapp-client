@@ -134,7 +134,9 @@ function Signup() {
   return (
     <div className="p-4 flex h-screen justify-center items-center font-paragraph font-normal text-sm lg:text-base text-slate-200 bg-slate-800">
       <div className="p-8 max-w-[500px] rounded-sm bg-gradient-to-b from-slate-600 to-slate-700 shadow-md shadow-slate-900">
-        <Logo />
+        <div className="mb-4">
+          <Logo />
+        </div>
         <div className="pb-8">
           <SignupText />
         </div>
