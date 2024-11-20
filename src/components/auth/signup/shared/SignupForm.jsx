@@ -1,3 +1,6 @@
+import Input from "../../shared/AuthInput.jsx";
+import ErrorSpan from "../../shared/AuthInputErrorSpan.jsx";
+
 function SignupForm({
   setUsername,
   setEmail,
@@ -11,82 +14,56 @@ function SignupForm({
   emailErrorMessage,
   passwordErrorMessage,
   confirmPasswordErrorMessage,
-  confirmPassword,
 }) {
-  const inputContainerStyles = "pb-2 flex flex-col";
-  const inputStyles =
-    "px-2 py-1 border border-0 border-zinc-400 rounded-sm bg-slate-700 hover:bg-slate-600 focus:bg-slate-200 focus:text-slate-800 shadow-md shadow-slate-800 outline-none";
-  const inputErrorMessageStyles = "text-red-600";
-
   return (
-    <form>
-      <div className={inputContainerStyles}>
+    <form className="flex flex-col gap-y-2">
+      <div>
         <label htmlFor="username">
-          Username:{" "}
-          {
-            <span className={inputErrorMessageStyles}>
-              {usernameErrorMessage}
-            </span>
-          }
+          Username: {<ErrorSpan errorMessage={usernameErrorMessage} />}
         </label>
-        <input
-          id="username"
-          className={inputStyles}
-          type="text"
-          autoComplete="off"
-          onChange={(e) => setUsername(e.target.value)}
-          onBlur={(e) => handleUsernameInput(e.target.value)}
+        <Input
+          inputId={"username"}
+          inputType={"text"}
+          isAutoCompleteOn={false}
+          handleOnChange={setUsername}
+          handleOnBlur={handleUsernameInput}
         />
       </div>
-      <div className={inputContainerStyles}>
+      <div>
         <label htmlFor="email">
-          Email:{" "}
-          {<span className={inputErrorMessageStyles}>{emailErrorMessage}</span>}
+          Email: {<ErrorSpan errorMessage={emailErrorMessage} />}
         </label>
-        <input
-          id="email"
-          className={inputStyles}
-          type="email"
-          autoComplete="on"
-          onChange={(e) => setEmail(e.target.value)}
-          onBlur={(e) => handleEmailInput(e.target.value)}
+        <Input
+          inputId={"email"}
+          inputType={"email"}
+          isAutoCompleteOn={true}
+          handleOnChange={setEmail}
+          handleOnBlur={handleEmailInput}
         />
       </div>
-      <div className={inputContainerStyles}>
+      <div>
         <label htmlFor="password">
-          Password:{" "}
-          {
-            <span className={inputErrorMessageStyles}>
-              {passwordErrorMessage}
-            </span>
-          }
+          Password: {<ErrorSpan errorMessage={passwordErrorMessage} />}
         </label>
-        <input
-          id="password"
-          className={inputStyles}
-          type="password"
-          onChange={(e) => setPassword(e.target.value)}
-          onBlur={(e) => {
-            handlePasswordInput(e.target.value);
-            handleConfirmPasswordInput(confirmPassword);
-          }}
+        <Input
+          inputId={"password"}
+          inputType={"password"}
+          isAutoCompleteOn={false}
+          handleOnChange={setPassword}
+          handleOnBlur={handlePasswordInput}
         />
       </div>
-      <div className={inputContainerStyles}>
+      <div>
         <label htmlFor="confirmPassword">
           Confirm Password:{" "}
-          {
-            <span className={inputErrorMessageStyles}>
-              {confirmPasswordErrorMessage}
-            </span>
-          }
+          {<ErrorSpan errorMessage={confirmPasswordErrorMessage} />}
         </label>
-        <input
-          id="confirmPassword"
-          className={inputStyles}
-          type="password"
-          onChange={(e) => setConfirmPassword(e.target.value)}
-          onBlur={(e) => handleConfirmPasswordInput(e.target.value)}
+        <Input
+          inputId={"confirmPassword"}
+          inputType={"password"}
+          isAutoCompleteOn={false}
+          handleOnChange={setConfirmPassword}
+          handleOnBlur={handleConfirmPasswordInput}
         />
       </div>
     </form>
