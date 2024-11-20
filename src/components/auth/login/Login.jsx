@@ -74,18 +74,18 @@ function Login() {
       });
 
       if (data.token) {
-        handleDashboardEntry();
+        navigateToDashboard();
       }
     } catch (error) {
       console.log(error);
     }
   }
 
-  function handleDashboardEntry() {
+  function navigateToDashboard() {
     navigate("/dashboard");
   }
 
-  function handleSignupEntry() {
+  function navigateToSignup() {
     navigate("/signup");
   }
 
@@ -103,7 +103,7 @@ function Login() {
         <div className="mb-2 py-2 flex flex-col">
           <LoginButton handleAuth={handleLoginClick} authText={"Log in"} />
         </div>
-        <LinkToSignup handleSignupEntry={handleSignupEntry} />
+        <LinkToSignup handleNavigation={navigateToSignup} />
       </div>
     </div>
   );
