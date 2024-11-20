@@ -1,16 +1,15 @@
-import { useState, useContext } from "react";
+import { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { handleLoginInputValidation } from "../../../lib/utilities/InputValidation";
+import { AUTHENTICATE_USER_POST_REQUEST } from "../../../lib/http/PostRequests.jsx";
 import Logo from "../shared/AuthLogo.jsx";
 import Form from "./shared/LoginForm.jsx";
 import ErrorMessage from "./shared/LoginError.jsx";
 import LoginButton from "../shared/AuthButton.jsx";
 import LinkToSignup from "./shared/LoginLink.jsx";
-import { BaseURLContext } from "../../../lib/context/Context.jsx";
 import { AuthContext } from "../../../lib/context/Context.jsx";
 
 function Login() {
-  const baseURL = useContext(BaseURLContext);
   const { user, setUser } = useContext(AuthContext);
 
   const [username, setUsername] = useState("");
@@ -23,39 +22,36 @@ function Login() {
 
   const navigate = useNavigate();
 
-  function handleUsernameInput(usernameInput) {
-    const isValid = handleLoginInputValidation(usernameInput);
-    setIsUsernameValid(isValid);
-    if (isValid && isPasswordValid) {
-      setInputErrorMessage("");
-    }
+  function validateUsernameInput(usernameInput) {
+    setIsUsernameValid(handleLoginInputValidation(usernameInput));
   }
 
-  function handlePasswordInput(passwordInput) {
-    const isValid = handleLoginInputValidation(passwordInput);
-    setIsPasswordValid(isValid);
-    if (isValid && isUsernameValid) {
-      setInputErrorMessage("");
-    }
+  function validatePasswordInput(passwordInput) {
+    setIsPasswordValid(handleLoginInputValidation(passwordInput));
   }
 
   function handleLoginClick() {
-    if (isUsernameValid && isPasswordValid) {
-      const existingUser = {
-        username: username,
-        password: password,
-      };
-      postExistingUser(existingUser);
-    } else {
+    if (!isUsernameValid || !isPasswordValid) {
       setInputErrorMessage("One or more fields are blank");
+      return;
     }
+
+    const existingUser = {
+      username: username,
+      password: password,
+    };
+    postExistingUser(existingUser);
   }
 
-  async function postExistingUser(existingUser) {
-    const POST_EXISTING_USER = `${baseURL}/auth/authenticate`;
+  useEffect(() => {
+    if (isUsernameValid && isPasswordValid) {
+      setInputErrorMessage("");
+    }
+  }, [isUsernameValid, isPasswordValid]);
 
+  async function postExistingUser(existingUser) {
     try {
-      const response = await fetch(POST_EXISTING_USER, {
+      const response = await fetch(AUTHENTICATE_USER_POST_REQUEST, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -65,22 +61,16 @@ function Login() {
 
       if (!response.ok) {
         setInputErrorMessage("Login credentials are invalid");
+        return;
       }
 
       const data = await response.json();
-      const token = data.token;
-      const id = data.id;
-      const username = data.username;
-      const user = {
-        id: id,
-        username: username,
-      };
 
-      localStorage.setItem("authToken", token);
-      localStorage.setItem("user", JSON.stringify(user));
+      localStorage.setItem("authToken", data.token);
+
       setUser({
-        id: id,
-        username: username,
+        id: data.id,
+        username: data.username,
       });
 
       if (data.token) {
@@ -105,9 +95,9 @@ function Login() {
         <Logo />
         <Form
           setUsername={setUsername}
-          validateUsernameInput={handleUsernameInput}
+          validateUsernameInput={validateUsernameInput}
           setPassword={setPassword}
-          validatePasswordInput={handlePasswordInput}
+          validatePasswordInput={validatePasswordInput}
         />
         <ErrorMessage errorMessage={inputErrorMessage} />
         <div className="mb-2 py-2 flex flex-col">
