@@ -92,7 +92,9 @@ function Login() {
   return (
     <div className="p-4 flex h-screen justify-center items-center font-paragraph font-normal text-sm lg:text-base text-slate-200 bg-slate-800">
       <div className="p-8 rounded-sm bg-gradient-to-b from-slate-600 to-slate-700 shadow-md shadow-slate-900">
-        <Logo />
+        <div className="mb-4">
+          <Logo />
+        </div>
         <Form
           setUsername={setUsername}
           validateUsernameInput={validateUsernameInput}
