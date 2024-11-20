@@ -10,7 +10,7 @@ import { REGISTER_USER_POST_REQUEST } from "../../../lib/http/PostRequests.jsx";
 import Logo from "../shared/AuthLogo.jsx";
 import SignupText from "./shared/SignupText.jsx";
 import SignupForm from "./shared/SignupForm.jsx";
-import ErrorMessage from "./shared/SignupError.jsx";
+import SubmissionErrorMessage from "../../shared/SubmissionErrorMessage.jsx";
 import SignupButton from "../shared/AuthButton.jsx";
 import LinkToLogin from "./shared/SignupLink.jsx";
 
@@ -155,7 +155,9 @@ function Signup() {
           confirmPasswordErrorMessage={confirmPasswordErrorMessage}
           confirmPassword={confirmPassword}
         />
-        <ErrorMessage errorMessage={formSubmissionErrorMessage} />
+        <div className="my-2">
+          <SubmissionErrorMessage errorMessage={formSubmissionErrorMessage} />
+        </div>
         <div className="mb-2 py-2 flex flex-col">
           <SignupButton
             handleAuth={handleSignup}
