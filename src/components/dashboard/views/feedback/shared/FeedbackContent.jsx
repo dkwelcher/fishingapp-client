@@ -4,8 +4,12 @@ import Text from "./FeedbackText.jsx";
 function FeedbackContent() {
   return (
     <>
-      <Logo />
-      <Text />
+      <div className="mb-4">
+        <Logo />
+      </div>
+      <div className="mb-8">
+        <Text />
+      </div>
     </>
   );
 }
