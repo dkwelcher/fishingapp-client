@@ -6,7 +6,7 @@ import {
 } from "../../../lib/utilities/InputValidation";
 import Button from "../shared/ModalButton.jsx";
 import Form from "./shared/EditTripForm.jsx";
-import SubmissionErrorMessage from "../shared/ModalErrorMessage.jsx";
+import SubmissionErrorMessage from "../../shared/SubmissionErrorMessage.jsx";
 import { BaseURLContext } from "../../../lib/context/Context.jsx";
 import { AuthContext } from "../../../lib/context/Context.jsx";
 

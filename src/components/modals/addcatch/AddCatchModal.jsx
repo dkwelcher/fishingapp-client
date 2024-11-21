@@ -12,7 +12,7 @@ import {
   handleWindSpeedInputValidation,
 } from "../../../lib/utilities/InputValidation";
 import Form from "./shared/AddCatchForm.jsx";
-import ErrorMessage from "../shared/ModalErrorMessage.jsx";
+import ErrorMessage from "../../shared/SubmissionErrorMessage.jsx";
 import Button from "../shared/ModalButton.jsx";
 import { BaseURLContext } from "../../../lib/context/Context.jsx";
 import { AuthContext } from "../../../lib/context/Context.jsx";
