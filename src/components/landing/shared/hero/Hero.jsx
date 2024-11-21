@@ -1,5 +1,5 @@
 import Heading from "../header/Heading.jsx";
-import Content from "./HeroContent.jsx";
+import Content from "./shared/HeroContent.jsx";
 
 function Hero({ handleLoginEntry, handleSignupEntry }) {
   return (
