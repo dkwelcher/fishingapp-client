@@ -1,8 +1,8 @@
 import { useState, useEffect, useRef } from "react";
-import Logo from "./Logo.jsx";
-import MobileMenu from "./MobileMenu.jsx";
-import AuthLink from "./AuthLink.jsx";
-import MobileAuthLink from "./MobileAuthLink.jsx";
+import Logo from "./shared/Logo.jsx";
+import MobileMenu from "./shared/MobileMenu.jsx";
+import AuthLink from "./shared/AuthLink.jsx";
+import MobileAuthLink from "./shared/MobileAuthLink.jsx";
 
 function Heading({ handleLoginEntry, handleSignupEntry }) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
