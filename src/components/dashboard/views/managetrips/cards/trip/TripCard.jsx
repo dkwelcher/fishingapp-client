@@ -13,9 +13,9 @@ function TripCard({
   handleDeleteCatchClick,
 }) {
   return (
-    <div className="p-4 rounded-sm bg-slate-800 shadow-md shadow-slate-800">
-      <div className="mb-4 pb-4 flex justify-between border-0 border-b-4 border-slate-300">
-        <div className="w-full flex flex-col items-start text-white">
+    <div className="p-4 flex flex-col gap-y-4 rounded-sm bg-slate-800 text-white">
+      <div className="pb-4 flex justify-between border-0 border-b-4 border-slate-300">
+        <div className="w-full">
           <TripDetails trip={trip} />
         </div>
         <div className="w-full flex justify-end items-center gap-4">
@@ -31,11 +31,13 @@ function TripCard({
           />
         </div>
       </div>
-      <div className="px-6 font-paragraph text-slate-200">
+      <div className="px-6 flex flex-col gap-y-4 font-paragraph">
         {trip.location && trip.date && (
           <>
-            <AddCatchButton handleClick={handleAddCatchClick} />
-            <div className="pt-2 grid gap-4 grid-cols-[repeat(auto-fill,300px)] justify-center">
+            <div className="m-auto">
+              <AddCatchButton handleClick={handleAddCatchClick} />
+            </div>
+            <div className="grid gap-4 grid-cols-[repeat(auto-fill,18.75rem)] justify-center">
               {catches.map((catchItem, index) => (
                 <CatchCard
                   key={catchItem.id}
