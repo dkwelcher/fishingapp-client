@@ -5,7 +5,7 @@ import {
 } from "../../../lib/utilities/InputValidation.jsx";
 import Button from "../shared/ModalButton.jsx";
 import Form from "./shared/SelectDateForm.jsx";
-import ErrorMessage from "../shared/ModalErrorMessage.jsx";
+import ErrorMessage from "../../shared/SubmissionErrorMessage.jsx";
 import SelectTripCard from "./shared/SelectTripCard.jsx";
 import { BaseURLContext } from "../../../lib/context/Context.jsx";
 import { AuthContext } from "../../../lib/context/Context.jsx";
@@ -125,23 +125,21 @@ function SelectDateModal({
   /* End Tailwind Class Styles */
 
   return (
-    <div className="p-4 bg-slate-50 rounded-sm font-paragraph md:-translate-x-32 shadow-md shadow-slate-950">
-      <div className="mb-4 px-2 border border-0 border-b-4 border-slate-700 md:text-lg">
+    <div className="p-4 bg-slate-50 rounded-sm font-paragraph text-sm shadow-md shadow-slate-950 md:text-lg md:-translate-x-32">
+      <div className="border border-0 border-b-4 border-slate-700">
         <h2 className={tripTitleStyles}>Add a Trip</h2>
-        <div className="mb-4 flex justify-between items-end">
+        <div className="flex gap-x-2">
           <Form
             setLocation={setLocation}
             handleLocationInput={handleLocationInput}
           />
-          <div>
-            <Button buttonText={"Add"} handleClick={handleAddTripClick} />
-          </div>
+          <Button buttonText={"Add"} handleClick={handleAddTripClick} />
         </div>
-        <div>
+        <div className="py-1">
           <ErrorMessage errorMessage={locationErrorMessage} />
         </div>
       </div>
-      <div className="pb-4">
+      <div>
         <h2 className={tripTitleStyles}>Or Select an Existing Trip</h2>
         {trips.map((trip, index) => (
           <SelectTripCard
