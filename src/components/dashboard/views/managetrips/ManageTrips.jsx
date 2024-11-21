@@ -332,7 +332,7 @@ function ManageTrips() {
           <div className="ml-1 flex gap-x-4 items-center">
             <DatePicker
               id="datepicker"
-              className="w-[200px] border border-slate-400 rounded-sm bg-slate-50 text-slate-800 focus:bg-slate-200 focus:text-slate-900 outline-none shadow-md shadow-slate-950"
+              className="w-[200px] ml-1 border border-slate-400 rounded-sm bg-slate-50 text-slate-800 focus:bg-slate-200 focus:text-slate-900 outline-none shadow-md shadow-slate-950"
               showIcon
               selected={currentDate === "" ? new Date() : currentDate}
               onChange={(date) => handleDateSelect(date)}
